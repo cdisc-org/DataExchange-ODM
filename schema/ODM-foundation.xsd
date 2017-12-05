@@ -13,7 +13,7 @@
 		<xs:restriction base="xs:integer"/>
 	</xs:simpleType>
 	<xs:simpleType name="float">
-		<xs:restriction base="xs:decimal"/>
+		<xs:restriction base="xs:float"/>
 	</xs:simpleType>
 	<!--
         +===========================================================================+
@@ -54,7 +54,7 @@
 			<!--xs:minInclusive value="1"/-->
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- this is used for the SignificantDigits attribute on ItemDef -->
+	<!-- this is used for the DisplayDecimalPlaces attribute on ItemDef -->
 	<xs:simpleType name="nonNegativeInteger">
 		<xs:restriction base="xs:nonNegativeInteger">
 			<!--xs:minInclusive value="0"/-->
@@ -65,22 +65,8 @@
 	<xs:simpleType name="boolean">
 		<xs:restriction base="xs:boolean"/>
 	</xs:simpleType>
-	<!--
-              a new datatype to specifically allow scientific notation (was alias)
-              the ODM float is based on xs:decimal which does not range validate
-              so, we base the ODM double on string to similarly defeat range validation
-              and also allow the xs:double special values to be accepted by pattern
-                 E (float)  exponent range check is -149 to 104 inclusive
-                 D (double) exponent range check is -1075 to 970 inclusive
-              E or D permits an application to also differentiate precision if desired.
-              this is a beneficial side-effect since ODM float is not actually a
-              single precision value; it only indicates the possibility of a decimal portion.
-              pattern also include signed zero, infinity and Nan notation per xs:double
-          -->
 	<xs:simpleType name="double">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="(((\+|-)?[0-9]+(\.[0-9]+)?((D|d|E|e)(\+|-)[0-9]+)?)|(-?INF)|(NaN))"/>
-		</xs:restriction>
+        <xs:restriction base="xs:double"/>
 	</xs:simpleType>
 	<xs:simpleType name="string">
 		<xs:restriction base="xs:string"/>
@@ -293,6 +279,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="integer"/>
 			<xs:enumeration value="float"/>
+			<xs:enumeration value="double"/>
 			<xs:enumeration value="text"/>
 			<xs:enumeration value="string"/>
 		</xs:restriction>
@@ -620,8 +607,7 @@
 		<xs:attribute name="Name" type="name" use="required"/>
 		<xs:attribute name="DataType" type="DataType" use="required"/>
 		<xs:attribute name="Length" type="positiveInteger"/>
-		<!--xs:attribute name="SignificantDigits" type="integer"/-->
-		<xs:attribute name="SignificantDigits" type="nonNegativeInteger"/>
+		<xs:attribute name="DisplayDecimalPlaces" type="nonNegativeInteger"/>
 		<xs:attribute name="SASFieldName" type="sasName"/>
 		<xs:attribute name="SDSVarName" type="sasName"/>
 		<xs:attribute name="Origin" type="text"/>
