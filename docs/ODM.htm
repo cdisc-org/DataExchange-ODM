@@ -2931,16 +2931,18 @@ are to be interpreted for comparison and storage.
 
 <p>Note: In version 1.3.2 Length and SignificantDigits attributes were used to express the requirements for the receiving system.
 In this version SignificantDigits attribute was removed and instead a new DisplayDecimalPlaces attribute was added.
-Meaning of the Lenght attribute was not changed for the text and string datatypes, but was changed for the numeric datatypes and became optional for all other datatypes.
+Meaning of the Length attribute was not changed for the text and string datatypes, but was changed for the numeric datatypes and became optional for all datatypes.
 </p>
 
-<p><span class="odm-normative13">If DataType=text or string, Length=N is a requirement that the receiving system
+<p><span class="odm-normative13">For all datatypes, the Length attribute is optional.</span></p>
+
+<p><span class="odm-normative13">If DataType=text or string and the Length attribute is provided, Length=N is a requirement that the receiving system
 be able to process and store all text string values of length less than or
 equal to N.  All characters are
 allowed in text string values. Data of type Text should be transmitted in an ItemDataString element.</span></p>
 
-<p><span class="odm-normative13">For all the other datatypes, the Length attribute is optional.
-When provided, Length=N means that when a value of an item is represented as a text, its length must be less or equal to N.
+<p><span class="odm-normative13">
+For all the other datatypes when the Length attribute is provided, Length=N means that when a value of an item is represented as a text, its length must be less or equal to N.
 </span></p>
 
 <p><b>Note:</b> Length is a statement about an item's
@@ -2956,7 +2958,8 @@ DataType=double corresponds to 8-byte double-precision floating-point type, with
 where m is an integer whose absolute value is less than 2<sup>53</sup>, and e is an integer between -1075 and 970, inclusive.</span></p>
 
 <p><span class="odm-normative13">
-The DisplayDecimalPlaces attribute is optional for float or double datatypes, and must not be given for the other datatypes. It represents the number of decimal places which should be used, when displaying the item.
+The DisplayDecimalPlaces attribute is optional for float or double datatypes, and must not be given for the other datatypes.
+It represents the number of decimal places to display for an item.
 </span></p>
 <p><span class="odm-normative13">
 <b>Note:</b> The DisplayDecimalPlaces attribute does not instruct how many decimal places should be used to store a floating-point value. Refer to the <a href="https://www.w3.org/TR/xmlschema-2/">XML Schema</a> on details of how the floating-point values should be represented.
