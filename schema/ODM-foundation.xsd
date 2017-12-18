@@ -12,8 +12,14 @@
 	<xs:simpleType name="integer">
 		<xs:restriction base="xs:integer"/>
 	</xs:simpleType>
+	<xs:simpleType name="decimal">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
 	<xs:simpleType name="float">
 		<xs:restriction base="xs:float"/>
+	</xs:simpleType>
+	<xs:simpleType name="double">
+        <xs:restriction base="xs:double"/>
 	</xs:simpleType>
 	<!--
         +===========================================================================+
@@ -54,7 +60,7 @@
 			<!--xs:minInclusive value="1"/-->
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- this is used for the DisplayDecimalPlaces attribute on ItemDef -->
+	<!-- this is used for the FractionDigits attribute on ItemDef -->
 	<xs:simpleType name="nonNegativeInteger">
 		<xs:restriction base="xs:nonNegativeInteger">
 			<!--xs:minInclusive value="0"/-->
@@ -64,9 +70,6 @@
 
 	<xs:simpleType name="boolean">
 		<xs:restriction base="xs:boolean"/>
-	</xs:simpleType>
-	<xs:simpleType name="double">
-        <xs:restriction base="xs:double"/>
 	</xs:simpleType>
 	<xs:simpleType name="string">
 		<xs:restriction base="xs:string"/>
@@ -248,13 +251,14 @@
 	<xs:simpleType name="DataType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="integer"/>
+			<xs:enumeration value="decimal"/>
 			<xs:enumeration value="float"/>
+			<xs:enumeration value="double"/>
 			<xs:enumeration value="date"/>
 			<xs:enumeration value="datetime"/>
 			<xs:enumeration value="time"/>
 			<xs:enumeration value="text"/>
 			<xs:enumeration value="string"/>
-			<xs:enumeration value="double"/>
 			<xs:enumeration value="URI"/>
 			<xs:enumeration value="boolean"/>
 			<xs:enumeration value="hexBinary"/>
@@ -278,8 +282,7 @@
 	<xs:simpleType name="CLDataType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="integer"/>
-			<xs:enumeration value="float"/>
-			<xs:enumeration value="double"/>
+			<xs:enumeration value="decimal"/>
 			<xs:enumeration value="text"/>
 			<xs:enumeration value="string"/>
 		</xs:restriction>
@@ -607,7 +610,7 @@
 		<xs:attribute name="Name" type="name" use="required"/>
 		<xs:attribute name="DataType" type="DataType" use="required"/>
 		<xs:attribute name="Length" type="positiveInteger"/>
-		<xs:attribute name="DisplayDecimalPlaces" type="nonNegativeInteger"/>
+		<xs:attribute name="FractionDigits" type="nonNegativeInteger"/>
 		<xs:attribute name="SASFieldName" type="sasName"/>
 		<xs:attribute name="SDSVarName" type="sasName"/>
 		<xs:attribute name="Origin" type="text"/>
@@ -626,7 +629,7 @@
 	</xs:attributeGroup>
 	<xs:attributeGroup name="CodeListItemAttributeDefinition">
 		<xs:attribute name="CodedValue" type="value" use="required"/>
-		<xs:attribute name="Rank" type="float"/>
+		<xs:attribute name="Rank" type="decimal"/>
     <xs:attribute name="OrderNumber" type="integer"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AdminDataAttributeDefinition">
