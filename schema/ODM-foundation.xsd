@@ -637,10 +637,10 @@
 		<xs:attribute name="SDSVarName" type="sasName"/>
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
-		<!-- RepeatItem attribute signifies that the Item drives the IG repeats based on a code list -->
-		<xs:attribute name="RepeatItem" type="YesOnly" use="optional"/>
-		<!-- OtherItem attribute signfies that the Item represents "other" content added to an ItemGroup -->
-		<xs:attribute name="OtherItem" type="YesOnly" use="optional"/>				
+		<!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
+		<xs:attribute name="Repeat" type="YesOnly" use="optional"/>
+		<!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
+		<xs:attribute name="Other" type="YesOnly" use="optional"/>				
 	</xs:attributeGroup>
 	<xs:attributeGroup name="RangeCheckAttributeDefinition">
 		<!--xs:attribute name="Comparator" type="Comparator" use="required"/-->
@@ -656,8 +656,8 @@
 	<xs:attributeGroup name="CodeListItemAttributeDefinition">
 		<xs:attribute name="CodedValue" type="value" use="required"/>
 		<xs:attribute name="Rank" type="float"/>
-		<!-- OtherItem attribute signfies that the term represents "other" content -->
-		<xs:attribute name="OtherItem" type="YesOnly"/>				
+		<!-- Other attribute signfies that the term represents "other" content -->
+		<xs:attribute name="Other" type="YesOnly"/>				
     <xs:attribute name="OrderNumber" type="integer"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AdminDataAttributeDefinition">
