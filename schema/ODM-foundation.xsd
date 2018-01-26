@@ -465,6 +465,16 @@
 			<xs:enumeration value="Other"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<!-- type for ItemGroupRepeating Attribute -->
+	<xs:simpleType name="ItemGroupRepeatingType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="Simple"/>
+			<xs:enumeration value="Dynamic"/>
+			<xs:enumeration value="Static"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
 	<!--
         +===========================================================================+
         | attribute definition groups                                               |
@@ -606,7 +616,8 @@
 	<xs:attributeGroup name="ItemGroupDefAttributeDefinition">
 		<xs:attribute name="OID" type="oid" use="required"/>
 		<xs:attribute name="Name" type="name" use="required"/>
-		<xs:attribute name="Repeating" type="YesOrNo" use="required"/>
+		<!-- Repeating type changed from YesOrNo to ItemGroupRepeatingType -->
+		<xs:attribute name="Repeating" type="ItemGroupRepeatingType" use="required"/>
 		<xs:attribute name="IsReferenceData" type="YesOrNo"/>
 		<xs:attribute name="SASDatasetName" type="sasName"/>
 		<xs:attribute name="Domain" type="text"/>
@@ -626,6 +637,10 @@
 		<xs:attribute name="SDSVarName" type="sasName"/>
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
+		<!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
+		<xs:attribute name="Repeat" type="YesOnly" use="optional"/>
+		<!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
+		<xs:attribute name="Other" type="YesOnly" use="optional"/>				
 	</xs:attributeGroup>
 	<xs:attributeGroup name="RangeCheckAttributeDefinition">
 		<!--xs:attribute name="Comparator" type="Comparator" use="required"/-->
@@ -641,6 +656,8 @@
 	<xs:attributeGroup name="CodeListItemAttributeDefinition">
 		<xs:attribute name="CodedValue" type="value" use="required"/>
 		<xs:attribute name="Rank" type="float"/>
+		<!-- Other attribute signfies that the term represents "other" content -->
+		<xs:attribute name="Other" type="YesOnly"/>				
     <xs:attribute name="OrderNumber" type="integer"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AdminDataAttributeDefinition">
