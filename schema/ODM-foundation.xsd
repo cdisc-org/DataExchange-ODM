@@ -627,14 +627,45 @@
 		<xs:attribute name="Comment" type="text"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDefAttributeDefinition">
+		<xs:annotation>
+			<xs:documentation>An ItemDef describes a type of item that can occur within a study.</xs:documentation>
+		</xs:annotation>
 		<xs:attribute name="OID" type="oid" use="required"/>
 		<xs:attribute name="Name" type="name" use="required"/>
-		<xs:attribute name="DataType" type="DataType" use="required"/>
-		<xs:attribute name="Length" type="positiveInteger"/>
-		<!--xs:attribute name="SignificantDigits" type="integer"/-->
+		<xs:attribute name="DataType" type="DataType" use="required">
+			<xs:annotation>
+				<xs:documentation>The DataType attribute specifies how the corresponding value elements are to be interpreted for comparison and storage.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Length" type="positiveInteger" use="optional">
+			<xs:annotation>
+				<xs:documentation>The Length attribute is optional when DataType is text, string, integer, or float; 
+					and should not be used for the other datatypes.</xs:documentation>
+			</xs:annotation>			
+		</xs:attribute>
 		<xs:attribute name="SignificantDigits" type="nonNegativeInteger"/>
 		<xs:attribute name="SASFieldName" type="sasName"/>
-		<xs:attribute name="SDSVarName" type="sasName"/>
+		<xs:attribute name="SDSVarName" type="sasName">
+			<xs:annotation>
+				<xs:documentation source="https://www.cdisc.org/standards/foundational/sdtm">
+					The SDSVarName, Origin, and Comment attributes carry submission information as described in the latest version of CDISC SDTM.
+					Note: In the ODM model, all internal keys are assumed to be unchangeable. This was done to make the audit trail issues work: if the SubjectKey in the model were the actual external subject identifier (or randomization ID) of a patient, and that value is sent incorrectly in one ODM file, there would be no way to correct the mistake in a followup file. In doing this, we intend that the external subject keys (and other externally visible key variables) should be defined as Items in the metadata. Thus they can be modified through normal modify/audit mechanism. While this solves the problem of supporting modification of study keys, it leaves the user without a way to identify which ItemDefs have special meaning or what the meaning is. The most obvious place where this is a problem is in matching up patients when loading data from an external source. If you can't find the patient ID how do you do the matching?
+					
+					The answer is to use the SDSVarName attribute of ItemDef. SDSVarName is an optional attribute which can be used to tag the Item with a business meaning. Rather than try to enumerate all possible meanings in the ODM model, the ODM working group thought it best to rely on the set of variable names defined in the CDISC SDTM, since this list covers the core variables used in managing clinical data. Software that is processing an ODM-compliant XML instance can therefore use specific values of the SDSVarName attribute to identify standard, frequently used variables. The use of this attribute is restricted to variables defined in the SDTM model. In tagging a variable, you are identifying it as matching the SDTM definition for that variable. A partial list of commonly used values includes:
+					
+					STUDYID (Study Identifier Unique within a Submission)
+					USUBJID (Study Identifier Unique within a Submission),
+					SUBJID (Subject Identifier Unique within a Study),
+					SITEID (Unique Identifier for a study Site)
+					SEX (Sex or Gender, coded value),
+					VISITNUM (Clinical encounter Number)
+					VISIT (Protocol-defined description of clinical encounter),
+					VISITDY (Planned study day of VISIT)
+					
+					See the SDTM Specification and Implementation Guide for more information about SDTM variables.					
+				</xs:documentation>
+			</xs:annotation>			
+		</xs:attribute>
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
 		<!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
