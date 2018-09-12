@@ -12,6 +12,9 @@
 	<xs:simpleType name="integer">
 		<xs:restriction base="xs:integer"/>
 	</xs:simpleType>
+	<xs:simpleType name="decimal">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>	
 	<xs:simpleType name="float">
 		<xs:restriction base="xs:decimal"/>
 	</xs:simpleType>
@@ -643,7 +646,7 @@
 					and should not be used for the other datatypes.</xs:documentation>
 			</xs:annotation>			
 		</xs:attribute>
-		<xs:attribute name="SignificantDigits" type="nonNegativeInteger"/>
+		<xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/>
 		<xs:attribute name="SASFieldName" type="sasName"/>
 		<xs:attribute name="SDSVarName" type="sasName">
 			<xs:annotation>
@@ -686,7 +689,7 @@
 	</xs:attributeGroup>
 	<xs:attributeGroup name="CodeListItemAttributeDefinition">
 		<xs:attribute name="CodedValue" type="value" use="required"/>
-		<xs:attribute name="Rank" type="float"/>
+		<xs:attribute name="Rank" type="decimal" use="optional"/>
 		<!-- Other attribute signfies that the term represents "other" content -->
 		<xs:attribute name="Other" type="YesOnly"/>				
     <xs:attribute name="OrderNumber" type="integer"/>
