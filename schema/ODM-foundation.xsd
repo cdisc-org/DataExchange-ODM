@@ -1028,6 +1028,7 @@
 	<xs:attributeGroup name="DateTimeStampAttributeExtension"/>
 	<xs:attributeGroup name="ReasonForChangeAttributeExtension"/>
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
+	<xs:attributeGroup name="CryptoBindingManifestAttributeExtension"/>
 	<xs:attributeGroup name="RoleAttributeExtension"/>
 	<xs:attributeGroup name="IncludeAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
@@ -1668,6 +1669,13 @@
 		<xs:simpleContent>
 			<xs:extension base="datetime">
 				<xs:attributeGroup ref="DateTimeStampAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-CryptoBindingManifest">
+		<xs:simpleContent>
+			<xs:extension base="text">
+				<xs:attributeGroup ref="CryptoBindingManifestAttributeExtension"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -2404,6 +2412,7 @@
 			<xs:element ref="LocationRef"/>
 			<xs:element ref="SignatureRef"/>
 			<xs:element ref="DateTimeStamp"/>
+			<xs:element ref="CryptoBindingManifest" minOccurs="0"/>
 			<xs:group ref="SignatureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="SignatureAttributeDefinition"/>
@@ -3155,6 +3164,7 @@
 	<xs:element name="SourceID" type="ODMcomplexTypeDefinition-SourceID"/>
 	<xs:element name="Signature" type="ODMcomplexTypeDefinition-Signature"/>
 	<xs:element name="SignatureRef" type="ODMcomplexTypeDefinition-SignatureRef"/>
+	<xs:element name="CryptoBindingManifest" type="ODMcomplexTypeDefinition-CryptoBindingManifest"/>
 	<xs:element name="InvestigatorRef" type="ODMcomplexTypeDefinition-InvestigatorRef"/>
 	<xs:element name="SiteRef" type="ODMcomplexTypeDefinition-SiteRef"/>
 	<xs:element name="Annotation" type="ODMcomplexTypeDefinition-Annotation"/>
