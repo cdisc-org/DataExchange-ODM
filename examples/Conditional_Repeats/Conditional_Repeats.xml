@@ -4,7 +4,7 @@
     <StudyEventDef OID="SE.1" Name="Start of Therapy" Repeating="No"/>
     <StudyEventDef OID="SE.2" Name="Radiation Therapy" Repeating="Yes"/>
     <StudyEventDef OID="SE.3" Name="End of Therapy" Repeating="No"/>
-    <Workflow>
+    <WorkflowDef OID="WF.RADIOTHERARPY_WORKFLOW" Name="Radiotherapy workflow">
         <WorkflowStart StartOID="SE.1"/>
         <Transition OID="TR.1-2" Name="Transition from start to radiation therapy" 
             SourceOID="SE.1" TargetOID="SE.2"/>
@@ -16,7 +16,7 @@
         <Transition OID="TR.2_REPEAT" Name="Loop back to radiotherapy" SourceOID="BR.BRANCH" TargetOID="SE.2"/>
         <Transition OID="TR.2-3" Name="Transition to end of radiotherapy" SourceOID="BR.BRANCH" TargetOID="SE.3"/>
         <WorkflowEnd EndOID="SE.3"/>
-    </Workflow>
+    </WorkflowDef>
     <!-- There must always be 7 days between two cycles of radiotherapy -->
     <StudyTiming OID="Timings" Name="Study timings">
         <TransitionTimingConstraint OID="TIM.1" Name="Duration between two radiotherapies" 
