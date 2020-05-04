@@ -1,9 +1,9 @@
 <MetaDataVersion xmlns="http://www.cdisc.org/ns/odm/v2.0" OID="MV.001" Name="MetaDataVersion 1">
     <!--We model all the tasks as StudyEvents-->
     <!--For a repeating task, we would set @Repeating='Yes'-->
-    <StudyEvent OID="SE.1" Name="Start of Therapy" Repeating="No"/>
-    <StudyEvent OID="SE.2" Name="Radiation Therapy" Repeating="Yes"/>
-    <StudyEvent OID="SE.3" Name="End of Therapy" Repeating="No"/>
+    <StudyEventDef OID="SE.1" Name="Start of Therapy" Repeating="No"/>
+    <StudyEventDef OID="SE.2" Name="Radiation Therapy" Repeating="Yes"/>
+    <StudyEventDef OID="SE.3" Name="End of Therapy" Repeating="No"/>
     <Workflow>
         <WorkflowStart StartOID="SE.1"/>
         <Transition OID="TR.1-2" Name="Transition from start to radiation therapy" 
