@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+   CreationDateTime="2020-06-04T11:02:33+01:00" FileOID="CDASH_MH" FileType="Snapshot"
+   Granularity="Metadata" ODMVersion="1.3.1" SourceSystem="XML4Pharma CDISC ODM Study Designer"
+   SourceSystemVersion="2015-R1">
+   <Study OID="ODV2_Example_MH_1">
+      <MetaDataVersion Description="Version 1.0" Name="Version 1.0" OID="MDV.1.0">
+         <!-- Form consists of a header and a list of groups of items (one group for each condition/procedure -->
+         <FormDef OID="FO.MEDICAL_HISTORY" Name="Medical History of Stroke / Lung disease / IBD / Cancer Family History">
+            <Decription><TranslatedText xml:lang="en">Medical History of Stroke / Lung disease / IBD / Cancer Family History</TranslatedText></Decription>
+            <ItemGroupRef ItemGroupOID="IG.HEADER" Mandatory="Yes"/>
+            <ItemGroupRef ItemGroupOID="IG.LIST_CONDITIONS" Mandatory="Yes"/>
+         </FormDef>
+         <!-- ItemGroup containg the form "header", i.e. only SUBJECT ID and collection date/time -->
+         <ItemGroupDef OID="IG.HEADER" Name="Header" Repeating="No">
+            <Description>
+               <TranslatedText xml:lang="en">Header</TranslatedText>
+            </Description>
+            <ItemRef ItemOID="IT.SUBJECT_ID" Mandatory="Yes"/>
+            <ItemRef ItemOID="IT.VISIT_DATE_TIME" Mandatory="Yes"/>
+         </ItemGroupDef>
+         <!-- Most simple implementation: only line number, name condition, boolean
+            This is pretty bad practice -->
+         <!-- This ItemGroupDef represents a single line/row in the tabular view of the PDF page -->
+         <ItemGroupDef Name="Single condition Line" OID="IG.SINGLE_CONDITION_PROCEDURE" Repeating="Yes" RepeatOID="RCOND.CONDITION_PROCEDURES">
+            <ItemRef ItemOID="IT.LINE_NUMBER" Mandatory="Yes" MethodOID="METH.LINE_NUMBER"/>
+            <ItemRef ItemOID="IT.CONDITION_PROCEDURE_NAME"/>
+            <ItemRef ItemOID="IT.CONDITION_PROCEDURE_BOOLEAN" Mandatory="Yes"/>
+            <!--ItemRef ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Mandatory="Yes"/-->
+            <ItemRef ItemOID="IT.CONDITION_TYPE" Mandatory="No" CollectionExceptionConditionOID="COND.CONDITION_PROCEDURE_NOT_PRESENT"/>
+            <ItemRef ItemOID="IT.TYPE_OTHER" Mandatory="No" CollectionExceptionConditionOID="COND.CONDITION_PROCEDURE_NOT_PRESENT"/>
+         </ItemGroupDef>
+         
+         <!-- Nesting ItemGroup for the list of conditions/precodures, one line for each Condition/Procedure -->
+         <!-- This requires to iterate over single conditions -->     
+         <ItemGroupDef OID="IG.LIST_CONDITIONS" Name="Stroke / Lung disease / IBD / Cancer Family History" Repeating="No">
+            <ItemGroupRef ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" Manadory="Yes"/>
+         </ItemGroupDef>
+         <!-- Definition of repeats - first try ... -->
+         <RepeatDef OID="RCOND.CONDITION_PROCEDURES" Name="Repeat definition for Conditions/Procedures in CRF">
+            <RepeatItem ItemOID="IT.CONDITION_PROCEDURE_NAME" RepeatCodeListOID="CL.CONDITION_PROCEDURE"/>
+         </RepeatDef>
+         
+         <!-- ItemDef -->
+         <ItemDef DataType="text" Length="10" Name="Subject ID" OID="IT.SUBJECT_ID">
+            <Question>
+               <TranslatedText xml:lang="en">Subject ID</TranslatedText>
+            </Question>
+         </ItemDef>
+         <ItemDef DataType="partialDatetime" Name="Visit Date/Time" OID="IT.VISIT_DATE_TIME">
+            <Question>
+               <TranslatedText xml:lang="en">Visit date/time</TranslatedText>
+            </Question>
+         </ItemDef>
+         <ItemDef DataType="integer" Length="2" Name="Line number" OID="IT.LINE_NUMBER">
+            <Description>
+               <TranslatedText xml:lang="en">#</TranslatedText>
+            </Description>
+         </ItemDef>
+         <ItemDef DataType="text" Length="40" Name="Condition/Procedure Name"
+            OID="IT.CONDITION_PROCEDURE_NAME">
+            <Description>
+               <TranslatedText xml:lang="en">Condition/Procedure</TranslatedText>
+            </Description>
+            <CodeListRef CodeListOID="CL.CONDITION_PROCEDURE"/>
+         </ItemDef>
+         <ItemDef DataType="boolean" Name="Condition/Procedure Presence" OID="IT.CONDITION_PROCEDURE_BOOLEAN">
+            <Question>
+               <TranslatedText xml:lang="en">Condition/Procedure</TranslatedText>
+            </Question>
+         </ItemDef>
+         <ItemDef DataType="text" Name="Condition/Procedure Presence" OID="IT.CONDITION_PROCEDURE_YES_NO">
+            <Question>
+               <TranslatedText xml:lang="en">Condition/Procedure</TranslatedText>
+            </Question>
+            <CodeListRef CodeListOID="CL.NY"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE" Name="" DataType="text" Length="40">
+            <Question>
+               <TranslatedText xml:lang="en">Type</TranslatedText>
+            </Question>
+            <!-- CodeList is dependent of IT.CONDITION_PROCEDURE_NAME -->
+            <!-- PROPOSAL: use ValueList (or something similar) for this -->
+            <ValueListRef ValueListOID="VL.IT.CONDITION_TYPE"/>
+         </ItemDef>
+         <ItemDef DataType="text" Length="100" Name="Other type specification" OID="IT.TYPE_OTHER">
+            <Question>
+               <TranslatedText xml:lang="en">Other type, specify</TranslatedText>
+            </Question>
+         </ItemDef>
+         
+         <!-- ValueList (but we could also use another construct) for "Condition Type", 
+         for which the values (codelist) are dependent on the Condition/Procedute -->
+         <ValueListDef OID="VL.IT.CONDITION_TYPE">
+            <Description><TranslatedText xml:lang="en">ValueList for "condition type"</TranslatedText></Description>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.STROKE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.STROKE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.CHRONIC_LUNG_DISEASE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.CHRONIC_LUNG_DISEASE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER"/>
+            </ItemRef>
+         </ValueListDef>
+         
+         <!-- ValueList ItemDefs (order is not correct, but for clarity ...) -->
+         <ItemDef OID="IT.CONDITION_TYPE.STROKE" Name="Condition type for stroke" DataType="text" Length="15">
+            <CodeListRef CodeListOID="CL.STROKE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.CHRONIC_LUNG_DISEASE" Name="Condition type for chronic lung disease" 
+               DataType="text" Length="25">
+            <CodeListRef CodeListOID="CL.CHRONIC_LUNG_DISEASE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE" Name="Condition type for inflammatory bowel disease" 
+            DataType="text" Length="18">
+            <CodeListRef CodeListOID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER" Name="Condition type for family history of cancer" 
+            DataType="text" Length="7">
+            <CodeListRef CodeListOID="CL.FAMILY_HISTORY_OF_CANCER_TYPE"/>
+         </ItemDef>
+         
+         <!-- WhereClause definitions (order is not correct, but for clarity ...) -->
+         <WhereClauseDef OID="WC.CONDITION_TYPE.STROKE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Stroke</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.CHRONIC_LUNG_DISEASE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Chronic lung disease</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Inflammatory bowel disease</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Family history of cancer</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         
+         <!-- CodeLists -->
+         <!-- CodeList for Condition/Procedure - used for iteration of ItemGroup -->
+         <CodeList OID="CL.CONDITION_PROCEDURE">
+            <EnumeratedItem CodedValue="Stroke"/>
+            <EnumeratedItem CodedValue="Chronic lung disease"/>
+            <EnumeratedItem CodedValue="Inflammatory bowel disease"/>
+            <EnumeratedItem CodedValue="Family history of cancer"/>
+         </CodeList>
+         
+         <!-- individual codelists "Type" for each condition/procedure -->
+         <CodeList DataType="text" Name="Stroke Type" OID="CL.STROKE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Stroke type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Hemorrhagic"/>
+            <EnumeratedItem CodedValue="Non-hemorrhagic"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Unknown"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Chronic Lund Disease Type"
+            OID="CL.CHRONIC_LUNG_DISEASE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Chronic lung disease type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Interstitial lung disease"/>
+            <EnumeratedItem CodedValue="Obstructive lung disease"/>
+            <EnumeratedItem CodedValue="Other"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Inflammatory Bowel Disease Type"
+            OID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Inflammatory bowel disease</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Chron's disease"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Ulcerative Colitis"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Family History of Cancer Type"
+            OID="CL.FAMILY_HISTORY_OF_CANCER_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Family History of Cancer Type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Breast"/>
+            <EnumeratedItem CodedValue="Colon"/>
+            <EnumeratedItem CodedValue="Lung"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Ovarian"/>
+            <EnumeratedItem CodedValue="Skin"/>
+            <EnumeratedItem CodedValue="Unknown"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Yes-No" OID="CL.NY">
+            <CodeListItem CodedValue="Y">
+               <Decode>
+                  <TranslatedText xml:lang="en">Yes</TranslatedText>
+               </Decode>
+            </CodeListItem>
+            <CodeListItem CodedValue="N">
+               <Decode>
+                  <TranslatedText xml:lang="en">No</TranslatedText>
+               </Decode>
+            </CodeListItem>
+         </CodeList>
+         <!-- Conditions -->
+         <ConditionDef OID="COND.CONDITION_PROCEDURE_NOT_PRESENT" Name="Condition/Procedure is not present">
+            <Description>
+               <TranslatedText xml:lang="en">Condition/Procedure boolean = false, or "No" was checked in Yes/No</TranslatedText>
+               <FormalExpression Context="XPath">../ItemData[@ItemOID='IT.CONDITION_PROCEDURE_BOOLEAN']=false() or ../ItemData[@ItemOID='IT.CONDITION_PROCEDURE_YES_NO']='N'</FormalExpression>
+            </Description>
+         </ConditionDef>
+         <!-- Methods -->
+         <MethodDef OID="METH.LINE_NUMBER" Name="Line number assignment">
+            <Description>
+               <TranslatedText xml:lang="en">Position of ItemGroup with OID IG.SINGLE_CONDITION_PROCEDURE in ItemGroup with OID IG.LIST_CONDITIONS</TranslatedText>
+            </Description>
+         </MethodDef>
+      </MetaDataVersion>
+   </Study>
+</ODM>
