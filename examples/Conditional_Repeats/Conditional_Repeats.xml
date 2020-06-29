@@ -1,4 +1,5 @@
 <MetaDataVersion xmlns="http://www.cdisc.org/ns/odm/v2.0" OID="MV.001" Name="MetaDataVersion 1">
+	<!-- This example is about conditional repeats (cycles) in an ODMv2 workflow -->
     <!--We model all the tasks as StudyEvents-->
     <!--For a repeating task, we would set @Repeating='Yes'-->
     <StudyEventDef OID="SE.1" Name="Start of Therapy" Repeating="No"/>
