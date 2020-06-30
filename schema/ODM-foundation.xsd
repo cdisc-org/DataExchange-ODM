@@ -627,6 +627,10 @@
 		<xs:attribute name="ImputationMethodOID" type="oidref"/>
 		<xs:attribute name="Role" type="text"/>
 		<xs:attribute name="RoleCodeListOID" type="oidref"/>
+		<!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
+		<xs:attribute name="Repeat" type="YesOnly" use="optional"/>
+		<!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
+		<xs:attribute name="Other" type="YesOnly" use="optional"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AliasAttributeDefinition">
 		<xs:attribute name="Context" type="text" use="required"/>
@@ -829,10 +833,6 @@
 		</xs:attribute>
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
-		<!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
-		<xs:attribute name="Repeat" type="YesOnly" use="optional"/>
-		<!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
-		<xs:attribute name="Other" type="YesOnly" use="optional"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="RangeCheckAttributeDefinition">
 		<!--xs:attribute name="Comparator" type="Comparator" use="required"/-->
