@@ -3,7 +3,7 @@
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
      xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     CreationDateTime="2020-07-06T13:26:56+01:00"
+     CreationDateTime="2020-07-15T18:05:00+01:00"
      Description=""
      FileOID="CRF_MATRIX_EXAMPLE"
      FileType="Snapshot"
@@ -30,10 +30,13 @@
          </FormDef>
          <!-- A solution where we define an ItemGroup that iterates over two Items, 
          i.e. over the pre-defined term, and over the family relationship -->
-         <ItemGroupDef OID="IG.MH_TERM_FAMILY_RELATIONSHIP" Name="MH term / Family Relationship matrix">
+         <ItemGroupDef OID="IG.MH_TERM_FAMILY_RELATIONSHIP" Name="MH term / Family Relationship matrix" Repeating="Static">
+            <ItemRef ItemOID="IT.MHTERM" Mandatory="Yes"/>
+            <ItemRef ItemOID="IT.FAM_RELATION" Mandatory="Yes"/>
             <ItemRef ItemOID="IT.MH_TERM_FAMILY_RELATIONSHIP" Mandatory="Yes"/>
-            <Repeat ItemOID="IT.MHTERM"/>
-            <Repeat ItemOID="IT.FAM_RELATION"/>
+            <!-- The repeats go over both IT.MHTERM AND IT.FAM_RELATION. 
+            This can be seen by the attribute RepeatItem="Yes" on the ItemDef (so not on the ItemRef)
+            of both IT.MHTERM and IT.FAM_RELATION -->
          </ItemGroupDef>
          <!-- The allowed values (checkboxes) slightly differ between the cells, depending on some of the rows/columns,
             so we need a ValueList -->
@@ -65,11 +68,14 @@
             </RangeCheck>
          </WhereClauseDef>
          <!-- Continuation of Individual ItemDefs -->
-         <!-- Individual ItemDefs for repeat definitions -->
-         <ItemDef DataType="integer" Length="1" Name="Medical History Term" OID="IT.MHTERM" SDSVarName="MHTERM">
+         <!-- Individual ItemDefs for REPEAT definitions, 
+            through the attribute RepeatItem="Yes" -->
+         <ItemDef DataType="integer" Length="1" Name="Medical History Term" OID="IT.MHTERM" 
+            RepeatItem="Yes" SDSVarName="MHTERM">
             <CodeListRef CodeListOID="CL.MHTERM"/>
          </ItemDef>
-         <ItemDef DataType="integer" Length="1" Name="Family Relationship" OID="IT.FAM_RELATION" SDSVarName="SREL">
+         <ItemDef DataType="integer" Length="1" Name="Family Relationship" OID="IT.FAM_RELATION" 
+            RepeatItem="Yes" SDSVarName="SREL">
             <CodeListRef CodeListOID="CL.FAMILY_RELATIONSHIP"/>
          </ItemDef>
          <!-- Value List ItemDefs  -->

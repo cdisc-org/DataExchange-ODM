@@ -39,11 +39,13 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
             and reference them from the FormDef level -->
             <ItemGroupRef ItemGroupOID="IG.RACE" Mandatory="Yes"/>
          </ItemGroupDef>
-         <!-- ItemGroup that repeats over all allowed values for "Race" (IT.RACE_CODE) from a codelist, with "Other, specifiy".
+         <!-- ItemGroup that repeats over all allowed values for "Race" from a codelist, with "Other, specifiy".
          This corresponds to "Repeating Item Groups Use Case D" - see https://wiki.cdisc.org/display/XMLT/Details+of+Repeating+IG+Use+Cases+A-E -->
-         <ItemGroupDef OID="IG.RACE" Name="Race" Repeating="Static">
-            <ItemRef ItemOID="IT.RACE_CODE" Mandatory="Yes"/>
+         <ItemGroupDef OID="IG.RACE" Name="Race" Repeating="Yes">
+            <ItemRef ItemOID="IT.RACE_CODE" Mandatory="Yes"/><!-- over which we repeat, as indicated by RepeatItem="Yes" on the ItemDef  -->
             <ItemRef ItemOID="IT.RACE_BOOLEAN" Mandatory="Yes"/>
+            <!-- Race Other: TODO: what was the decision about how to state that this is "Other"?
+               Was it "OtherItem", "Other", "Supplemental"? On ItemDef or on ItemRef? -->
             <ItemRef ItemOID="IT.RACEOTH" Mandatory="No"/>
          </ItemGroupDef>
          <ItemDef DataType="date" Name="Date of birth" OID="IT.DOB">
@@ -63,7 +65,7 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
             </Question>
             <CodeListRef CodeListOID="CL.ETHNIC"/>
          </ItemDef>
-         <!-- Code for Race - over which is repeated through the associated codelist -->
+         <!-- Code for Race, over which is repeated (through its codelist) -->
          <ItemDef OID="IT.RACE_CODE" Name="Race code" DataType="integer" Length="1" RepeatItem="Yes">
             <CodeListRef CodeListOID="CL.RACE"/>
          </ItemDef>
@@ -74,8 +76,8 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
                <TranslatedText xml:lang="en">Race</TranslatedText>
             </Description>
          </ItemDef>
-         <!-- Item for keeping the value of "Race Other" -->
-         <ItemDef DataType="text" Length="20" Name="Other Race" OID="IT.RACEOTH" OtherItem="Yes">
+         <!-- TODO: is use of Other="Yes" correct and what we agreed on? --> 
+         <ItemDef DataType="text" Length="20" Name="Other Race" OID="IT.RACEOTH" Other="Yes">
             <Question>
                <TranslatedText xml:lang="en">Other race - specify</TranslatedText>
             </Question>
@@ -94,7 +96,7 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
             <Question>
                <TranslatedText xml:lang="en">White</TranslatedText>
             </Question>
-         </ItemDef>
+         </ItemDef> 
          <ItemDef DataType="boolean" Name="Race: Black/African American" OID="IT.BLACK_AFRICAN_AMERICAN">
             <Question>
                <TranslatedText xml:lang="en">Black/African American</TranslatedText>
@@ -104,7 +106,7 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
             <Question>
                <TranslatedText xml:lang="en">Asian</TranslatedText>
             </Question>
-         </ItemDef> 
+         </ItemDef>
          <ItemDef DataType="boolean" Name="Race: Native Hawaiian/Other Pacific Islander"
                   OID="IT.NATIVE_HAWAIAN_PACIFIC_ISLANDER">
             <Question>
