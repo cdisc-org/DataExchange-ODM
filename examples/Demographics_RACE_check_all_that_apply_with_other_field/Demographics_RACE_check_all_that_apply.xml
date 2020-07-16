@@ -160,7 +160,7 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
             </CodeListItem>
             <CodeListItem CodedValue="4">
                <Decode>
-                  <TranslatedText xml:lang="en">Black/African American</TranslatedText>
+                  <TranslatedText xml:lang="en">Native Hawaiian/Other Pacific Islander</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="5">
