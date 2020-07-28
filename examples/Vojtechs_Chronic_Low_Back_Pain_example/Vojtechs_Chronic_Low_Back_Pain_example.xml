@@ -5,7 +5,7 @@
 
 The was of defining the "repeat" can still be changed, depending on decisions of the ODMv2 team.
 Author: Jozef Aerts
-Latest update: 2020-07-20   -->
+Latest update: 2020-07-28   -->
     <!-- IMPORTANT REMARK: There are different methods possible of describing/defining this questionnaire in ODMv2.
         I will try to provide several of them.
     -->
@@ -21,8 +21,13 @@ Latest update: 2020-07-20   -->
     </ItemGroupDef>
     
     <!-- New possible method, using a "Repeat" -->
+	<!-- Each "row" consists of 2 items, one for "what" is measured, one for the result -->
     <ItemGroupDef OID="IG.QUESTIONNAIRE_REPEAT" Name="Questionnaire about low back pain in the last 7 days" Repeating="Static">
         <ItemRef ItemOID="IT.QUESTION_REPEAT" Mandatory="Yes"/>
+		<!-- we set that the question must always be answered.
+			if this is not the case, we would need a ValueList 
+			defining mandatory or not depending on the value of IT.QUESTION_REPEAT -->
+		<ItemRef ItemOID="IT.QUESTION_ANSWER" Mandatory="Yes"/>
     </ItemGroupDef>
     
     <!-- Single ItemDef for "repeat". The RepeatItem="Yes" indicates that this question is repeating, 
@@ -34,6 +39,13 @@ Latest update: 2020-07-20   -->
         <!-- The "question" for each "detail item" (row in the matrix) itself is governed by a CodeList -->
         <CodeListRef CodeListOID="CL.REPEAT"/>
     </ItemDef>
+	<ItemDef OID="IT.QUESTION_ANSWER" Name="Repeat question answer" DataType="integer" Length="1">
+		<!-- We do not set a "Question" here, as it is governed by the "repeat" -->
+		<!-- The answer is a number on the "scale" -->
+		<CodeListRef CodeListOID="CL.LOW_BACK_INTERFERENCE_SCALE"/>
+	</ItemDef>
+	
+	<!-- "Classic" case -->
     <!-- Individual ItemDef, reusable -->
     <ItemDef OID="IT.INTERFERE_DAY_TO_DAY" Name="Day to day interference of chronic low back pain" DataType="integer" Length="1">
         <Question>
@@ -93,4 +105,27 @@ Latest update: 2020-07-20   -->
             </CodeListItem>
         </CodeList>
     </CodeList>
+	<!-- Example captured clinical data for the "repeat" (non-classic) case -->
+	<ClinicalData StudyOID="xxx" MetaDataVersionOID="yyy">
+		<SubjectData SubjectKey="001">
+			<!-- StudyEventData and FormData levels left out here, as we did not define them in the metadata either -->
+			<!-- The values for the 4 questions -->
+		    <ItemGroupData ItemGroupOID="IG.QUESTIONNAIRE_REPEAT" ItemGroupRepeatKey="1">
+		        <ItemData ItemOID="IT.QUESTION_REPEAT" Value="1"/><!-- interfere with day-to-day activities -->
+		        <ItemData ItemOID="IT.QUESTION_ANSWER" Value="2"/><!-- a little bit -->
+			</ItemGroupData>
+		    <ItemGroupData ItemGroupOID="IG.QUESTIONNAIRE_REPEAT" ItemGroupRepeatKey="2">
+		        <ItemData ItemOID="IT.QUESTION_REPEAT" Value="2"/><!-- interfere with work around the home -->
+		        <ItemData ItemOID="IT.QUESTION_ANSWER" Value="3"/><!-- somewhat -->
+		    </ItemGroupData>
+		    <ItemGroupData ItemGroupOID="IG.QUESTIONNAIRE_REPEAT" ItemGroupRepeatKey="3">
+		        <ItemData ItemOID="IT.QUESTION_REPEAT" Value="3"/><!-- interfere with ability to participate in social activities -->
+		        <ItemData ItemOID="IT.QUESTION_ANSWER" Value="1"/><!-- not at all -->
+		    </ItemGroupData>
+		    <ItemGroupData ItemGroupOID="IG.QUESTIONNAIRE_REPEAT" ItemGroupRepeatKey="4">
+		        <ItemData ItemOID="IT.QUESTION_REPEAT" Value="4"/><!-- interfere with household chores -->
+		        <ItemData ItemOID="IT.QUESTION_ANSWER" Value="4"/><!-- quite a bit -->
+		    </ItemGroupData>
+		</SubjectData>
+	</ClinicalData>
 </MetaDataVersion>
