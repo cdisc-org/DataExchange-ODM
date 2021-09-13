@@ -985,9 +985,19 @@ intended use of the value.  The set of ODM data formats follows:
 		<td>+?digit+ (and representing an integer number &gt;= 0)</td>
 	</tr>
 	<tr>
-		<td><a  name="t_float">float</a></td>
+		<td><a  name="t_decimal">decimal</a></td>
 		<td>xs:decimal</td>
-		<td><b>-</b>?digit+(<b>.</b>digit+)?</td>
+		<td>-?digit+(.digit+)?</td>
+	</tr>
+	<tr>
+		<td><a  name="t_float">float</a></td>
+		<td>xs:float</td>
+		<td>(((\+|-)?digit+(\.digit+)?((D|d|E|e)(\+|-)digit+)?)|(-?INF)|(NaN))</td>
+	</tr>
+	<tr>
+		<td><a  name="t_double">double</a></td>
+		<td>xs:double</td>
+		<td>(((\+|-)?digit+(\.digit+)?((D|d|E|e)(\+|-)digit+)?)|(-?INF)|(NaN))</td>
 	</tr>
 	<tr>
 		<td><a  name="t_date">date</a></td>
@@ -1078,11 +1088,6 @@ intended use of the value.  The set of ODM data formats follows:
 		<td>(true | false | 1 | 0)</td>
 	</tr>
 	<tr>
-		<td><a  name="t_double">double</a></td>
-		<td>xs:string</td>
-		<td>(((\+|-)?[0-9]+(\.[0-9]+)?((D|d|E|e)(\+|-)[0-9]+)?)|(-?INF)|(NaN))</td>
-	</tr>
-	<tr>
 		<td><a  name="t_hexBinary">hexBinary</a></td>
 		<td>xs:hexBinary</td>
 		<td>hex-encoded binary stream data</td>
@@ -1156,7 +1161,7 @@ intended use of the value.  The set of ODM data formats follows:
 </div>
 </p>
 
-<p>Numbers are represented in base 10. Floats are allowed to have fractional parts.
+<p>Numbers are represented in base 10. Decimal, float and double formats are allowed to have fractional parts.
 </p>
 
 <p><b>Note:</b> Certain integer attributes (KeySequence, OrderNumber, and SeqNum) are
@@ -2863,8 +2868,8 @@ the Item with OID IG.ISPREG need not be collected.<br/>
 	<tr>
 		<td></td>
 		<td><b>DataType</b></td>
-		<td>(text | integer | float | date  | time | datetime |
-                  string | boolean | double | hexBinary | base64Binary | hexFloat | base64Float | partialDate | partialTime | partialDatetime | durationDatetime | intervalDatetime | incompleteDatetime | incompleteDate | incompleteTime | URI  )</td>
+		<td>(text | integer | decimal | float | double | date  | time | datetime |
+                  string | boolean | hexBinary | base64Binary | hexFloat | base64Float | partialDate | partialTime | partialDatetime | durationDatetime | intervalDatetime | incompleteDatetime | incompleteDate | incompleteTime | URI  )</td>
         <td></td><td></td>
 	</tr>
 	<tr>
@@ -2876,7 +2881,7 @@ the Item with OID IG.ISPREG need not be collected.<br/>
 	</tr>
 	<tr>
 		<td></td>
-		<td><b>SignificantDigits</b></td>
+		<td><b>FractionDigits</b></td>
 		<td><a href="#t_nonNegativeInteger">nonNegativeInteger</a></td>
 		<td><em>(optional)</em></td><td></td>
 	</tr>
@@ -2925,39 +2930,42 @@ the Item with OID IG.ISPREG need not be collected.<br/>
 properties include name, datatype, measurement units, range or
 codelist restrictions, and several other properties.</p>
 
-<p>The DataType attribute specifies how the corresponding value elements
-are to be interpreted for comparison and storage. 
-	<span class="odm-normative13">The Length attribute is required when DataType is text or string, optional when DataType is integer or float, and should not be given for the other datatypes.
-		The SignificantDigits attribute is optional when DataType is float, and should not be given for the other datatypes.
-		When DataType is float both Length and SignificantDigits must be given or both be absent.</span></p>
+<p><span class="odm-normative13">The DataType attribute specifies the allowable values and the intended use of the corresponding value elements, but not necessarily how systems will store them.
+The receiver is expected to preserve the value and precision of the data and can use the ODM-specified datatype to determine the best representation of the data in their system.
+</span></p>
 
-<p>Note: In version 1.3.0 the usage of Length and SignificantDigits was ambiguous. The above text clarifies the intention of these two attributes.</p>
+<p>Note: In version 1.3.2 Length and SignificantDigits attributes were used to express the requirements for the receiving system.
+In version 2.0.0 meaning of the Length attribute remained the same for the text and string datatypes, but was changed for the numeric datatypes and became optional for all datatypes.
+The SignificantDigits attribute was renamed to FractionDigits.
+</p>
 
+<p><span class="odm-normative13">For all datatypes, the Length attribute is optional.</span></p>
 
-<p><span class="odm-normative13">If DataType=integer, Length=N is a requirement that the receiving system
-be able to process and store all whole number values of magnitude less than 10<sup>N</sup>.
-Larger values may be rejected.</span></p>
-
-<p><span class="odm-normative13">If DataType=float, Length=N and SignificantDigits=S is a requirement
-that the receiving system be able to process and store all numeric values of
-magnitude less than 10<sup>N-S</sup> that are multiples of 10<sup>-S</sup>.
-Larger values may be rejected.  Intermediate values may be rounded to the
-nearest multiple of 10<sup>-S</sup>.</span></p>
-
-<p><span class="odm-normative13">If DataType=text, Length=N is a requirement that the receiving system
+<p><span class="odm-normative13">If DataType=text or string and the Length attribute is provided, Length=N is a requirement that the receiving system
 be able to process and store all text string values of length less than or
 equal to N.  All characters are
 allowed in text string values. Data of type Text should be transmitted in an ItemDataString element.</span></p>
 
-<p><b>Note:</b> Length and SignificantDigits are statements about an item's
+<p><span class="odm-normative13">
+For all the other datatypes when the Length attribute is provided, Length=N means that when a value of an item is represented as a text, its length must be less or equal to N.
+</span></p>
+
+<p><b>Note:</b> Length is a statement about an item's
 data values, not the number of characters used to represent these values in
 value elements. For example, the character "&lt;" might be represented as
 "&amp;lt;".</p>
 
-<p><b>Note:</b> <span class="odm-normative13">Data characters that are not included in the encoding character set
-for a particular ODM file must be represented using XML entities or
-character references.</span>  For example, &#198; could be represented as
-"&amp;#198;".</p>
+<p><span class="odm-normative13">There are 3 datatypes available floating-point values: decimal, float and double.
+The decimal datatype represents a subset of the real numbers, which can be represented by decimal numerals.
+This datatype should be used for items with floating-point values when the number of decimal places is known in advance.
+In this case attribute FractionDigits should be used to store the number of decimal digits.
+FractionDigits controls the size of the minimum difference between item values, by restricting the values to numbers that are expressible as i &#215; 10<sup>-n</sup> where i and n are integers and 0 <= n <= FractionDigits.</span></p>
+<p><span class="odm-normative13">In case the number of decimal places is not known in advance or is not important, either float or double datatypes should be used.
+Both of them are patterned after the IEEE floating-point types.
+DataType=float corresponds to 4-byte single-precision floating-point type, with the basic value space consisting of the values m &#215; 2<sup>e</sup>,
+where m is an integer whose absolute value is less than 2<sup>24</sup>, and e is an integer between -149 and 104, inclusive.
+DataType=double corresponds to 8-byte double-precision floating-point type, with the basic value space consisting of the values m &#215; 2<sup>e</sup>,
+where m is an integer whose absolute value is less than 2<sup>53</sup>, and e is an integer between -1075 and 970, inclusive.</span></p>
 
 <p> The SDSVarName, Origin, and Comment attributes carry submission information as described in the latest version of <a href="http://www.cdisc.org/sdtm">CDISC SDTM
 </a>.</p>
@@ -7479,7 +7487,7 @@ use them.</p>
 	</tr>
 	<tr>
 		<td></td>
-		<td>SignificantDigits</td>
+		<td>FractionDigits</td>
 		<td><a href="#ItemDef">ItemDef</a></td>
 	</tr>
 	<tr>
