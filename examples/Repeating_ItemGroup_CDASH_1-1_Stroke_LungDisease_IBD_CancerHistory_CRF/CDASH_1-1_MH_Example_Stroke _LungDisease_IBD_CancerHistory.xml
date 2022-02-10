@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Jozef Aerts - Date last change: 2020-07-15 -->
+<!-- 
+Example of a Repeating ItemGroup from the CDASH-UG v.1.1. 
+It reconstructs the CRF "2.2.3 Example - Stroke / Lung Disease / IBD / Cancer History" on page 13.
+
+The major difference with Kevin's example, is that we have an additional ValueList here, as the possible values for "Condition Type" (OID="IT.CONDITION_TYPE")
+are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCEDURE_NAME") field.
+
+-->
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+   CreationDateTime="2020-07-15T18:05:00" FileOID="CDASH_MH" FileType="Snapshot"
+   Granularity="Metadata" ODMVersion="1.3.1" SourceSystem="XML4Pharma CDISC ODM Study Designer"
+   SourceSystemVersion="2015-R1">
+   <Study OID="ODV2_Example_MH_1">
+      <MetaDataVersion Description="Version 1.0" Name="Version 1.0" OID="MDV.1.0">
+         <!-- Form consists of a header and a list of groups of items (one group for each condition/procedure -->
+         <FormDef OID="FO.MEDICAL_HISTORY" Name="Medical History of Stroke / Lung disease / IBD / Cancer Family History">
+            <Decription><TranslatedText xml:lang="en">Medical History of Stroke / Lung disease / IBD / Cancer Family History</TranslatedText></Decription>
+            <ItemGroupRef ItemGroupOID="IG.HEADER" Mandatory="Yes"/>
+			<ItemGroupRef ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" Mandatory="Yes"/>
+         </FormDef>
+         <!-- ItemGroup containg the form "header", i.e. only SUBJECT ID and collection date/time -->
+         <ItemGroupDef OID="IG.HEADER" Name="Header" Repeating="No">
+            <Description>
+               <TranslatedText xml:lang="en">Header</TranslatedText>
+            </Description>
+            <ItemRef ItemOID="IT.SUBJECT_ID" Mandatory="Yes"/>
+            <ItemRef ItemOID="IT.VISIT_DATE_TIME" Mandatory="Yes"/>
+         </ItemGroupDef>
+         <!-- This ItemGroupDef represents a single line/row in the tabular view of the PDF/HTML page -->
+         <!-- In the following, the repeat is static and repeats over all possible values of 
+         IT.CONDITION_PROCEDURE_NAME through its associated codelist. 
+         This is indicated by the RepeatItem="Yes" attribute on the ItemDef (NOT on the ItemRef) -->
+         <!-- Allowed values for "Repeating" currently (2020-07-15) are: "Static", "Dynamic", "Simple", "No"  -->
+         <ItemGroupDef Name="Single condition Line" OID="IG.SINGLE_CONDITION_PROCEDURE" Repeating="Static">
+            <ItemRef ItemOID="IT.LINE_NUMBER" Mandatory="Yes" MethodOID="METH.LINE_NUMBER"/>
+            <ItemRef ItemOID="IT.CONDITION_PROCEDURE_NAME" Mandatory="Yes"/>
+            <ItemRef ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Mandatory="Yes"/>
+            <ItemRef ItemOID="IT.CONDITION_TYPE" Mandatory="No" CollectionExceptionConditionOID="COND.CONDITION_PROCEDURE_NOT_PRESENT"/>
+            <ItemRef ItemOID="IT.TYPE_OTHER" Mandatory="No" CollectionExceptionConditionOID="COND.CONDITION_PROCEDURE_NOT_PRESENT"/>
+         </ItemGroupDef>
+         
+         
+         <!-- ItemDef -->
+         <ItemDef DataType="text" Length="10" Name="Subject ID" OID="IT.SUBJECT_ID">
+            <Question>
+               <TranslatedText xml:lang="en">Subject ID</TranslatedText>
+            </Question>
+         </ItemDef>
+         <ItemDef DataType="partialDatetime" Name="Visit Date/Time" OID="IT.VISIT_DATE_TIME">
+            <Question>
+               <TranslatedText xml:lang="en">Visit date/time</TranslatedText>
+            </Question>
+         </ItemDef>
+         <ItemDef DataType="integer" Length="2" Name="Line number" OID="IT.LINE_NUMBER">
+            <Description>
+               <TranslatedText xml:lang="en">#</TranslatedText>
+            </Description>
+         </ItemDef>
+         <!-- RepeatItem="Yes" indicates that the item is or can be used to repeat over,
+         when there is a CodeList, using the items in the codelist -->
+         <ItemDef DataType="text" Length="40" Name="Condition/Procedure Name"
+            OID="IT.CONDITION_PROCEDURE_NAME" RepeatItem="Yes">
+            <Description>
+               <TranslatedText xml:lang="en">Condition/Procedure</TranslatedText>
+            </Description>
+            <CodeListRef CodeListOID="CL.CONDITION_PROCEDURE"/>
+         </ItemDef>
+         <ItemDef DataType="text" Name="Condition/Procedure Presence" OID="IT.CONDITION_PROCEDURE_YES_NO">
+            <Question>
+               <TranslatedText xml:lang="en">Condition/Procedure</TranslatedText>
+            </Question>
+            <CodeListRef CodeListOID="CL.NY"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE" Name="" DataType="text" Length="40">
+            <Question>
+               <TranslatedText xml:lang="en">Type</TranslatedText>
+            </Question>
+            <!-- CodeList is dependent of IT.CONDITION_PROCEDURE_NAME -->
+            <!-- PROPOSAL: use ValueList (or something similar) for this -->
+            <ValueListRef ValueListOID="VL.IT.CONDITION_TYPE"/>
+         </ItemDef>
+         <ItemDef DataType="text" Length="100" Name="Other type specification" OID="IT.TYPE_OTHER">
+            <Question>
+               <TranslatedText xml:lang="en">Other type, specify</TranslatedText>
+            </Question>
+         </ItemDef>
+         
+         <!-- ValueList (but we could also use another construct) for "Condition Type", 
+         for which the values (codelist) are dependent on the Condition/Procedute -->
+         <ValueListDef OID="VL.IT.CONDITION_TYPE">
+            <Description><TranslatedText xml:lang="en">ValueList for "condition type"</TranslatedText></Description>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.STROKE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.STROKE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.CHRONIC_LUNG_DISEASE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.CHRONIC_LUNG_DISEASE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE"/>
+            </ItemRef>
+            <ItemRef ItemOID="IT.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER">
+               <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER"/>
+            </ItemRef>
+         </ValueListDef>
+         
+         <!-- ValueList ItemDefs (order is not correct, but for clarity ...) -->
+         <ItemDef OID="IT.CONDITION_TYPE.STROKE" Name="Condition type for stroke" DataType="text" Length="15">
+            <CodeListRef CodeListOID="CL.STROKE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.CHRONIC_LUNG_DISEASE" Name="Condition type for chronic lung disease" 
+               DataType="text" Length="25">
+            <CodeListRef CodeListOID="CL.CHRONIC_LUNG_DISEASE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE" Name="Condition type for inflammatory bowel disease" 
+            DataType="text" Length="18">
+            <CodeListRef CodeListOID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE"/>
+         </ItemDef>
+         <ItemDef OID="IT.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER" Name="Condition type for family history of cancer" 
+            DataType="text" Length="7">
+            <CodeListRef CodeListOID="CL.FAMILY_HISTORY_OF_CANCER_TYPE"/>
+         </ItemDef>
+         
+         <!-- WhereClause definitions (order is not correct, but for clarity ...) -->
+         <WhereClauseDef OID="WC.CONDITION_TYPE.STROKE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Stroke</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.CHRONIC_LUNG_DISEASE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Chronic lung disease</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.INFLAMMATORY_BOWEL_DISEASE">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Inflammatory bowel disease</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         <WhereClauseDef OID="WC.CONDITION_TYPE.FAMILY_HISTORY_OF_CANCER">
+            <RangeCheck Comparator="EQ" SoftHard="Hard" ItemOID="IT.CONDITION_PROCEDURE_NAME">
+               <CheckValue>Family history of cancer</CheckValue>
+            </RangeCheck>
+         </WhereClauseDef>
+         
+         <!-- CodeLists -->
+         <!-- CodeList for Condition/Procedure - used for iteration of ItemGroup. 
+			Includes SNOMED-CT code for each item -->
+         <CodeList OID="CL.CONDITION_PROCEDURE" Name="Condition/Procedure name"> 
+            <EnumeratedItem CodedValue="Stroke">
+				<Alias Context="SNOMED-CT" Name="366609000"/>
+			</EnumeratedItem>
+            <EnumeratedItem CodedValue="Chronic lung disease">
+				<Alias Context="SNOMED-CT" Name="413839001"/>
+			</EnumeratedItem>
+            <EnumeratedItem CodedValue="Inflammatory bowel disease">
+				<Alias Context="SNOMED-CT" Name="24526004"/>
+			</EnumeratedItem>
+            <EnumeratedItem CodedValue="Family history of cancer">
+				<Alias Context="SNOMED-CT" Name="275937001"/>
+			</EnumeratedItem>
+         </CodeList>
+         
+         <!-- individual codelists "Type" for each condition/procedure -->
+         <CodeList DataType="text" Name="Stroke Type" OID="CL.STROKE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Stroke type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Hemorrhagic"/>
+            <EnumeratedItem CodedValue="Non-hemorrhagic"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Unknown"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Chronic Lund Disease Type"
+            OID="CL.CHRONIC_LUNG_DISEASE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Chronic lung disease type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Interstitial lung disease"/>
+            <EnumeratedItem CodedValue="Obstructive lung disease"/>
+            <EnumeratedItem CodedValue="Other"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Inflammatory Bowel Disease Type"
+            OID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Inflammatory bowel disease</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Chron's disease"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Ulcerative Colitis"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Family History of Cancer Type"
+            OID="CL.FAMILY_HISTORY_OF_CANCER_TYPE">
+            <Description>
+               <TranslatedText xml:lang="en">Family History of Cancer Type</TranslatedText>
+            </Description>
+            <EnumeratedItem CodedValue="Breast"/>
+            <EnumeratedItem CodedValue="Colon"/>
+            <EnumeratedItem CodedValue="Lung"/>
+            <EnumeratedItem CodedValue="Other"/>
+            <EnumeratedItem CodedValue="Ovarian"/>
+            <EnumeratedItem CodedValue="Skin"/>
+            <EnumeratedItem CodedValue="Unknown"/>
+         </CodeList>
+         <CodeList DataType="text" Name="Yes-No" OID="CL.NY">
+            <CodeListItem CodedValue="Y">
+               <Decode>
+                  <TranslatedText xml:lang="en">Yes</TranslatedText>
+               </Decode>
+            </CodeListItem>
+            <CodeListItem CodedValue="N">
+               <Decode>
+                  <TranslatedText xml:lang="en">No</TranslatedText>
+               </Decode>
+            </CodeListItem>
+         </CodeList>
+		 
+         <!-- Conditions -->
+         <ConditionDef OID="COND.CONDITION_PROCEDURE_NOT_PRESENT" Name="Condition/Procedure is not present">
+            <Description>
+               <TranslatedText xml:lang="en">Condition/Procedure "No" was checked in Yes/No</TranslatedText>
+               <FormalExpression Context="XPath">../ItemData[@ItemOID='IT.CONDITION_PROCEDURE_YES_NO']='N'</FormalExpression>
+            </Description>
+         </ConditionDef>
+		 
+         <!-- Methods -->
+		 <!-- To think about, discuss with the team:
+			Or do we need nested ItemGroup IG.LIST_CONDITIONS for counting the # of instances on the group IG.SINGLE_CONDITION_PROCEDURE anyway? -->
+         <MethodDef OID="METH.LINE_NUMBER" Name="Line number assignment">
+            <Description>
+               <TranslatedText xml:lang="en">Position of ItemGroup with OID IG.SINGLE_CONDITION_PROCEDURE in Form with OID FO.MEDICAL_HISTORY</TranslatedText>
+            </Description>
+			<FormalExpression Context="XPath">position()</FormalExpression>
+         </MethodDef>
+      </MetaDataVersion>
+   </Study>
+   
+   <!-- Example Clinical Data -->
+   <ClinicalData StudyOID="ODV2_Example_MH_1" MetaDataVersionOID="MDV.1.0">
+		<SubjectData SubjectKey="001">
+			<!-- We might still need to have a StudyEventData level here -->
+			<FormData FormOID="FO.MEDICAL_HISTORY">
+				<!-- header of the form -->
+				<ItemGroupData ItemGroupOID="IG.HEADER">
+					<ItemData ItemOID="IT.SUBJECT_ID" Value="001"/>
+					<ItemData ItemOID="IT.VISIT_DATE_TIME" Value="2020-07-06T09:11"/>
+				</ItemGroupData>
+				<!-- repeating ItemGroups: there is EXACTLY one grouo (1 data line) per item from "Condition/Procedure" 
+				as from the codelist with OID="CL.CONDITION_PROCEDURE" -->
+				<!-- "Stroke" line -->
+				<ItemGroupData ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" ItemGroupRepeatKey="1">
+					<!-- Remark that "line number" is generated automatically - see "MethodDef" with OID="METH.LINE_NUMBER" -->
+					<ItemData ItemOID="IT.LINE_NUMBER" Value="1"/>
+					<!-- For Condition/Procedure, the value comes from the CodeList with OID="CL.CONDITION_PROCEDURE", 
+						in exactly the same order as in the CodeList-->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_NAME" Value="Stroke"/>
+					<!-- Subject did not have a stroke -->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Value="No"/>
+					<!-- As the subject did NOT have a stroke, 
+						there is no data for "Type" (OID="IT.CONDITION_TYPE") and "Other Type, specify" (OID="IT.TYPE_OTHER") -->
+				</ItemGroupData>
+				<!-- "Chronic lung disease" line -->
+				<ItemGroupData ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" ItemGroupRepeatKey="2">
+					<!-- Remark that "line number" is generated automatically - see "MethodDef" with OID="METH.LINE_NUMBER" -->
+					<ItemData ItemOID="IT.LINE_NUMBER" Value="2"/>
+					<!-- For Condition/Procedure, the value comes from the CodeList with OID="CL.CONDITION_PROCEDURE", 
+						in exactly the same order as in the CodeList-->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_NAME" Value="Chronic lung disease"/>
+					<!-- Subject DOES have a chronic lung disease, -->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Value="Yes"/>
+					<!-- of type "Interstitial lung disease".
+						As this value is only possible for "chronic lung disease", it comes from the ValueList Item
+						with OID="IT.CONDITION_TYPE.CHRONIC_LUNG_DISEASE" which has the CodeList with OID="CL.CHRONIC_LUNG_DISEASE_TYPE" -->
+					<ItemData ItemOID="IT.CONDITION_TYPE" Value="Interstitial lung disease"/>
+				</ItemGroupData>
+				<!-- "Inflammatory bowel disease" line -->
+				<ItemGroupData ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" ItemGroupRepeatKey="3">
+					<!-- Remark that "line number" is generated automatically - see "MethodDef" with OID="METH.LINE_NUMBER" -->
+					<ItemData ItemOID="IT.LINE_NUMBER" Value="3"/>
+					<!-- For Condition/Procedure, the value comes from the CodeList with OID="CL.CONDITION_PROCEDURE", 
+						in exactly the same order as in the CodeList-->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_NAME" Value="Inflammatory bowel disease"/>
+					<!-- Subject DOES have inflammatory bowel disease, -->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Value="Yes"/>
+					<!-- but "Other type, specify" was populated -->
+					<ItemData ItemOID="IT.TYPE_OTHER" Value="could not be determined"/>
+				</ItemGroupData>
+				<ItemGroupData ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" ItemGroupRepeatKey="4">
+					<!-- Remark that "line number" is generated automatically - see "MethodDef" with OID="METH.LINE_NUMBER" -->
+					<ItemData ItemOID="IT.LINE_NUMBER" Value="4"/>
+					<!-- For Condition/Procedure, the value comes from the CodeList with OID="CL.CONDITION_PROCEDURE", 
+						in exactly the same order as in the CodeList-->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_NAME" Value="Family history of cancer"/>
+					<!-- Subject does NOT have a family history of cancer -->
+					<ItemData ItemOID="IT.CONDITION_PROCEDURE_YES_NO" Value="No"/>
+					<!-- As the subject does NOT have a family history of cancer, 
+						there is no data for "Type" (OID="IT.CONDITION_TYPE") and "Other Type, specify" (OID="IT.TYPE_OTHER") -->
+				</ItemGroupData>
+			</FormData>
+		</SubjectData>
+   </ClinicalData>
+   
+</ODM>

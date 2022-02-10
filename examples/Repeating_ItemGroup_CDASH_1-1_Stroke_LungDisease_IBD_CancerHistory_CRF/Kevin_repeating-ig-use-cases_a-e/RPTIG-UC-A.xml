@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM FileOID="ODM.1497516063498" FileType="Snapshot" CreationDateTime="2017-06-15T10:09:52+01:00" ODMVersion="1.3.2" Originator="Formedix" SourceSystem="Origin Study Modeller" SourceSystemVersion="3.7.1" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns="http://www.cdisc.org/ns/odm/v1.3">
+	<Study OID="S.RPTIG.UC-A">
+		<GlobalVariables>
+			<StudyName>Repeating Item Groups Use Case A - Simple Dynamic Repeat</StudyName>
+			<StudyDescription>Concomitant Medications form with one leading question and a set of questions that repeat dynamically for each medication (Start date, End date, Medication...). Each repeating row has the same definition. Note: No new XML is required - this would be the default interpreration.</StudyDescription>
+			<ProtocolName>Repeating Item Groups Use Case A - Simple Dynamic Repeat</ProtocolName>
+		</GlobalVariables>
+		<BasicDefinitions/>
+		<MetaDataVersion OID="MDV.RPTIG.UC-A" Name="Repeating Item Groups Use Case A - Simple Dynamic Repeat">
+			<FormDef OID="F.CONMED_DYN" Name="Concomitant Therapy (Dynamic)" Repeating="Yes">
+				<ItemGroupRef ItemGroupOID="IG.CONMED" Mandatory="Yes" OrderNumber="1"/>
+				<ItemGroupRef ItemGroupOID="IG.CONMED_DYN" Mandatory="Yes" OrderNumber="2"/>
+			</FormDef>
+			<ItemGroupDef OID="IG.CONMED_DYN" Name="Concomitant Therapies" Repeating="Yes" SASDatasetName="CONMED" Domain="CM" Origin="CRF">
+				<ItemRef ItemOID="I.CM.INDC" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I.CM.TRT" Mandatory="Yes" OrderNumber="2"/>
+				<ItemRef ItemOID="I.CM.DOSE" Mandatory="Yes" OrderNumber="3"/>
+				<ItemRef ItemOID="I.CM.DOSU" Mandatory="Yes" OrderNumber="4"/>
+				<ItemRef ItemOID="I.CM.DOSFRQ" Mandatory="Yes" OrderNumber="5"/>
+				<ItemRef ItemOID="I.CM.ROUTE" Mandatory="Yes" OrderNumber="6"/>
+				<ItemRef ItemOID="I.CM.STDTC" Mandatory="Yes" OrderNumber="7"/>
+				<ItemRef ItemOID="I.CM.ONGO" Mandatory="Yes" OrderNumber="8"/>
+				<ItemRef ItemOID="I.CM.ENDTC" Mandatory="Yes" OrderNumber="9"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID="IG.CONMED" Name="Concomitant Therapies leading question" Repeating="No" Origin="CRF">
+				<ItemRef ItemOID="I.CM.DTC" Mandatory="Yes" OrderNumber="1"/>
+			</ItemGroupDef>
+			<ItemDef OID="I.CM.ENDTC" Name="End Date/Time" DataType="datetime" Origin="CRF" SASFieldName="CMENDTC" SDSVarName="CMENDTC">
+				<Question>
+					<TranslatedText>End Date / Time</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.CM.DOSE" Name="Dose" DataType="text" Length="40" Origin="CRF" SASFieldName="CMDOSE" SDSVarName="CMDOSE">
+				<Question>
+					<TranslatedText>Dose</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.CM.DOSFRQ" Name="Frequency" DataType="integer" Length="8" Origin="CRF" SASFieldName="CMFREQC" SDSVarName="CMDOSFRQ">
+				<Question>
+					<TranslatedText>Freq</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.CMFREQ"/>
+			</ItemDef>
+			<ItemDef OID="I.CM.ONGO" Name="Ongoing" DataType="text" Length="1" Origin="CRF" SASFieldName="CMCONTC">
+				<Question>
+					<TranslatedText>Ongoing</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.YESNO"/>
+			</ItemDef>
+			<ItemDef OID="I.CM.DOSU" Name="Unit" DataType="integer" Length="8" Origin="CRF" SASFieldName="CMUNITC" SDSVarName="CMDOSU">
+				<Question>
+					<TranslatedText>Unit</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.CMUNIT"/>
+			</ItemDef>
+			<ItemDef OID="I.CM.TRT" Name="Drug Treatment" DataType="text" Length="200" Origin="CRF" SASFieldName="CMTERM" SDSVarName="CMTRT">
+				<Question>
+					<TranslatedText>Drug Treatment</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.CM.INDC" Name="Indication" DataType="text" Length="200" Origin="CRF" SASFieldName="CMREAS" SDSVarName="CMINDC">
+				<Question>
+					<TranslatedText>Indication</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.CM.ROUTE" Name="Route" DataType="integer" Length="8" Origin="CRF" SASFieldName="CMROUTEC" SDSVarName="CMROUTE">
+				<Question>
+					<TranslatedText>Route</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.CMROUTE"/>
+			</ItemDef>
+			<ItemDef OID="I.CM.STDTC" Name="Start Date/Time" DataType="datetime" Origin="CRF" SASFieldName="CMSTDTC" SDSVarName="CMSTDTC">
+				<Question>
+					<TranslatedText>Start Date / Time</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.CM.DTC" Name="Date/Time of completion" DataType="datetime" Origin="CRF">
+				<Question>
+					<TranslatedText>Date / Time of completion</TranslatedText>
+				</Question>
+			</ItemDef>
+			<CodeList OID="CL.CMROUTE" Name="CM Routes" DataType="integer" SASFormatName="CMROUTE">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText>intravenous</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText>parenteral</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText>respiratory (inhalation)</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText>dental</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="5">
+					<Decode>
+						<TranslatedText>oral</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="99">
+					<Decode>
+						<TranslatedText>other</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL.CMFREQ" Name="CM Frequency" DataType="integer" SASFormatName="CMFREQ">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText>Once</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText>1 / H</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText>1 / D</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText>ad lib</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL.YESNO" Name="Yes / No" DataType="text">
+				<CodeListItem CodedValue="Y">
+					<Decode>
+						<TranslatedText>Yes</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="N">
+					<Decode>
+						<TranslatedText>No</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL.CMUNIT" Name="CM Units" DataType="integer" SASFormatName="CMUNIT">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText>tab(s)</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText>drop(s)</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText>g</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText>mg</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="5">
+					<Decode>
+						<TranslatedText>pill</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="6">
+					<Decode>
+						<TranslatedText>mol</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="99">
+					<Decode>
+						<TranslatedText>other</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+		</MetaDataVersion>
+	</Study>
+	<ClinicalData StudyOID="S.RPTIG.UC-A" MetaDataVersionOID="MDV.RPTIG.UC-A">
+		<SubjectData SubjectKey="1">
+			<StudyEventData StudyEventOID="blah">
+				<FormData FormOID="F.MEDHIST">
+					<ItemGroupData ItemGroupOID="IG.CONMED">
+						<ItemData ItemOID="I.CM.DTC" Value="2017-08-01T12:23"/>
+					</ItemGroupData>
+					<ItemGroupData ItemGroupOID="IG.CONMED_DYN" ItemGroupRepeatKey="1">
+						<ItemData ItemOID="I.CM.INDC" Value="Indication 1"/>
+						<ItemData ItemOID="I.CM.TRT" Value="Treatment 1"/>
+						<ItemData ItemOID="I.CM.DOSE" Value="30"/>
+						<ItemData ItemOID="I.CM.DOSU" Value="4"/>
+						<ItemData ItemOID="I.CM.DOSFRQ" Value="3"/>
+						<ItemData ItemOID="I.CM.ROUTE" Value="5"/>
+						<ItemData ItemOID="I.CM.STDTC" Value="2017-07-28T13:11"/>
+						<ItemData ItemOID="I.CM.ONGO" Value="N"/>
+						<ItemData ItemOID="I.CM.ENDTC" Value="2017-07-30T12:05"/>
+					</ItemGroupData>
+					<ItemGroupData ItemGroupOID="IG.CONMED_DYN" ItemGroupRepeatKey="2">
+						<ItemData ItemOID="I.CM.INDC" Value="Indication 2"/>
+						<ItemData ItemOID="I.CM.TRT" Value="Treatment 2"/>
+						<ItemData ItemOID="I.CM.DOSE" Value="100"/>
+						<ItemData ItemOID="I.CM.DOSU" Value="4"/>
+						<ItemData ItemOID="I.CM.DOSFRQ" Value="3"/>
+						<ItemData ItemOID="I.CM.ROUTE" Value="5"/>
+						<ItemData ItemOID="I.CM.STDTC" Value="2017-07-13T09:33"/>
+						<ItemData ItemOID="I.CM.ONGO" Value="Y"/>
+					</ItemGroupData>
+				</FormData>
+			</StudyEventData>
+		</SubjectData>
+	</ClinicalData>
+</ODM>

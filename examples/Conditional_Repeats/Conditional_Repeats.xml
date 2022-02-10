@@ -1,0 +1,31 @@
+<MetaDataVersion xmlns="http://www.cdisc.org/ns/odm/v2.0" OID="MV.001" Name="MetaDataVersion 1">
+	<!-- This example is about conditional repeats (cycles) in an ODMv2 workflow -->
+    <!--We model all the tasks as StudyEvents-->
+    <!--For a repeating task, we would set @Repeating='Yes'-->
+    <StudyEventDef OID="SE.1" Name="Start of Therapy" Repeating="No"/>
+    <StudyEventDef OID="SE.2" Name="Radiation Therapy" Repeating="Yes"/>
+    <StudyEventDef OID="SE.3" Name="End of Therapy" Repeating="No"/>
+    <WorkflowDef OID="WF.RADIOTHERARPY_WORKFLOW" Name="Radiotherapy workflow">
+        <WorkflowStart StartOID="SE.1"/>
+        <Transition OID="TR.1-2" Name="Transition from start to radiation therapy" 
+            SourceOID="SE.1" TargetOID="SE.2"/>
+        <Transition OID="TR.Branch" SourceOID="SE.2" Name="Transition from radiation therapy to repeat test" TargetOID="BR.BRANCH"/>
+        <Branching OID="BR.BRANCH" Name="repeat test">
+            <TargetTransition TransitionOID="TR.2_REPEAT" ConditionOID="COND.NUMREPEATS"/>
+            <DefaultTransition TransitionOID="TR.2-3"/>
+        </Branching> 
+        <Transition OID="TR.2_REPEAT" Name="Loop back to radiotherapy" SourceOID="BR.BRANCH" TargetOID="SE.2"/>
+        <Transition OID="TR.2-3" Name="Transition to end of radiotherapy" SourceOID="BR.BRANCH" TargetOID="SE.3"/>
+        <WorkflowEnd EndOID="SE.3"/>
+    </WorkflowDef>
+    <!-- There must always be 7 days between two cycles of radiotherapy -->
+    <StudyTiming OID="Timings" Name="Study timings">
+        <TransitionTimingConstraint OID="TIM.1" Name="Duration between two radiotherapies" 
+            TransitionOID="TR.2_REPEAT"
+            TimepointRelativeTarget="P7D" TimepointPreWindow="P1D" TimepointPostWindow="P2D">
+            <Description><TranslatedText xml:lang="en">There must always be 7 days between two cycles of radiotherapy</TranslatedText></Description>
+            <Description><TranslatedText xml:lang="en">Zwischen zwei Radiotherapie Behandlungen muss es immer 7 Tagen geben</TranslatedText></Description>
+        </TransitionTimingConstraint>
+    </StudyTiming>
+    
+</MetaDataVersion>

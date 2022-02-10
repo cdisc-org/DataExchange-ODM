@@ -1,0 +1,294 @@
+<ODM xmlns="http://www.cdisc.org/ns/odm/v2.0" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    ODMVersion="2.0"
+    FileOID="Jozef_FHIR_example_1_2020-08-28"
+    FileType="Snapshot"
+    CreationDateTime="2020-08-28T09:33:00">
+    
+    <Study OID="ST.COVID19" StudyName="COVID-19 study with data retrieval from FHIR EHRs">
+        <MetaDataVersion OID="MV.001" Name="Version 1">
+            <Description>
+                <TranslatedText xml:lang="en">Example of metadata and data for a COVID-19 study that retrieves all data from EHRs that support the FHIR API</TranslatedText>
+            </Description>
+            <!-- Example ItemGroupDef where all data is retrieved from the EHR using the FHIR API -->
+            <ItemGroupDef OID="IG.MH" Name="Medical History" Domain="MH" Repeating="Yes" Origin="EHR">
+                <Description>
+                    <TranslatedText xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml">
+                        <p>The ItemGroupDef describes how the medical history data is retrieved from the EHR system,<br/>using the FHIR API.</p>
+                        <p>In order to do so, all the "Condition" FHIR resource instances for the given patient are queries for.</p>
+                        <p>TODO? The base of the FHIR query (i.e. the EHR server) is taken from AdminData</p>
+                    </div></TranslatedText>
+                </Description>
+                <ItemRef ItemOID="IT.SUBJID" Mandatory="Yes"/>
+                <ItemRef ItemOID="IT.TERM" Mandatory="Yes" MethodOID="MT.TERM"/>
+                <ItemRef ItemOID="IT.SNOMEDCD" Mandatory="No" MethodOID="MT.SNOMEDCT"/>
+                <ItemRef ItemOID="IT.DTC" Mandatory="Yes" MethodOID="MT.DTC"/>
+                <ItemRef ItemOID="IT.STDTC" Mandatory="Yes" MethodOID="MT.STDTC"/>
+                <ItemRef ItemOID="IT.ENDTDC" Mandatory="No" MethodOID="MT.ENDTC"/>
+                <ItemRef ItemOID="IT.STATUS" Mandatory="Yes" MethodOID="MT.STATUS"/>
+                <ItemRef ItemOID="IT.ONGOING" Mandatory="No" MethodOID="MT.ONGOING"/>
+            </ItemGroupDef>
+            <!-- Individual data point definitions -->
+            <!-- REMARK: for the FHIR API call, we currently use PATIENT-ID = SUBJECTID. 
+            This of course needs to change in future, or we need to use a call to a subject ID - patient ID mapping call.
+            Does the FHIR resource "ResearchSubject" do this? -->
+            <ItemDef OID="IT.SUBJID" Name="Subject ID" DataType="text" Length="20">
+                <Description><TranslatedText xml:lang="en">Subject Identifier</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.TERM" Name="Medical history term" SDSVarName="MHTERM" DataType="text" Length="100">
+                <Description><TranslatedText xml:lang="en">Medical History term coming from xxx in the FHIR "Condition" resource instance</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.SNOMEDCD" Name="SNOMED-CT code" DataType="text" Length="12">
+                <Description><TranslatedText xml:lang="en">SNOMED-CT code of the Medical History term, directly retrieved from the FHIR "Condition" resource instance</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.DTC" Name="Date/time of collection" DataType="datetime" SDSVarName="MHDTC">
+                <!-- TO DISCUSS: is this the date/time of collection in the EHR, or date/time of retrieval? -->
+                <Description><TranslatedText xml:lang="en">Datetime of collection</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.STDTC" Name="Start date/time of condition" DataType="partialDatetime" SDSVarName="MHSTDTC">
+                <Description><TranslatedText xml:lang="en">Start date/time of the condition</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.ENDTC" Name="End date/time of condition" DataType="partialDatetime" SDSVarName="MHENDDTC">
+                <Description><TranslatedText xml:lang="en">End date/time of the condition</TranslatedText></Description>
+            </ItemDef>
+            <ItemDef OID="IT.STATUS" Name="Status of the condition at collection time" DataType="text">
+                <Description><TranslatedText xml:lang="en">Status of the condition at collection time</TranslatedText></Description>
+                <CodeListRef CodeListOID="CL.STATUS"/>
+            </ItemDef>
+            <ItemDef OID="IT.ONGOING" Name="Condition ongoing" DataType="text" Length="1">
+                <Description><TranslatedText xml:lang="en">Whether the condition is ongoing</TranslatedText></Description>
+                <CodeListRef CodeListOID="CL.YESNO"/>
+            </ItemDef>
+            <!-- This codelist is an semantically exact copy of the FHIR valueset condition-clinical
+            (see https://www.hl7.org/fhir/valueset-condition-clinical.html) -->
+            <CodeList OID="CL.STATUS" Name="FHIR condition status" DataType="text">
+                <CodeListItem CodedValue="active">
+                    <Decode><TranslatedText xml:lang="en">The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.</TranslatedText></Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="recurrence">
+                    <Decode><TranslatedText xml:lang="en">The subject is experiencing a re-occurence or repeating of a previously resolved condition, e.g. urinary tract infection, pancreatitis, cholangitis, conjunctivitis.</TranslatedText></Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="relapse">
+                    <Decode><TranslatedText xml:lang="en">The subject is experiencing a return of a condition, or signs and symptoms after a period of improvement or remission, e.g. relapse of cancer, multiple sclerosis, rheumatoid arthritis, systemic lupus erythematosus, bipolar disorder, [psychotic relapse of] schizophrenia, etc.</TranslatedText></Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="inactive">
+                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition</TranslatedText></Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="remission">
+                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.</TranslatedText></Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="">
+                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.</TranslatedText></Decode>
+                </CodeListItem>
+            </CodeList>
+            <!-- Codelists -->
+            <CodeList OID="CL.ONGOING" Name="Yes-No codelist" DataType="text">
+                <CodeListItem CodedValue="Y">
+                    <Decode>
+                        <TranslatedText xml:lang="en">Yes</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+                <CodeListItem CodedValue="N">
+                    <Decode>
+                        <TranslatedText xml:lang="en">No</TranslatedText>
+                    </Decode>
+                </CodeListItem>
+            </CodeList>
+            
+            <!-- Method definitions:
+            The method definitions provide the machine-executable instructions in order to retrieve the data directly from the EHR -->
+            <MethodDef OID="MT.TERM" Name="Method to retrieve Medical History Term">
+                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History term from FHIR 'Condition' resource</TranslatedText></Description>
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHTERM" Definition="Medical history term from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <!-- Remark that the RESTful web service returns a "Bundle", so we need "//Condition" to retrieve ALL conditions -->
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/code/text/@value</Code>
+                    <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/code/text/@value -->
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.SNOMEDCT" Name="Method to retrieve the SNOMED-CT code of the Medical History Term">
+                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History SNOMED-CT code from FHIR 'Condition' resource</TranslatedText></Description>
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHSNOMEDCT" Definition="Medical history SNOMED-CT code from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/code/coding[system/@value='http://snomed.info/sct']/code/@value</Code>
+                    <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/code/coding[system/@value='http://snomed.info/sct']/code/@value -->
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.DTC" Name="Method to retrieve the collection date/time (in the EHR system) of the Medical History Term">
+                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History date/time of collection from FHIR 'Condition' resource</TranslatedText></Description>
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHSNOMEDCT" Definition="Medical history SNOMED-CT code from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/recordedDate/@value</Code>
+                    <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/recordedDate/@value -->
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.STDTC" Name="Method to retrieve the start date/time of the Medical History Term">
+                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History start date/time from FHIR 'Condition' resource</TranslatedText></Description>
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHSNOMEDCT" Definition="Medical history SNOMED-CT code from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <!-- REMARK that FHIR also has onsetAge, onsetPeriod, onsetRange, onsetString -->
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/onsetDateTime/@value</Code>
+                    <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/onsetDateTime/@value -->
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.ENDTC" Name="Method to retrieve the end date/time of the Medical History Term">
+                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History end date/time from FHIR 'Condition' resource</TranslatedText></Description>
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHSNOMEDCT" Definition="Medical history SNOMED-CT code from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <!-- REMARK that FHIR also has abatementAge, abatementPeriod, abatementRange, abatementString -->
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/abatementDateTime/@value</Code>
+                    <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/abatementDateTime/@value -->
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.STATUS" Name="Method to retrieve the clinical status (active | recurrence | relapse | inactive | remission | resolved) of the Medical History Term">
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
+                    <ReturnValue Name="MHSTATUS" Definition="Condition status at EHR collection time from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <FormalExpression Context="FHIR">
+                    <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/clinicalStatus/@value</Code>
+                </FormalExpression>
+            </MethodDef>
+            <MethodDef OID="MT.ONGOING" Name="Whether condition ongoing at reference start date/time" DataType="text">
+                <MethodSignature>
+                    <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
+                    <Parameter Name="RFSTDTC" Definition="Reference start date/time of the subject for the current study" DataType="partialDatetime"/>
+                    <ReturnValue Name="MHONGOING" Definition="Medical history clinical status from the EHR system" DataType="text"/>
+                </MethodSignature>
+                <FormalExpression Context="xxx">
+                    <Code>TODO</Code>
+                </FormalExpression>
+            </MethodDef>
+        </MetaDataVersion>
+    </Study>
+    
+    <!-- Example clinical data: just for simplicity, we skip StudyEventData and FormData, and start directly at ItemGroupData -->
+    <!-- TODO: map SubjectKey to Patient-ID using FHIR resource ResearchSubject: we currently take Patient-ID for Subject-ID -->
+    <!-- The data come from the HAPI-FHIR COVID-19 Synthea data -->
+    <ClinicalData StudyOID="ST.COVID19" MetaDataVersionOID="MV.001">
+        <SubjectData SubjectKey="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47">
+            <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
+                <ItemData ItemOID="IT.SUBJID" Value="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47"/>
+                <ItemData ItemOID="IT.TERM" Value="Chronic congestive heart failure (disorder)"/>
+                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
+                <ItemData ItemOID="IT.DTC" Value="2009-05-27T11:08:30-05:00"/>
+                <ItemData ItemOID="IT.STDTC" Value="2009-05-27T11:08:30-05:00"/>
+                <!-- There is no value for IT.ENDTC -->
+                <ItemData ItemOID="IT.STATUS" Value="active"/>
+                <ItemData ItemOID="IT.ONGOING" Value="Y"/>
+                <!-- Example of indirect (reference) incorporation of the source record -->
+                <Source xlink:href="http://hapi.fhir.org/baseR4/Condition/edf4e1cc-5436-426a-a467-45c493e9ab2a"/>
+                <!-- Example of direct incorporation of the source record -->
+                <Condition xmlns="http://hl7.org/fhir">
+                    <id value="edf4e1cc-5436-426a-a467-45c493e9ab2a"/>
+                    <meta>
+                        <versionId value="1"/>
+                        <lastUpdated value="2020-03-24T20:14:57.697+00:00"/>
+                        <source value="#bj5gcNBvYWE8vLuL"/>
+                        <profile value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"/>
+                        <tag>
+                            <system value="https://smarthealthit.org/tags"/>
+                            <code value="Covid19 synthetic population from Synthea"/>
+                        </tag>
+                    </meta>
+                    <clinicalStatus>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+                            <code value="active"/>
+                        </coding>
+                    </clinicalStatus>
+                    <verificationStatus>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+                            <code value="confirmed"/>
+                        </coding>
+                    </verificationStatus>
+                    <category>
+                        <coding>
+                            <system value="http://terminology.hl7.org/CodeSystem/condition-category"/>
+                            <code value="encounter-diagnosis"/>
+                            <display value="Encounter Diagnosis"/>
+                        </coding>
+                    </category>
+                    <code>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="88805009"/>
+                            <display value="Chronic congestive heart failure (disorder)"/>
+                        </coding>
+                        <text value="Chronic congestive heart failure (disorder)"/>
+                    </code>
+                    <subject>
+                        <reference value="Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47"/>
+                    </subject>
+                    <encounter>
+                        <reference value="Encounter/c68de0da-ea15-4934-8ab0-e49e41a0e530"/>
+                    </encounter>
+                    <onsetDateTime value="2009-05-27T11:08:30-05:00"/>
+                    <recordedDate value="2009-05-27T11:08:30-05:00"/>
+                </Condition>
+            </ItemGroupData>
+            <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="2">
+                <ItemData ItemOID="IT.SUBJID" Value="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47"/>
+                <ItemData ItemOID="IT.TERM" Value="Anemia (disorder)"/>
+                <ItemData ItemOID="IT.SNOMEDCD" Value="271737000"/>
+                <ItemData ItemOID="IT.DTC" Value="2009-05-27T11:08:30-05:00"/>
+                <ItemData ItemOID="IT.STDTC" Value="2009-05-27T11:08:30-05:00"/>
+                <!-- There is no value for IT.ENDTC -->
+                <ItemData ItemOID="IT.STATUS" Value="active"/>
+                <ItemData ItemOID="IT.ONGOING" Value="Y"/>
+            </ItemGroupData>
+        </SubjectData>
+        <SubjectData SubjectKey="247796">
+            <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
+                <ItemData ItemOID="IT.SUBJID" Value="247796"/>
+                <ItemData ItemOID="IT.TERM" Value="Burnt Ear"/>
+                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
+                <ItemData ItemOID="IT.DTC" Value="2013-04-04"/>
+                <!-- Remark: the original FHIR record has <onsetString value="around August 15, 2015"/> -->
+                <ItemData ItemOID="IT.STDTC" Value="2013-08"/>
+                <!-- Remark: the original FHIR record has <abatementString value="around April 9, 2013"/> -->
+                <ItemData ItemOID="IT.ENDTC" Value="2009-04"/>
+                <ItemData ItemOID="IT.STATUS" Value="active"/>
+                <ItemData ItemOID="IT.ONGOING" Value="N"/>
+            </ItemGroupData>
+            <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
+                <ItemData ItemOID="IT.SUBJID" Value="247796"/>
+                <ItemData ItemOID="IT.TERM" Value="Burnt Ear"/>
+                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
+                <ItemData ItemOID="IT.DTC" Value="2013-04-04"/>
+                <!-- Remark: the original FHIR record has <onsetString value="around August 15, 2015"/> -->
+                <ItemData ItemOID="IT.STDTC" Value="2013-08"/>
+                <!-- Remark: the original FHIR record has <abatementString value="around April 9, 2013"/> -->
+                <ItemData ItemOID="IT.ENDTC" Value="2009-04"/>
+                <ItemData ItemOID="IT.STATUS" Value="active"/>
+                <ItemData ItemOID="IT.ONGOING" Value="N"/>
+            </ItemGroupData>
+            <!-- etc.. -->
+        </SubjectData>
+        <!-- etc.. -->
+        
+    </ClinicalData>
+    
+</ODM>
