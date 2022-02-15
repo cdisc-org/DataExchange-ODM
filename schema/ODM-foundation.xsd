@@ -2129,7 +2129,6 @@
 		<xs:attributeGroup ref="StudyEventDefAttributeDefinition"/>
 		<xs:attributeGroup ref="StudyEventDefAttributeExtension"/>
 	</xs:complexType>
-	<xs:complexType name="ODMcomplex"></xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-FormDef">
 		<xs:sequence>
 			<xs:element ref="Description" minOccurs="0"/>
