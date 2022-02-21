@@ -5,9 +5,8 @@
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
 		schemaLocation="xmldsig-core-schema.xsd"/>
-	
-	<!-- 2022-02-17 -->
-	<xs:include schemaLocation="ODM-enumerations.xsd"/>
+
+  <xs:include schemaLocation="ODM-enumerations.xsd"/>
 	
 	<!--
         +===========================================================================+
@@ -262,8 +261,8 @@
 	<xs:simpleType name="incompleteDate">
 		<xs:union memberTypes="emptyTag xs:date xs:gYearMonth xs:gYear tIncompleteDate"/>
 	</xs:simpleType>
-	
-	<!--
+
+  <!--
         +===========================================================================+
         | ODM internal type definitions                                             |
         +===========================================================================+
@@ -311,10 +310,8 @@
 	<xs:simpleType name="fileName">
 		<xs:restriction base="xs:anyURI"/>
 	</xs:simpleType>
-	
-	
-	
-	<!--
+
+  <!--
         +===========================================================================+
         | attribute definition groups                                               |
         | these definitions are NOT to be extended and are internal to ODM USE ONLY |

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_0mhlp3u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Start of Therapy">
+      <bpmn:outgoing>SequenceFlow_0zyw78x</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="SE_0imo8x1" name="Visit 1">
+      <bpmn:incoming>SequenceFlow_0zyw78x</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00de882</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0zyw78x" sourceRef="StartEvent_1" targetRef="SE_0imo8x1" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_19rvqwk" name="Arm Branching">
+      <bpmn:incoming>SequenceFlow_00de882</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1sm9dlo</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1hk2z8h</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0z0iuws</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_00de882" sourceRef="SE_0imo8x1" targetRef="ExclusiveGateway_19rvqwk" />
+    <bpmn:parallelGateway id="ParallelGateway_12qduy7" name="Physio+underwater therapy in parallel">
+      <bpmn:incoming>SequenceFlow_1sm9dlo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ao0p7m</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0dnupty</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1sm9dlo" name="Physio+underwater therapy arm" sourceRef="ExclusiveGateway_19rvqwk" targetRef="ParallelGateway_12qduy7" />
+    <bpmn:task id="SE_0m6x4je" name="Physiotherapy">
+      <bpmn:incoming>SequenceFlow_1hk2z8h</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0ao0p7m</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0mxsfta</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_1hk2z8h" name="Physiotherapy Arm" sourceRef="ExclusiveGateway_19rvqwk" targetRef="SE_0m6x4je" />
+    <bpmn:task id="SE_0stubbd" name="Underwater therapy">
+      <bpmn:incoming>SequenceFlow_0z0iuws</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0dnupty</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ecqyq5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0z0iuws" name="Underwater therapy arm" sourceRef="ExclusiveGateway_19rvqwk" targetRef="SE_0stubbd" />
+    <bpmn:task id="SE_0ltgyb8" name="Visit 2: Evaluation">
+      <bpmn:incoming>SequenceFlow_0mxsfta</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0ecqyq5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0yx6wvs</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0ao0p7m" sourceRef="ParallelGateway_12qduy7" targetRef="SE_0m6x4je" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dnupty" sourceRef="ParallelGateway_12qduy7" targetRef="SE_0stubbd" />
+    <bpmn:sequenceFlow id="SequenceFlow_0mxsfta" sourceRef="SE_0m6x4je" targetRef="SE_0ltgyb8" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ecqyq5" sourceRef="SE_0stubbd" targetRef="SE_0ltgyb8" />
+    <bpmn:endEvent id="EndEvent_1iomuxu" name="End of Therapy">
+      <bpmn:incoming>SequenceFlow_0yx6wvs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0yx6wvs" sourceRef="SE_0ltgyb8" targetRef="EndEvent_1iomuxu" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SE_0imo8x1_di" bpmnElement="SE_0imo8x1">
+        <dc:Bounds x="307" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zyw78x_di" bpmnElement="SequenceFlow_0zyw78x">
+        <di:waypoint x="209" y="120" />
+        <di:waypoint x="307" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_19rvqwk_di" bpmnElement="ExclusiveGateway_19rvqwk" isMarkerVisible="true">
+        <dc:Bounds x="332" y="212" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_00de882_di" bpmnElement="SequenceFlow_00de882">
+        <di:waypoint x="357" y="160" />
+        <di:waypoint x="357" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_12qduy7_di" bpmnElement="ParallelGateway_12qduy7" isMarkerVisible="true">
+        <dc:Bounds x="332" y="312" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1sm9dlo_di" bpmnElement="SequenceFlow_1sm9dlo">
+        <di:waypoint x="357" y="262" />
+        <di:waypoint x="357" y="312" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SE_0m6x4je_di" bpmnElement="SE_0m6x4je">
+        <dc:Bounds x="141" y="391" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1hk2z8h_di" bpmnElement="SequenceFlow_1hk2z8h">
+        <di:waypoint x="332" y="237" />
+        <di:waypoint x="191" y="237" />
+        <di:waypoint x="191" y="391" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SE_0stubbd_di" bpmnElement="SE_0stubbd">
+        <dc:Bounds x="468" y="391" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0z0iuws_di" bpmnElement="SequenceFlow_0z0iuws">
+        <di:waypoint x="382" y="237" />
+        <di:waypoint x="518" y="237" />
+        <di:waypoint x="518" y="391" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SE_0ltgyb8_di" bpmnElement="SE_0ltgyb8">
+        <dc:Bounds x="307" y="499" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ao0p7m_di" bpmnElement="SequenceFlow_0ao0p7m">
+        <di:waypoint x="332" y="337" />
+        <di:waypoint x="236" y="337" />
+        <di:waypoint x="210" y="391" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dnupty_di" bpmnElement="SequenceFlow_0dnupty">
+        <di:waypoint x="383" y="337" />
+        <di:waypoint x="474" y="337" />
+        <di:waypoint x="499" y="391" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0mxsfta_di" bpmnElement="SequenceFlow_0mxsfta">
+        <di:waypoint x="191" y="471" />
+        <di:waypoint x="191" y="539" />
+        <di:waypoint x="307" y="539" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ecqyq5_di" bpmnElement="SequenceFlow_0ecqyq5">
+        <di:waypoint x="518" y="471" />
+        <di:waypoint x="518" y="539" />
+        <di:waypoint x="407" y="539" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1iomuxu_di" bpmnElement="EndEvent_1iomuxu">
+        <dc:Bounds x="339" y="662" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0yx6wvs_di" bpmnElement="SequenceFlow_0yx6wvs">
+        <di:waypoint x="357" y="579" />
+        <di:waypoint x="357" y="662" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
