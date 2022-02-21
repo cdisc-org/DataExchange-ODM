@@ -5,6 +5,10 @@
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
 		schemaLocation="xmldsig-core-schema.xsd"/>
+	
+	<!-- 2022-02-17 -->
+	<xs:include schemaLocation="ODM-enumerations.xsd"/>
+	
 	<!--
         +===========================================================================+
         | ODM datatype definitions                                                  |
@@ -258,51 +262,8 @@
 	<xs:simpleType name="incompleteDate">
 		<xs:union memberTypes="emptyTag xs:date xs:gYearMonth xs:gYear tIncompleteDate"/>
 	</xs:simpleType>
-	<!--
-        +===========================================================================+
-        | ODM datatype definitions                                                  |
-        | ODM extended datatype definitions (v1.3.0)                                |
-        +===========================================================================+
-    -->
-	<xs:simpleType name="DataType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="integer"/>
-			<xs:enumeration value="decimal"/>
-			<xs:enumeration value="float"/>
-			<xs:enumeration value="double"/>
-			<xs:enumeration value="date"/>
-			<xs:enumeration value="datetime"/>
-			<xs:enumeration value="time"/>
-			<xs:enumeration value="text"/>
-			<xs:enumeration value="string"/>
-			<xs:enumeration value="URI"/>
-			<xs:enumeration value="boolean"/>
-			<xs:enumeration value="hexBinary"/>
-			<xs:enumeration value="base64Binary"/>
-			<xs:enumeration value="hexFloat"/>
-			<xs:enumeration value="base64Float"/>
-			<xs:enumeration value="partialDate"/>
-			<xs:enumeration value="partialTime"/>
-			<xs:enumeration value="partialDatetime"/>
-			<xs:enumeration value="durationDatetime"/>
-			<xs:enumeration value="intervalDatetime"/>
-			<xs:enumeration value="incompleteDatetime"/>
-			<xs:enumeration value="incompleteDate"/>
-			<xs:enumeration value="incompleteTime"/>
-			<!-- original ODM datatypes (pre-1.3) -->
-			<!-- aliases added for 1.3 -->
-			<!-- binary datatypes for 1.3 -->
-			<!-- extended datetime datatypes -->
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="CLDataType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="integer"/>
-			<xs:enumeration value="decimal"/>
-			<xs:enumeration value="text"/>
-			<xs:enumeration value="string"/>
-		</xs:restriction>
-	</xs:simpleType>
+
+
 	<!--
         +===========================================================================+
         | ODM internal type definitions                                             |
@@ -350,146 +311,6 @@
 	</xs:simpleType>
 	<xs:simpleType name="fileName">
 		<xs:restriction base="xs:anyURI"/>
-	</xs:simpleType>
-	<xs:simpleType name="branchingType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Exclusive"/>
-			<xs:enumeration value="Parallel"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<!--
-        +===========================================================================+
-        | ODM attribute value enumerations                                          |
-        +===========================================================================+
-    -->
-	<xs:simpleType name="FileType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Snapshot"/>
-			<xs:enumeration value="Transactional"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="Granularity">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="All"/>
-			<xs:enumeration value="Metadata"/>
-			<xs:enumeration value="AdminData"/>
-			<xs:enumeration value="ReferenceData"/>
-			<xs:enumeration value="AllClinicalData"/>
-			<xs:enumeration value="SingleSite"/>
-			<xs:enumeration value="SingleSubject"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="ODMVersion">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="2.0.1"/>
-			<xs:enumeration value="2.0"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="EventType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Scheduled"/>
-			<xs:enumeration value="Unscheduled"/>
-			<xs:enumeration value="Common"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="Comparator">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="LT"/>
-			<xs:enumeration value="LE"/>
-			<xs:enumeration value="GT"/>
-			<xs:enumeration value="GE"/>
-			<xs:enumeration value="EQ"/>
-			<xs:enumeration value="NE"/>
-			<xs:enumeration value="IN"/>
-			<xs:enumeration value="NOTIN"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="SoftOrHard">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Soft"/>
-			<xs:enumeration value="Hard"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="TransactionType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Insert"/>
-			<xs:enumeration value="Update"/>
-			<xs:enumeration value="Remove"/>
-			<xs:enumeration value="Upsert"/>
-			<xs:enumeration value="Context"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="UserType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Sponsor"/>
-			<xs:enumeration value="Investigator"/>
-			<xs:enumeration value="Lab"/>
-			<xs:enumeration value="Other"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="LocationType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Sponsor"/>
-			<xs:enumeration value="Site"/>
-			<xs:enumeration value="CRO"/>
-			<xs:enumeration value="Lab"/>
-			<xs:enumeration value="Other"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="CommentType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Sponsor"/>
-			<xs:enumeration value="Site"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="SignMethod">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Digital"/>
-			<xs:enumeration value="Electronic"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="EditPointType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Monitoring"/>
-			<xs:enumeration value="DataManagement"/>
-			<xs:enumeration value="DBAudit"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="YesOrNo">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Yes"/>
-			<xs:enumeration value="No"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="YesOnly">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Yes"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="MethodType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="Computation"/>
-			<xs:enumeration value="Imputation"/>
-			<xs:enumeration value="Transpose"/>
-			<xs:enumeration value="Other"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<!-- type for ItemGroupRepeating Attribute -->
-	<xs:simpleType name="ItemGroupRepeatingType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="No"/>
-			<xs:enumeration value="Simple"/>
-			<xs:enumeration value="Dynamic"/>
-			<xs:enumeration value="Static"/>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="RelativeTimingConstraintType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="StartToStart"/>
-			<xs:enumeration value="StartToFinish"/>
-			<xs:enumeration value="FinishToStart"/>
-			<xs:enumeration value="FinishToFinish"/>
-		</xs:restriction>
 	</xs:simpleType>
 
 	<!--
