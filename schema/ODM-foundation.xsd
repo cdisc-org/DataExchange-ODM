@@ -1964,7 +1964,11 @@
 	<xs:complexType name="ODMcomplexTypeDefinition-ItemGroupDef">
 		<xs:sequence>
 			<xs:element ref="Description" minOccurs="0"/>
-			<xs:element ref="ItemRef" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- 2022-02-25: For the moment we assume that ItemGroupRef and ItemRef can come in any order, any number of times -->
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ItemGroupRef"/>
+				<xs:element ref="ItemRef"/>
+			</xs:choice>
 			<xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
