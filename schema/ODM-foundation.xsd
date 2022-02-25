@@ -1132,6 +1132,12 @@
 	<xs:group name="FormDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="ItemGroupDefGroup">
+		<xs:sequence>
+			<xs:element ref="ItemGroupRef" minOccurs="0"/>
+			<xs:element ref="ItemRef" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
 	<xs:group name="ItemGroupDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -1966,12 +1972,9 @@
 		<xs:sequence>
 			<xs:element ref="Description" minOccurs="0"/>
 			<!-- 2022-02-25: For the moment we assume that ItemGroupRef and ItemRef can come in any order, any number of times -->
-			<xs:choice minOccurs="0" maxOccurs="unbounded">
-				<xs:element ref="ItemGroupRef"/>
-				<xs:element ref="ItemRef"/>
-			</xs:choice>
+			<xs:group ref="ItemGroupDefGroup" minOccurs="1" maxOccurs="unbounded"/>
 			<!-- TODO: add Coding element -->
-			<xs:element ref="WorkflowRef" minOccurs="1"/>
+			<xs:element ref="WorkflowRef" minOccurs="0"/>
 			<!-- TODO: add Origin element and remove Origin attribute -->
 			<xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
