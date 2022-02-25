@@ -576,6 +576,7 @@
 		<xs:attribute name="IsReferenceData" type="YesOrNo"/>
 		<xs:attribute name="SASDatasetName" type="sasName"/>
 		<xs:attribute name="Domain" type="text"/>
+		<!-- TODO: remove Origin attribute, it is replaced by the Origin child element -->
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Role" type="name"/>
 		<xs:attribute name="Purpose" type="text"/>
@@ -1969,6 +1970,9 @@
 				<xs:element ref="ItemGroupRef"/>
 				<xs:element ref="ItemRef"/>
 			</xs:choice>
+			<!-- TODO: add Coding element -->
+			<xs:element ref="WorkflowRef" minOccurs="1"/>
+			<!-- TODO: add Origin element and remove Origin attribute -->
 			<xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
