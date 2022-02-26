@@ -183,6 +183,14 @@
             <xs:enumeration value="Static"/>
         </xs:restriction>
     </xs:simpleType>
+    <!-- type for ItemGroupTypeType Attribute -->
+    <xs:simpleType name="ItemGroupTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Form"></xs:enumeration>
+            <xs:enumeration value="Dataset"></xs:enumeration>
+            <xs:enumeration value="Concept"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="RelativeTimingConstraintType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="StartToStart"/>

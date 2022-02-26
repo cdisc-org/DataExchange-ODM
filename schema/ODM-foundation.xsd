@@ -576,10 +576,12 @@
 		<xs:attribute name="IsReferenceData" type="YesOrNo"/>
 		<xs:attribute name="SASDatasetName" type="sasName"/>
 		<xs:attribute name="Domain" type="text"/>
+		<!-- TODO: remove Origin attribute, it is replaced by the Origin child element -->
 		<xs:attribute name="Origin" type="text"/>
 		<xs:attribute name="Role" type="name"/>
 		<xs:attribute name="Purpose" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
+		<xs:attribute name="Type" type="ItemGroupTypeType"></xs:attribute>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDefAttributeDefinition">
 		<xs:annotation>
@@ -1130,6 +1132,12 @@
 	</xs:group>
 	<xs:group name="FormDefElementExtension">
 		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ItemGroupDefGroup">
+		<xs:sequence>
+			<xs:element ref="ItemGroupRef" minOccurs="0"/>
+			<xs:element ref="ItemRef" minOccurs="0"/>
+		</xs:sequence>
 	</xs:group>
 	<xs:group name="ItemGroupDefElementExtension">
 		<xs:sequence/>
@@ -1964,7 +1972,11 @@
 	<xs:complexType name="ODMcomplexTypeDefinition-ItemGroupDef">
 		<xs:sequence>
 			<xs:element ref="Description" minOccurs="0"/>
-			<xs:element ref="ItemRef" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- 2022-02-25: For the moment we assume that ItemGroupRef and ItemRef can come in any order, any number of times -->
+			<xs:group ref="ItemGroupDefGroup" minOccurs="1" maxOccurs="unbounded"/>
+			<!-- TODO: add Coding element -->
+			<xs:element ref="WorkflowRef" minOccurs="0"/>
+			<!-- TODO: add Origin element and remove Origin attribute -->
 			<xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
