@@ -581,6 +581,7 @@
 		<xs:attribute name="Role" type="name"/>
 		<xs:attribute name="Purpose" type="text"/>
 		<xs:attribute name="Comment" type="text"/>
+		<xs:attribute name="Type" type="ItemGroupTypeType"></xs:attribute>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDefAttributeDefinition">
 		<xs:annotation>
