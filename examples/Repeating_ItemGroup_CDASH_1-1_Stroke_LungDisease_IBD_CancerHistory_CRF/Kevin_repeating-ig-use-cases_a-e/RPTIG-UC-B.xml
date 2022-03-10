@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM FileOID="ODM.1497516063497" FileType="Snapshot" CreationDateTime="2017-06-15T09:45:36+01:00" ODMVersion="1.3.2" Originator="Formedix" SourceSystem="Origin Study Modeller" SourceSystemVersion="3.7.1" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+	<Study OID="S.RPTIG.UC-B">
+		<GlobalVariables>
+			<StudyName>Repeating Item Groups Use Case B - Codelist Dynamic Repeat</StudyName>
+			<StudyDescription>Medical History form with a set of questions that repeat for each of a number of pre-defined histories, and allows additional histories to be collected. Each repeating row has the same definition.</StudyDescription>
+			<ProtocolName>Repeating Item Groups Use Case B - Codelist Dynamic Repeat</ProtocolName>
+		</GlobalVariables>
+		<BasicDefinitions/>
+		<MetaDataVersion OID="MDV.RPTIG.UC-B" Name="Repeating Item Groups Use Case B - Codelist Dynamic Repeat">
+			<FormDef OID="F.MEDHIST" Name="Medical History" Repeating="No">
+				<ItemGroupRef ItemGroupOID="IG.MEDHIST" Mandatory="Yes" OrderNumber="1"/>
+			</FormDef>
+			<ItemGroupDef OID="IG.MEDHIST" Name="Medical History" Repeating="Yes" SASDatasetName="MEDHIST" Domain="MH" Origin="CRF">
+				<ItemRef ItemOID="I.MH.BODSYS" Mandatory="Yes" OrderNumber="1"/>
+				<ItemRef ItemOID="I.MH.TERM" Mandatory="No" OrderNumber="2"/>
+				<ItemRef ItemOID="I.MH.ACTIVE" Mandatory="No" OrderNumber="3"/>
+				<Repeat ItemOID="I.MH.BODSYS"/>
+			</ItemGroupDef>
+			<ItemDef OID="I.MH.BODSYS" Name="Body System" DataType="integer" Length="8" Origin="CRF" SASFieldName="MHBODSYS" SDSVarName="MHBODSYS">
+				<Question>
+					<TranslatedText>Body System</TranslatedText>
+					<TranslatedText xml:lang="fr">Système De Corps</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.MHSYSTEM"/>
+			</ItemDef>
+			<ItemDef OID="I.MH.TERM" Name="MH Abnormality" DataType="text" Length="80" Origin="CRF" SASFieldName="MHTERM" SDSVarName="MHTERM">
+				<Question>
+					<TranslatedText>Abnormality</TranslatedText>
+					<TranslatedText xml:lang="fr">Anomalie</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID="I.MH.ACTIVE" Name="MH Active" DataType="integer" Length="8" Origin="CRF" SASFieldName="MHCONDC">
+				<Question>
+					<TranslatedText>Currently Active</TranslatedText>
+					<TranslatedText xml:lang="fr">Actuellement Actif</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID="CL.ACTINACT"/>
+			</ItemDef>
+			<CodeList OID="CL.MHSYSTEM" Name="Body System" DataType="integer" SASFormatName="MHSYSTEM">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText>Skin</TranslatedText>
+						<TranslatedText xml:lang="fr">Peau</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText>Eyes</TranslatedText>
+						<TranslatedText xml:lang="fr">Yeux</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="3">
+					<Decode>
+						<TranslatedText>Heart</TranslatedText>
+						<TranslatedText xml:lang="fr">Coeur</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="4">
+					<Decode>
+						<TranslatedText>Abdomen</TranslatedText>
+						<TranslatedText xml:lang="fr">Abdomen</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="5">
+					<Decode>
+						<TranslatedText>Neurological</TranslatedText>
+						<TranslatedText xml:lang="fr">Neurologique</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID="CL.ACTINACT" Name="Status (Active / Non-Active)" DataType="integer" SASFormatName="MHCOND">
+				<CodeListItem CodedValue="1">
+					<Decode>
+						<TranslatedText>Active</TranslatedText>
+						<TranslatedText xml:lang="fr">Actif</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue="2">
+					<Decode>
+						<TranslatedText>Inactive</TranslatedText>
+						<TranslatedText xml:lang="fr">Inactif</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+		</MetaDataVersion>
+	</Study>
+	<ClinicalData StudyOID="S.RPTIG.UC-B" MetaDataVersionOID="MDV.RPTIG.UC-B">
+		<SubjectData SubjectKey="1">
+			<StudyEventData StudyEventOID="blah">
+				<FormData FormOID="F.MEDHIST">
+					<ItemGroupData ItemGroupOID="IG.MEDHIST" ItemGroupRepeatKey="1">
+						<ItemData ItemOID="I.MH.BODSYS" Value="1"/>
+						<ItemData ItemOID="I.MH.TERM" Value="some problem"/>
+						<ItemData ItemOID="I.MH.ACTIVE" Value="1"/>
+					</ItemGroupData>
+					<ItemGroupData ItemGroupOID="IG.MEDHIST" ItemGroupRepeatKey="2">
+						<ItemData ItemOID="I.MH.BODSYS" Value="3"/>
+						<ItemData ItemOID="I.MH.TERM" Value="some other problem"/>
+						<ItemData ItemOID="I.MH.ACTIVE" Value="2"/>
+					</ItemGroupData>
+					<ItemGroupData ItemGroupOID="IG.MEDHIST" ItemGroupRepeatKey="3">
+						<ItemData ItemOID="I.MH.BODSYS" Value="3"/>
+						<ItemData ItemOID="I.MH.TERM" Value="another heart related problem"/>
+						<ItemData ItemOID="I.MH.ACTIVE" Value="2"/>
+					</ItemGroupData>
+					<ItemGroupData ItemGroupOID="IG.MEDHIST" ItemGroupRepeatKey="4">
+						<ItemData ItemOID="I.MH.BODSYS" Value="4"/>
+						<ItemData ItemOID="I.MH.TERM" Value="a final problem"/>
+						<ItemData ItemOID="I.MH.ACTIVE" Value="2"/>
+					</ItemGroupData>
+				</FormData>
+			</StudyEventData>
+		</SubjectData>
+	</ClinicalData>
+</ODM>
