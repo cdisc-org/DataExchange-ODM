@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cdisc.org/ns/odm/v2.0" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+	<!--
+        +===========================================================================+
+        | attribute definition groups                                               |
+        | these definitions are NOT to be extended and are internal to ODM USE ONLY |
+        +===========================================================================+
+    -->
+	<xs:attributeGroup name="ClinicalDataAttributeDefinition">
+		<xs:attribute name="StudyOID" type="oidref" use="required"/>
+		<xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SubjectDataAttributeDefinition">
+		<xs:attribute name="SubjectKey" type="subjectKey" use="required"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SiteRefAttributeDefinition">
+		<xs:attribute name="LocationOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="InvestigatorRefAttributeDefinition">
+		<xs:attribute name="UserOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="StudyEventDataAttributeDefinition">
+		<xs:attribute name="StudyEventOID" type="oidref" use="required"/>
+		<xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="FormDataAttributeDefinition">
+		<xs:attribute name="FormOID" type="oidref" use="required"/>
+		<xs:attribute name="FormRepeatKey" type="repeatKey"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ArchiveLayoutRefAttributeDefinition">
+		<xs:attribute name="ArchiveLayoutOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ItemGroupDataAttributeDefinition">
+		<xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
+		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ItemDataAttributeSharedDefinition">
+		<xs:attribute name="ItemOID" type="oidref" use="required"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+		<xs:attribute name="IsNull" type="YesOnly"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ItemDataTypeAttributeSharedDefinition">
+		<xs:attribute name="ItemOID" type="oidref" use="required"/>
+		<xs:attribute name="TransactionType" type="TransactionType"/>
+		<!-- no IsNull attribute here -->
+	</xs:attributeGroup>
+	<!--
+        +===========================================================================+
+        | ODM (v1.3.0)                                                              |
+        | Extended ItemDataStar definitions                                         |
+        +===========================================================================+
+    -->
+	<xs:attributeGroup name="ItemDataStarAttributeDefinition">
+		<xs:attribute name="AuditRecordID" type="xs:IDREF"/>
+		<xs:attribute name="SignatureID" type="xs:IDREF"/>
+		<xs:attribute name="AnnotationID" type="xs:IDREF"/>
+		<xs:attribute name="MeasurementUnitOID" type="oidref"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ItemDataAttributeDefinition">
+		<xs:attribute name="Value" type="value"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="UserRefAttributeDefinition">
+		<xs:attribute name="UserOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LocationRefAttributeDefinition">
+		<xs:attribute name="LocationOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SignatureRefAttributeDefinition">
+		<xs:attribute name="SignatureOID" type="oidref" use="required"/>
+	</xs:attributeGroup>
+
+
+	<!--
+        +===========================================================================+
+        | ODM (v1.3.0)                                                              |
+        | Container definitions                                                     |
+        +===========================================================================+
+    -->
+	<xs:attributeGroup name="AuditRecordAttributeDefinition">
+		<xs:attribute name="EditPoint" type="EditPointType"/>
+		<xs:attribute name="UsedImputationMethod" type="YesOrNo"/>
+		<xs:attribute name="ID" type="xs:ID"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="SignatureAttributeDefinition">
+		<xs:attribute name="ID" type="xs:ID"/>
+	</xs:attributeGroup>
+
+	<!--
+        +===========================================================================+
+        | group definitions                                                         |
+        +===========================================================================+
+    -->
+	<!--
+        +===========================================================================+
+        | ODM (v1.3.0)                                                              |
+        | Extended ItemDataStar definitions                                         |
+        |                                                                           |
+        | It looks redundant to have a single entry in the group,                   |
+        | but it looks nicer in the ItemGroupData to allow a choice of two groups.  |
+        | This construct (with the ItemGroupData choice) disables mixing of the     |
+        | ItemData(untyped) and ItemDataStar(typed) elements in a single ItemGroup. |
+        +===========================================================================+
+    -->
+	<xs:group name="ItemDataStarGroup">
+		<xs:sequence>
+			<xs:element ref="ItemDataURI" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataAny" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataBoolean" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataString" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataInteger" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataFloat" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataDouble" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataDate" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataTime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataDatetime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataHexBinary" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataBase64Binary" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataHexFloat" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataBase64Float" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataPartialDate" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataPartialTime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataPartialDatetime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataDurationDatetime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataIntervalDatetime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataIncompleteDatetime" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataIncompleteDate" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemDataIncompleteTime" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="ItemDataGroup">
+		<xs:sequence>
+			<xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+
+	<!--
+        +===========================================================================+
+        | complexType definitions                                                   |
+        +===========================================================================+
+    -->
+	<xs:complexType name="ODMcomplexTypeDefinition-ClinicalData">
+		<xs:sequence>
+			<xs:element ref="SubjectData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AuditRecords" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Signatures" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Annotations" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="ClinicalDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="ClinicalDataAttributeDefinition"/>
+		<xs:attributeGroup ref="ClinicalDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-SubjectData">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="InvestigatorRef" minOccurs="0"/>
+			<xs:element ref="SiteRef" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="StudyEventData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="SubjectDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="SubjectDataAttributeDefinition"/>
+		<xs:attributeGroup ref="SubjectDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-SiteRef">
+		<xs:sequence>
+			<xs:group ref="SiteRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="SiteRefAttributeDefinition"/>
+		<xs:attributeGroup ref="SiteRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-InvestigatorRef">
+		<xs:sequence>
+			<xs:group ref="InvestigatorRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="InvestigatorRefAttributeDefinition"/>
+		<xs:attributeGroup ref="InvestigatorRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-StudyEventData">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FormData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="StudyEventDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="StudyEventDataAttributeDefinition"/>
+		<xs:attributeGroup ref="StudyEventDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-FormData">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="ArchiveLayoutRef" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="FormDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="FormDataAttributeDefinition"/>
+		<xs:attributeGroup ref="FormDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ArchiveLayoutRef">
+		<xs:sequence>
+			<xs:group ref="ArchiveLayoutRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="ArchiveLayoutRefAttributeDefinition"/>
+		<xs:attributeGroup ref="ArchiveLayoutRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemGroupData">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:group ref="ItemDataGroup" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:group ref="ItemDataStarGroup" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:group ref="ItemGroupDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="ItemGroupDataAttributeDefinition"/>
+		<xs:attributeGroup ref="ItemGroupDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemData">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="MeasurementUnitRef" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>
+		<xs:attributeGroup ref="ItemDataAttributeDefinition"/>
+		<xs:attributeGroup ref="ItemDataAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-Signature">
+		<xs:sequence>
+			<xs:element ref="UserRef"/>
+			<xs:element ref="LocationRef"/>
+			<xs:element ref="SignatureRef"/>
+			<xs:element ref="DateTimeStamp"/>
+			<xs:group ref="SignatureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="SignatureAttributeDefinition"/>
+		<xs:attributeGroup ref="SignatureAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataURI">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataBoolean">
+		<xs:simpleContent>
+			<xs:extension base="boolean">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataString">
+		<xs:simpleContent>
+			<xs:extension base="string">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataAny">
+		<xs:simpleContent>
+			<xs:extension base="string">
+				<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataInteger">
+		<xs:simpleContent>
+			<xs:extension base="integer">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataFloat">
+		<xs:simpleContent>
+			<xs:extension base="float">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataDouble">
+		<xs:simpleContent>
+			<xs:extension base="double">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataDate">
+		<xs:simpleContent>
+			<xs:extension base="date">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataTime">
+		<xs:simpleContent>
+			<xs:extension base="time">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataDatetime">
+		<xs:simpleContent>
+			<xs:extension base="datetime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataHexBinary">
+		<xs:simpleContent>
+			<xs:extension base="hexBinary">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataBase64Binary">
+		<xs:simpleContent>
+			<xs:extension base="base64Binary">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataHexFloat">
+		<xs:simpleContent>
+			<xs:extension base="hexFloat">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataBase64Float">
+		<xs:simpleContent>
+			<xs:extension base="base64Float">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataPartialDate">
+		<xs:simpleContent>
+			<xs:extension base="partialDate">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataPartialTime">
+		<xs:simpleContent>
+			<xs:extension base="partialTime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataPartialDatetime">
+		<xs:simpleContent>
+			<xs:extension base="partialDatetime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataDurationDatetime">
+		<xs:simpleContent>
+			<xs:extension base="durationDatetime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataIntervalDatetime">
+		<xs:simpleContent>
+			<xs:extension base="intervalDatetime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataIncompleteDatetime">
+		<xs:simpleContent>
+			<xs:extension base="incompleteDatetime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataIncompleteDate">
+		<xs:simpleContent>
+			<xs:extension base="incompleteDate">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ItemDataIncompleteTime">
+		<xs:simpleContent>
+			<xs:extension base="incompleteTime">
+				<xs:attributeGroup ref="ItemDataTypeAttributeSharedDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeDefinition"/>
+				<xs:attributeGroup ref="ItemDataStarAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!--
+        +===========================================================================+
+        | ODM (v1.3.0)                                                              |
+        | Container definitions                                                     |
+        +===========================================================================+
+    -->
+	<xs:complexType name="ODMcomplexTypeDefinition-AuditRecords">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-AuditRecord">
+		<xs:sequence>
+			<xs:element ref="UserRef"/>
+			<xs:element ref="LocationRef"/>
+			<xs:element ref="DateTimeStamp"/>
+			<xs:element ref="ReasonForChange" minOccurs="0"/>
+			<xs:element ref="SourceID" minOccurs="0"/>
+			<xs:group ref="AuditRecordElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="AuditRecordAttributeDefinition"/>
+		<xs:attributeGroup ref="AuditRecordAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-UserRef">
+		<xs:sequence>
+			<xs:group ref="UserRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="UserRefAttributeDefinition"/>
+		<xs:attributeGroup ref="UserRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-LocationRef">
+		<xs:sequence>
+			<xs:group ref="LocationRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="LocationRefAttributeDefinition"/>
+		<xs:attributeGroup ref="LocationRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-DateTimeStamp">
+		<xs:simpleContent>
+			<xs:extension base="datetime">
+				<xs:attributeGroup ref="DateTimeStampAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-ReasonForChange">
+		<xs:simpleContent>
+			<xs:extension base="text">
+				<xs:attributeGroup ref="ReasonForChangeAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-SourceID">
+		<xs:simpleContent>
+			<xs:extension base="text">
+				<xs:attributeGroup ref="SourceIDAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-SignatureRef">
+		<xs:sequence>
+			<xs:group ref="SignatureRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="SignatureRefAttributeDefinition"/>
+		<xs:attributeGroup ref="SignatureRefAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-Signatures">
+		<xs:sequence>
+			<xs:element ref="Signature" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!--
+        +===========================================================================+
+        | element definitions                                                       |
+        +===========================================================================+
+    -->
+	<xs:element name="ClinicalData" type="ODMcomplexTypeDefinition-ClinicalData"/>
+	<xs:element name="SubjectData" type="ODMcomplexTypeDefinition-SubjectData"/>
+	<xs:element name="SiteRef" type="ODMcomplexTypeDefinition-SiteRef"/>
+	<xs:element name="InvestigatorRef" type="ODMcomplexTypeDefinition-InvestigatorRef"/>
+	<xs:element name="StudyEventData" type="ODMcomplexTypeDefinition-StudyEventData"/>
+	<xs:element name="FormData" type="ODMcomplexTypeDefinition-FormData"/>
+	<xs:element name="ArchiveLayoutRef" type="ODMcomplexTypeDefinition-ArchiveLayoutRef"/>
+	<xs:element name="ItemGroupData" type="ODMcomplexTypeDefinition-ItemGroupData"/>
+	<xs:element name="ItemData" type="ODMcomplexTypeDefinition-ItemData"/>
+	<xs:element name="AuditRecords" type="ODMcomplexTypeDefinition-AuditRecords"/>
+	<xs:element name="AuditRecord" type="ODMcomplexTypeDefinition-AuditRecord"/>
+	<xs:element name="UserRef" type="ODMcomplexTypeDefinition-UserRef"/>
+	<xs:element name="LocationRef" type="ODMcomplexTypeDefinition-LocationRef"/>
+	<xs:element name="DateTimeStamp" type="ODMcomplexTypeDefinition-DateTimeStamp"/>
+	<xs:element name="ReasonForChange" type="ODMcomplexTypeDefinition-ReasonForChange"/>
+	<xs:element name="SourceID" type="ODMcomplexTypeDefinition-SourceID"/>
+	<xs:element name="Signature" type="ODMcomplexTypeDefinition-Signature"/>
+	<xs:element name="SignatureRef" type="ODMcomplexTypeDefinition-SignatureRef"/>
+	<!--
+        +===========================================================================+
+        | ODM (v1.3.0)                                                              |
+        | Extended ItemDataStar definitions                                         |
+        +===========================================================================+
+
+        NOTE: the ItemDataText element definition has been purposely omitted
+              to push the "text" into deprecation as a non-schema datatype.
+              ItemDataAny is a purposeful escape mechanism for applications aware of content
+              e.g., SAS special MISSING values, and Oracle Clinical putting "trace" in a numeric field
+              neither case will pass the schema validation for ItemDataFloat and should use ItemDataAny
+    -->
+	<xs:element name="ItemDataURI" type="ODMcomplexTypeDefinition-ItemDataURI"/>
+	<xs:element name="ItemDataAny" type="ODMcomplexTypeDefinition-ItemDataAny"/>
+	<xs:element name="ItemDataBoolean" type="ODMcomplexTypeDefinition-ItemDataBoolean"/>
+	<xs:element name="ItemDataString" type="ODMcomplexTypeDefinition-ItemDataString"/>
+	<xs:element name="ItemDataInteger" type="ODMcomplexTypeDefinition-ItemDataInteger"/>
+	<xs:element name="ItemDataFloat" type="ODMcomplexTypeDefinition-ItemDataFloat"/>
+	<xs:element name="ItemDataDouble" type="ODMcomplexTypeDefinition-ItemDataDouble"/>
+	<xs:element name="ItemDataDate" type="ODMcomplexTypeDefinition-ItemDataDate"/>
+	<xs:element name="ItemDataTime" type="ODMcomplexTypeDefinition-ItemDataTime"/>
+	<xs:element name="ItemDataDatetime" type="ODMcomplexTypeDefinition-ItemDataDatetime"/>
+	<xs:element name="ItemDataHexBinary" type="ODMcomplexTypeDefinition-ItemDataHexBinary"/>
+	<xs:element name="ItemDataBase64Binary" type="ODMcomplexTypeDefinition-ItemDataBase64Binary"/>
+	<xs:element name="ItemDataHexFloat" type="ODMcomplexTypeDefinition-ItemDataHexFloat"/>
+	<xs:element name="ItemDataBase64Float" type="ODMcomplexTypeDefinition-ItemDataBase64Float"/>
+	<xs:element name="ItemDataPartialDate" type="ODMcomplexTypeDefinition-ItemDataPartialDate"/>
+	<xs:element name="ItemDataPartialTime" type="ODMcomplexTypeDefinition-ItemDataPartialTime"/>
+	<xs:element name="ItemDataPartialDatetime"
+		type="ODMcomplexTypeDefinition-ItemDataPartialDatetime"/>
+	<xs:element name="ItemDataDurationDatetime"
+		type="ODMcomplexTypeDefinition-ItemDataDurationDatetime"/>
+	<xs:element name="ItemDataIntervalDatetime"
+		type="ODMcomplexTypeDefinition-ItemDataIntervalDatetime"/>
+	<xs:element name="ItemDataIncompleteDatetime"
+		type="ODMcomplexTypeDefinition-ItemDataIncompleteDatetime"/>
+	<xs:element name="ItemDataIncompleteDate" type="ODMcomplexTypeDefinition-ItemDataIncompleteDate"/>
+	<xs:element name="ItemDataIncompleteTime" type="ODMcomplexTypeDefinition-ItemDataIncompleteTime"/>
+	<xs:element name="Signatures" type="ODMcomplexTypeDefinition-Signatures"/>
+
+</xs:schema>
