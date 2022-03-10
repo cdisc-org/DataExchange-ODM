@@ -376,7 +376,7 @@
     <xs:element name="DefaultTransition" type="ODMcomplexTypeDefinition-DefaultTransition"/>
     <xs:element name="WorkflowEnd" type="ODMcomplexTypeDefinition-WorkflowEnd"/>
     <xs:element name="Criterion" type="ODMComplexTypeDefinition-Criterion"/>
-    <xs:element name="EntryExitCriteria" type="ODMCompleTypeDefinition-EntryExitCriteria"/>
+    <xs:element name="EntryExitCriteria" type="ODMComplexTypeDefinition-EntryExitCriteria"/>
     <xs:element name="EntryCriteria" type="ODMComplexTypeDefinition-EntryCriteria"/>
     <xs:element name="ExitCriteria" type="ODMComplexTypeDefinition-ExitCriteria"/>
     <xs:element name="ExceptionEvent" type="ODMcomplexTypeDefinition-ExceptionEvent"/>
