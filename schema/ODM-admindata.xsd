@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+
+    <!--
+        +===========================================================================+
+        | attribute definition groups                                               |
+        | these definitions are NOT to be extended and are internal to ODM USE ONLY |
+        +===========================================================================+
+    -->
+    <xs:attributeGroup name="AdminDataAttributeDefinition">
+        <xs:attribute name="StudyOID" type="oidref"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="UserAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="UserType" type="UserType"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="LocationAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="LocationType" type="LocationType"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PictureAttributeDefinition">
+        <xs:attribute name="PictureFileName" type="fileName" use="required"/>
+        <xs:attribute name="ImageType" type="name"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="SignatureDefAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Methodology" type="SignMethod"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="MetaDataVersionRefAttributeDefinition">
+        <xs:attribute name="StudyOID" type="oidref" use="required"/>
+        <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+        <xs:attribute name="EffectiveDate" type="date" use="required"/>
+    </xs:attributeGroup>
+
+    <!--
+        +===========================================================================+
+        | complexType definitions                                                   |
+        +===========================================================================+
+    -->
+    <xs:complexType name="ODMcomplexTypeDefinition-AdminData">
+        <xs:sequence>
+            <xs:element ref="User" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="SignatureDef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="AdminDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="AdminDataAttributeDefinition"/>
+        <xs:attributeGroup ref="AdminDataAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-User">
+        <xs:sequence>
+            <xs:element ref="LoginName" minOccurs="0"/>
+            <xs:element ref="DisplayName" minOccurs="0"/>
+            <xs:element ref="FullName" minOccurs="0"/>
+            <xs:element ref="FirstName" minOccurs="0"/>
+            <xs:element ref="LastName" minOccurs="0"/>
+            <xs:element ref="Organization" minOccurs="0"/>
+            <xs:element ref="Address" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Email" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Picture" minOccurs="0"/>
+            <xs:element ref="Pager" minOccurs="0"/>
+            <xs:element ref="Fax" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Phone" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="LocationRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Certificate" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="UserElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="UserAttributeDefinition"/>
+        <xs:attributeGroup ref="UserAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-LoginName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="LoginNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-DisplayName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="DisplayNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-FullName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="FullNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-FirstName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="FirstNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-LastName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="LastNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Organization">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="OrganizationAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Location">
+        <xs:sequence>
+            <xs:element ref="MetaDataVersionRef" maxOccurs="unbounded"/>
+            <xs:group ref="LocationElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="LocationAttributeDefinition"/>
+        <xs:attributeGroup ref="LocationAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Address">
+        <xs:sequence>
+            <xs:element ref="StreetName" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="City" minOccurs="0"/>
+            <xs:element ref="StateProv" minOccurs="0"/>
+            <xs:element ref="Country" minOccurs="0"/>
+            <xs:element ref="PostalCode" minOccurs="0"/>
+            <xs:element ref="OtherText" minOccurs="0"/>
+            <xs:group ref="AddressElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="AddressAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StreetName">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="StreetNameAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-City">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="CityAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StateProv">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="StateProvAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Country">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="CountryAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-PostalCode">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="PostalCodeAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-MetaDataVersionRef">
+        <xs:sequence>
+            <xs:group ref="MetaDataVersionRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="MetaDataVersionRefAttributeDefinition"/>
+        <xs:attributeGroup ref="MetaDataVersionRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Email">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="EmailAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Picture">
+        <xs:sequence>
+            <xs:group ref="PictureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="PictureAttributeDefinition"/>
+        <xs:attributeGroup ref="PictureAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Pager">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="PagerAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Fax">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="FaxAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Phone">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="PhoneAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-OtherText">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="OtherTextAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Certificate">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="CertificateAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-SignatureDef">
+        <xs:sequence>
+            <xs:element ref="Meaning"/>
+            <xs:element ref="LegalReason"/>
+            <xs:group ref="SignatureDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SignatureDefAttributeDefinition"/>
+        <xs:attributeGroup ref="SignatureDefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Meaning">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="MeaningAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-LegalReason">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="LegalReasonAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!--
+        +===========================================================================+
+        | element definitions                                                       |
+        +===========================================================================+
+    -->
+    <xs:element name="AdminData" type="ODMcomplexTypeDefinition-AdminData">
+        <xs:unique name="UC-AD-1">
+            <xs:selector xpath="odm:User"/>
+            <xs:field xpath="@OID"/>
+        </xs:unique>
+        <xs:unique name="UC-AD-2">
+            <xs:selector xpath="odm:Location"/>
+            <xs:field xpath="@OID"/>
+        </xs:unique>
+        <xs:unique name="UC-AD-3">
+            <xs:selector xpath="odm:SignatureDef"/>
+            <xs:field xpath="@OID"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="User" type="ODMcomplexTypeDefinition-User"/>
+    <xs:element name="LoginName" type="ODMcomplexTypeDefinition-LoginName"/>
+    <xs:element name="DisplayName" type="ODMcomplexTypeDefinition-DisplayName"/>
+    <xs:element name="FullName" type="ODMcomplexTypeDefinition-FullName"/>
+    <xs:element name="FirstName" type="ODMcomplexTypeDefinition-FirstName"/>
+    <xs:element name="LastName" type="ODMcomplexTypeDefinition-LastName"/>
+    <xs:element name="Organization" type="ODMcomplexTypeDefinition-Organization"/>
+    <xs:element name="Location" type="ODMcomplexTypeDefinition-Location"/>
+    <xs:element name="Address" type="ODMcomplexTypeDefinition-Address"/>
+    <xs:element name="StreetName" type="ODMcomplexTypeDefinition-StreetName"/>
+    <xs:element name="City" type="ODMcomplexTypeDefinition-City"/>
+    <xs:element name="StateProv" type="ODMcomplexTypeDefinition-StateProv"/>
+    <xs:element name="Country" type="ODMcomplexTypeDefinition-Country"/>
+    <xs:element name="PostalCode" type="ODMcomplexTypeDefinition-PostalCode"/>
+    <xs:element name="Email" type="ODMcomplexTypeDefinition-Email"/>
+    <xs:element name="Picture" type="ODMcomplexTypeDefinition-Picture"/>
+    <xs:element name="Pager" type="ODMcomplexTypeDefinition-Pager"/>
+    <xs:element name="Fax" type="ODMcomplexTypeDefinition-Fax"/>
+    <xs:element name="Phone" type="ODMcomplexTypeDefinition-Phone"/>
+    <xs:element name="OtherText" type="ODMcomplexTypeDefinition-OtherText"/>
+    <xs:element name="Certificate" type="ODMcomplexTypeDefinition-Certificate"/>
+    <xs:element name="MetaDataVersionRef" type="ODMcomplexTypeDefinition-MetaDataVersionRef"/>
+    <xs:element name="SignatureDef" type="ODMcomplexTypeDefinition-SignatureDef"/>
+    <xs:element name="Meaning" type="ODMcomplexTypeDefinition-Meaning"/>
+    <xs:element name="LegalReason" type="ODMcomplexTypeDefinition-LegalReason"/>
+
+</xs:schema>
