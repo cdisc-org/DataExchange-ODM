@@ -62,7 +62,6 @@
             <xs:element ref="Organization" minOccurs="0"/>
             <xs:element ref="Address" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Email" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Picture" minOccurs="0"/>
             <xs:element ref="Pager" minOccurs="0"/>
             <xs:element ref="Fax" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Phone" minOccurs="0" maxOccurs="unbounded"/>
@@ -184,13 +183,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Picture">
-        <xs:sequence>
-            <xs:group ref="PictureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="PictureAttributeDefinition"/>
-        <xs:attributeGroup ref="PictureAttributeExtension"/>
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-Pager">
         <xs:simpleContent>
             <xs:extension base="text">
@@ -284,7 +276,6 @@
     <xs:element name="Country" type="ODMcomplexTypeDefinition-Country"/>
     <xs:element name="PostalCode" type="ODMcomplexTypeDefinition-PostalCode"/>
     <xs:element name="Email" type="ODMcomplexTypeDefinition-Email"/>
-    <xs:element name="Picture" type="ODMcomplexTypeDefinition-Picture"/>
     <xs:element name="Pager" type="ODMcomplexTypeDefinition-Pager"/>
     <xs:element name="Fax" type="ODMcomplexTypeDefinition-Fax"/>
     <xs:element name="Phone" type="ODMcomplexTypeDefinition-Phone"/>

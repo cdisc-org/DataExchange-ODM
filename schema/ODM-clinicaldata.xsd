@@ -233,7 +233,6 @@
 		<xs:sequence>
 			<xs:element ref="AuditRecord" minOccurs="0"/>
 			<xs:element ref="Signature" minOccurs="0"/>
-			<xs:element ref="MeasurementUnitRef" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>

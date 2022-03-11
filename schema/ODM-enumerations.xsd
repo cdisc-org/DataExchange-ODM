@@ -75,6 +75,13 @@
             <xs:enumeration value="SingleSubject"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="Context">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Archive"/>
+            <xs:enumeration value="Exchange"/>
+            <xs:enumeration value="Submission"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="ODMVersion">
         <xs:restriction base="xs:string">
             <xs:enumeration value="2.0.1"/>

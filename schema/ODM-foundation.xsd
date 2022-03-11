@@ -25,7 +25,7 @@
 		<xs:attribute name="Description" type="text"/>
 		<xs:attribute name="FileType" type="FileType" use="required"/>
 		<xs:attribute name="Granularity" type="Granularity"/>
-		<xs:attribute name="Archival" type="YesOnly"/>
+		<xs:attribute name="Context" type="Context"/>
 		<xs:attribute name="FileOID" type="oid" use="required"/>
 		<xs:attribute name="CreationDateTime" type="datetime" use="required"/>
 		<xs:attribute name="PriorFileOID" type="oidref"/>
@@ -74,12 +74,7 @@
         | the corresponding elements via the standard XML-Schema redefine mechanism |
         +===========================================================================+
     -->
-	<xs:attributeGroup name="StudyNameAttributeExtension"/>
-	<xs:attributeGroup name="StudyDescriptionAttributeExtension"/>
-	<xs:attributeGroup name="ProtocolNameAttributeExtension"/>
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
-	<xs:attributeGroup name="ImputationMethodAttributeExtension"/>
-	<xs:attributeGroup name="PresentationAttributeExtension"/>
 	<xs:attributeGroup name="LoginNameAttributeExtension"/>
 	<xs:attributeGroup name="DisplayNameAttributeExtension"/>
 	<xs:attributeGroup name="FullNameAttributeExtension"/>
@@ -105,7 +100,6 @@
 	<xs:attributeGroup name="DateTimeStampAttributeExtension"/>
 	<xs:attributeGroup name="ReasonForChangeAttributeExtension"/>
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
-	<xs:attributeGroup name="RoleAttributeExtension"/>
 	<xs:attributeGroup name="IncludeAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
 	<xs:attributeGroup name="FormRefAttributeExtension"/>
@@ -114,11 +108,9 @@
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
 	<xs:attributeGroup name="ExternalQuestionAttributeExtension"/>
-	<xs:attributeGroup name="MeasurementUnitRefAttributeExtension"/>
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
-	<xs:attributeGroup name="PictureAttributeExtension"/>
 	<xs:attributeGroup name="LocationRefAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionRefAttributeExtension"/>
 	<xs:attributeGroup name="ArchiveLayoutRefAttributeExtension"/>
@@ -127,11 +119,7 @@
 	<xs:attributeGroup name="InvestigatorRefAttributeExtension"/>
 	<xs:attributeGroup name="SiteRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyAttributeExtension"/>
-	<xs:attributeGroup name="GlobalVariablesAttributeExtension"/>
-	<xs:attributeGroup name="BasicDefinitionsAttributeExtension"/>
-	<xs:attributeGroup name="MeasurementUnitAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionAttributeExtension"/>
-	<xs:attributeGroup name="SymbolAttributeExtension"/>
 	<xs:attributeGroup name="ProtocolAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowDefAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowStartAttributeExtension"/>
@@ -223,16 +211,10 @@
 	<xs:group name="ExternalQuestionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="MeasurementUnitRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="CodeListRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ExternalCodeListElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="PictureElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="LocationRefElementExtension">
@@ -262,22 +244,10 @@
 	<xs:group name="StudyElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="GlobalVariablesElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="BasicDefinitionsElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="MeasurementUnitElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="MetaDataVersionPreIncludeElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MetaDataVersionElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="SymbolElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ProtocolElementExtension">
