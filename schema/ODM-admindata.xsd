@@ -66,7 +66,6 @@
             <xs:element ref="Fax" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Phone" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="LocationRef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Certificate" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="UserElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="UserAttributeDefinition"/>
@@ -211,13 +210,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Certificate">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="CertificateAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-SignatureDef">
         <xs:sequence>
             <xs:element ref="Meaning"/>
@@ -280,7 +272,6 @@
     <xs:element name="Fax" type="ODMcomplexTypeDefinition-Fax"/>
     <xs:element name="Phone" type="ODMcomplexTypeDefinition-Phone"/>
     <xs:element name="OtherText" type="ODMcomplexTypeDefinition-OtherText"/>
-    <xs:element name="Certificate" type="ODMcomplexTypeDefinition-Certificate"/>
     <xs:element name="MetaDataVersionRef" type="ODMcomplexTypeDefinition-MetaDataVersionRef"/>
     <xs:element name="SignatureDef" type="ODMcomplexTypeDefinition-SignatureDef"/>
     <xs:element name="Meaning" type="ODMcomplexTypeDefinition-Meaning"/>

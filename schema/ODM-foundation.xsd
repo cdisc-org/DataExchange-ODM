@@ -57,7 +57,7 @@
 		<xs:attribute name="SeqNum" type="integer" use="required"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
 		<xs:attribute name="ID" type="xs:ID"/>
-	</xs:attributeGroup>	
+	</xs:attributeGroup>
 	<xs:attributeGroup name="CommentAttributeDefinition">
 		<xs:attribute name="SponsorOrSite" type="CommentType"/>
 	</xs:attributeGroup>
@@ -67,7 +67,7 @@
 	<xs:attributeGroup name="FlagTypeAttributeDefinition">
 		<xs:attribute name="CodeListOID" type="oidref" use="required"/>
 	</xs:attributeGroup>
-	
+
 	<!--
         +===========================================================================+
         | these are purposely empty attributeGroups to permit vendor extensions to  |
@@ -91,7 +91,6 @@
 	<xs:attributeGroup name="PagerAttributeExtension"/>
 	<xs:attributeGroup name="FaxAttributeExtension"/>
 	<xs:attributeGroup name="PhoneAttributeExtension"/>
-	<xs:attributeGroup name="CertificateAttributeExtension"/>
 	<xs:attributeGroup name="MeaningAttributeExtension"/>
 	<xs:attributeGroup name="LegalReasonAttributeExtension"/>
 	<xs:attributeGroup name="CommentAttributeExtension"/>
@@ -102,9 +101,7 @@
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
 	<xs:attributeGroup name="IncludeAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
-	<xs:attributeGroup name="FormRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
-	<xs:attributeGroup name="ArchiveLayoutAttributeExtension"/>
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
 	<xs:attributeGroup name="ExternalQuestionAttributeExtension"/>
@@ -113,7 +110,6 @@
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
 	<xs:attributeGroup name="LocationRefAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionRefAttributeExtension"/>
-	<xs:attributeGroup name="ArchiveLayoutRefAttributeExtension"/>
 	<xs:attributeGroup name="UserRefAttributeExtension"/>
 	<xs:attributeGroup name="SignatureRefAttributeExtension"/>
 	<xs:attributeGroup name="InvestigatorRefAttributeExtension"/>
@@ -147,7 +143,6 @@
 	<xs:attributeGroup name="RelativeTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="TransitionTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDefAttributeExtension"/>
-	<xs:attributeGroup name="FormDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
 	<xs:attributeGroup name="QuestionAttributeExtension"/>
@@ -165,7 +160,6 @@
 	<xs:attributeGroup name="ClinicalDataAttributeExtension"/>
 	<xs:attributeGroup name="SubjectDataAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDataAttributeExtension"/>
-	<xs:attributeGroup name="FormDataAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDataAttributeExtension"/>
 	<xs:attributeGroup name="ItemDataAttributeExtension"/>
 	<xs:attributeGroup name="AnnotationAttributeExtension"/>
@@ -193,13 +187,7 @@
 	<xs:group name="StudyEventRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="FormRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="ItemGroupRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ArchiveLayoutElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemRefElementExtension">
@@ -221,9 +209,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MetaDataVersionRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ArchiveLayoutRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="UserRefElementExtension">
@@ -328,9 +313,6 @@
 	<xs:group name="StudyEventDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="FormDefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="ItemGroupDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -380,9 +362,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyEventDataElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="FormDataElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemGroupDataElementExtension">
@@ -490,7 +469,7 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	
+
 
 	<!--
         +===========================================================================+
@@ -516,7 +495,7 @@
 			<xs:field xpath="@OID"/>
 		</xs:unique>
 	</xs:element>
-
+	
 	<xs:element name="Association" type="ODMcomplexTypeDefinition-Association"/>
 	<xs:element name="KeySet" type="ODMcomplexTypeDefinition-KeySet"/>
 	<xs:element name="Annotations" type="ODMcomplexTypeDefinition-Annotations"/>
@@ -525,5 +504,5 @@
 	<xs:element name="Flag" type="ODMcomplexTypeDefinition-Flag"/>
 	<xs:element name="FlagValue" type="ODMcomplexTypeDefinition-FlagValue"/>
 	<xs:element name="FlagType" type="ODMcomplexTypeDefinition-FlagType"/>
-	
+
 </xs:schema>
