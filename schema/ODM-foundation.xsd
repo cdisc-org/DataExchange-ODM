@@ -25,7 +25,7 @@
 		<xs:attribute name="Description" type="text"/>
 		<xs:attribute name="FileType" type="FileType" use="required"/>
 		<xs:attribute name="Granularity" type="Granularity"/>
-		<xs:attribute name="Archival" type="YesOnly"/>
+		<xs:attribute name="Context" type="Context"/>
 		<xs:attribute name="FileOID" type="oid" use="required"/>
 		<xs:attribute name="CreationDateTime" type="datetime" use="required"/>
 		<xs:attribute name="PriorFileOID" type="oidref"/>
@@ -57,7 +57,7 @@
 		<xs:attribute name="SeqNum" type="integer" use="required"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
 		<xs:attribute name="ID" type="xs:ID"/>
-	</xs:attributeGroup>	
+	</xs:attributeGroup>
 	<xs:attributeGroup name="CommentAttributeDefinition">
 		<xs:attribute name="SponsorOrSite" type="CommentType"/>
 	</xs:attributeGroup>
@@ -67,19 +67,14 @@
 	<xs:attributeGroup name="FlagTypeAttributeDefinition">
 		<xs:attribute name="CodeListOID" type="oidref" use="required"/>
 	</xs:attributeGroup>
-	
+
 	<!--
         +===========================================================================+
         | these are purposely empty attributeGroups to permit vendor extensions to  |
         | the corresponding elements via the standard XML-Schema redefine mechanism |
         +===========================================================================+
     -->
-	<xs:attributeGroup name="StudyNameAttributeExtension"/>
-	<xs:attributeGroup name="StudyDescriptionAttributeExtension"/>
-	<xs:attributeGroup name="ProtocolNameAttributeExtension"/>
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
-	<xs:attributeGroup name="ImputationMethodAttributeExtension"/>
-	<xs:attributeGroup name="PresentationAttributeExtension"/>
 	<xs:attributeGroup name="LoginNameAttributeExtension"/>
 	<xs:attributeGroup name="DisplayNameAttributeExtension"/>
 	<xs:attributeGroup name="FullNameAttributeExtension"/>
@@ -96,7 +91,6 @@
 	<xs:attributeGroup name="PagerAttributeExtension"/>
 	<xs:attributeGroup name="FaxAttributeExtension"/>
 	<xs:attributeGroup name="PhoneAttributeExtension"/>
-	<xs:attributeGroup name="CertificateAttributeExtension"/>
 	<xs:attributeGroup name="MeaningAttributeExtension"/>
 	<xs:attributeGroup name="LegalReasonAttributeExtension"/>
 	<xs:attributeGroup name="CommentAttributeExtension"/>
@@ -105,33 +99,23 @@
 	<xs:attributeGroup name="DateTimeStampAttributeExtension"/>
 	<xs:attributeGroup name="ReasonForChangeAttributeExtension"/>
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
-	<xs:attributeGroup name="RoleAttributeExtension"/>
 	<xs:attributeGroup name="IncludeAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
-	<xs:attributeGroup name="FormRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
-	<xs:attributeGroup name="ArchiveLayoutAttributeExtension"/>
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
 	<xs:attributeGroup name="ExternalQuestionAttributeExtension"/>
-	<xs:attributeGroup name="MeasurementUnitRefAttributeExtension"/>
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
-	<xs:attributeGroup name="PictureAttributeExtension"/>
 	<xs:attributeGroup name="LocationRefAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionRefAttributeExtension"/>
-	<xs:attributeGroup name="ArchiveLayoutRefAttributeExtension"/>
 	<xs:attributeGroup name="UserRefAttributeExtension"/>
 	<xs:attributeGroup name="SignatureRefAttributeExtension"/>
 	<xs:attributeGroup name="InvestigatorRefAttributeExtension"/>
 	<xs:attributeGroup name="SiteRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyAttributeExtension"/>
-	<xs:attributeGroup name="GlobalVariablesAttributeExtension"/>
-	<xs:attributeGroup name="BasicDefinitionsAttributeExtension"/>
-	<xs:attributeGroup name="MeasurementUnitAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionAttributeExtension"/>
-	<xs:attributeGroup name="SymbolAttributeExtension"/>
 	<xs:attributeGroup name="ProtocolAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowDefAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowStartAttributeExtension"/>
@@ -159,7 +143,6 @@
 	<xs:attributeGroup name="RelativeTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="TransitionTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDefAttributeExtension"/>
-	<xs:attributeGroup name="FormDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
 	<xs:attributeGroup name="QuestionAttributeExtension"/>
@@ -177,7 +160,6 @@
 	<xs:attributeGroup name="ClinicalDataAttributeExtension"/>
 	<xs:attributeGroup name="SubjectDataAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDataAttributeExtension"/>
-	<xs:attributeGroup name="FormDataAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDataAttributeExtension"/>
 	<xs:attributeGroup name="ItemDataAttributeExtension"/>
 	<xs:attributeGroup name="AnnotationAttributeExtension"/>
@@ -205,13 +187,7 @@
 	<xs:group name="StudyEventRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="FormRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="ItemGroupRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ArchiveLayoutElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemRefElementExtension">
@@ -223,25 +199,16 @@
 	<xs:group name="ExternalQuestionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="MeasurementUnitRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="CodeListRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ExternalCodeListElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="PictureElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="LocationRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MetaDataVersionRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ArchiveLayoutRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="UserRefElementExtension">
@@ -262,22 +229,10 @@
 	<xs:group name="StudyElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="GlobalVariablesElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="BasicDefinitionsElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="MeasurementUnitElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="MetaDataVersionPreIncludeElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MetaDataVersionElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="SymbolElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ProtocolElementExtension">
@@ -358,9 +313,6 @@
 	<xs:group name="StudyEventDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="FormDefElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="ItemGroupDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -410,9 +362,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyEventDataElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="FormDataElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemGroupDataElementExtension">
@@ -520,7 +469,7 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	
+
 
 	<!--
         +===========================================================================+
@@ -546,7 +495,7 @@
 			<xs:field xpath="@OID"/>
 		</xs:unique>
 	</xs:element>
-
+	
 	<xs:element name="Association" type="ODMcomplexTypeDefinition-Association"/>
 	<xs:element name="KeySet" type="ODMcomplexTypeDefinition-KeySet"/>
 	<xs:element name="Annotations" type="ODMcomplexTypeDefinition-Annotations"/>
@@ -555,5 +504,5 @@
 	<xs:element name="Flag" type="ODMcomplexTypeDefinition-Flag"/>
 	<xs:element name="FlagValue" type="ODMcomplexTypeDefinition-FlagValue"/>
 	<xs:element name="FlagType" type="ODMcomplexTypeDefinition-FlagType"/>
-	
+
 </xs:schema>
