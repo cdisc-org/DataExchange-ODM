@@ -1,0 +1,710 @@
+<!--
+  This is a generated file. Do not edit!
+  Source file: ODM-1.2.5.adtd
+  Last update: 19 Dec 2003 10:10 AM
+-->
+
+<!--
+The Clinical Data Interchange Standards Consortium has developed an
+Operational Data Model for the storage and transfer of data and metadata
+pertaining to clinical trials.  Version 1.2 of this model is
+available at http://www.cdisc.org/models/odm/v1.2/ODM-1.2.html.
+
+The present DTD is derived from the above specification and expresses
+certain syntactic constraints that all ODM documents must satisfy.  See the
+above specification for further constraints, and for a definition of the
+meaning of ODM documents.  This DTD is available at
+http://www.cdisc.org/dtd/ODM-1.2.dtd.
+
+The preferred syntactic definition of ODM 1.2 is the XML
+Schema available at http://www.cdisc.org/schema/ODM-1.2.xsd.
+
+Copyright (c) CDISC 2003
+This document is the property of CDISC Inc. This document can be freely used
+and reproduced without limitation as long as (1) it is not modified, and (2)
+the entire copyright statement is included in the copy.  Modifications to
+this document can only be made with written consent of CDISC Inc.
+-->
+
+<!ELEMENT ODM (Study*, AdminData*, ReferenceData*, ClinicalData*,
+              Association*, ds:Signature*) >
+
+<!ATTLIST ODM
+          Description CDATA #IMPLIED
+          FileType ( Snapshot | Transactional ) #REQUIRED
+          Granularity ( All
+                    | Metadata
+                    | AdminData
+                    | ReferenceData
+                    | AllClinicalData
+                    | SingleSite
+                    | SingleSubject
+                    ) #IMPLIED
+          Archival (Yes) #IMPLIED
+          FileOID CDATA #REQUIRED
+          CreationDateTime CDATA #REQUIRED
+          PriorFileOID CDATA #IMPLIED
+          AsOfDateTime CDATA #IMPLIED
+          ODMVersion CDATA #IMPLIED
+          Originator CDATA #IMPLIED
+          SourceSystem CDATA #IMPLIED
+          SourceSystemVersion CDATA #IMPLIED
+          ID ID #IMPLIED
+          >
+
+<!ELEMENT Study (GlobalVariables, BasicDefinitions?, MetaDataVersion*) >
+
+<!ATTLIST Study
+          OID CDATA #REQUIRED
+          >
+
+<!ELEMENT GlobalVariables (StudyName, StudyDescription, ProtocolName) >
+
+<!ELEMENT StudyName (#PCDATA) >
+
+<!ELEMENT StudyDescription (#PCDATA) >
+
+<!ELEMENT ProtocolName (#PCDATA) >
+
+<!ELEMENT BasicDefinitions (MeasurementUnit*) >
+
+<!ELEMENT MeasurementUnit (Symbol) >
+
+<!ATTLIST MeasurementUnit
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ELEMENT Symbol (TranslatedText+) >
+
+<!ELEMENT TranslatedText (#PCDATA) >
+
+<!ATTLIST TranslatedText
+          xml:lang CDATA #IMPLIED
+          >
+
+<!ELEMENT MetaDataVersion (Include?, Protocol?, StudyEventDef*, FormDef*,
+                          ItemGroupDef*, ItemDef*, CodeList*,
+                          ImputationMethod*, Presentation*) >
+
+<!ATTLIST MetaDataVersion
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Description CDATA #IMPLIED
+          >
+
+<!ELEMENT Include EMPTY >
+
+<!ATTLIST Include
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Protocol (StudyEventRef+) >
+
+<!ELEMENT StudyEventRef EMPTY >
+
+<!ATTLIST StudyEventRef
+          StudyEventOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT StudyEventDef (FormRef+) >
+
+<!ATTLIST StudyEventDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          Type (Scheduled | Unscheduled | Common) #REQUIRED
+          Category CDATA #IMPLIED
+          >
+
+<!ELEMENT FormRef EMPTY >
+
+<!ATTLIST FormRef
+          FormOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT FormDef (ItemGroupRef+, ArchiveLayout*) >
+
+<!ATTLIST FormDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT ItemGroupRef EMPTY >
+
+<!ATTLIST ItemGroupRef
+          ItemGroupOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT ItemGroupDef (ItemRef+, Alias*) >
+
+<!ATTLIST ItemGroupDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          IsReferenceData (Yes | No) #IMPLIED
+          SASDatasetName CDATA #IMPLIED
+          Domain CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Role CDATA #IMPLIED
+          Purpose CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ELEMENT ItemRef EMPTY >
+
+<!ATTLIST ItemRef
+          ItemOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          KeySequence CDATA #IMPLIED
+          ImputationMethodOID CDATA #IMPLIED
+          Role NMTOKENS #IMPLIED
+          RoleCodeListOID CDATA #IMPLIED
+          >
+
+<!ELEMENT ItemDef (Question?, ExternalQuestion?, MeasurementUnitRef*,
+                  RangeCheck*, CodeListRef?, Role*, Alias*) >
+
+<!ATTLIST ItemDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | date | datetime | time |
+                  text) #REQUIRED
+          Length CDATA #IMPLIED
+          SignificantDigits CDATA #IMPLIED
+          SASFieldName CDATA #IMPLIED
+          SDSVarName CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ELEMENT Question (TranslatedText+) >
+
+<!ELEMENT ExternalQuestion EMPTY >
+
+<!ATTLIST ExternalQuestion
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          Code CDATA #IMPLIED
+          >
+
+<!ELEMENT MeasurementUnitRef EMPTY >
+
+<!ATTLIST MeasurementUnitRef
+          MeasurementUnitOID CDATA #REQUIRED
+          >
+
+<!ELEMENT RangeCheck (CheckValue+, MeasurementUnitRef?, ErrorMessage?) >
+
+<!ATTLIST RangeCheck
+          Comparator (LT | LE | GT | GE | EQ | NE | IN | NOTIN) #REQUIRED
+          SoftHard (Soft | Hard) #REQUIRED
+          >
+
+<!ELEMENT CheckValue (#PCDATA) >
+
+<!ELEMENT ErrorMessage (TranslatedText+) >
+
+<!ELEMENT CodeListRef EMPTY >
+
+<!ATTLIST CodeListRef
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Role (#PCDATA) >
+
+<!ELEMENT Alias EMPTY >
+
+<!ATTLIST Alias
+          Context CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ELEMENT CodeList (CodeListItem* | ExternalCodeList) >
+
+<!ATTLIST CodeList
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | text) #REQUIRED
+          SASFormatName CDATA #IMPLIED
+          >
+
+<!ELEMENT CodeListItem (Decode) >
+
+<!ATTLIST CodeListItem
+          CodedValue CDATA #REQUIRED
+          >
+
+<!ELEMENT Decode (TranslatedText+) >
+
+<!ELEMENT ExternalCodeList EMPTY >
+
+<!ATTLIST ExternalCodeList
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          >
+
+<!ELEMENT ArchiveLayout EMPTY >
+
+<!ATTLIST ArchiveLayout
+          OID CDATA #REQUIRED
+          PdfFileName CDATA #REQUIRED
+          PresentationOID CDATA #IMPLIED
+          >
+
+<!ELEMENT ImputationMethod (#PCDATA) >
+
+<!ATTLIST ImputationMethod
+          OID CDATA #REQUIRED
+          >
+
+<!ELEMENT Presentation (#PCDATA) >
+
+<!ATTLIST Presentation
+          OID CDATA #REQUIRED
+          xml:lang CDATA #IMPLIED
+          >
+
+<!ELEMENT AdminData (User*, Location*, SignatureDef*) >
+
+<!ATTLIST AdminData
+          StudyOID CDATA #IMPLIED
+          >
+
+<!ELEMENT User (LoginName?, DisplayName?, FullName?, FirstName?, LastName?,
+               Organization?, Address*, Email*, Picture?, Pager?, Fax*, Phone*,
+               LocationRef*, Certificate*) >
+
+<!ATTLIST User
+          OID CDATA #REQUIRED
+          UserType (Sponsor | Investigator | Lab | Other) #IMPLIED
+          >
+
+<!ELEMENT LoginName (#PCDATA) >
+
+<!ELEMENT DisplayName (#PCDATA) >
+
+<!ELEMENT FullName (#PCDATA) >
+
+<!ELEMENT FirstName (#PCDATA) >
+
+<!ELEMENT LastName (#PCDATA) >
+
+<!ELEMENT Organization (#PCDATA) >
+
+<!ELEMENT Address (StreetName*, City?, StateProv?, Country?, PostalCode?,
+                  OtherText?) >
+
+<!ELEMENT StreetName (#PCDATA) >
+
+<!ELEMENT City (#PCDATA) >
+
+<!ELEMENT StateProv (#PCDATA) >
+
+<!ELEMENT Country (#PCDATA) >
+
+<!ELEMENT PostalCode (#PCDATA) >
+
+<!ELEMENT OtherText (#PCDATA) >
+
+<!ELEMENT Email (#PCDATA) >
+
+<!ELEMENT Picture EMPTY >
+
+<!ATTLIST Picture
+          PictureFileName CDATA #REQUIRED
+          ImageType CDATA #IMPLIED
+          >
+
+<!ELEMENT Pager (#PCDATA) >
+
+<!ELEMENT Fax (#PCDATA) >
+
+<!ELEMENT Phone (#PCDATA) >
+
+<!ELEMENT LocationRef EMPTY >
+
+<!ATTLIST LocationRef
+          LocationOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Certificate (#PCDATA) >
+
+<!ELEMENT Location (MetaDataVersionRef+) >
+
+<!ATTLIST Location
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          LocationType (Sponsor | Site | CRO | Lab | Other) #IMPLIED
+          >
+
+<!ELEMENT MetaDataVersionRef EMPTY >
+
+<!ATTLIST MetaDataVersionRef
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          EffectiveDate CDATA #REQUIRED
+          >
+
+<!ELEMENT SignatureDef (Meaning, LegalReason) >
+
+<!ATTLIST SignatureDef
+          OID CDATA #REQUIRED
+          Methodology (Digital | Electronic) #IMPLIED
+          >
+
+<!ELEMENT Meaning (#PCDATA) >
+
+<!ELEMENT LegalReason (#PCDATA) >
+
+<!ELEMENT ReferenceData (ItemGroupData*) >
+
+<!ATTLIST ReferenceData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT ClinicalData (SubjectData*) >
+
+<!ATTLIST ClinicalData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SubjectData (AuditRecord?, Signature?, InvestigatorRef?, SiteRef?,
+                      Annotation*, StudyEventData*) >
+
+<!ATTLIST SubjectData
+          SubjectKey CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT StudyEventData (AuditRecord?, Signature?, Annotation*, FormData* ) >
+
+<!ATTLIST StudyEventData
+          StudyEventOID CDATA #REQUIRED
+          StudyEventRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT FormData (AuditRecord?, Signature?, ArchiveLayoutRef?,
+                   Annotation*, ItemGroupData* ) >
+
+<!ATTLIST FormData
+          FormOID CDATA #REQUIRED
+          FormRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT ArchiveLayoutRef EMPTY >
+
+<!ATTLIST ArchiveLayoutRef
+          ArchiveLayoutOID CDATA #REQUIRED
+          >
+
+<!ELEMENT ItemGroupData (AuditRecord?, Signature?, Annotation*, ItemData* ) >
+
+<!ATTLIST ItemGroupData
+          ItemGroupOID CDATA #REQUIRED
+          ItemGroupRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT ItemData (AuditRecord?, Signature?, MeasurementUnitRef?,
+                   Annotation* ) >
+
+<!ATTLIST ItemData
+          ItemOID CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          Value CDATA #IMPLIED
+          IsNull (Yes) #IMPLIED
+          >
+
+<!ELEMENT Annotation (Comment?, Flag*) >
+
+<!ATTLIST Annotation
+          SeqNum CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT Comment (#PCDATA) >
+
+<!ATTLIST Comment
+          SponsorOrSite (Sponsor | Site) #IMPLIED
+          >
+
+<!ELEMENT Flag (FlagValue, FlagType?) >
+
+<!ELEMENT FlagValue (#PCDATA) >
+
+<!ATTLIST FlagValue
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT FlagType (#PCDATA) >
+
+<!ATTLIST FlagType
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Signature (UserRef, LocationRef, SignatureRef, DateTimeStamp,
+                    CryptoBindingManifest?) >
+
+<!ELEMENT UserRef EMPTY >
+
+<!ATTLIST UserRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SignatureRef EMPTY >
+
+<!ATTLIST SignatureRef
+          SignatureOID CDATA #REQUIRED
+          >
+
+<!ELEMENT DateTimeStamp (#PCDATA) >
+
+<!ELEMENT CryptoBindingManifest (#PCDATA) >
+
+<!ELEMENT AuditRecord (UserRef, LocationRef, DateTimeStamp, ReasonForChange?,
+                      SourceID?) >
+
+<!ATTLIST AuditRecord
+          EditPoint (Monitoring | DataManagement | DBAudit) #IMPLIED
+          UsedImputationMethod (Yes | No) #IMPLIED
+          >
+
+<!ELEMENT ReasonForChange (#PCDATA) >
+
+<!ELEMENT SourceID (#PCDATA) >
+
+<!ELEMENT InvestigatorRef EMPTY >
+
+<!ATTLIST InvestigatorRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SiteRef EMPTY >
+
+<!ATTLIST SiteRef
+          LocationOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Association (KeySet, KeySet, Annotation) >
+
+<!ATTLIST Association
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT KeySet EMPTY >
+
+<!ATTLIST KeySet
+          StudyOID CDATA #REQUIRED
+          SubjectKey CDATA #IMPLIED
+          StudyEventOID CDATA #IMPLIED
+          StudyEventRepeatKey CDATA #IMPLIED
+          FormOID CDATA #IMPLIED
+          FormRepeatKey CDATA #IMPLIED
+          ItemGroupOID CDATA #IMPLIED
+          ItemGroupRepeatKey CDATA #IMPLIED
+          ItemOID CDATA #IMPLIED
+          >
+
+<!ELEMENT ds:Signature (SignedInfo, SignatureValue, KeyInfo?, Object*) >
+
+<!ATTLIST ds:Signature
+          xmlns CDATA #REQUIRED
+          Id ID #IMPLIED
+          >
+
+<!--
+    The following is a DTD for W3C's XML Digital Signature Specification.
+    It is a copy of the W3C Recommendation dated 12 Feb 2002. This version
+    of the recommendation was copied from
+       http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/
+
+    The W3C specification has been altered in one way: we replaced the
+    element name "Signature" with "ds:Signature".  This is because ODM 1.1
+    already had its own definition of a Signature element.  This Signature
+    element is used, in ODM 1.1, as a child of these elements: SubjectData,
+    StudyEventData, FormData, ItemGroupData, and ItemData.  Starting in ODM
+    1.2, we use the W3C Signature as a digital signature of the entire ODM
+    document.  To maintain backward compatability, ODM 1.2 retains the ODM
+    definition of Signature for the elements listed above. In order to avoid
+    collision of definitions, we have renamed the W3C Signature element as
+    ds:Signature.
+
+    The XML Schema version of the ODM 1.2 syntax simply imports the Digital
+    Signature namespace directly, and needs no alterations.
+-->
+
+<!--
+    DTD for XML Signatures
+    http://www.w3.org/2000/09/xmldsig#
+    Joseph Reagle $last changed 20001215$
+
+    http://www.w3.org/2000/09/xmldsig#
+    $Revision: 1.1 $ on $Date: 2002/02/08 20:32:26 $ by $Author: reagle $
+
+    Copyright 2001 The Internet Society and W3C (Massachusetts Institute
+    of Technology, Institut National de Recherche en Informatique et en
+    Automatique, Keio University). All Rights Reserved.
+    http://www.w3.org/Consortium/Legal/
+
+    This document is governed by the W3C Software License [1] as described
+    in the FAQ [2].
+
+    [1] http://www.w3.org/Consortium/Legal/copyright-software-19980720
+    [2] http://www.w3.org/Consortium/Legal/IPR-FAQ-20000620.html#DTD
+-->
+
+<!--
+The following entity declarations enable external/flexible content in
+the Signature content model.
+
+#PCDATA emulates schema string; when combined with element types it
+emulates schema's mixed content type.
+
+%foo.ANY permits the user to include their own element types from
+other namespaces, for example:
+ <!ENTITY % KeyValue.ANY '| ecds:ECDSAKeyValue'>
+ ...
+ <!ELEMENT ecds:ECDSAKeyValue (#PCDATA)  >
+-->
+
+<!ENTITY % Object.ANY ''>
+<!ENTITY % Method.ANY ''>
+<!ENTITY % Transform.ANY ''>
+<!ENTITY % SignatureProperty.ANY ''>
+<!ENTITY % KeyInfo.ANY ''>
+<!ENTITY % KeyValue.ANY ''>
+<!ENTITY % PGPData.ANY ''>
+<!ENTITY % X509Data.ANY ''>
+<!ENTITY % SPKIData.ANY ''>
+
+<!-- Start Core Signature declarations, these should NOT be altered -->
+
+<!ELEMENT SignatureValue (#PCDATA) >
+<!ATTLIST SignatureValue
+         Id     ID      #IMPLIED >
+
+<!ELEMENT SignedInfo (CanonicalizationMethod,
+        SignatureMethod,  Reference+)  >
+<!ATTLIST SignedInfo
+        Id      ID      #IMPLIED >
+
+<!ELEMENT CanonicalizationMethod (#PCDATA %Method.ANY;)* >
+<!ATTLIST CanonicalizationMethod
+        Algorithm CDATA #REQUIRED >
+
+<!ELEMENT SignatureMethod (#PCDATA|HMACOutputLength %Method.ANY;)* >
+<!ATTLIST SignatureMethod
+        Algorithm CDATA #REQUIRED >
+
+<!ELEMENT Reference (Transforms?, DigestMethod, DigestValue)  >
+<!ATTLIST Reference
+        Id      ID      #IMPLIED
+        URI     CDATA   #IMPLIED
+        Type    CDATA   #IMPLIED>
+
+<!ELEMENT Transforms (Transform+)>
+
+<!ELEMENT Transform (#PCDATA|XPath %Transform.ANY;)* >
+<!ATTLIST Transform
+        Algorithm   CDATA   #REQUIRED >
+
+<!ELEMENT XPath (#PCDATA) >
+
+<!ELEMENT DigestMethod (#PCDATA %Method.ANY;)* >
+<!ATTLIST DigestMethod
+        Algorithm   CDATA   #REQUIRED >
+
+<!ELEMENT DigestValue  (#PCDATA)  >
+
+<!ELEMENT KeyInfo (#PCDATA|KeyName|KeyValue|RetrievalMethod|
+           X509Data|PGPData|SPKIData|MgmtData %KeyInfo.ANY;)* >
+<!ATTLIST KeyInfo
+        Id      ID       #IMPLIED >
+
+<!-- Key Information -->
+
+<!ELEMENT KeyName (#PCDATA) >
+<!ELEMENT KeyValue (#PCDATA|DSAKeyValue|RSAKeyValue %KeyValue.ANY;)* >
+<!ELEMENT MgmtData (#PCDATA) >
+
+<!ELEMENT RetrievalMethod (Transforms?) >
+<!ATTLIST RetrievalMethod
+        URI   CDATA  #REQUIRED
+        Type  CDATA  #IMPLIED >
+
+<!-- X.509 Data -->
+
+<!ELEMENT X509Data ((X509IssuerSerial | X509SKI | X509SubjectName |
+                    X509Certificate | X509CRL )+ %X509Data.ANY;)>
+<!ELEMENT X509IssuerSerial (X509IssuerName, X509SerialNumber) >
+<!ELEMENT X509IssuerName (#PCDATA) >
+<!ELEMENT X509SubjectName (#PCDATA) >
+<!ELEMENT X509SerialNumber (#PCDATA) >
+<!ELEMENT X509SKI (#PCDATA) >
+<!ELEMENT X509Certificate (#PCDATA) >
+<!ELEMENT X509CRL (#PCDATA) >
+
+<!-- PGPData -->
+
+<!ELEMENT PGPData ((PGPKeyID, PGPKeyPacket?) | (PGPKeyPacket) %PGPData.ANY;) >
+<!ELEMENT PGPKeyPacket  (#PCDATA)  >
+<!ELEMENT PGPKeyID  (#PCDATA)  >
+
+<!-- SPKI Data -->
+
+<!ELEMENT SPKIData (SPKISexp %SPKIData.ANY;)  >
+<!ELEMENT SPKISexp  (#PCDATA)  >
+
+<!-- Extensible Content -->
+
+<!ELEMENT Object (#PCDATA|Signature|SignatureProperties|Manifest %Object.ANY;)* >
+<!ATTLIST Object
+        Id       ID      #IMPLIED
+        MimeType CDATA   #IMPLIED
+        Encoding CDATA   #IMPLIED >
+
+<!ELEMENT Manifest (Reference+)  >
+<!ATTLIST Manifest
+        Id      ID      #IMPLIED >
+
+<!ELEMENT SignatureProperties (SignatureProperty+)  >
+<!ATTLIST SignatureProperties
+        Id      ID       #IMPLIED  >
+
+<!ELEMENT SignatureProperty (#PCDATA %SignatureProperty.ANY;)* >
+<!ATTLIST SignatureProperty
+        Target  CDATA    #REQUIRED
+        Id      ID       #IMPLIED  >
+
+<!-- Algorithm Parameters -->
+
+<!ELEMENT HMACOutputLength (#PCDATA) >
+
+<!ELEMENT DSAKeyValue ((P, Q)?, G?, Y, J?, (Seed, PgenCounter)?) >
+<!ELEMENT P (#PCDATA) >
+<!ELEMENT Q (#PCDATA) >
+<!ELEMENT G (#PCDATA) >
+<!ELEMENT Y (#PCDATA) >
+<!ELEMENT J (#PCDATA) >
+<!ELEMENT Seed (#PCDATA) >
+<!ELEMENT PgenCounter (#PCDATA) >
+
+<!ELEMENT RSAKeyValue (Modulus, Exponent) >
+<!ELEMENT Modulus (#PCDATA) >
+<!ELEMENT Exponent (#PCDATA) >
+

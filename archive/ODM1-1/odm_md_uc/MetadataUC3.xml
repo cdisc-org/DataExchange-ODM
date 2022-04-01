@@ -1,0 +1,199 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<!DOCTYPE ODM SYSTEM "odm1-1-0.dtd">
+<ODM Description = "CDISC ODM MetaData Use Case Example 3" FileType = "Transactional" Granularity = "Metadata" FileOID = "ODMUC3" CreationDateTime = "2002-04-29T11:07:23-05:00" PriorFileOID = "SDS2ODM">
+	<Study OID = "ODMUC3.STUDY">
+		<GlobalVariables>
+			<StudyName>CDISC ODM MetaData</StudyName>
+			<StudyDescription>This file illustrates Example 3 in the ODM MetaData Transfer Use Case</StudyDescription>
+			<ProtocolName>CDISC-ODMUC3</ProtocolName>
+		</GlobalVariables>
+		<BasicDefinitions/>
+		<MetaDataVersion OID = "ODMUC3.MD1" Name = "Use Case Example 3">
+			<Include StudyOID = "CDISC.SDSV2" MetaDataVersionOID = "CDISC.SDSV2.MDV1"/>
+			<Protocol>
+				<StudyEventRef StudyEventOID = "ODMUC3.SE.VISIT0" OrderNumber = "1" Mandatory = "Yes"/>
+				<StudyEventRef StudyEventOID = "ODMUC3.SE.VISIT1" OrderNumber = "2" Mandatory = "Yes"/>
+				<StudyEventRef StudyEventOID = "ODMUC3.SE.AE" Mandatory = "No" OrderNumber = "3"/>
+				<StudyEventRef StudyEventOID = "ODMUC3.SE.CONMED" Mandatory = "No" OrderNumber = "4"/>
+				<StudyEventRef StudyEventOID = "ODMUC3.SE.TERM" Mandatory = "No" OrderNumber = "5"/>
+			</Protocol>
+			<StudyEventDef OID = "ODMUC3.SE.VISIT0" Name = "Pre-treatment" Repeating = "No" Type = "Scheduled" Category = "PreTreatment">
+				<FormRef FormOID = "ODMUC3.FORM.DEMOG" OrderNumber = "1" Mandatory = "No"/>
+				<FormRef FormOID = "ODMUC3.FORM.VITALS" OrderNumber = "2" Mandatory = "No"/>
+				<FormRef FormOID = "ODMUC3.FORM.PE" OrderNumber = "3" Mandatory = "No"/>
+				<FormRef FormOID = "ODMUC3.FORM.MEDHIST" Mandatory = "Yes" OrderNumber = "4"/>
+				<FormRef FormOID = "ODMUC3.FORM.LAB" Mandatory = "No" OrderNumber = "5"/>
+			</StudyEventDef>
+			<StudyEventDef OID = "ODMUC3.SE.VISIT1" Name = "Post-treatment" Repeating = "Yes" Type = "Scheduled" Category = "On Drug">
+				<FormRef FormOID = "ODMUC3.FORM.VITALS" OrderNumber = "1" Mandatory = "Yes"/>
+				<FormRef FormOID = "ODMUC3.FORM.PE" OrderNumber = "2" Mandatory = "Yes"/>
+				<FormRef FormOID = "ODMUC3.FORM.LAB" OrderNumber = "3" Mandatory = "Yes"/>
+			</StudyEventDef>
+			<StudyEventDef OID = "ODMUC3.SE.TERM" Name = "Termination" Repeating = "No" Type = "Unscheduled" Category = "Abnormal Terms">
+				<FormRef FormOID = "ODMUC3.FORM.AE" Mandatory = "No" OrderNumber = "2"/>
+				<FormRef FormOID = "ODMUC3.FORM.TERM" Mandatory = "Yes" OrderNumber = "1"/>
+				<FormRef FormOID = "ODMUC3.FORM.LAB" Mandatory = "No" OrderNumber = "3"/>
+			</StudyEventDef>
+			<StudyEventDef OID = "ODMUC3.SE.AE" Name = "AdverseEvent" Repeating = "Yes" Type = "Unscheduled" Category = "SAEs">
+				<FormRef FormOID = "ODMUC3.FORM.AE" Mandatory = "No"/>
+			</StudyEventDef>
+			<StudyEventDef OID = "ODMUC3.SE.CONMED" Name = "Conmed Info" Repeating = "Yes" Type = "Common" Category = "Con Meds">
+				<FormRef FormOID = "ODMUC3.FORM.CONMED" Mandatory = "No"/>
+			</StudyEventDef>
+			<FormDef OID = "ODMUC3.FORM.AE" Name = "Adverse Events" Repeating = "Yes">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.AE" OrderNumber = "1" Mandatory = "No"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.CM" Name = "Concom Meds" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.CM" OrderNumber = "1" Mandatory = "No"/>
+			</FormDef>
+			<FormDef OID = "CDISC.SDSV2.DEMO" Name = "Demography" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.DEMO" OrderNumber = "1" Mandatory = "No"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.MEDHIST" Name = "Medical History" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.MH" Mandatory = "No"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.VITALS" Name = "Vital Signs" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.VSH" Mandatory = "Yes"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.PE" Name = "Physical Exam" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.PE" OrderNumber = "1" Mandatory = "No"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.TERM" Name = "Early Termination" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "ODMUC3.IG.TERM" Mandatory = "Yes" OrderNumber = "1"/>
+			</FormDef>
+			<FormDef OID = "ODMUC3.FORM.LAB" Name = "Laboratory" Repeating = "Yes">
+				<ItemGroupRef ItemGroupOID = "CDISC.SDSV2.LAB" Mandatory = "No" OrderNumber = "1"/>
+			</FormDef>
+			<ItemGroupDef OID = "ODMUC.IG.TERM" Name = "Early Termination" Repeating = "No" SASDatasetName = "TERM" IsReferenceData = "No" Comment = "Early termination tracking data">
+				<ItemRef ItemOID = "ODMUC3.IDEF.TERMDATE" Mandatory = "No" OrderNumber = "6"/>
+				<ItemRef ItemOID = "ODMUC3.IDEF.AEREL" Mandatory = "No" OrderNumber = "1"/>
+				<ItemRef ItemOID = "ODMUC3.IDEF.AERPTDT" Mandatory = "No" OrderNumber = "2"/>
+				<ItemRef ItemOID = "ODMUC3.IDEF.AEEVTID" Mandatory = "No" OrderNumber = "3"/>
+				<ItemRef ItemOID = "ODMUC3.IDEF.TERMREAS" Mandatory = "No" OrderNumber = "4"/>
+				<ItemRef ItemOID = "ODMUC3.IDEF.LCTCTDT" Mandatory = "No" OrderNumber = "5"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "CDISC.SDSV2.LAB" Name = "Laboratory" Repeating = "Yes" Domain = "LAB" IsReferenceData = "No" Comment = "LAB.xpt, Laboratory Results, Version 2.0, November 28, 2001, One record per subject per visit/collection/exam per lab test, CRT" SASDatasetName = "LAB">
+				<ItemRef ItemOID = "CDISC.SDSV2.STUDYID" OrderNumber = "1" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.SITEID" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.INVID" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.INVNAME" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.USUBJID" OrderNumber = "5" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.SUBJID" OrderNumber = "6" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.AGE" OrderNumber = "7" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.SEX" OrderNumber = "8" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.RACE" OrderNumber = "9" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.TRTCD" OrderNumber = "10" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.TRTGRP" OrderNumber = "11" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.COUNTRY" OrderNumber = "12" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.VISITNUM" OrderNumber = "13" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.VISITDY" OrderNumber = "14" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.VISIT" OrderNumber = "15" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBACTDY" OrderNumber = "16" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBDT" OrderNumber = "17" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBACTTM" OrderNumber = "18" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBPTM" OrderNumber = "19" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBPTMNUM" OrderNumber = "20" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBTEST" OrderNumber = "21" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBLOINC" OrderNumber = "22" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSEQ" OrderNumber = "23" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTRESN" OrderNumber = "24" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTRESC" OrderNumber = "25" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTUNIT" OrderNumber = "26" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTNRLO" OrderNumber = "27" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTNRHI" OrderNumber = "28" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBSTDNRC" OrderNumber = "29" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBORRES" OrderNumber = "30" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBORUNIT" OrderNumber = "31" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBORNRLO" OrderNumber = "32" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBORNRHI" OrderNumber = "33" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBORNRC" OrderNumber = "34" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBNRIND" OrderNumber = "35" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.LBFLAG" OrderNumber = "36" Mandatory = "No"/>
+				<ItemRef ItemOID = "CDISC.SDSV2.STDCHGBL" OrderNumber = "37" Mandatory = "No"/>                                
+				<ItemRef ItemOID = "ODMUC3.ITEM.LBTYP" OrderNumber = "38" Mandatory = "Yes"/>
+			</ItemGroupDef>
+			<ItemDef OID = "ODMUC3.IDEF.LBTYP" Name = "Lab Test Type" DataType = "text" Length = "10" SASFieldName = "LBTYP" Comment = "Distinguish test types for submission in separate domains">
+				<Question>
+					<TranslatedText xml:lang = "EN">Lab Test Type</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID = "ODMUC3.CL.LBTYP"/>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.TERMDATE" Name = "Termination Date" DataType = "date" SASFieldName = "TERMDATE">
+				<Question>
+					<TranslatedText xml:lang = "EN">Date Patient Terminated from study</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.AEREL" Name = "AE Related" DataType = "text" Length = "1" SASFieldName = "AEREL">
+				<Question>
+					<TranslatedText xml:lang = "EN">Related to Serious Adverse Event?</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID = "CDISC.SDSV2.SDSYESNO"/>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.AERPTDT" Name = "AE Report Date" DataType = "date" SASFieldName = "AERPTDT">
+				<Question>
+					<TranslatedText xml:lang = "EN">Adverse Event Report Date</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.AEEVTID" Name = "AE Report Number" DataType = "text" Length = "6" SASFieldName = "AEEVTID">
+				<Question>
+					<TranslatedText xml:lang = "EN">Report Number</TranslatedText>
+				</Question>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.TERMREAS" Name = "Termination Reason" DataType = "text" Length = "2" SASFieldName = "TERMREAS">
+				<Question>
+					<TranslatedText xml:lang = "EN">Choose Termination Reason</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID = "ODMUC3.CL.TERMREAS"/>
+			</ItemDef>
+			<ItemDef OID = "ODMUC3.IDEF.LCTCTDT" Name = "Last contact date" DataType = "date" SASFieldName = "LCTCTDT">
+				<Question>
+					<TranslatedText xml:lang = "EN">Last patient contact date</TranslatedText>
+				</Question>
+			</ItemDef>
+			<CodeList OID = "ODMUC3.CL.LBTYP" Name = "Lab Test Type" DataType = "text" SASFormatName = "LBTYP">
+				<CodeListItem CodedValue = "HEMAT">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Hematology</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "CHEM">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Chemistry</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "URINE">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Urinalysis</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "ODMUC3.CL.TERMREAS" Name = "Termination Reasons" DataType = "text" SASFormatName = "TERMREAS">
+				<CodeListItem CodedValue = "AE">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Adverse Event</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "IC">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Inconvenient for Patient</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "PM">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Patient Moved</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "PG">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Pregnancy</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "DE">
+					<Decode>
+						<TranslatedText xml:lang = "EN">Unrelated Death</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+		</MetaDataVersion>
+	</Study>
+</ODM>

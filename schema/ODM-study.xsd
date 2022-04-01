@@ -54,11 +54,6 @@
         <xs:attribute name="Type" type="EventType" use="required"/>
         <xs:attribute name="Category" type="text"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="FormDefAttributeDefinition">
-        <xs:attribute name="OID" type="oid" use="required"/>
-        <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Repeating" type="YesOrNo" use="required"/>
-    </xs:attributeGroup>
     <xs:attributeGroup name="ItemGroupDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
@@ -270,13 +265,6 @@
         </xs:simpleContent>
     </xs:complexType>
 
-    <xs:complexType name="ODMcomplexTypeDefinition-Role">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="RoleAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-Include">
         <xs:sequence>
             <xs:group ref="IncludeElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -284,81 +272,16 @@
         <xs:attributeGroup ref="IncludeAttributeDefinition"/>
         <xs:attributeGroup ref="IncludeAttributeExtension"/>
     </xs:complexType>
-    <!-- V1.3.X Study Definition -->
-    <!--<xs:complexType name="ODMcomplexTypeDefinition-Study">
-		<xs:sequence>
-			<xs:element ref="GlobalVariables"/>
-			<xs:element ref="BasicDefinitions" minOccurs="0"/>
-			<xs:element ref="MetaDataVersion" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:group ref="StudyElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-		<xs:attributeGroup ref="StudyAttributeDefinition"/>
-		<xs:attributeGroup ref="StudyAttributeExtension"/>
-	</xs:complexType>-->
-    <!-- V2.0 Study Element Type Definition -->
     <xs:complexType name="ODMcomplexTypeDefinition-Study">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="BasicDefinitions" minOccurs="0"/>
             <xs:element ref="MetaDataVersion" minOccurs="1" maxOccurs="unbounded"/>
             <xs:group ref="StudyElementExtension" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyAttributeDefinition"/>
         <xs:attributeGroup ref="StudyAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-GlobalVariables">
-        <xs:sequence>
-            <xs:element ref="StudyName"/>
-            <xs:element ref="StudyDescription"/>
-            <xs:element ref="ProtocolName"/>
-            <xs:group ref="GlobalVariablesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="GlobalVariablesAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-StudyName">
-        <xs:simpleContent>
-            <xs:extension base="name">
-                <xs:attributeGroup ref="StudyNameAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-StudyDescription">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="StudyDescriptionAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ProtocolName">
-        <xs:simpleContent>
-            <xs:extension base="name">
-                <xs:attributeGroup ref="ProtocolNameAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-BasicDefinitions">
-        <xs:sequence>
-            <xs:element ref="MeasurementUnit" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="BasicDefinitionsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="BasicDefinitionsAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-MeasurementUnit">
-        <xs:sequence>
-            <xs:element ref="Symbol"/>
-            <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="MeasurementUnitElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="MeasurementUnitAttributeDefinition"/>
-        <xs:attributeGroup ref="MeasurementUnitAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Symbol">
-        <xs:sequence>
-            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
-            <xs:group ref="SymbolElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="SymbolAttributeExtension"/>
-    </xs:complexType>
+
     <xs:complexType name="ODMcomplexTypeDefinition-MetaDataVersion">
         <xs:sequence>
             <xs:group ref="MetaDataVersionPreIncludeElementExtension" minOccurs="0" maxOccurs="1"/>
@@ -368,13 +291,9 @@
             <xs:element ref="StudyTiming" minOccurs="0"/>
             <xs:element ref="StudyEventGroupDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="StudyEventDef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="FormDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ItemGroupDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ItemDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeList" minOccurs="0" maxOccurs="unbounded"/>
-            <!-- TODO: remove deprecated element ImputationMethod -->
-            <xs:element ref="ImputationMethod" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Presentation" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
@@ -410,38 +329,12 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyEventDef">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="FormRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="ItemGroupRef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyEventDefAttributeDefinition"/>
         <xs:attributeGroup ref="StudyEventDefAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-FormRef">
-        <xs:sequence>
-            <xs:group ref="FormRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="FormRefAttributeDefinition"/>
-        <xs:attributeGroup ref="RefAttributeSharedDefinition"/>
-        <xs:attributeGroup ref="FormRefAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-FormDef">
-        <xs:sequence>
-            <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="ItemGroupRef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="ArchiveLayout" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="FormDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="FormDefAttributeDefinition"/>
-        <xs:attributeGroup ref="FormDefAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ArchiveLayout">
-        <xs:sequence>
-            <xs:group ref="ArchiveLayoutElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ArchiveLayoutAttributeDefinition"/>
-        <xs:attributeGroup ref="ArchiveLayoutAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-ItemGroupRef">
         <xs:sequence>
@@ -478,10 +371,8 @@
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Question" minOccurs="0"/>
             <xs:element ref="ExternalQuestion" minOccurs="0"/>
-            <xs:element ref="MeasurementUnitRef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0"/>
-            <xs:element ref="Role" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -508,7 +399,6 @@
                 <xs:element ref="CheckValue" maxOccurs="unbounded"/>
                 <xs:element ref="FormalExpression" maxOccurs="unbounded"/>
             </xs:choice>
-            <xs:element ref="MeasurementUnitRef" minOccurs="0"/>
             <xs:element ref="ErrorMessage" minOccurs="0"/>
             <xs:group ref="RangeCheckElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -536,13 +426,6 @@
         <xs:attributeGroup ref="ExternalSharedAttributeDefinition"/>
         <xs:attributeGroup ref="ExternalQuestionAttributeDefinition"/>
         <xs:attributeGroup ref="ExternalQuestionAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-MeasurementUnitRef">
-        <xs:sequence>
-            <xs:group ref="MeasurementUnitRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="MeasurementUnitRefAttributeDefinition"/>
-        <xs:attributeGroup ref="MeasurementUnitRefAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CodeList">
         <xs:sequence>
@@ -603,14 +486,6 @@
         <xs:attributeGroup ref="MethodDefAttributeDefinition"/>
         <xs:attributeGroup ref="MethodDefAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Presentation">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="PresentationAttributeDefinition"/>
-                <xs:attributeGroup ref="PresentationAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-ConditionDef">
         <xs:sequence>
             <xs:element ref="Description"/>
@@ -626,14 +501,6 @@
             <xs:extension base="text">
                 <xs:attributeGroup ref="FormalExpressionAttributeDefinition"/>
                 <xs:attributeGroup ref="FormalExpressionAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ImputationMethod">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="ImputationMethodAttributeDefinition"/>
-                <xs:attributeGroup ref="ImputationMethodAttributeExtension"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -659,25 +526,9 @@
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>
 
     <xs:element name="Study" type="ODMcomplexTypeDefinition-Study">
-        <xs:unique name="UC-S-1">
-            <xs:selector xpath="odm:BasicDefinitions/odm:MeasurementUnit"/>
-            <xs:field xpath="@OID"/>
-        </xs:unique>
         <xs:unique name="UC-S-2">
             <xs:selector xpath="odm:MetaDataVersion"/>
             <xs:field xpath="@OID"/>
-        </xs:unique>
-    </xs:element>
-    <xs:element name="GlobalVariables" type="ODMcomplexTypeDefinition-GlobalVariables"/>
-    <xs:element name="StudyName" type="ODMcomplexTypeDefinition-StudyName"/>
-    <xs:element name="StudyDescription" type="ODMcomplexTypeDefinition-StudyDescription"/>
-    <xs:element name="ProtocolName" type="ODMcomplexTypeDefinition-ProtocolName"/>
-    <xs:element name="BasicDefinitions" type="ODMcomplexTypeDefinition-BasicDefinitions"/>
-    <xs:element name="MeasurementUnit" type="ODMcomplexTypeDefinition-MeasurementUnit"/>
-    <xs:element name="Symbol" type="ODMcomplexTypeDefinition-Symbol">
-        <xs:unique name="UC-SYM-1">
-            <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
 
@@ -685,10 +536,6 @@
     <xs:element name="MetaDataVersion" type="ODMcomplexTypeDefinition-MetaDataVersion">
         <xs:unique name="UC-MDV-1">
             <xs:selector xpath="odm:StudyEventDef"/>
-            <xs:field xpath="@OID"/>
-        </xs:unique>
-        <xs:unique name="UC-MDV-2">
-            <xs:selector xpath="odm:FormDef"/>
             <xs:field xpath="@OID"/>
         </xs:unique>
         <xs:unique name="UC-MDV-3">
@@ -701,14 +548,6 @@
         </xs:unique>
         <xs:unique name="UC-MDV-5">
             <xs:selector xpath="odm:CodeList"/>
-            <xs:field xpath="@OID"/>
-        </xs:unique>
-        <xs:unique name="UC-MDV-6">
-            <xs:selector xpath="odm:ImputationMethod"/>
-            <xs:field xpath="@OID"/>
-        </xs:unique>
-        <xs:unique name="UC-MDV-7">
-            <xs:selector xpath="odm:Presentation"/>
             <xs:field xpath="@OID"/>
         </xs:unique>
         <xs:unique name="UC-MDV-8">
@@ -730,11 +569,11 @@
     <xs:element name="StudyEventRef" type="ODMcomplexTypeDefinition-StudyEventRef"/>
     <xs:element name="StudyEventDef" type="ODMcomplexTypeDefinition-StudyEventDef">
         <xs:unique name="UC-SED-1">
-            <xs:selector xpath="odm:FormRef"/>
-            <xs:field xpath="@FormOID"/>
+            <xs:selector xpath="odm:ItemGroupRef"/>
+            <xs:field xpath="@ItemGroupOID"/>
         </xs:unique>
         <xs:unique name="UC-SED-2">
-            <xs:selector xpath="odm:FormRef"/>
+            <xs:selector xpath="odm:ItemGroupRef"/>
             <xs:field xpath="@OrderNumber"/>
         </xs:unique>
         <xs:unique name="UC-SED-3">
@@ -742,26 +581,6 @@
             <xs:field xpath="@Context"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="FormRef" type="ODMcomplexTypeDefinition-FormRef"/>
-    <xs:element name="FormDef" type="ODMcomplexTypeDefinition-FormDef">
-        <xs:unique name="UC-FD-1">
-            <xs:selector xpath="odm:ItemGroupRef"/>
-            <xs:field xpath="@ItemGroupOID"/>
-        </xs:unique>
-        <xs:unique name="UC-FD-2">
-            <xs:selector xpath="odm:ItemGroupRef"/>
-            <xs:field xpath="@OrderNumber"/>
-        </xs:unique>
-        <xs:unique name="UC-FD-3">
-            <xs:selector xpath="odm:ArchiveLayout"/>
-            <xs:field xpath="@OID"/>
-        </xs:unique>
-        <xs:unique name="UC-FD-4">
-            <xs:selector xpath="odm:Alias"/>
-            <xs:field xpath="@Context"/>
-        </xs:unique>
-    </xs:element>
-    <xs:element name="ArchiveLayout" type="ODMcomplexTypeDefinition-ArchiveLayout"/>
     <xs:element name="ItemGroupRef" type="ODMcomplexTypeDefinition-ItemGroupRef"/>
     <xs:element name="ItemGroupDef" type="ODMcomplexTypeDefinition-ItemGroupDef">
         <xs:unique name="UC-IGD-1">
@@ -795,7 +614,6 @@
         </xs:unique>
     </xs:element>
     <xs:element name="ExternalQuestion" type="ODMcomplexTypeDefinition-ExternalQuestion"/>
-    <xs:element name="MeasurementUnitRef" type="ODMcomplexTypeDefinition-MeasurementUnitRef"/>
     <xs:element name="RangeCheck" type="ODMcomplexTypeDefinition-RangeCheck"/>
     <xs:element name="CheckValue" type="ODMcomplexTypeDefinition-CheckValue"/>
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">
@@ -805,7 +623,6 @@
         </xs:unique>
     </xs:element>
     <xs:element name="CodeListRef" type="ODMcomplexTypeDefinition-CodeListRef"/>
-    <xs:element name="Role" type="ODMcomplexTypeDefinition-Role"/>
     <xs:element name="CodeList" type="ODMcomplexTypeDefinition-CodeList">
         <xs:unique name="UC-CL-1">
             <xs:selector xpath="odm:CodeListItem"/>
@@ -847,14 +664,12 @@
         </xs:unique>
     </xs:element>
     <xs:element name="ExternalCodeList" type="ODMcomplexTypeDefinition-ExternalCodeList"/>
-    <xs:element name="ImputationMethod" type="ODMcomplexTypeDefinition-ImputationMethod"/>
     <xs:element name="MethodDef" type="ODMcomplexTypeDefinition-MethodDef">
         <xs:unique name="UC-ME-1">
             <xs:selector xpath="odm:Alias"/>
             <xs:field xpath="@Context"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="Presentation" type="ODMcomplexTypeDefinition-Presentation"/>
     <xs:element name="ConditionDef" type="ODMcomplexTypeDefinition-ConditionDef">
         <xs:unique name="UC-CON-1">
             <xs:selector xpath="odm:Alias"/>

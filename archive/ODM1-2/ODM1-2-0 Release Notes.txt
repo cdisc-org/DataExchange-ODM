@@ -1,0 +1,70 @@
+
+	--------------------------------------------------
+	ODM Task Force Releases the Final Draft of ODM 1.2
+	--------------------------------------------------
+
+			7-Jan-2004
+
+Today, the ODM task force is releasing its final draft of the ODM 1.2
+standard.  This draft (draft 1.2.2) is a minor revision of the previous
+public draft (draft 1.2.0, posted 9 Jul 2003).
+
+Changes have been made to correct errors, and to clarify intended usage.
+Some notational changes were made to avoid bugs in commonly used XML tools.
+
+
+Changes in Semantics or Intended Use
+------------------------------------
+
+    The xml:lang attribute has been made optional in TranslatedText.
+
+    The Description attribute has been made optional in MetaDataVersion.
+
+    The EditPoint attribute has been made optional in AuditRecord.
+
+    The UsedImputationMethod attribute has been made optional in
+    AuditRecord.
+
+    A schemaLocation hint has been added for the XML namespace.
+
+    The text occasionally implied that ItemGroups can only occur inside
+    Forms.  This is incorrect.  ItemGroups can also occur within
+    ReferenceData.  The offending text has been corrected.
+
+    References to SDS version 2.0 has been changed to just reference SDS.
+    Thus, future additions to SDS codelists can be used in ODM files without
+    needing an update of the ODM standard.
+
+    The need for Item data values and datatypes to match has been made more
+    explicit.
+
+    The DOCTYPE declaration in an example has been removed.
+
+
+Notational Changes (no semantic effect)
+---------------------------------------
+
+    In the XML schema, the namespace prefix x has been changed to xs to
+    conform to conventional usage.
+
+    In defining several data formats, the \d form has been replaced by a
+    digit range [0-9], and the character set [+-] has been replaced by
+    (\+|-).
+
+    The XML schema has been modified to support extensions to all elements and
+    attributes.	Please see section 2.4 of the specification for a discussion of
+    compliance requirements vendor extensions.
+
+
+Text Improvements
+-----------------
+
+    A note has been added clarifying that dates and times are exact.  Partial
+    dates and times are a topic for the future.
+
+    A note has been added explaining the use of the EditPoint attribute.
+
+    The text defining ImputationMethod has been clarified.
+
+    Several gramatical errors were corrected.
+

@@ -1,0 +1,475 @@
+<!--
+  This is a generated file. Do not edit!
+  Source file:   odm1-1-0.adtd
+  Last modified: Fri Apr 26 16:53:36 EDT 2002
+-->
+
+<!--
+The Clinical Data Interchange Standards Consortium has developed an
+Operational Data Model for the storage and transfer of data and metadata
+pertaining to clinical trials.  Version 1.1 of this model is available at 
+http://www.cdisc.org/dtd/odm1-1-0.html.
+
+The present DTD is derived from the above specification and expresses
+certain syntactic constraints that all ODM documents must satisfy.  See the
+above specification for further constraints, and for a definition of the
+meaning of ODM documents.  This DTD is available at 
+http://www.cdisc.org/dtd/odm1-1-0.dtd. 
+
+The DTD is published in two forms: ODM1-1-0x.DTD includes 
+parameterized entities to enable vendor extensions. ODM1-1-0.DTD has no
+parameterized entities. As published, the two forms are functionally 
+identical. ODM1-1-0x.DTD is designed to make it possible for a vendor to add 
+elements and attributes, if they are needed, to more completely define
+the metadata or data being transmitted.
+
+Copyright (c) CDISC 2002
+This document is the property of CDISC Inc. This document can be freely used
+and reproduced without limitation as long as (1) it is not modified, and (2)
+the entire copyright statement is included in the copy.  Modifications to
+this document can only be made with written consent of CDISC Inc.
+-->
+
+<!ELEMENT ODM (Study*, AdminData*, ReferenceData*, ClinicalData*) >
+
+<!ATTLIST ODM
+          Description CDATA #IMPLIED
+          FileType ( Snapshot | Transactional ) #REQUIRED
+          Granularity (  All 
+                     | Metadata 
+		     | AdminData 
+		     | ReferenceData 
+		     | AllClinicalData
+		     | SingleSite
+		     | SingleSubject
+   	            ) #IMPLIED
+          Archival (Yes) #IMPLIED
+          FileOID CDATA #REQUIRED
+          CreationDateTime CDATA #REQUIRED
+          PriorFileOID CDATA #IMPLIED
+          AsOfDateTime CDATA #IMPLIED
+          >
+
+<!ELEMENT Study (GlobalVariables, BasicDefinitions, MetaDataVersion*) >
+
+<!ATTLIST Study
+          OID CDATA #REQUIRED
+          >
+
+<!ELEMENT GlobalVariables (StudyName, StudyDescription, ProtocolName) >
+
+<!ELEMENT StudyName (#PCDATA) >
+
+<!ELEMENT StudyDescription (#PCDATA) >
+
+<!ELEMENT ProtocolName (#PCDATA) >
+
+<!ELEMENT BasicDefinitions (MeasurementUnit*) >
+
+<!ELEMENT MeasurementUnit (Symbol) >
+
+<!ATTLIST MeasurementUnit
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ELEMENT Symbol (TranslatedText+) >
+
+<!ELEMENT TranslatedText (#PCDATA) >
+
+<!ATTLIST TranslatedText
+          xml:lang CDATA #REQUIRED
+          >
+
+<!ELEMENT MetaDataVersion (Include?, Protocol?, StudyEventDef*, FormDef*,
+			  ItemGroupDef*, ItemDef*, CodeList*,
+			  Presentation*) >
+
+<!ATTLIST MetaDataVersion
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ELEMENT Include EMPTY >
+
+<!ATTLIST Include
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Protocol (StudyEventRef+) >
+
+<!ELEMENT StudyEventRef EMPTY >
+
+<!ATTLIST StudyEventRef
+          StudyEventOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT StudyEventDef (FormRef+) >
+
+<!ATTLIST StudyEventDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          Type (Scheduled | Unscheduled | Common) #REQUIRED
+          Category CDATA #IMPLIED
+          >
+
+<!ELEMENT FormRef EMPTY >
+
+<!ATTLIST FormRef
+          FormOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT FormDef (ItemGroupRef+, ArchiveLayout*) >
+
+<!ATTLIST FormDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT ItemGroupRef EMPTY >
+
+<!ATTLIST ItemGroupRef
+          ItemGroupOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT ItemGroupDef (ItemRef+) >
+
+<!ATTLIST ItemGroupDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          IsReferenceData (Yes | No) #IMPLIED
+          SASDatasetName CDATA #IMPLIED
+          Domain CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Role CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ELEMENT ItemRef EMPTY >
+
+<!ATTLIST ItemRef
+          ItemOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ELEMENT ItemDef (Question?, ExternalQuestion?, MeasurementUnitRef*,
+                  RangeCheck*, CodeListRef?, Role*) >
+
+<!ATTLIST ItemDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | date | datetime | time | 
+                  text) #REQUIRED
+          Length CDATA #IMPLIED
+          SignificantDigits CDATA #IMPLIED
+          SASFieldName CDATA #IMPLIED
+          SDSVarName CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ELEMENT Question (TranslatedText+) >
+
+<!ELEMENT ExternalQuestion EMPTY >
+
+<!ATTLIST ExternalQuestion
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          Code CDATA #IMPLIED
+          >
+
+<!ELEMENT MeasurementUnitRef EMPTY >
+
+<!ATTLIST MeasurementUnitRef
+          MeasurementUnitOID CDATA #REQUIRED
+          >
+
+<!ELEMENT RangeCheck (CheckValue+, MeasurementUnitRef?, ErrorMessage?) >
+
+<!ATTLIST RangeCheck
+          Comparator (LT | LE | GT | GE | EQ | NE | IN | NOTIN) #REQUIRED
+          SoftHard (Soft | Hard) #REQUIRED
+          >
+
+<!ELEMENT CheckValue (#PCDATA) >
+
+<!ELEMENT ErrorMessage (TranslatedText+) >
+
+<!ELEMENT CodeListRef EMPTY >
+
+<!ATTLIST CodeListRef
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Role (#PCDATA) >
+
+<!ELEMENT CodeList (CodeListItem* | ExternalCodeList) >
+
+<!ATTLIST CodeList
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | text) #REQUIRED
+          SASFormatName CDATA #IMPLIED
+          >
+
+<!ELEMENT CodeListItem (Decode) >
+
+<!ATTLIST CodeListItem
+          CodedValue CDATA #REQUIRED
+          >
+
+<!ELEMENT Decode (TranslatedText+) >
+
+<!ELEMENT ExternalCodeList EMPTY >
+
+<!ATTLIST ExternalCodeList
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          >
+
+<!ELEMENT ArchiveLayout EMPTY >
+
+<!ATTLIST ArchiveLayout
+          OID CDATA #REQUIRED
+          PdfFileName CDATA #REQUIRED
+          PresentationOID CDATA #IMPLIED
+          >
+
+<!ELEMENT Presentation (#PCDATA) >
+
+<!ATTLIST Presentation
+          OID CDATA #REQUIRED
+          xml:lang CDATA #IMPLIED
+          >
+
+<!ELEMENT AdminData (User*, Location*, SignatureDef*) >
+
+<!ATTLIST AdminData
+          StudyOID CDATA #IMPLIED
+          >
+
+<!ELEMENT User (LoginName?, DisplayName?, FullName?, FirstName?, LastName?,
+               Organization?, Address*, Email*, Picture?, Pager?, Fax*, Phone*,
+               LocationRef*, Certificate*) >
+
+<!ATTLIST User
+          OID CDATA #REQUIRED
+          UserType (Sponsor | Investigator | Lab | Other) #IMPLIED
+          >
+
+<!ELEMENT LoginName (#PCDATA) >
+
+<!ELEMENT DisplayName (#PCDATA) >
+
+<!ELEMENT FullName (#PCDATA) >
+
+<!ELEMENT FirstName (#PCDATA) >
+
+<!ELEMENT LastName (#PCDATA) >
+
+<!ELEMENT Organization (#PCDATA) >
+
+<!ELEMENT Address (StreetName*, City?, StateProv?, Country?, PostalCode?,
+                  OtherText?) >
+
+<!ELEMENT StreetName (#PCDATA) >
+
+<!ELEMENT City (#PCDATA) >
+
+<!ELEMENT StateProv (#PCDATA) >
+
+<!ELEMENT Country (#PCDATA) >
+
+<!ELEMENT PostalCode (#PCDATA) >
+
+<!ELEMENT OtherText (#PCDATA) >
+
+<!ELEMENT Email (#PCDATA) >
+
+<!ELEMENT Picture EMPTY >
+
+<!ATTLIST Picture
+          PictureFileName CDATA #REQUIRED
+          ImageType CDATA #IMPLIED
+          >
+
+<!ELEMENT Pager (#PCDATA) >
+
+<!ELEMENT Fax (#PCDATA) >
+
+<!ELEMENT Phone (#PCDATA) >
+
+<!ELEMENT LocationRef EMPTY >
+
+<!ATTLIST LocationRef
+          LocationOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Certificate (#PCDATA) >
+
+<!ELEMENT Location (MetaDataVersionRef+) >
+
+<!ATTLIST Location
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          LocationType (Sponsor | Site | CRO | Lab | Other) #IMPLIED
+          >
+
+<!ELEMENT MetaDataVersionRef EMPTY >
+
+<!ATTLIST MetaDataVersionRef
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          EffectiveDate CDATA #REQUIRED
+          >
+
+<!ELEMENT SignatureDef (Meaning, LegalReason) >
+
+<!ATTLIST SignatureDef
+          OID CDATA #REQUIRED
+          Methodology (Digital | Electronic) #IMPLIED
+          >
+
+<!ELEMENT Meaning (#PCDATA) >
+
+<!ELEMENT LegalReason (#PCDATA) >
+
+<!ELEMENT ReferenceData (ItemGroupData*) >
+
+<!ATTLIST ReferenceData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT ClinicalData (SubjectData*) >
+
+<!ATTLIST ClinicalData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SubjectData (AuditRecord?,Signature?, InvestigatorRef?, SiteRef?,
+		      Annotation*,StudyEventData*) >
+
+<!ATTLIST SubjectData
+          SubjectKey CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT StudyEventData (AuditRecord?,Signature?,Annotation*,FormData* ) >
+
+<!ATTLIST StudyEventData
+          StudyEventOID CDATA #REQUIRED
+          StudyEventRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT FormData (AuditRecord?, Signature?, ArchiveLayoutRef?, 
+				Annotation*,ItemGroupData* ) >
+
+<!ATTLIST FormData
+          FormOID CDATA #REQUIRED
+          FormRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT ArchiveLayoutRef EMPTY >
+
+<!ATTLIST ArchiveLayoutRef
+          ArchiveLayoutOID CDATA #REQUIRED
+          >
+
+<!ELEMENT ItemGroupData (AuditRecord?,Signature?,Annotation*,ItemData* ) >
+
+<!ATTLIST ItemGroupData
+          ItemGroupOID CDATA #REQUIRED
+          ItemGroupRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT ItemData (AuditRecord?,Signature?, MeasurementUnitRef?,
+		   Annotation* ) >
+
+<!ATTLIST ItemData
+          ItemOID CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          Value CDATA #IMPLIED
+          IsNull (Yes) #IMPLIED
+          >
+
+<!ELEMENT Annotation (Comment?, Flag*) >
+
+<!ATTLIST Annotation
+          SeqNum CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ELEMENT Comment (#PCDATA) >
+
+<!ATTLIST Comment
+          SponsorOrSite (Sponsor | Site) #IMPLIED
+          >
+
+<!ELEMENT Flag (FlagValue, FlagType?) >
+
+<!ELEMENT FlagValue (#PCDATA) >
+
+<!ATTLIST FlagValue
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT FlagType (#PCDATA) >
+
+<!ATTLIST FlagType
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ELEMENT Signature (UserRef, LocationRef, SignatureRef, DateTimeStamp,
+                    CryptoBindingManifest?) >
+
+<!ELEMENT UserRef EMPTY >
+
+<!ATTLIST UserRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SignatureRef EMPTY >
+
+<!ATTLIST SignatureRef
+          SignatureOID CDATA #REQUIRED
+          >
+
+<!ELEMENT DateTimeStamp (#PCDATA) >
+
+<!ELEMENT CryptoBindingManifest (#PCDATA) >
+
+<!ELEMENT AuditRecord (UserRef, LocationRef, DateTimeStamp, ReasonForChange?,
+                      SourceID?) >
+
+<!ELEMENT ReasonForChange (#PCDATA) >
+
+<!ELEMENT SourceID (#PCDATA) >
+
+<!ELEMENT InvestigatorRef EMPTY >
+
+<!ATTLIST InvestigatorRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ELEMENT SiteRef EMPTY >
+
+<!ATTLIST SiteRef
+          LocationOID CDATA #REQUIRED
+          >
+

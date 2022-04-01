@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE ODM SYSTEM "odm1-1-0.dtd" >
+<!--
+	This XML Example is intended to provide a very small, valid example of 
+	a CDISC study using CDISC ODM V1.1
+-->
+<!--
+	In this small example study, a pharmaceutical company is conducting a 
+	Phase II initial efficacy study.  This pharmaceutical company 
+	("The Pharm") has hired a contract research organization (CRO) to
+ 	collect, clean and complete data for this study.  The Pharm and the CRO 
+	use completely different clinical data management systems, so the 2 
+	companies have agreed to use CDISC'S ODM V1.1 for their data exchange.
+
+	The data are coming in slowly and only the CRF pages from the first two
+	visits for two patients have been returned from the investigational site
+	to the CRO so far.  During the first visit, both demographic and vital 
+	statistics data are collected. During the second visit, only vital 
+	statistics are collected.  The data from the first patient's first visit
+	included an incorrect systolic blood pressure. The incorrect value was 
+	changed to the correct value in a separate data entry session, and this 
+	change was captured in the audit trail of the clinical data management 
+	system. 
+-->
+<ODM FileType="Transactional" FileOID="987-654-321" CreationDateTime="2001-11-15T16:37:21-05:00" AsOfDateTime="2001-11-15T16:37:21-05:00" Description="Two visits for patients P001 and P027, plus updates of data for P001" Granularity="All">
+  <Study OID="123-456-789">
+    <GlobalVariables>
+      <StudyName>HarrisonA</StudyName>
+      <StudyDescription>Phase II initial efficacy</StudyDescription>
+      <ProtocolName>B00-2136</ProtocolName>
+    </GlobalVariables>
+    <BasicDefinitions/>
+    <!-- Beginning of metadata definitions . . .    -->
+    <MetaDataVersion OID="MetaDataVersion.001" Name="Release 1">
+      <Protocol>
+        <!--There are 2 study events defined, corresponding to Visit 1 and Visit 2.  On "Demog and Vitials:, signing unit is used, while on Visit 2, the "Vitals Only" is used
+ -->
+        <StudyEventRef StudyEventOID="VISIT_1" Mandatory="Yes"/>
+        <StudyEventRef StudyEventOID="VISIT_2" Mandatory="Yes"/>
+      </Protocol>
+      <StudyEventDef OID="VISIT_1" Name="Visit1" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="PAGE_1" Mandatory="No"/>
+      </StudyEventDef>
+      <StudyEventDef OID="VISIT_2" Name="Visit2" Repeating="No" Type="Scheduled">
+        <FormRef FormOID="PAGE_2" Mandatory="No"/>
+      </StudyEventDef>
+      <!--There are 2 signing units defined: one to collect demographics AND vitals and one to collect just vitals.
+-->
+      <FormDef OID="PAGE_1" Name="Demog and Vitals" Repeating="No">
+        <ItemGroupRef ItemGroupOID="DEMOG" Mandatory="No"/>
+        <ItemGroupRef ItemGroupOID="VITALS" Mandatory="No"/>
+      </FormDef>
+      <FormDef OID="PAGE_2" Name="Vitals Only" Repeating="No">
+        <ItemGroupRef ItemGroupOID="VITALS" Mandatory="No"/>
+      </FormDef>
+      <!--There are 2 item groups (ItemGroups): Demographics and Vitals
+-->
+      <!--The demographics item group contains 7 item references (ItemRef) corresponding to Patient ID, Patient Initials, Sex, Date of Birth, Sponsor Patient ID, Weight (lb) and Weight (kg)-->
+      <ItemGroupDef OID="DEMOG" Name="Demographics" Repeating="Yes" IsReferenceData="No" SASDatasetName="DEMOG">
+        <ItemRef ItemOID="PT" Mandatory="No"/>
+        <ItemRef ItemOID="INITIALS" Mandatory="No"/>
+        <ItemRef ItemOID="SEX" Mandatory="No"/>
+        <ItemRef ItemOID="DOB" Mandatory="No"/>
+        <ItemRef ItemOID="SPONSOR_PTID" Mandatory="No"/>
+        <ItemRef ItemOID="WEIGHT_LB" Mandatory="No"/>
+        <ItemRef ItemOID="WEIGHT_KG" Mandatory="No"/>
+      </ItemGroupDef>
+      <!--The Vitals item group contains 6 item references (ItemRef) corresponding to the Patient ID, Visit Name, Systolic Blood Pressure, Diastolic Blood Pressure, Sponsor Patient ID, and Occurrence Number (of repeat measurement).-->
+      <ItemGroupDef OID="VITALS" Name="Vital Signs" Repeating="Yes" IsReferenceData="No" SASDatasetName="VITALS">
+        <ItemRef ItemOID="PT" Mandatory="No"/>
+        <ItemRef ItemOID="VISITNAME" Mandatory="No"/>
+        <ItemRef ItemOID="SBP" Mandatory="No"/>
+        <ItemRef ItemOID="DBP" Mandatory="No"/>
+        <ItemRef ItemOID="SPONSOR_PTID" Mandatory="No"/>
+        <ItemRef ItemOID="OCCUR_NUM" Mandatory="No"/>
+      </ItemGroupDef>
+      <!--There are 12 items defined: Patient ID, Initials, Date of Birth, Sex, Systolic Blood Pressure, Diastolic Blood Pressure, Visit Name, Sponsor Patient ID, Visit Number (not currently used), Occurrence NUmber, Weight (lb) and Weight (kg).-->
+      <ItemDef OID="PT" Name="PT" DataType="text" Length="4" SASFieldName="PT"/>
+      <ItemDef OID="INITIALS" Name="Initials" DataType="text" Length="5" SASFieldName="INITIALS"/>
+      <ItemDef OID="DOB" Name="Date of Birth" DataType="date" SASFieldName="DOB"/>
+      <ItemDef OID="SEX" Name="Sex" DataType="text" Length="1" SASFieldName="SEX">
+        <CodeListRef CodeListOID="CodeList.001"/>
+      </ItemDef>
+      <ItemDef OID="SBP" Name="Systolic Blood Pressure" DataType="integer" SASFieldName="SBP" Length="3"/>
+      <ItemDef OID="DBP" Name="Diastolic Blood Pressure" DataType="integer" SASFieldName="DBP" Length="3"/>
+      <ItemDef OID="VISITNAME" Name="Visit" DataType="text" Length="20" SASFieldName="VISNAME"/>
+      <ItemDef OID="SPONSOR_PTID" Name="Sponsor Patient ID" DataType="text" Length="12" SASFieldName="SPONPTID"/>
+      <ItemDef OID="VISITNUM" Name="Numeric Version of Visit" DataType="integer" SASFieldName="VISITNUM" Length="2"/>
+      <ItemDef OID="OCCUR_NUM" Name="Occurence Number" DataType="integer" SASFieldName="OCCURNUM" Length="2"/>
+      <ItemDef OID="WEIGHT_LB" Name="Weight in pounds" DataType="float" SASFieldName="WEIGHTLB" Length="4" SignificantDigits="1"/>
+      <ItemDef OID="WEIGHT_KG" Name="Weight in kilograms " DataType="float" SASFieldName="WEIGHTKG" Length="4" SignificantDigits="1"/>
+      <!--There is a single codelist for Sex with entries for "m" and "f".-->
+      <CodeList OID="CodeList.001" Name="Sex" DataType="text" SASFormatName="CLSEX">
+        <CodeListItem CodedValue="m">
+          <Decode>
+            <TranslatedText xml:lang="en">Male</TranslatedText>
+          </Decode>
+        </CodeListItem>
+        <CodeListItem CodedValue="f">
+          <Decode>
+            <TranslatedText xml:lang="en">Female</TranslatedText>
+          </Decode>
+        </CodeListItem>
+      </CodeList>
+      <!--Since structure and content of Presentation have not yet been defined, we have inserted an empty Presentation element.-->
+      <Presentation OID=""/>
+    </MetaDataVersion>
+  </Study>
+  <!--Beginning of Administrative Data-->
+  <AdminData>
+    <!--There are 2 users: John Doe (the investigator) and Mary Brown (the data entry person)-->
+    <User OID="User.001">
+      <FirstName>John</FirstName>
+      <LastName>Doe</LastName>
+    </User>
+    <User OID="User.002">
+      <FirstName>Mary</FirstName>
+      <LastName>Brown</LastName>
+    </User>
+    <!--There is 1 location: General Hospital (a site).-->
+    <Location OID="Location.001" Name="General Hospital" LocationType="Site">
+      <MetaDataVersionRef StudyOID="123-456-789" MetaDataVersionOID="MetaDataVersion.001" EffectiveDate="2001-10-19T10:45:57-05:00"/>
+    </Location>
+    <!--There is one signature definition (electronic signature for data entry)
+-->
+    <SignatureDef OID="SignatureDef.001" Methodology="Electronic">
+      <Meaning>Entry</Meaning>
+      <LegalReason>Signer accepts responsibility for initial data entry</LegalReason>
+    </SignatureDef>
+  </AdminData>
+  <!--Beginning of Clinical Data-->
+  <ClinicalData StudyOID="123-456-789" MetaDataVersionOID="MetaDataVersion.001">
+    <!-- SubjectData element for the first of 2 patients in this example  -->
+    <SubjectData SubjectKey="P001" TransactionType="Insert">
+      <!--  EventData element for Visit 1 for this patient  -->
+      <StudyEventData StudyEventOID="VISIT_1">
+        <!-- FormData element for the DEMOG and Vitals form collected on Visit 1 (Original)  -->
+        <FormData FormOID="PAGE_1">
+          <AuditRecord>
+            <UserRef UserOID="User.002"/>
+            <LocationRef LocationOID="Location.001"/>
+            <DateTimeStamp>2001-05-31-T10:08:40-05:00</DateTimeStamp>
+          </AuditRecord>
+          <!--  Electronic signature for this form   -->
+          <Signature>
+            <UserRef UserOID="User.001"/>
+            <LocationRef LocationOID="Location.001"/>
+            <SignatureRef SignatureOID="SignatureDef.001"/>
+            <DateTimeStamp>2001-05-30T10:06:32-05:00</DateTimeStamp>
+          </Signature>
+          <!--  ItemGroupData element for the Demographics part of the form   -->
+          <ItemGroupData ItemGroupOID="DEMOG" ItemGroupRepeatKey="1">
+            <ItemData ItemOID="PT" Value="P001"/>
+            <ItemData ItemOID="INITIALS" Value="AMH"/>
+            <ItemData ItemOID="SEX" Value="f"/>
+            <ItemData ItemOID="DOB" Value="1947-07-16"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-001"/>
+            <ItemData ItemOID="WEIGHT_LB" Value="150"/>
+            <ItemData ItemOID="WEIGHT_KG" Value="68.18"/>
+            <!--  ItemGroupData element for the Vitals part of the form     -->
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="">
+            <ItemData ItemOID="PT" Value="P001"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit1"/>
+            <ItemData ItemOID="SBP" Value="120"/>
+            <ItemData ItemOID="DBP" Value="80"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-001"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="1"/>
+          </ItemGroupData>
+        </FormData>
+        <!--  FormData element for the Vitals form collected on Visit 1 (Modified)    -->
+      </StudyEventData>
+      <!-- StudyEventData element for Visit 2 for the patient  -->
+      <StudyEventData StudyEventOID="VISIT_2">
+        <!--  FormData element for the Vitals only form collected on Visit 2  -->
+        <FormData FormOID="PAGE_2">
+          <AuditRecord>
+            <UserRef UserOID="User.002"/>
+            <LocationRef LocationOID="Location.001"/>
+            <DateTimeStamp>2001-05-31T9:06:45-05:00</DateTimeStamp>
+          </AuditRecord>
+          <!-- Electronic signature for this form -->
+          <Signature>
+            <UserRef UserOID="User.001"/>
+            <LocationRef LocationOID="Location.001"/>
+            <SignatureRef SignatureOID="SignatureDef.001"/>
+            <DateTimeStamp>2001-05-30T10:06:32-05:00</DateTimeStamp>
+          </Signature>
+          <!--  Data for 3 repeats of Vitals item group on this form -->
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="1">
+            <ItemData ItemOID="PT" Value="P001"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="130"/>
+            <ItemData ItemOID="DBP" Value="90"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-001"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="1"/>
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="2">
+            <ItemData ItemOID="PT" Value="P001"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="125"/>
+            <ItemData ItemOID="DBP" Value="86"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-001"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="2"/>
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="3">
+            <ItemData ItemOID="PT" Value="P001"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="122"/>
+            <ItemData ItemOID="DBP" Value="84"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-001"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="3"/>
+          </ItemGroupData>
+        </FormData>
+      </StudyEventData>
+    </SubjectData>
+    <SubjectData SubjectKey="P001" TransactionType="Update">
+      <StudyEventData StudyEventOID="VISIT_1">
+        <FormData FormOID="Page 1">
+          <AuditRecord>
+            <UserRef UserOID="User.002"/>
+            <LocationRef LocationOID="Location.001"/>
+            <DateTimeStamp>2001-05-31T08:47:07-05:00</DateTimeStamp>
+            <ReasonForChange>Error in initial data entry</ReasonForChange>
+          </AuditRecord>
+          <Signature>
+            <UserRef UserOID="User.001"/>
+            <LocationRef LocationOID="Location.001"/>
+            <SignatureRef SignatureOID="SignatureDef.001"/>
+            <DateTimeStamp>2001-05-30T10:06:32-05:00</DateTimeStamp>
+          </Signature>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="1">
+            <ItemData ItemOID="SBP" Value="130"/>
+          </ItemGroupData>
+        </FormData>
+      </StudyEventData>
+    </SubjectData>
+    <SubjectData SubjectKey="P027" TransactionType="Insert">
+      <!--  EventData element for Visit 1 for this patient  -->
+      <StudyEventData StudyEventOID="VISIT_1">
+        <!-- FormData element for the DEMOG and Vitals form collected on Visit 1 (Original)  -->
+        <FormData FormOID="PAGE_1">
+          <AuditRecord>
+            <UserRef UserOID="User.002"/>
+            <LocationRef LocationOID="Location.001"/>
+            <DateTimeStamp>2001-05-31-T10:08:40-05:00</DateTimeStamp>
+          </AuditRecord>
+          <!--  Electronic signature for this form   -->
+          <Signature>
+            <UserRef UserOID="User.001"/>
+            <LocationRef LocationOID="Location.001"/>
+            <SignatureRef SignatureOID="SignatureDef.001"/>
+            <DateTimeStamp>2001-05-30T10:06:32-05:00</DateTimeStamp>
+          </Signature>
+          <!--  ItemGroupData element for the Demographics part of the form   -->
+          <ItemGroupData ItemGroupOID="DEMOG" ItemGroupRepeatKey="1">
+            <ItemData ItemOID="PT" Value="P027"/>
+            <ItemData ItemOID="INITIALS" Value="VLP"/>
+            <ItemData ItemOID="SEX" Value="f"/>
+            <ItemData ItemOID="DOB" Value="1944-12-20"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-027"/>
+            <ItemData ItemOID="WEIGHT_LB" Value="139"/>
+            <ItemData ItemOID="WEIGHT_KG" Value="63.04"/>
+            <!--  ItemGroupData element for the Vitals part of the form     -->
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="">
+            <ItemData ItemOID="PT" Value="P027"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit1"/>
+            <ItemData ItemOID="SBP" Value="115"/>
+            <ItemData ItemOID="DBP" Value="75"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-027"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="1"/>
+          </ItemGroupData>
+        </FormData>
+        <!--  FormData element for the Vitals form collected on Visit 1 (Modified)    -->
+      </StudyEventData>
+      <!-- StudyEventData element for Visit 2 for the patient  -->
+      <StudyEventData StudyEventOID="VISIT_2">
+        <!--  FormData element for the Vitals only form collected on Visit 2  -->
+        <FormData FormOID="PAGE_2">
+          <AuditRecord>
+            <UserRef UserOID="User.002"/>
+            <LocationRef LocationOID="Location.001"/>
+            <DateTimeStamp>2001-05-31T9:06:45-05:00</DateTimeStamp>
+          </AuditRecord>
+          <!-- Electronic signature for this form -->
+          <Signature>
+            <UserRef UserOID="User.001"/>
+            <LocationRef LocationOID="Location.001"/>
+            <SignatureRef SignatureOID="SignatureDef.001"/>
+            <DateTimeStamp>2001-05-30T10:06:32-05:00</DateTimeStamp>
+          </Signature>
+          <!--  Data for 3 repeats of Vitals item group on this form -->
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="1">
+            <ItemData ItemOID="PT" Value="P027"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="120"/>
+            <ItemData ItemOID="DBP" Value="90"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-027"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="1"/>
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="2">
+            <ItemData ItemOID="PT" Value="P027"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="120"/>
+            <ItemData ItemOID="DBP" Value="80"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-027"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="2"/>
+          </ItemGroupData>
+          <ItemGroupData ItemGroupOID="VITALS" ItemGroupRepeatKey="3">
+            <ItemData ItemOID="PT" Value="P027"/>
+            <ItemData ItemOID="VISITNAME" Value="Visit2"/>
+            <ItemData ItemOID="SBP" Value="125"/>
+            <ItemData ItemOID="DBP" Value="80"/>
+            <ItemData ItemOID="SPONSOR_PTID" Value="B00-2136-027"/>
+            <ItemData ItemOID="OCCUR_NUM" Value="3"/>
+          </ItemGroupData>
+        </FormData>
+      </StudyEventData>
+    </SubjectData>
+  </ClinicalData>
+</ODM>

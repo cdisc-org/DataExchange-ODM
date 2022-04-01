@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  This is a generated file. Do not edit!
+  Source file: ODM-1.2.5.adtd
+  Last update: 19 Dec 2003 10:10 AM
+-->
+
+<!--
+The Clinical Data Interchange Standards Consortium has developed an
+Operational Data Model for the storage and transfer of data and metadata
+pertaining to clinical trials.  Version 1.2 of this model is
+available at http://www.cdisc.org/models/odm/v1.2/ODM-1.2.html.
+
+The present XML schema is derived from the above specification and expresses
+certain syntactic constraints that all ODM documents must satisfy.  See the
+above specification for further constraints, and for a definition of the
+meaning of ODM documents.  This schema is available at
+http://www.cdisc.org/schema/ODM-1.2.xsd.
+
+For applications that cannot handle XML schemas, a weaker DTD version is
+available at http://www.cdisc.org/dtd/ODM-1.2.dtd.
+
+Copyright (c) CDISC 2003
+This document is the property of CDISC Inc. This document can be freely used
+and reproduced without limitation as long as (1) it is not modified, and (2)
+the entire copyright statement is included in the copy.  Modifications to
+this document can only be made with written consent of CDISC Inc.
+-->
+
+<xs:schema
+  targetNamespace="http://www.cdisc.org/ns/odm/v1.2"
+  xmlns="http://www.cdisc.org/ns/odm/v1.2"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  >
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+             schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+  <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
+             schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+
+  <xs:simpleType name="text">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="integer">
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="float">
+    <xs:restriction base="xs:decimal">
+      <xs:pattern value="-?[0-9]+(\.[0-9]+)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="date">
+    <xs:restriction base="xs:date">
+      <xs:pattern value="[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="time">
+    <xs:restriction base="xs:time">
+      <xs:pattern value="[0-2][0-9]:[0-5][0-9]:[0-5][0-9](\.[0-9]+)?((\+|-)[0-2][0-9]:[0-5][0-9])?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="datetime">
+    <xs:restriction base="xs:dateTime">
+      <xs:pattern value="[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9](\.[0-9]+)?((\+|-)[0-2][0-9]:[0-5][0-9])?"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="oid">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="oidref">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="value">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="subjectKey">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="repeatKey">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="name">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sasName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z_][A-Za-z0-9_]*"/>
+      <xs:maxLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sasFormat">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z_$][A-Za-z0-9_.]*"/>
+      <xs:maxLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="fileName">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z0-9_.]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Snapshot"/>
+      <xs:enumeration value="Transactional"/>
+      <xs:maxLength value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Granularity">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="All"/>
+      <xs:enumeration value="Metadata"/>
+      <xs:enumeration value="AdminData"/>
+      <xs:enumeration value="ReferenceData"/>
+      <xs:enumeration value="AllClinicalData"/>
+      <xs:enumeration value="SingleSite"/>
+      <xs:enumeration value="SingleSubject"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EventType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Scheduled"/>
+      <xs:enumeration value="Unscheduled"/>
+      <xs:enumeration value="Common"/>
+      <xs:maxLength value="11"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="integer"/>
+      <xs:enumeration value="float"/>
+      <xs:enumeration value="date"/>
+      <xs:enumeration value="datetime"/>
+      <xs:enumeration value="time"/>
+      <xs:enumeration value="text"/>
+      <xs:maxLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CLDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="integer"/>
+      <xs:enumeration value="float"/>
+      <xs:enumeration value="text"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Comparator">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LT"/>
+      <xs:enumeration value="LE"/>
+      <xs:enumeration value="GT"/>
+      <xs:enumeration value="GE"/>
+      <xs:enumeration value="EQ"/>
+      <xs:enumeration value="NE"/>
+      <xs:enumeration value="IN"/>
+      <xs:enumeration value="NOTIN"/>
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SoftOrHard">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Soft"/>
+      <xs:enumeration value="Hard"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TransactionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Insert"/>
+      <xs:enumeration value="Update"/>
+      <xs:enumeration value="Remove"/>
+      <xs:enumeration value="Upsert"/>
+      <xs:enumeration value="Context"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UserType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sponsor"/>
+      <xs:enumeration value="Investigator"/>
+      <xs:enumeration value="Lab"/>
+      <xs:enumeration value="Other"/>
+      <xs:maxLength value="12"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LocationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sponsor"/>
+      <xs:enumeration value="Site"/>
+      <xs:enumeration value="CRO"/>
+      <xs:enumeration value="Lab"/>
+      <xs:enumeration value="Other"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CommentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Sponsor"/>
+      <xs:enumeration value="Site"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SignMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Digital"/>
+      <xs:enumeration value="Electronic"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EditPointType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Monitoring"/>
+      <xs:enumeration value="DataManagement"/>
+      <xs:enumeration value="DBAudit"/>
+      <xs:maxLength value="14"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="YesOrNo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Yes"/>
+      <xs:enumeration value="No"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="YesOnly">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Yes"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="ODM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Study" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="AdminData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ReferenceData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ClinicalData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Association" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ds:Signature" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Description" type="text"/>
+      <xs:attribute name="FileType" type="FileType" use="required"/>
+      <xs:attribute name="Granularity" type="Granularity"/>
+      <xs:attribute name="Archival" type="YesOnly"/>
+      <xs:attribute name="FileOID" type="oid" use="required"/>
+      <xs:attribute name="CreationDateTime" type="datetime" use="required"/>
+      <xs:attribute name="PriorFileOID" type="oidref"/>
+      <xs:attribute name="AsOfDateTime" type="datetime"/>
+      <xs:attribute name="ODMVersion" type="text"/>
+      <xs:attribute name="Originator" type="text"/>
+      <xs:attribute name="SourceSystem" type="text"/>
+      <xs:attribute name="SourceSystemVersion" type="text"/>
+      <xs:attribute name="Id" type="xs:ID"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-O-1">
+      <xs:selector xpath="Study"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="Study">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="GlobalVariables"/>
+        <xs:element ref="BasicDefinitions" minOccurs="0" />
+        <xs:element ref="MetaDataVersion" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-S-1">
+      <xs:selector xpath="BasicDefinitions/MeasurementUnit"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-S-2">
+      <xs:selector xpath="MetaDataVersion"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="GlobalVariables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="StudyName"/>
+        <xs:element ref="StudyDescription"/>
+        <xs:element ref="ProtocolName"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StudyName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="name">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StudyDescription">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ProtocolName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="name">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BasicDefinitions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MeasurementUnit" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MeasurementUnit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Symbol"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="text" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Symbol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="TranslatedText">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:attribute ref="xml:lang"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MetaDataVersion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Include" minOccurs="0"/>
+        <xs:element ref="Protocol" minOccurs="0"/>
+        <xs:element ref="StudyEventDef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FormDef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ItemGroupDef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ItemDef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="CodeList" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ImputationMethod" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Presentation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="Description" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-MDV-1">
+      <xs:selector xpath="StudyEventDef"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-2">
+      <xs:selector xpath="FormDef"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-3">
+      <xs:selector xpath="ItemGroupDef"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-4">
+      <xs:selector xpath="ItemDef"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-5">
+      <xs:selector xpath="CodeList"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-6">
+      <xs:selector xpath="ImputationMethod"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-MDV-7">
+      <xs:selector xpath="Presentation"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="Include">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Protocol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="StudyEventRef" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-P-1">
+      <xs:selector xpath="StudyEventRef"/>
+      <xs:field xpath="@StudyEventOID"/>
+    </xs:unique>
+    <xs:unique name="UC-P-2">
+      <xs:selector xpath="StudyEventRef"/>
+      <xs:field xpath="@OrderNumber"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="StudyEventRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyEventOID" type="oidref" use="required"/>
+      <xs:attribute name="OrderNumber" type="integer"/>
+      <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StudyEventDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FormRef" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="Repeating" type="YesOrNo" use="required"/>
+      <xs:attribute name="Type" type="EventType" use="required"/>
+      <xs:attribute name="Category" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-SED-1">
+      <xs:selector xpath="FormRef"/>
+      <xs:field xpath="@FormOID"/>
+    </xs:unique>
+    <xs:unique name="UC-SED-2">
+      <xs:selector xpath="FormRef"/>
+      <xs:field xpath="@OrderNumber"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="FormRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="FormOID" type="oidref" use="required"/>
+      <xs:attribute name="OrderNumber" type="integer"/>
+      <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FormDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ItemGroupRef" maxOccurs="unbounded"/>
+        <xs:element ref="ArchiveLayout" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="Repeating" type="YesOrNo" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-FD-1">
+      <xs:selector xpath="ItemGroupRef"/>
+      <xs:field xpath="@ItemGroupOID"/>
+    </xs:unique>
+    <xs:unique name="UC-FD-2">
+      <xs:selector xpath="ItemGroupRef"/>
+      <xs:field xpath="@OrderNumber"/>
+    </xs:unique>
+    <xs:unique name="UC-FD-3">
+      <xs:selector xpath="ArchiveLayout"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="ItemGroupRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
+      <xs:attribute name="OrderNumber" type="integer"/>
+      <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ItemGroupDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ItemRef" maxOccurs="unbounded"/>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="Repeating" type="YesOrNo" use="required"/>
+      <xs:attribute name="IsReferenceData" type="YesOrNo"/>
+      <xs:attribute name="SASDatasetName" type="sasName"/>
+      <xs:attribute name="Domain" type="text"/>
+      <xs:attribute name="Origin" type="text"/>
+      <xs:attribute name="Role" type="name"/>
+      <xs:attribute name="Purpose" type="text"/>
+      <xs:attribute name="Comment" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-IGD-1">
+      <xs:selector xpath="ItemRef"/>
+      <xs:field xpath="@ItemOID"/>
+    </xs:unique>
+    <xs:unique name="UC-IGD-2">
+      <xs:selector xpath="ItemRef"/>
+      <xs:field xpath="@OrderNumber"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="ItemRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="ItemOID" type="oidref" use="required"/>
+      <xs:attribute name="OrderNumber" type="integer"/>
+      <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
+      <xs:attribute name="KeySequence" type="integer"/>
+      <xs:attribute name="ImputationMethodOID" type="oidref"/>
+      <xs:attribute name="Role" type="xs:NMTOKENS"/>
+      <xs:attribute name="RoleCodeListOID" type="oidref"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ItemDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Question" minOccurs="0"/>
+        <xs:element ref="ExternalQuestion" minOccurs="0"/>
+        <xs:element ref="MeasurementUnitRef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="CodeListRef" minOccurs="0"/>
+        <xs:element ref="Role" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="DataType" type="DataType" use="required"/>
+      <xs:attribute name="Length" type="integer"/>
+      <xs:attribute name="SignificantDigits" type="integer"/>
+      <xs:attribute name="SASFieldName" type="sasName"/>
+      <xs:attribute name="SDSVarName" type="sasName"/>
+      <xs:attribute name="Origin" type="text"/>
+      <xs:attribute name="Comment" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Question">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ExternalQuestion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Dictionary" type="text"/>
+      <xs:attribute name="Version" type="text"/>
+      <xs:attribute name="Code" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MeasurementUnitRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="MeasurementUnitOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RangeCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CheckValue" maxOccurs="unbounded"/>
+        <xs:element ref="MeasurementUnitRef" minOccurs="0"/>
+        <xs:element ref="ErrorMessage" minOccurs="0"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Comparator" type="Comparator" use="required"/>
+      <xs:attribute name="SoftHard" type="SoftOrHard" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CheckValue">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="value">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ErrorMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CodeListRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="CodeListOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Role">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Alias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Context" type="text" use="required"/>
+      <xs:attribute name="Name" type="text" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CodeList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element ref="ExternalCodeList"/>
+        </xs:choice>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="DataType" type="CLDataType" use="required"/>
+      <xs:attribute name="SASFormatName" type="sasFormat"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-CL-1">
+      <xs:selector xpath="CodeListItem"/>
+      <xs:field xpath="@CodedValue"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="CodeListItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Decode"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="CodedValue" type="value" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Decode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ExternalCodeList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Dictionary" type="text"/>
+      <xs:attribute name="Version" type="text"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ArchiveLayout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="PdfFileName" type="fileName" use="required"/>
+      <xs:attribute name="PresentationOID" type="oidref"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ImputationMethod">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:attribute name="OID" type="oid" use="required"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Presentation">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:attribute name="OID" type="oid" use="required"/>
+          <xs:attribute ref="xml:lang"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="AdminData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="User" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Location" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="SignatureDef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+    <xs:unique name="UC-AD-1">
+      <xs:selector xpath="User"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-AD-2">
+      <xs:selector xpath="Location"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+    <xs:unique name="UC-AD-3">
+      <xs:selector xpath="SignatureDef"/>
+      <xs:field xpath="@OID"/>
+    </xs:unique>
+  </xs:element>
+
+  <xs:element name="User">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="LoginName" minOccurs="0"/>
+        <xs:element ref="DisplayName" minOccurs="0"/>
+        <xs:element ref="FullName" minOccurs="0"/>
+        <xs:element ref="FirstName" minOccurs="0"/>
+        <xs:element ref="LastName" minOccurs="0"/>
+        <xs:element ref="Organization" minOccurs="0"/>
+        <xs:element ref="Address" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Email" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Picture" minOccurs="0"/>
+        <xs:element ref="Pager" minOccurs="0"/>
+        <xs:element ref="Fax" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Phone" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="LocationRef" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Certificate" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="UserType" type="UserType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LoginName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DisplayName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FullName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FirstName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LastName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Organization">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="StreetName" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="City" minOccurs="0"/>
+        <xs:element ref="StateProv" minOccurs="0"/>
+        <xs:element ref="Country" minOccurs="0"/>
+        <xs:element ref="PostalCode" minOccurs="0"/>
+        <xs:element ref="OtherText" minOccurs="0"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StreetName">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="City">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StateProv">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Country">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="PostalCode">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OtherText">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Email">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Picture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="PictureFileName" type="fileName" use="required"/>
+      <xs:attribute name="ImageType" type="name"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Pager">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Fax">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Phone">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LocationRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="LocationOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Certificate">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="MetaDataVersionRef" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Name" type="name" use="required"/>
+      <xs:attribute name="LocationType" type="LocationType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="MetaDataVersionRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+      <xs:attribute name="EffectiveDate" type="date" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SignatureDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Meaning"/>
+        <xs:element ref="LegalReason"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="OID" type="oid" use="required"/>
+      <xs:attribute name="Methodology" type="SignMethod"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Meaning">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LegalReason">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ReferenceData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ClinicalData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SubjectData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SubjectData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="AuditRecord" minOccurs="0"/>
+        <xs:element ref="Signature" minOccurs="0"/>
+        <xs:element ref="InvestigatorRef" minOccurs="0"/>
+        <xs:element ref="SiteRef" minOccurs="0"/>
+        <xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="StudyEventData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="SubjectKey" type="subjectKey" use="required"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="StudyEventData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="AuditRecord" minOccurs="0"/>
+        <xs:element ref="Signature" minOccurs="0"/>
+        <xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="FormData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyEventOID" type="oidref" use="required"/>
+      <xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FormData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="AuditRecord" minOccurs="0"/>
+        <xs:element ref="Signature" minOccurs="0"/>
+        <xs:element ref="ArchiveLayoutRef" minOccurs="0"/>
+        <xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="FormOID" type="oidref" use="required"/>
+      <xs:attribute name="FormRepeatKey" type="repeatKey"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ArchiveLayoutRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="ArchiveLayoutOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ItemGroupData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="AuditRecord" minOccurs="0"/>
+        <xs:element ref="Signature" minOccurs="0"/>
+        <xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
+      <xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ItemData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="AuditRecord" minOccurs="0"/>
+        <xs:element ref="Signature" minOccurs="0"/>
+        <xs:element ref="MeasurementUnitRef" minOccurs="0"/>
+        <xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="ItemOID" type="oidref" use="required"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:attribute name="Value" type="value"/>
+      <xs:attribute name="IsNull" type="YesOnly"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Annotation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Comment" minOccurs="0"/>
+        <xs:element ref="Flag" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="SeqNum" type="integer" use="required"/>
+      <xs:attribute name="TransactionType" type="TransactionType"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Comment">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:attribute name="SponsorOrSite" type="CommentType"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Flag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="FlagValue"/>
+        <xs:element ref="FlagType" minOccurs="0"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FlagValue">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:attribute name="CodeListOID" type="oidref" use="required"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FlagType">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="name">
+          <xs:attribute name="CodeListOID" type="oidref" use="required"/>
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Signature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="UserRef"/>
+        <xs:element ref="LocationRef"/>
+        <xs:element ref="SignatureRef"/>
+        <xs:element ref="DateTimeStamp"/>
+        <xs:element ref="CryptoBindingManifest" minOccurs="0"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UserRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="UserOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SignatureRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="SignatureOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="DateTimeStamp">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="datetime">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="CryptoBindingManifest">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="AuditRecord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="UserRef"/>
+        <xs:element ref="LocationRef"/>
+        <xs:element ref="DateTimeStamp"/>
+        <xs:element ref="ReasonForChange" minOccurs="0"/>
+        <xs:element ref="SourceID" minOccurs="0"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="EditPoint" type="EditPointType"/>
+      <xs:attribute name="UsedImputationMethod" type="YesOrNo"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ReasonForChange">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SourceID">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="text">
+          <xs:anyAttribute namespace="##other"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InvestigatorRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="UserOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="SiteRef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="LocationOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Association">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="KeySet"/>
+        <xs:element ref="KeySet"/>
+        <xs:element ref="Annotation"/>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="KeySet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="StudyOID" type="oidref" use="required"/>
+      <xs:attribute name="SubjectKey" type="subjectKey"/>
+      <xs:attribute name="StudyEventOID" type="oidref"/>
+      <xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
+      <xs:attribute name="FormOID" type="oidref"/>
+      <xs:attribute name="FormRepeatKey" type="repeatKey"/>
+      <xs:attribute name="ItemGroupOID" type="oidref"/>
+      <xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
+      <xs:attribute name="ItemOID" type="oidref"/>
+      <xs:anyAttribute namespace="##other"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+
