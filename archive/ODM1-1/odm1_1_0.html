@@ -1,0 +1,2888 @@
+<!--
+  This is a generated file. Do not edit!
+  Source file:   odm1-1-0.adtd
+  Last modified: Fri Apr 26 16:53:36 EDT 2002
+-->
+
+<!-- EXTENSIBLE -->
+
+<html>
+<head>
+<title>CDISC ODM</title>
+<style type=text/css>
+  tr {vertical-align:baseline}
+  td {padding-left:10}
+</style>
+</head>
+<body>
+<center>
+<h1>
+Specification for the Operational Data Model (ODM)
+</h1>
+<font size=+1><strong>
+Clinical Data Interchange Standards Consortium
+</strong></font><br>
+<br>
+Version 1-1-0<br>
+Source File: odm1-1-0.adtd<br>
+Last Update: Fri Apr 26 16:53:36 EDT 2002
+</center>
+<br>
+<br>
+<br>
+<br>
+
+<p>Copyright &copy; CDISC 2002.
+This document is the property of CDISC Inc. This document can be freely
+used and reproduced without limitation as long as (1) it is not modified, and
+(2) the entire copyright statement is included in the copy.  Modifications
+to this document can only be made with written consent of CDISC Inc.
+<p>An official copy of this document is available at
+<a href="http://www.cdisc.org/models/odm1-1-0.html">http://www.cdisc.org/models/odm1-1-0.html</a>.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h2>Table of Contents</h2>
+
+
+&nbsp; &nbsp; &nbsp; <a href="#toc0">Introduction (Commentary)</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc1">General Issues</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc2">Content of the Standard</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc3">File Conformity</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc4">System Conformity</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc5">Vendor Extensions</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc6">Entities and Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc7">Element Identifiers</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc8">Clinical Data Keys</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc9">ODM Document Attributes</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc10">Metadata underpinnings of Reference and Subject transfers</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc11">Transactions</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc12">Element Ordering</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc13">FileOIDs and Filenames</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc14">Syntax Notation</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#toc15">Data Formats</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc16">General Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ODM">ODM</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Study">Study</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#GlobalVariables">GlobalVariables</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StudyName">StudyName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StudyDescription">StudyDescription</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ProtocolName">ProtocolName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#BasicDefinitions">BasicDefinitions</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#MeasurementUnit">MeasurementUnit</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Symbol">Symbol</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#TranslatedText">TranslatedText</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc17">Metadata Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#MetaDataVersion">MetaDataVersion</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Include">Include</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Protocol">Protocol</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StudyEventRef">StudyEventRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StudyEventDef">StudyEventDef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FormRef">FormRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FormDef">FormDef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemGroupRef">ItemGroupRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemGroupDef">ItemGroupDef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemRef">ItemRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemDef">ItemDef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Question">Question</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ExternalQuestion">ExternalQuestion</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#MeasurementUnitRef">MeasurementUnitRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#RangeCheck">RangeCheck</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#CheckValue">CheckValue</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ErrorMessage">ErrorMessage</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#CodeListRef">CodeListRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Role">Role</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#CodeList">CodeList</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#CodeListItem">CodeListItem</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Decode">Decode</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ExternalCodeList">ExternalCodeList</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ArchiveLayout">ArchiveLayout</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Presentation">Presentation</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc18">Administrative Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#AdminData">AdminData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#User">User</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#LoginName">LoginName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#DisplayName">DisplayName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FullName">FullName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FirstName">FirstName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#LastName">LastName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Organization">Organization</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Address">Address</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StreetName">StreetName</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#City">City</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StateProv">StateProv</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Country">Country</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#PostalCode">PostalCode</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#OtherText">OtherText</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Email">Email</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Picture">Picture</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Pager">Pager</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Fax">Fax</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Phone">Phone</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#LocationRef">LocationRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Certificate">Certificate</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Location">Location</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#MetaDataVersionRef">MetaDataVersionRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#SignatureDef">SignatureDef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Meaning">Meaning</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#LegalReason">LegalReason</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc19">Reference Data Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ReferenceData">ReferenceData</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc20">Clinical Data Elements</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ClinicalData">ClinicalData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#SubjectData">SubjectData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#StudyEventData">StudyEventData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FormData">FormData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ArchiveLayoutRef">ArchiveLayoutRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemGroupData">ItemGroupData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ItemData">ItemData</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Annotation">Annotation</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Comment">Comment</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Flag">Flag</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FlagValue">FlagValue</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#FlagType">FlagType</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#Signature">Signature</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#UserRef">UserRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#SignatureRef">SignatureRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#DateTimeStamp">DateTimeStamp</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#CryptoBindingManifest">CryptoBindingManifest</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#AuditRecord">AuditRecord</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#ReasonForChange">ReasonForChange</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#SourceID">SourceID</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#InvestigatorRef">InvestigatorRef</a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="#SiteRef">SiteRef</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc21">Element Index</a><br>
+&nbsp; &nbsp; &nbsp; <a href="#toc22">Attribute Index</a><br>
+</b>
+<h2><a name="toc0">Introduction (Commentary)</h2>
+
+<p>The Operational Data Model (ODM) provides a format for representing the
+study metadata, study data and administrative data associated with a
+clinical trial. It represents only the data that would be transferred among
+different software systems during a trial, or archived after a trial. It
+need not represent any information internal to a single system, for
+example, information about how the data would be stored in a particular
+database.
+
+<p>An attempt has been made to make the format system-neutral. We have
+therefore attempted to avoid terminology that might be perceived as
+associated with a single system. Some of the terms in the model might
+therefore seem unfamiliar, and will be explained as various parts of the
+model are presented.
+
+<p>Clinical data management systems vary significantly in the information
+they store and the rules they enforce.  If the ODM model were restricted to
+only those features common to all clinical systems, the resulting model
+would be close to useless.  The capabilities of the most primitive known
+Clinical Data Management System (CDMS) would limit all other systems.
+For example,
+<ol>
+<li> Not all CDMSs currently support electronic signatures, so the "features
+common to all" approach would exclude electronic signatures from ODM.  Even
+if most systems support electronic signatures, they could not use ODM to
+transfer them!
+<li> The same problem arises when using ODM to archive a study.  It is not
+reasonable to prevent a CDMS from archiving information just because some
+other system cannot fully handle all the archived information.
+</ol>
+Consequently, the ODM model has been designed to represent a wide range of
+study information.  It should be understood that not all systems will be
+able to handle every part of the model.
+
+<p>Version 1.1 of the ODM model explicitly does not address the following
+issues:
+<ol>
+<li> Communications mechanisms and the reliability of communications.
+<li> Real-time coordination of multiple CDMSs.
+<li> Description of data collection systems, including issues 
+of screen layout, editing, complete data checking, and data cleaning.
+<li> Investigator/sponsor interactions, including data queries.
+</ol>
+
+<h2><a name="toc1">General Issues</h2>
+
+<h3><a name="toc2">Content of the Standard</h3>
+
+<p>This document contains the entire CDISC ODM standard.  Most of the text
+in this standard expresses requirements on systems that read or write ODM
+files.  However some of the text is commentary or examples.  All such
+non-normative text is segregated into paragraphs or sections prominently
+marked as Commentary</b>, a Note</b>, or an Example</b>.
+
+<h3><a name="toc3">File Conformity</h3>
+
+<p>An XML file conforms to this standard only if it satisfies all the
+criteria detailed in this standard.  These criteria include both syntactic
+constraints and semantic ones.
+
+<p>The syntactic constraints are
+<ol>
+<li> The ODM file must be a well-formed XML file.  See
+<a href="http://www.w3.org/TR/REC-xml">the XML standard</a> for details.
+<li> The ODM file must contain only elements and attributes defined in this
+standard, and satisfy the rules about element nesting and the formats of
+attribute values and element bodies.
+<li> The ODM file must contain a prolog, a document type declaration, and
+a single (top-level) <a href=#ODM>ODM element</a>.
+<li> The XML system identifier for the version 1.1 ODM file format is
+"http://www.cdisc.org/dtd/odm1-1-0.dtd".
+</ol>
+
+<p>Example:</b> <br>
+<table><tr><td><td>
+&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;<br>
+&lt;!DOCTYPE ODM SYSTEM "http://www.cdisc.org/dtd/odm1-1-0.dtd"&gt;<br>
+&lt;ODM ...&gt;<br>
+ ...<br>
+&lt;/ODM&gt;
+</table>
+<p>The semantic constraints are expressed throughout the rest of this
+document.
+
+<p>Accompanying this standard is an automatically generated DTD file which
+expresses certain of the syntactic constraints.  This DTD can be used (along
+with a validating XML parser) to test that an ODM file is syntactically
+valid.  However, syntactic validity is only part of total correctness.
+
+<h3><a name="toc4">System Conformity</h3>
+
+<p>A computing system that processes information in ODM format can claim
+conformance to this standard only if it obeys the following rules.
+<ol>
+<li> Generated ODM files must satisfy all the correctness rules in this
+standard, both syntactic and semantic.
+<li> A receiving system must be able to read any ODM file that satisfies all
+the correctness rules in this standard, both syntactic and semantic.
+<li> Information included in generated ODM files must be accurate according
+to the rules of this standard.
+<li> A receiving system must interpret information read from an ODM file
+accurately according to the rules of this standard.
+<li> Generated ODM files need not include information that is not normally
+handled or stored by the generating system.
+<li> A receiving system may selectively ignore information read from an ODM
+file if that information is not normally handled or stored by the receiving
+system.
+<li> A receiving system may constrain the range of data values, keys, names,
+and so on, that it is capable of handling or storing.
+<li> All system limitations (rules 5 thru 7) must be documented.
+<li> If conformity is dependent on certain modes or settings, this must also
+be documented.
+</ol>
+
+<h3><a name="toc5">Vendor Extensions</h3>
+
+<p>Clinical data systems frequently store more information than can be
+expressed in the ODM model.  The exact nature of such additional information
+will vary from system to system.  Thus, there will be pressure for
+proprietary extensions to the model.
+
+<p>Vendor extensions to the ODM model are acceptable as long as
+<ol>
+<li> The vendor supplies a XML DTD specification fully describing their
+extended ODM format.
+<li> Extended ODM files reference the proper extension DTD.
+<li> The extension adds new XML elements and attributes, but does not render
+any standard ODM file obsolete.  That is, all ODM files that are correct
+under this standard are acceptable as extended ODM files.
+<li> All new element and attribute names use <a
+href="http://www.w3.org/TR/REC-xml-names">XML namespaces</a> to insure that
+there are no naming conflicts with other vendor extensions.
+<li> The file obtained (from an extended ODM file) by removing all vendor
+extensions must be a meaningful and accurate standard ODM file.
+<li> ODM files free of any vendor extensions can be generated upon request.
+</ol>
+
+<p>Vendor extensions should never be used for information that can be
+expressed using other ODM elements.
+
+<p>Vendor extensions that carry generally useful information should be
+brought to CDISC's attention for possible future standardization.
+
+<p>Note:</b> It is easy to write a filter that removes all non-standard attributes
+and elements from an extended XML file, either as a stand-alone program or
+as part of normal input processing.  Receiving systems are encouraged to be
+forgiving when encountering extended ODM files.
+
+<h3><a name="toc6">Entities and Elements</h3>
+
+<p>The ODM model assumes that a study's clinical data will consist of
+several kinds of entities.  These include subjects, study events, forms,
+item groups, items, and annotations.
+
+<p>An <em>item</em> is an individual clinical data item, such as a single
+systolic blood pressure reading.  Items are collected together into item
+groups.
+
+<p>An <em>item group</em> is a closely related set of items that are
+generally analyzed together.  (Item groups are sometimes referred to as
+"records" and are associated with "panels" or "tables".)  Item groups are
+aggregated into forms.
+
+<p>A <em>form</em> is analogous to a page in a paper CRF book or electronic
+CRF screen.  A form generally collects a set of logically and temporally
+related information.  A series of forms is collected as part of a study
+event.
+
+<p>A <em>study event</em> is a patient visit or some other data-collection
+event.  Each study event belongs to some patient in the study.
+
+<p>An <em>annotation</em> is a comment applied to a subject, study event, form,
+item group, or item.
+
+<p>The metadata of a study describes the types of study events, forms, item
+groups, and items that are allowed in the study.  Each
+<em>StudyEventDef</em> describes a particular type of study event (mostly by
+listing the types of forms it can contain).  Each <em>FormDef</em> describes
+a particular type of form, each <em>ItemGroupDef</em> describes a particular
+type of item group, and each <em>ItemDef</em> describes a particular type of
+item.
+
+<p>The clinical data of a study will typically have many actual study
+events corresponding to each StudyEventDef, many actual forms corresponding
+to each FormDef, and so on.
+
+<p>The clinical data elements in an ODM file represent either the state of a
+clinical entity or a change to the state of that entity.  These include the
+<em>SubjectData</em>, <em>StudyEventData</em>, <em>FormData</em>,
+<em>ItemGroupData</em>, <em>ItemData</em> and <em>Annotation</em> elements.
+Each such element contains key attributes that identify the data entity that
+it provides information for.  Frequently, many data elements will correspond
+to a single data entity.  This occurs when a series of updates are being
+applied to a single entity, or when an audit trail is being represented.
+
+<h3><a name="toc7">Element Identifiers</h3>
+
+<p>Many ODM elements have OID attributes.  OID attribute values are used (by
+other elements) to reference the original elements.  This is particularly
+true of metadata elements.
+
+<p>All OID attribute values must be unique within some set of elements,
+either within a single ODM file, or within a series of ODM files.  The
+following table describes these uniqueness requirements.
+
+<p><table>
+<tr><td><td>Element with OID </b>
+<td>Scope of Uniqueness</b><td>
+<tr><td><td>Study<td>within a series of files
+<tr><td><td>User<td>within a series of files
+<tr><td><td>Location<td>within a series of files
+<tr><td><td>SignatureDef<td>within a series of files
+<tr><td><td>MeasurementUnit<td>within the containing Study
+<tr><td><td>MetaDataVersion<td>within the containing Study
+<tr><td><td>StudyEventDef<td>within the containing MetaDataVersion
+<tr><td><td>FormDef<td>within the containing MetaDataVersion
+<tr><td><td>ItemGroupDef<td>within the containing MetaDataVersion
+<tr><td><td>ItemDef<td>within the containing MetaDataVersion
+<tr><td><td>CodeList<td>within the containing MetaDataVersion
+<tr><td><td>Presentation<td>within the containing MetaDataVersion
+<tr><td><td>ArchiveLayout<td>within the containing FormDef
+</table>
+
+<h3><a name="toc8">Clinical Data Keys</h3>
+
+<p>There are two kinds of keys in the ODM model: <em>internal</em> and
+<em>external</em>.  Internal keys are used to designate entities within the
+model, and to allow cross-references between entities within (and between)
+ODM files.  Internal keys are not for human use, and are assumed to be
+unchanging.  Internal keys include subject keys, element IDs, and repeat
+keys.
+
+<p>To fully identify a clinical data entity, the following internal keys
+are needed:
+
+<p><table>
+<tr><td><td>Kind of Entity </b>
+<td>Identifying Keys</b><td>
+<tr><td><td>study<td>StudyID
+<tr><td><td>subject<td>above plus SubjectKey
+<tr><td><td>study event<td>above plus StudyEventOID and StudyEventRepeatKey
+<tr><td><td>form<td>above plus FormOID and FormRepeatKey
+<tr><td><td>item group<td>above plus ItemGroupOID and ItemGroupRepeatKey
+<tr><td><td>item<td>above plus ItemID
+<tr><td><td>annotation<td>keys for the annotated entity plus SeqNum
+</table>
+
+<p>External keys are those used by clinical personnel.  These include
+subject randomization codes, site codes, and so on.  In the ODM model,
+external keys are represented as if they were clinical data.  Thus external
+keys can be changed as needed, and are subject to normal auditing processes.
+
+<a name="ODM Document Attributes"></a><h3><a name="toc9">ODM Document Attributes</h3>
+<!-- start ODM Document Attributes -->
+<p>Each ODM document is a set of instructions telling how to modify a target
+database so that it can be brought into alignment with a source database.
+Most individual ODM documents will contain only part of the total current plus
+historical information held in the source database.
+<p>The information that is sent in a given document can vary in several 
+dimensions. Some examples
+of the contents of a document are:
+<ul>
+<li>
+just metadata</li>
+
+<li>
+just clincial data.</li>
+
+<li>
+a series of updates of a single value for a single subject.</li>
+
+<li>
+the current state of the entire study,</li>
+
+<li>
+the current state of a subset of a study (particular subjects, particular
+forms, etc)</li>
+
+<li>
+changes to the study since the last communication</li>
+
+<li>
+a full history of all changes ever made to the study.</li>
+</ul>
+The result is that, over a series of documents that describe a study, there
+will be a necessary time ordering in which the documents must be processed.
+It is also important that each document describe itself, so that the consumer
+of the document knows what to expect in it. To address these needs, the
+ODM element has several attributes for describing the document.
+<p>The AsOfDateTime provide information that anchors the document in the source
+database's life history, and PriorFileOID gives a mechanism for ensuring
+that a sequence of documents that include dependencies is complete and
+in order (see FileOIDs and Filenames for a discussion of ways in which you can identify a 
+file, given its FileOID). The attributes FileType and Granularity allow the document sender
+to define the scope, across time and data, respectively, that a particular
+document spans. The Archive attribute allows the sender to assert that the 
+contents of the document meet a specific set of criteria that qualifies it as
+an electronic record as defined in the FDA 21 CFR 11 Guidance. 
+Finally, the Description attribute provides the sender
+a text string in which to give details, as elaborately as necessary, to
+supplement the other atttributes in describing the document. This
+section details the values these attribute can take, and discusses the
+use of the values in a single document and in a series of documents.
+<p><i>Note:</i> Any ODM-compliant transmission can describe one or more
+studies. To simplify the discussion in this section, we will assume that
+the transmission only describes one study. If your transmission describes
+multiple studies, apply the rules discussed here in turn to each of the
+studies included in the transmission.
+<p>A stream of documents is a series of documents where the PriorFileOID
+links each document to its predecessor. A document with PriorFileOID set
+to the null string ("") is the initiator of a stream. Data sent in one
+file in a stream is allowed to depend on definitions, and earlier transactions
+about the data, that were send in an earlier file in the stream.
+If a file contains either ReferenceData or ClinicalData then that file
+must either contain the necessary metadata definitions to interpret that
+data directly, or there must be a predecessor file in the stream that contains
+these definitions. Similarly, if a file contains ClinicalData (regardless
+of granularity), the file must either contain the admin data referenced
+in the audit/signature records, or there must be a predecessor in the stream
+that contain these definitions.
+
+<p><u>Filetype</u><br>A document's FileType must be either Snapshot or Transactional.
+A Snapshot shows how to re-create the current state of the
+source database with respect to the included data, but does not show how
+it got to be in that state over time. A Transactional document shows, for each
+included entity, both the latest state of the source database, and (optionally)
+some prior states of that entity in the source database. A Snapshot document
+contains only Insert transactions for clinical data, and must contain exactly
+one Insert instruction per data point, while a Transactional document may contain
+more that one TransactionType instruction, of any type, per clinical data
+element. When you process an Transactional document, the rules for ordering a set
+of transactions for a single data point are those described in the section
+on <a href="#Element Ordering">Element Ordering</a>.
+<p><a name="Granularity values">
+<p><u>Granularity</u><br>
+Granularity is intended to give the sender a shorthand way to describe
+the breadth of the information in the document, for certain common types
+of documents. Here are the intended meanings of these categories:
+<br>
+<table BORDER >
+<tr>
+<td>All</td>
+
+<td>Can contain any or all data &amp; metadata types</td>
+</tr>
+
+<tr>
+<td>MetadataOnly</td>
+
+<td>Only metadata or metadata changes</td>
+</tr>
+
+<tr>
+<td>AdminData</td>
+
+<td>Contains admin data and may also contain metadata</td>
+</tr>
+
+<tr>
+<td>ReferenceData</td>
+
+<td>Contains reference data. Does not contain clinical data</td>
+</tr>
+
+<tr>
+<td>ClinicalData</td>
+
+<td>Contains clinical data. Does not contain reference data</td>
+</tr>
+
+<tr>
+<td>ClinicalData_IndivSite</td>
+
+<td>Contains clinical data for a single site.Does not contain reference
+data</td>
+</tr>
+
+<tr>
+<td>ClinicalData_IndivSubj</td>
+
+<td>Contains clinical data for an individual subject. Does not contain
+reference data</td>
+</tr>
+</table>
+
+<br>If these shorthand categories are not sufficient, use the document's
+Description attribute to give details.
+<br>
+<p><u>Archival</u><br>
+The ODM attribute Archival is optional. If you set it for a document, its
+value must be "Yes". Here is how Archival=Yes is interpreted. 
+
+The intent of this attribute is to indicate that the file is intended to meet
+the requirements of an electronic record as defined in 21 CFR 11.  More
+generally, the file (or set of files) must clearly establish a complete and 
+non-redundant set of entries, updates or deletes (transactions) to data values,
+where each transaction is associated with signature information and any changes
+or deletions are marked with a reason for change. 
+
+Specifications (assertions) for the case when Archival=Yes.
+
+<ol>
+<li>
+The file must have FileType=Transactional.
+</li> 
+<li>
+It can apply to either a single file (where PriorFileID is null) or to a 
+linked series  of files, in which case all files in the series
+must be both Transactional and Archival.  
+</li>
+<li>
+The set of transactions must be both complete and non-redundant within the file
+(if it’s a single file) or within a series of linked files.  In particular each
+file in series must:
+<ul>
+	    <li>
+            contain no transactions that have an audit date of prior to the 
+	    AsOfDateTime of its PriorFile (if any).
+            </li><li>
+            must contain all transactions up to its AsOfDateTime. For 
+	    Granularity=All, 
+	    this means all transactions in the study. 
+	    See <a href="#ODM">ODM</a> and <a href="#Granularity values">
+	    Granularity</a> for the meaning of "all" for other 
+	    Granularity settings.  
+            </li><li>
+            each transaction must associated with  both an AuditRecord and a 
+	    Signature. See <a href="#AuditRecord">
+	    AuditRecord</a> and <a href="#Signature">Signature</a> for details on
+	    how a given transaction can be associated with an AuditRecord or
+	    Signature.
+            </li><li>
+            include only use transaction types of Entry, Update or Delete.
+            </li>
+</ul>
+</ol>
+ 
+<br>
+<p><a NAME="Metadata underpinnings of Reference and Subject transfers"></a>
+<h3><a name="toc10">Metadata underpinnings of Reference and Subject transfers</h3>
+<p>Under ODM, the definition of an entity and an instance of its use are
+tied together by unique identification numbers. For instance, when you
+define an ItemDef in an ODM transmission, you are required to provide a
+value for its identifier attribute (OID) that is unique with respect to
+all other ItemDefs in the study . Then, when you send a transmission concerning
+a particular ItemData instance, you refer back to the item's definition
+by setting the ItemData's identifer reference attribute (ItemOID) value
+to that of the corresponding ItemDef. Definitions occur in the Admin and
+Study elements (these are the elements included in Metadata transmissions).
+References occur within all of the base elements of an ODM document: Admin,
+Study, ReferenceData, and ClinicalData.
+<p>ODM permits you to place the definition in one document within a stream,
+and a reference to the definition in a subsequent document. (This, incidentally,
+is why identifier and reference attributes have the XML attribute value
+of CDATA rather than ID and IDREF; XML supports ID and IDREF only within
+a single XML document. To highlight this, ODM identifier attributes use
+the string <i>OID</i> instead of <i>ID</i>). A benefit of this is that
+you do not have to include all of the metadata in each transmission of
+data. The cost is that you cannot depend on the XML parser to detect that
+an IDREF does not have a corresponding ID within a given transaction. Therefore
+the sender must follow (and recipient should check against) these rules:
+<blockquote>You cannot send a reference to an OID value unless that OID
+value has been defined, either in the current document, or in a prior document
+within the stream.
+<p>If a definition identified by an OID has changed, the change in its
+definition must be transmitted before or in the document in which the changed
+definition is referenced.</blockquote>
+Here are some corollaries to these rules:
+<ul>
+<li>
+A document that initiates a stream must contain all definitions
+that it references.</li>
+
+<li>
+A Transactional document must include any supporting definitions that are
+new or changed relative to its stream. For example, suppose that document
+B3207 includes references to item X, and that the name of the codelist
+for X has changed since its predecessor document. In that case, theB3207
+must also include a Study/MetaDataVersion element with an new OID, and
+an instruction to update the definition of item X.</li>
+</ul>
+
+<br>
+<!-- end ODM Document Attributes -->
+
+<h3><a name="toc11">Transactions</h3>
+<p>Each data element has an
+optional TransactionType attribute.  This attribute can be one of
+<em>Insert</em>, <em>Update</em>, <em>Remove</em>, or <em>Upsert</em>.
+
+<p>A TransactionType of Insert means that the data entity is new (does not
+currently exist in the study) and must be added to the study data along with
+all the properties provided.  It is an error if the data entity already
+exists, or if the data entity's parent does not exist.
+
+<p>A TransactionType of Update means that the data entity already exists
+and must be modified to have the new properties provided.  Properties not
+mentioned are not modified.  It is an error if the data entity does not
+exist.
+
+<p>A TransactionType of Remove means that the data entity already exists
+and must be deleted along with all its properties and children.
+It is an error if the data entity does not exist.
+
+<p>Note:</b> The use of the word "delete" does not imply that all record of the
+data entity is expunged, just that the data entity is not visible through
+the ODM model.
+
+<p>A TransactionType of Upsert is the same as Update if the data entity
+exists, and the same as Insert otherwise.
+
+<p>Note:</b> Upsert allows the sender to ignore whether the data entity exists or
+not. (A capability that may be needed by certain data collection systems.)
+This capability is potentially dangerous and may be removed in future
+versions of this standard.
+
+<p> A TransactionType of Context means that the data is explicitly being resent for 
+context purposes only. An example of this would be sending an ItemGroup containing
+demographic data every time (with a TransactionType of Context) to permit matching
+and checking of Patient IDs between the sender and receiver systems.
+
+<p>A child element that does not specify its own TransactionType inherits the
+TransactionType of its parent.  The TransactionType of the top level data
+element (SubjectData) must be explicit for Archive and Incremental transfers.
+
+<p>Transaction processing proceeds in the order in which data elements
+appear in the ODM document. If two transactions for an entity are included in an ODM
+document, they are applied in the order in which they appear.
+
+<p>If an entity has a TransactionType of Remove, the only TransactionType its
+descendants can have is Remove (they can also have no TransactionType, and thus
+inherit the Remove type). A program that processes ODM files should look ahead
+far enough to determine if an element breaks this rule before processing the
+element.
+
+<a name="Element Ordering"></a><h3><a name="toc12">Element Ordering</h3>
+
+<p>The elements in an ODM file that apply to a single entity must occur in
+temporal order.  That is, the transactions on each entity are applied in the
+order in which that entity's elements occur in the file, and Signatures and
+AuditRecords must occur in increasing value of their DateTimeStamps.
+
+<p>In general, the elements for distinct entities do not have to be ordered
+relative to one another.  However, when an entity is signed, all
+transactions on that entity that occured before the time of the signature
+must be present earlier in the same ODM file or in a prior ODM file in a
+linked series.
+
+<p>All the DateTimeStamps in a file must precede the CreationDateTime of
+that file.
+
+<p>In a linked series of ODM files, the AsOfDateTimes of those files
+must occur in temporal order, and the DateTimeStamps in each file must be
+later than the AsOfDateTimes of the prior file.
+
+<p>A data entity (like a form) can be represented as a series of data
+elements.  These elements can contain data for disjoint parts of the entity
+(properties and children), sequential changes to the same parts, or a
+mixture of the two.
+
+<p>In a study, the initial or default value of any clinical data is assumed
+to be NULL.  Thus it is not necessary to include NULL valued items in a
+Snapshot transfer.  Neither is it necessary to include a NULL value as the
+first in a series of insertions and updates of an item.
+
+<p>Systems that generate ODM files should attempt to minimize the number of
+elements in such files.  Thus, if two elements for the same entity can be
+merged into one without changing the semantics of the events described (and
+without violating any of the ordering rules), the merged version is
+recommended.  Similarly, unnecessary elements should be omitted.
+
+<a name="FileOIDs and Filenames"/><h3><a name="toc13">FileOIDs and Filenames</h3>
+<p>Note: this section discusses a recommendation, rather than a normative requirement.
+
+<p>In a linked series of ODM files, each file identifies itself uniquely (in the
+root <a href="#ODM">ODM</a> element) with its FileOID attribute, and the file
+points to its predecessor through its PriorFileOID</a> attribute, which names
+the FileOID of its predecessor.  There is no necessary connection between the
+FileOID and filename. However, defining a mapping between them can make it
+easier to locate a file's predecessors. For example, suppose you have received
+two files, named a.xml and b.xml, and a.xml has FileOID=1, and b.xml has
+FileOID=2, and PriorFileOID=1.  Knowing b.xml's PriorFileOID does not tell you
+what file to look in to access the predecessor document. If, on the other hand,
+you adopted a convention that filename is the same as FileOID, then looking up
+predecessors becomes easier. 
+
+<h3><a name="toc14">Syntax Notation</h3>
+
+<p>Each XML element is defined as follows:
+
+<p><table><tr><td><td>
+<h3>Element-Name</h3>
+Body:<br>
+ <table><tr><td><td>
+<em>content-specification</em>
+ </table>
+<br>
+Attributes:<br>
+ <table><tr><td><td>
+<em>attribute-name</em> <em>data-format</em>
+ <em>optionality</em> <em>semantic-details</em><br>
+ ...</b>
+ </table>
+</table>
+<p>The content specification can be "EMPTY", a data format name, or an
+element group.  EMPTY means that this element has no body
+(nested content).  A data format name means that the body can be any text
+string matching the named format.  An element group means that the named
+elements can be directly nested within this element.
+
+<p>An element group consists of one or more element names (or element
+groups) enclosed in parentheses, and separated with commas or vertical bars.
+Commas indicate that the elements (or element groups) must occur in the XML
+sequentially in the order listed in the group.  Vertical bars indicate that
+exactly one of the elements (or element groups) must occur.  An element or
+element group can be followed by a ?  (meaning optional), a * (meaning zero
+or more occurrances), or a + (meaning one or more occurrances).
+
+<p>Attributes are listed in tabular form, one attribute per row, including
+the attribute's name, its data format, its optionality, and possibly some
+semantic details.  All attributes are required unless the optionality column
+contains "<em>(optional)</em>".
+
+<h3><a name="toc15">Data Formats</h3>
+
+<p>All attribute values and some element bodies are text strings.  These
+strings are defined by data format.  Each data format specifies the
+allowable form of the string, the corresponding XML datatype, and the
+intended use of the value.  The ODM data formats are
+<p>
+<table><col width=20><col width=100><col width=100>
+<tr><td><td>Format Name</b><td>XML Datatype</b>
+<td>Allowed String Pattern</b>
+<tr><td><td><a name="t_integer">integer<td>CDATA<td>
+<font face=Verdana>-</b></font>?digit+
+<tr><td><td><a name="t_float">float<td>CDATA<td>
+<font face=Verdana>-</b></font>?digit+(<font face=Verdana>.</b></font>digit+)?
+<tr><td><td><a name="t_date">date<td>CDATA<td>
+YYYY<font face=Verdana>-</b></font>MM<font face=Verdana>-</b></font>DD
+<tr><td><td><a name="t_time">time<td>CDATA<td>
+hh<font face=Verdana>:</b></font>mm<font face=Verdana>:</b></font>ss(<font face=Verdana>.</b></font>nnn)?
+<tr><td><td><a name="t_datetime">datetime<td>CDATA<td>
+YYYY<font face=Verdana>-</b></font>MM<font face=Verdana>-</b></font>DD <font face=Verdana>T</b></font>
+hh<font face=Verdana>:</b></font>mm<font face=Verdana>:</b></font>ss(<font face=Verdana>.</b></font>nnn)?
+(<font face=Verdana>+</b></font>|<font face=Verdana>-</b></font>)hh<font face=Verdana>:</b></font>mm
+<tr><td><td><a name="t_text">text<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_id">id<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_idref">idref<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_oid">oid<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_oidref">oidref<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_value">value<td>CDATA<td>
+<em>any of the above</em>
+<tr><td><td><a name="t_subjectKey">subjectKey<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_repeatKey">repeatKey<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_name">name<td>CDATA<td>
+<em>any sequence of characters</em>
+<tr><td><td><a name="t_sasName">sasName<td>CDATA<td>
+( letter | digit | <font face=Verdana>_</b></font> )+
+<tr><td><td><a name="t_fileName">fileName<td>CDATA<td>
+( letter | digit | <font face=Verdana>_</b></font>
+| <font face=Verdana>.</b></font> )+
+<tr><td><td><a name="t_languageTag">languageTag<td>CDATA<td>
+LL (<font face=Verdana>-</b></font>CC)*
+<em>(see below)</em>
+</table>
+<p>Numbers (<em>integer</em> and <em>float</em>) are represented in base
+10. Floats are allowed to have fractional parts.
+
+<p>A <em>text</em> value is any sequence of
+<a href="http://www.unicode.org/unicode/standard/standard.html">Unicode</a> characters.  When embedded in
+ODM files, text strings must be represented using XML quoting rules.
+
+<p><em>Dates</em> are represented in the Gregorian calendar.  The year
+(YYYY) ranges from 0001 to 9999.  The month (MM) ranges from 01 to 12.  The
+day (DD) ranges from 01 to 31.
+
+<p><em>Times</em> are clock readings within a 24 hour period.  The hour (hh)
+ranges from 00 to 23.  The minutes (mm) and the seconds (ss) range from 00
+to 59.  The optional fractional part (.nnn) expresses milliseconds.
+
+<p><em>Dates</em>, <em>times</em>, and <em>datetimes</em> are to be
+interpreted as local clock readings at the place the data was collected.  In
+a datetime, the +hh:mm (or -hh:mm) is the offset in hours and minutes to add
+to (or subtract from) Universal Time to get the local clock reading at the
+time the data was collected.  A special offset of -99:99 means that the
+relationship between the local clock and Universal Time is not known.
+
+<p>Example:</b> 3:14 pm on 3 January 2001 in Chicago (6 timezones west of
+Greenwich, standard time) would be represented as
+"2001-01-03T15:14:00-06:00".  3.5 seconds after midnight on the morning of
+July 20th 2001 in Chicago (daylight time) would be represented as
+"2001-07-20T00:00:03.500-05:00".
+
+<p>Note:</b> The above formats for <em>dates</em>, <em>times</em>, and
+<em>datetimes</em> are compatible with <a href="http://xml.coverpages.org/ISO-FDIS-8601.pdf">ISO 8601</a>
+except for the use of the -99:99 offset.
+
+<p>An <em>id</em> or <em>idref</em> can be 1 to 100 characters long.  An
+OID is a string that uniquely identifies an element within an ODM file.
+Metadata elements must have ids unique within their MetaDataVersion.  The
+term "idref" denotes the use of an OID to reference an element (as opposed to
+the defining occurrence of that id).
+
+<p>The <em>value</em> format is simply the union of all the preceding formats:
+integer, float, date, time, datetime, text, id, idref.  The value format is
+used when the specific value type is determined by metadata rather than by the
+immediately containing element.
+
+<p>A <em>subjectKey</em> or <em>repeatKey</em> can be 1 to 100 characters
+long.
+
+<p>A <em>name</em> is intended to be a human readable name for some entity.
+Names can be 1 to 100 characters long.
+
+<p>A <em>sasName</em> is any valid SAS Version 5 name. SAS names cannot
+start with a digit, and are 1 to 8 characters long.
+
+<p>A <em>fileName</em> can be 1 to 100 characters long.  File names are
+system dependent, and expressed relative to the directory that contains the
+ODM file being processed.
+
+<p>A <em>languageTag</em> represents a natural language or a
+country-specific variant of a natural language. The allowed values are
+specified in <a href="http://www.ietf.org/rfc/rfc3066.txt">IETF RFC 3066: Tags for the
+Identification of Languages</a>.
+
+<p>Example:</b> "fr-CA" denotes the French language, Canadian variant.
+See <a href=#TranslatedText>TranslatedText</a> for a discussion of how
+languageTags are used.
+
+<p>In general, if you want to represent a NULL attribute value for any of these
+formats, use an empty string (e.g., attribute-name=""). To represent a NULL for
+data transmitted in an element body, send the element as empty (e.g.
+<element-name/>). There is a special IsNull indicator for clinical data, to
+differentiate between the case where there is no known value, and the case
+where you want to replace a value with NULL. See the IsNull attribute of the 
+<a href="#ItemData">ItemData</a> element.
+
+<h2><a name="toc16">General Elements</h2>
+
+<h3><a name="ODM">ODM</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Study">Study</a></b>*, <a href="#AdminData">AdminData</a></b>*, <a href="#ReferenceData">ReferenceData</a></b>*, <a href="#ClinicalData">ClinicalData</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>Description</b><td>CDATA<td><em>(optional)</em><td>
+The sender should use the Description attribute to record any information 
+that will help the receiver interpret the document correctly. 
+
+  <tr><td><td>FileType</b><td>( Snapshot | Transactional )<td><td>
+Snapshot means that the document contains only the current state of the 
+data and metadata it describes, and no transactional history. A Snapshot
+document may include only one instruction per data point. 
+For clinical data, TransactionType in a Snapshot must be Insert.
+
+Transactional means that the document may contain more than one instruction 
+per data point. Use a Transactional document to send both 
+what the current state of the data is, and how it came to be there. 
+
+  <tr><td><td>Granularity</b><td>(  All 
+                     | Metadata 
+		     | AdminData 
+		     | ReferenceData 
+		     | AllClinicalData
+		     | SingleSite
+		     | SingleSubject
+   	            )<td><em>(optional)</em><td>
+Granularity is intended to give the sender a shorthand way to describe the
+breadth of the information in the document, for certain common types of
+documents.  All means the entire study; Metadata means the MetaDataVersion
+element; AdminData and ReferenceData mean the corresponding elements;
+AllClinicalData, SingleSite, and SingleSubject are successively more tightly
+focused subset of the study's clinical data. If these shorthand categories
+are not sufficient, use the Description attribute to give details.
+
+  <tr><td><td>Archival</b><td>(Yes)<td><em>(optional)</em><td>
+Set this attribute to Yes to indicate that the file is 
+	intended to meet the requirements of an electronic record 
+	as defined in 21 CFR 11. See 
+	<a href="#ODM Document Attributes">ODM Document Attributes</a> for 
+	an fuller discussion of the meaning of this attribute, as well 
+	as its interaction with other ODM attributes.
+
+        <br>Use this attribute <em>only</em> when FileType is Transactional.
+  <tr><td><td>FileOID</b><td><a href="#t_oid">oid</a><td><td>
+A unique identifier for this file. This is pointed to by the file's
+	successor in a stream. 
+  <tr><td><td>CreationDateTime</b><td><a href="#t_datetime">datetime</a><td><td>
+Time of creation of the file containing the document. 
+  <tr><td><td>PriorFileOID</b><td><a href="#t_oidref">oidref</a><td><em>(optional)</em><td>
+Reference to the previous file in a stream.  
+  <tr><td><td>AsOfDateTime</b><td><a href="#t_datetime">datetime</a><td><em>(optional)</em><td>
+The date/time at which the source database was queried in order to create this document.
+</table>
+<p>
+<p>The AsOfDateTime is the latest date/time of any new data or updates to data
+included in the current file.  This attribute is implied, and if omitted, it is
+assumed that the AsOfDateTime is equal to the CreationDateTime. It is an error
+to supply an AsOfDateTime that is later than the CreationDateTime.
+<p>There is an extended discussion of these attributes in the section titled
+<a href="#ODM Document Attributes">ODM Document Attributes</a>.
+
+<p><a name="enote0"><a href="#enote1"><font color=red>Editor's note:</b></font></a>The ODM team is considering candidate UID standards for
+TransferIDs (and possibly Study IDs).
+
+<h3><a name="Study">Study</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#GlobalVariables">GlobalVariables</a></b>, <a href="#BasicDefinitions">BasicDefinitions</a></b>, <a href="#MetaDataVersion">MetaDataVersion</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ODM">ODM</a>
+</table>
+<p>
+This element collects static structural information about an individual
+study.
+
+<h3><a name="GlobalVariables">GlobalVariables</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#StudyName">StudyName</a></b>, <a href="#StudyDescription">StudyDescription</a></b>, <a href="#ProtocolName">ProtocolName</a></b>) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Study">Study</a>
+</table>
+<p>
+GlobalVariables includes general summary information about the Study.
+
+<h3><a name="StudyName">StudyName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_name">name</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#GlobalVariables">GlobalVariables</a>
+</table>
+<p>
+This is a short external name for the study.
+
+<h3><a name="StudyDescription">StudyDescription</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#GlobalVariables">GlobalVariables</a>
+</table>
+<p>
+This is a free-text description of the study.
+
+<h3><a name="ProtocolName">ProtocolName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_name">name</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#GlobalVariables">GlobalVariables</a>
+</table>
+<p>
+This is the sponsor's internal name for the protocol.
+
+<h3><a name="BasicDefinitions">BasicDefinitions</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#MeasurementUnit">MeasurementUnit</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Study">Study</a>
+</table>
+<p>
+<h3><a name="MeasurementUnit">MeasurementUnit</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Symbol">Symbol</a></b>) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_text">text</a><td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#BasicDefinitions">BasicDefinitions</a>
+</table>
+<p>
+The physical unit of measure for a data item or value.  The meaning of a
+MeasurementUnit is determined by its Name attribute.  Examples include
+kilograms, centimeters, cells/milliliter, etc.
+
+<p>Note:</b> Standardizing the names of measurement units is beyond the scope of
+ODM V1.1.
+
+<h3><a name="Symbol">Symbol</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#TranslatedText">TranslatedText</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MeasurementUnit">MeasurementUnit</a>
+</table>
+<p>
+A human-readable name for a measurement unit.
+
+<h3><a name="TranslatedText">TranslatedText</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>xml:lang</b><td><a href="#t_languageTag">languageTag</a><td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Decode">Decode</a>, <a href="#ErrorMessage">ErrorMessage</a>, <a href="#Question">Question</a>, <a href="#Symbol">Symbol</a>
+</table>
+<p>
+Human-readable text that is appropriate for a particular language.
+TranslatedText elements typically occur in a series, presenting a set of
+alternative textual renditions for different languages.
+
+<p>To find the text appropriate for a target language with tag LT, search
+for a TranslatedText element whose xml:lang attribute matches LT exactly
+(ignoring case).  If that fails, remove the ending subtag from LT and
+repeat.  If even the tag "" does not match, no TranslatedText is available
+for the target language.
+
+<p>To avoid ambiguity, a particular language tag should not occur more than
+once in a series of TranslatedText elements.
+
+<h2><a name="toc17">Metadata Elements</h2>
+
+The metadata for a study is defined in a series of MetaDataVersion
+elements. Through this mechanism (multiple MetaDataVersion elements), the
+model supports the incremental deployment of "mid-study changes", and thus
+can handle a situation where multiple versions of the metadata are being
+used simultaneously (perhaps due to delays in IRB approval at various
+sites).
+
+<p>The way metadata versioning works is as follows.  An individual Study
+element may contain multiple MetaDataVersions, reflecting one or more
+mid-stream study design changes. The initial version contains a full set of
+metadata.  Each subsequent version typically contains only modified or newly
+added metadata elements, inheriting the previous metadata by a explicit
+reference.  The same metadata elements in different versions will have the
+same ID. This approach is used to allow the older versions of the metadata
+to remain intact, while simultaneously providing a concise way to represent
+changes.
+
+<h3><a name="MetaDataVersion">MetaDataVersion</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Include">Include</a></b>?, <a href="#Protocol">Protocol</a></b>?, <a href="#StudyEventDef">StudyEventDef</a></b>*, <a href="#FormDef">FormDef</a></b>*,
+			  </b><a href="#ItemGroupDef">ItemGroupDef</a></b>*, <a href="#ItemDef">ItemDef</a></b>*, <a href="#CodeList">CodeList</a></b>*,
+			  </b><a href="#Presentation">Presentation</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Study">Study</a>
+</table>
+<p>
+A metadata version defines the types of study events, forms, item groups, and
+items that form the study data.
+
+<p>The Include element references a prior metadata version.  This causes all
+the definitions in that prior metadata version to be included in this one.
+Any of the included definitions can be replaced (overridden) by explicitly
+giving a new version of the definition (with the same ID) in the new
+metadata version.  New definitions (with new IDs) can be added in the same
+way.
+
+<p>Note:</b> The current metadata model does not include any scheduling
+information such as the time ordering of events, the spacing of events,
+conditional occurrence of events, and so on.  The analogous information for
+forms is also not included.  Future versions of this standard will probably
+provide such information.
+
+<h3><a name="Include">Include</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#Study>Study</a> that provides a prior
+        metadata version.
+  <tr><td><td>MetaDataVersionOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the prior <a href=#MetaDataVersion>MetaDataVersion</a>
+        (within the above Study).
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+A reference to a prior metadata version.  This version must be present
+earlier in the same ODM file or in a previous file in the series.  See the
+PriorFileOID attribute of the <a href=#ODM>ODM</a> element.
+
+<p><a name="enote1"><a href="#enote2"><font color=red>Editor's note:</b></font></a>By placing this information in a subelement of MetaDataVersion
+(rather than in attributes) we allow for future evolution of this
+capability.  For example, it might be useful to allow inclusion of two
+common metadata dictionaries, or to add new common metadata into a previous
+study-specific metadata version.
+
+<h3><a name="Protocol">Protocol</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#StudyEventRef">StudyEventRef</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+The Protocol lists the kinds of study events that can occur within a
+specific version of a Study.  All clinical data must occur within one of
+these study events.
+
+<p>Note:</b> A study whose metadata does not contain a protocol definition cannot
+have any clinical data.  Such studies can serve as "common metadata
+dictionaries" -- allowing sharing of metadata across studies.
+
+<h3><a name="StudyEventRef">StudyEventRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyEventOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#StudyEventDef>StudyEventDef</a>.
+  <tr><td><td>OrderNumber</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>Mandatory</b><td>(Yes | No)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Protocol">Protocol</a>
+</table>
+<p>
+A reference to a StudyEventDef as it occurs within a specific version of a
+Study.  The list of StudyEventRefs identifies the types of study events that
+are allowed to occur within the study.  The StudyEventRefs within a single
+MetaDataVersion must not have duplicate StudyEventIDs nor duplicate
+OrderNumbers.
+
+<p>The OrderNumbers provide an ordering on the StudyEventDefs for use
+whenever a list of StudyEventDefs is presented to a user.  They do not imply
+anything about event scheduling, time ordering, or data correctness.
+
+<p>The Mandatory flag indicates that the clinical data for the containing
+study would be incomplete without an instance of this type of study event.
+ODM files that are incomplete in this sense are perfectly legal -- just not
+sufficient for clinical analysis.
+
+<h3><a name="StudyEventDef">StudyEventDef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#FormRef">FormRef</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>Repeating</b><td>(Yes | No)<td><td>
+<tr><td><td>Type</b><td>(Scheduled | Unscheduled | Common)<td><td>
+<tr><td><td>Category</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+A StudyEventDef describes a type of study event that takes place during a
+study.  A scheduled event is one that is expected to occur for each subject
+as part of the ordinary progress of the study.  An unscheduled event is not
+expected to occur, but may occur as circumstance dictates.  Scheduled and
+unscheduled events typically occur at some particular time.  A common event
+collects data forms, but is not expected to be associated with a particular
+time.
+
+<p>The Repeating flag indicates that this type of study event can occur
+repeatedly within the containing study.
+
+<p>The Category attribute is typically used to indicate the study phase
+appropriate to this type of study event.  Examples might include Screening,
+PreTreatment, Treatment, and FollowUp.
+
+<h3><a name="FormRef">FormRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>FormOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#FormDef>FormDef</a>.
+  <tr><td><td>OrderNumber</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>Mandatory</b><td>(Yes | No)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#StudyEventDef">StudyEventDef</a>
+</table>
+<p>
+A reference to a FormDef as it occurs within a specific StudyEventDef.  The
+list of FormRefs identifies the types of forms that are allowed to occur
+within this type of study event. The FormRefs within a single StudyEventDef
+must not have duplicate FormIDs nor OrderNumbers.
+
+<p>The OrderNumbers provide an ordering on the FormDefs (within the
+containing StudyEventDef) for use whenever a list of FormDefs is presented
+to a user.  They do not imply anything about event scheduling, time
+ordering, or data correctness.
+
+<p>The Mandatory flag indicates that the clinical data for an instance of
+the containing study event would be incomplete without an instance of this
+type of form.  ODM files that are incomplete in this sense are perfectly
+legal -- just not sufficient for clinical analysis.
+
+<h3><a name="FormDef">FormDef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#ItemGroupRef">ItemGroupRef</a></b>+, <a href="#ArchiveLayout">ArchiveLayout</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>Repeating</b><td>(Yes | No)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+A FormDef describes a type of form that can occur in a study.
+
+<p>The Repeating flag indicates that this type of form can occur repeatedly
+within the containing study event.
+
+<h3><a name="ItemGroupRef">ItemGroupRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>ItemGroupOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#ItemGroupDef>ItemGroupDef</a>.
+  <tr><td><td>OrderNumber</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>Mandatory</b><td>(Yes | No)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormDef">FormDef</a>
+</table>
+<p>
+A reference to an ItemGroupDef as it occurs within a specific FormDef.  The
+list of ItemGroupRefs identifies the types of item groups that are allowed
+to occur within this type of form.  The ItemGroupRefs within a single FormDef
+must not have duplicate ItemGroupIDs nor OrderNumbers.
+
+<p>The OrderNumbers provide an ordering on the ItemGroupDefs (within the
+containing FormDef) for use whenever a list of ItemGroupDefs is presented to
+a user.  They do not imply anything about event scheduling, time ordering,
+or data correctness.
+
+<p>The Mandatory flag indicates that the clinical data for an instance of
+the containing form would be incomplete without an instance of this type of
+item group.  ODM files that are incomplete in this sense are perfectly legal
+-- just not sufficient for clinical analysis.
+
+<h3><a name="ItemGroupDef">ItemGroupDef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#ItemRef">ItemRef</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>Repeating</b><td>(Yes | No)<td><td>
+<tr><td><td>IsReferenceData</b><td>(Yes | No)<td><em>(optional)</em><td>
+<tr><td><td>SASDatasetName</b><td><a href="#t_sasName">sasName</a><td><em>(optional)</em><td>
+<tr><td><td>Domain</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+<tr><td><td>Origin</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+<tr><td><td>Role</b><td><a href="#t_name">name</a><td><em>(optional)</em><td>
+<tr><td><td>Comment</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+An ItemGroupDef describes a type of item group that can occur within a study.
+
+<p>The Repeating flag indicates that this type of item group can occur
+repeatedly within the containing form.
+
+<p>If IsReferenceData is Yes, this type of item group can occur only within
+a ReferenceData element.  If IsReferenceData is No, this type of item group
+can occur only within a ClinicalData element.  The default for this
+attribute is No.
+
+<p>The Domain, Origin, Role, and Comment attributes carry submission
+information as described in the <a href="http://www.cdisc.org/models/sds/v2.0/index.html">CDISC Submission
+Metadata Model</a>.
+
+<h3><a name="ItemRef">ItemRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>ItemOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#ItemDef>ItemDef</a>.
+  <tr><td><td>OrderNumber</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>Mandatory</b><td>(Yes | No)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemGroupDef">ItemGroupDef</a>
+</table>
+<p>
+A reference to an ItemDef as it occurs within a specific ItemGroupDef.  The
+list of ItemRefs identifies the types of items that are allowed to occur
+within this type of item group.  The ItemRefs within a single ItemGroupDef
+must not have duplicate ItemIDs nor OrderNumbers.
+
+<p>The OrderNumbers provide an ordering on the ItemDefs (within the
+containing ItemGroupDef) for use whenever a list of ItemDefs is presented to
+a user.  They do not imply anything about event scheduling, time ordering,
+or data correctness.
+
+<p>The Mandatory flag indicates that the clinical data for an instance of
+the containing item group would be incomplete without an instance of this
+type of item.  ODM files that are incomplete in this sense are perfectly
+legal -- just not sufficient for clinical analysis.
+
+
+<h3><a name="ItemDef">ItemDef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Question">Question</a></b>?, <a href="#ExternalQuestion">ExternalQuestion</a></b>?, <a href="#MeasurementUnitRef">MeasurementUnitRef</a></b>*,
+                  </b><a href="#RangeCheck">RangeCheck</a></b>*, <a href="#CodeListRef">CodeListRef</a></b>?, <a href="#Role">Role</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>DataType</b><td>(integer | float | date | datetime | time | 
+                  text)<td><td>
+<tr><td><td>Length</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>SignificantDigits</b><td><a href="#t_integer">integer</a><td><em>(optional)</em><td>
+<tr><td><td>SASFieldName</b><td><a href="#t_sasName">sasName</a><td><em>(optional)</em><td>
+<tr><td><td>SDSVarName</b><td><a href="#t_sasName">sasName</a><td><em>(optional)</em><td>
+<tr><td><td>Origin</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+<tr><td><td>Comment</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+An ItemDef describes a type of item that can occur within a study.  Item
+properties include name, datatype, data size, measurement units, range or
+codelist restrictions, and several other properties.
+
+<p>The DataType attribute specifies how the corresponding Value elements
+are to be interpreted for comparison and storage.  The Length attribute is
+required when DataType is integer, float, or text (and can be ignored for the
+other datatypes).  The SignificantDigits attribute is
+required when DataType is float (and can be ignored for the
+other datatypes).
+
+<p>If DataType=integer, Length=N is a requirement that the receiving system
+be able to process and store all whole number values of magnitude less than
+10<sup>N</sup>.  Larger values may be rejected.
+
+<p>If DataType=float, Length=N and SignificantDigits=S is a requirement
+that the receiving system be able to process and store all numeric values of
+magnitude less than 10<sup>N-S</sup> that are multiples of 10<sup>-S</sup>.
+Larger values may be rejected.  Intermediate values may be rounded to the
+nearest multiple of 10<sup>-S</sup>.
+
+<p>If DataType=text, Length=N is a requirement that the receiving system
+be able to process and store all text string values of length less than or
+equal to N.  All <a href="http://www.unicode.org/unicode/standard/standard.html">Unicode</a> characters are
+allowed in text string values.
+
+<p>Note:</b> Length and SignificantDigits are statements about an item's
+data values, not the number of characters used to represent these values in
+Value elements.  For example, the character "&lt;" might be represented as
+"&amp;lt;".
+
+<p>Note:</b> Data characters that are not included in the encoding character set
+for a particular ODM file must be represented using XML entities or
+character references.  For example, &#198; could be represented as
+"&amp;#198;".
+
+<p> The Origin, Role, and Comment attributes carry submission information as
+described in the <a href="http://www.cdisc.org/models/sds/v2.0/index.html">CDISC Submission Metadata Model</a>.
+
+<p>Note:</b> <u>SDSVarName attribute</u>
+<p> In ODM 1.1 we define all OID values (such as SubjectID) as specifically
+being internal, unchangeable values. This was done to make the audit
+trail issues work: if the SubjectOID in the model were the actual external
+subject identifier (or randomization ID) of a patient and that value is sent
+incorrectly in one transmission, there would be no way to correct the
+mistake in a followup transition. In doing this we intend that the
+external subject keys (and other study key variables) should be defined
+as Items in the metadata and then can be modified through the ODM audit
+trail. While this solves the problem of supporting modifications of
+study keys, it left you without a way to identify which ItemDefs have
+special meaning or what the meaning is. The most obvious place where
+this is a problem is in matching up patients when loading data from an
+external source. If you can't find the patient id how do you do it? 
+
+<p>The answer is to use the SDSVarname attribute of ItemDef.
+SDSVarName is an optional attribute of an Item Definition which
+you can use to tag the Item with a business meaning. Rather than try
+to enumerate all possible meanings in the ODM model, the ODM working 
+group thought it best to rely on the set of variable names defined in
+the Submissions Data Model (version 2.0), since this list covers most 
+core variables used in managing clinical data.
+Software that is processing an ODM-compliant XML instance can therefore 
+check for specific values of the SDSVarName
+variable to search for standard, frequently used variables. The use of
+this attribute is restricted to a variable defined in the SDS V2.0
+model, and in tagging a variable, you are identifying it as being
+properly defined by the SDS V2.0 definition for that variable. A partial
+list of commonly used values includes: 
+<ul>
+<li>SITEID (Center or Site ID), 
+<li>SUBJID (Subject ID, usually the Randomization ID), 
+<li>SCSUBJID (Screening SubjectID) 
+<li>SEX (Sex or Gender, coded value), 
+<li>VISIT (visit name), 
+<li>DMACTDT (actual date of visit) 
+<li>DMREFDT (subject reference date) 
+<li>BIRTHDT (date of birth), 
+<li>SUBJINIT (subject initials) 
+</ul>
+<br>
+<p>See the SDS V2.0 definition for definitions and additional choices. 
+
+<p>Note:</b> The Question element describes the purpose of the item for a human
+user.  The ExternalQuestion element does the same but refers to an externally
+defined question.  If both are present, they should be consistent.
+
+<p>The MeasurementUnitRefs list the acceptable measurement units for this
+type of item.  Only numeric (integer or float) items should have measurement
+units.  If only one MeasurementUnitRef is present, all items of this type
+carry this measurement unit by default.  If no MeasurementUnitRef is
+present, the item's value is scalar (i.e., a pure number).
+
+<p>The RangeChecks constrain the acceptable values for items of this type.
+
+<p>The CodeListRef (if present) constrains the acceptable values for items
+of this type to be members of the referenced codelist.
+
+<p>Note:</b> Items do not repeat within an item group.
+
+<h3><a name="Question">Question</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#TranslatedText">TranslatedText</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemDef">ItemDef</a>
+</table>
+<p>
+A human-readable label used to name an item on paper or on a screen.
+
+<h3><a name="ExternalQuestion">ExternalQuestion</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>Dictionary</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+The name of the external question dictionary.
+  <tr><td><td>Version</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+The version designator of the external question dictionary.
+  <tr><td><td>Code</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+A code selecting the particular question within the external
+        dictionary.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemDef">ItemDef</a>
+</table>
+<p>
+A reference to an externally defined question.
+
+<h3><a name="MeasurementUnitRef">MeasurementUnitRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>MeasurementUnitOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#MeasurementUnit>MeasurementUnit</a>
+        definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemData">ItemData</a>, <a href="#ItemDef">ItemDef</a>, <a href="#RangeCheck">RangeCheck</a>
+</table>
+<p>
+A reference to a measurement unit definition.
+
+<h3><a name="RangeCheck">RangeCheck</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#CheckValue">CheckValue</a></b>+, <a href="#MeasurementUnitRef">MeasurementUnitRef</a></b>?, <a href="#ErrorMessage">ErrorMessage</a></b>?) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>Comparator</b><td>(LT | LE | GT | GE | EQ | NE | IN | NOTIN)<td><td>
+Comparison operator used to compare the item and value(s).
+  <tr><td><td>SoftHard</b><td>(Soft | Hard)<td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemDef">ItemDef</a>
+</table>
+<p>
+A one-sided constraint on an item value (a full range check will require two
+RangeCheck elements, one for the lower bound and one for the upper bound).
+The constraint is equivalent to
+<p><table><tr><td><td>
+itemValue comparator checkValue(s)
+</table>
+<p>If an actual data value fails the constraint, it is either rejected (a Hard
+constraint) or a warning is produced (a Soft constraint).
+
+<p>The comparators LT, LE, GT, GE, EQ, and NE take exactly one CheckValue.
+However, the comparators IN and NOTIN take a set of CheckValues.
+
+<p>If a measurement unit is specified, the corresponding item values must
+have interconvertible measurement units (either explicitly or by default).
+Proper conversion of units must be done as part of the range check.
+
+<p>Example:</b> 2 pounds is less than 1 kilogram.
+
+<p>If a measurement unit is not specified, the corresponding item values
+must not have measurement units (either explicitly or by default).
+
+<h3><a name="CheckValue">CheckValue</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_value">value</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#RangeCheck">RangeCheck</a>
+</table>
+<p>
+A comparison value used in a range check.
+
+<h3><a name="ErrorMessage">ErrorMessage</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#TranslatedText">TranslatedText</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#RangeCheck">RangeCheck</a>
+</table>
+<p>
+Error message to be used when a range check is violated.
+
+<h3><a name="CodeListRef">CodeListRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>CodeListOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#CodeList>CodeList</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemDef">ItemDef</a>
+</table>
+<p>
+A reference to a CodeList definition
+
+<h3><a name="Role">Role</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (#PCDATA</b>) 
+</table>
+<p>See above discussion of SDS roles.  An ItemDef can be tagged with multiple
+roles (unlike an ItemGroupDef that can only be tagged with one).
+
+
+
+<h3><a name="CodeList">CodeList</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#CodeListItem">CodeListItem</a></b>* | <a href="#ExternalCodeList">ExternalCodeList</a></b>) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>DataType</b><td>(integer | float | text)<td><td>
+<tr><td><td>SASFormatName</b><td><a href="#t_sasName">sasName</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+Defines a discrete set of permitted values for an item.  The definition can
+be an explicit list of values (CodeListItem*) or a reference to an
+externally defined codelist (ExternalCodeList).
+
+<p>The SASFormatName must be a legal SAS Version 5 format name.
+
+<h3><a name="CodeListItem">CodeListItem</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Decode">Decode</a></b>) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>CodedValue</b><td><a href="#t_value">value</a><td><td>
+Value of the codelist item (as it would occur in a Value element).
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#CodeList">CodeList</a>
+</table>
+<p>
+Defines an individual member value of a codelist.  The actual value is
+given, along with a set of print-forms.  The CodedValue must be an
+acceptable value of the DataType of the containing CodeList.
+
+<p>The CodeListItems within a single CodeList element must not have
+duplicate CodedValues (as interpreted by the CodeList's DataType).
+
+<h3><a name="Decode">Decode</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#TranslatedText">TranslatedText</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#CodeListItem">CodeListItem</a>
+</table>
+<p>
+The set of print-forms for a codelist value.
+
+<h3><a name="ExternalCodeList">ExternalCodeList</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>Dictionary</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+The name of the external codelist.
+  <tr><td><td>Version</b><td><a href="#t_text">text</a><td><em>(optional)</em><td>
+The version designator of the external codelist.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#CodeList">CodeList</a>
+</table>
+<p>
+A reference to an externally defined codelist.
+
+<h3><a name="ArchiveLayout">ArchiveLayout</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>PdfFileName</b><td><a href="#t_fileName">fileName</a><td><td>
+Name of a Adobe PDF file containing the screen layout.
+  <tr><td><td>PresentationOID</b><td><a href="#t_oidref">oidref</a><td><em>(optional)</em><td>
+Reference to a <a href=#Presentation>Presentation</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormDef">FormDef</a>
+</table>
+<p>
+A visual image of the screen layout used to collect the data on a form.
+Useful in archiving a study.
+
+<h3><a name="Presentation">Presentation</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>xml:lang</b><td><a href="#t_languageTag">languageTag</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#MetaDataVersion">MetaDataVersion</a>
+</table>
+<p>
+A Presentation defines how information about the study is presented to the
+user of a system.  The xml:lang attribute helps select the appropriate
+presentation.  See <a href=#TranslatedText>TranslatedText</a>.
+
+<p>Note:</b> The Presentation element is not defined further in CDISC ODM V1.1.
+It is a placeholder for future development.
+
+<h2><a name="toc18">Administrative Elements</h2>
+
+<h3><a name="AdminData">AdminData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#User">User</a></b>*, <a href="#Location">Location</a></b>*, <a href="#SignatureDef">SignatureDef</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyOID</b><td><a href="#t_oidref">oidref</a><td><em>(optional)</em><td>
+Reference to a <a href=#Study>StudyDef</a>.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ODM">ODM</a>
+</table>
+<p>
+Administrative information about users, locations, and electronic
+signatures.
+
+<h3><a name="User">User</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#LoginName">LoginName</a></b>?, <a href="#DisplayName">DisplayName</a></b>?, <a href="#FullName">FullName</a></b>?, <a href="#FirstName">FirstName</a></b>?, <a href="#LastName">LastName</a></b>?,
+               </b><a href="#Organization">Organization</a></b>?, <a href="#Address">Address</a></b>*, <a href="#Email">Email</a></b>*, <a href="#Picture">Picture</a></b>?, <a href="#Pager">Pager</a></b>?, <a href="#Fax">Fax</a></b>*, <a href="#Phone">Phone</a></b>*,
+               </b><a href="#LocationRef">LocationRef</a></b>*, <a href="#Certificate">Certificate</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>UserType</b><td>(Sponsor | Investigator | Lab | Other)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AdminData">AdminData</a>
+</table>
+<p>
+Information about a specific user of a clinical data collection system.
+This may be an investigator, a CRA, or data management staff.  Study
+subjects are <em>not</em> users in this sense.
+
+<!-- ***GEG COMMENT***The user may be optionally assigned a UserType.  While there are 
+a significant number of possible user types that could be assigned, the ODM team
+agreed that for the purpose of transferring or archiving study data, the fact that
+a user works for either the Sponsor, the Investigator, a Lab are the primary 
+distinctions that matter.  We decided it was better to have narrowly constrained list
+of possibilities for this choice than to leave it open as CDATA. *** END GEG COMMENT*** -->
+
+<h3><a name="LoginName">LoginName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's login identification.
+
+<h3><a name="DisplayName">DisplayName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+A short displayable name for the user.
+
+<h3><a name="FullName">FullName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's full formal name.
+
+<h3><a name="FirstName">FirstName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's initial given name or all given names.
+
+<h3><a name="LastName">LastName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's surname (family name).
+
+<h3><a name="Organization">Organization</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's organization.
+
+<h3><a name="Address">Address</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#StreetName">StreetName</a></b>*, <a href="#City">City</a></b>?, <a href="#StateProv">StateProv</a></b>?, <a href="#Country">Country</a></b>?, <a href="#PostalCode">PostalCode</a></b>?,
+                  </b><a href="#OtherText">OtherText</a></b>?) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's postal address.
+
+<h3><a name="StreetName">StreetName</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+The street address part of a user's postal address.
+
+<h3><a name="City">City</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+The city name part of a user's postal address.
+
+<h3><a name="StateProv">StateProv</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+The state or province name part of a user's postal address.
+
+<h3><a name="Country">Country</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+The country name part of a user's postal address.  This must be represented
+by an ISO 3166 two-letter country code.
+
+<p>Example:</b> FR for France, JP for Japan.
+
+<h3><a name="PostalCode">PostalCode</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+The postal code part of a user's postal address.
+
+<h3><a name="OtherText">OtherText</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Address">Address</a>
+</table>
+<p>
+Any other text needed as part of a user's postal address.
+
+<h3><a name="Email">Email</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's email address.
+
+<h3><a name="Picture">Picture</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>PictureFileName</b><td><a href="#t_fileName">fileName</a><td><td>
+<tr><td><td>ImageType</b><td><a href="#t_name">name</a><td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+A visual depiction of the user.
+
+<h3><a name="Pager">Pager</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The phone number of the user's pager.
+
+<h3><a name="Fax">Fax</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The phone number of the user's facsimile machine.
+
+<h3><a name="Phone">Phone</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's voice phone number.
+
+<h3><a name="LocationRef">LocationRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>LocationOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to a <a href=#Location>Location</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AuditRecord">AuditRecord</a>, <a href="#Signature">Signature</a>, <a href="#User">User</a>
+</table>
+<p>
+A reference to the user's physical location.
+
+<h3><a name="Certificate">Certificate</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#User">User</a>
+</table>
+<p>
+The user's digital signing certificate.
+
+<p>Note:</b> The Certificate element is not defined further in CDISC ODM V1.1.
+It is a placeholder for future development.
+
+<h3><a name="Location">Location</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#MetaDataVersionRef">MetaDataVersionRef</a></b>+) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Name</b><td><a href="#t_name">name</a><td><td>
+<tr><td><td>LocationType</b><td>(Sponsor | Site | CRO | Lab | Other)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AdminData">AdminData</a>
+</table>
+<p>
+A physical location -- typically a clinical research site or a sponsor's
+office.
+
+<h3><a name="MetaDataVersionRef">MetaDataVersionRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#Study>Study</a> that uses this
+        metadata version.
+  <tr><td><td>MetaDataVersionOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#MetaDataVersion>MetaDataVersion</a>
+        (within the above Study).
+  <tr><td><td>EffectiveDate</b><td><a href="#t_date">date</a><td><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Location">Location</a>
+</table>
+<p>
+A reference to a MetaDataVersion used at the containing Location.  The
+EffectiveDate expresses the fact that the metadata used at a location can
+vary over time.
+
+<h3><a name="SignatureDef">SignatureDef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Meaning">Meaning</a></b>, <a href="#LegalReason">LegalReason</a></b>) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>OID</b><td><a href="#t_oid">oid</a><td><td>
+<tr><td><td>Methodology</b><td>(Digital | Electronic)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AdminData">AdminData</a>
+</table>
+<p>
+Defines a kind of electronic signature, including the <em>meaning</em> as
+required by <a href="http://www.fda.gov/ora/compliance_ref/part11/FRs/background/pt11finr.pdf">21 CFR Part 11</a>.  If the signature is
+Digital, it is based on cryptography.  Otherwise the signature is
+Electronic.
+
+<p>Note:</b> Tracking of data edits is done using <a
+href=#AuditRecord>AuditRecords</a> not signatures.
+
+<h3><a name="Meaning">Meaning</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#SignatureDef">SignatureDef</a>
+</table>
+<p>
+A short name for this kind of signature (e.g., authorship, approval).
+
+<h3><a name="LegalReason">LegalReason</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#SignatureDef">SignatureDef</a>
+</table>
+<p>
+The responsibility statement associated with a signature (e.g.,
+"The signer accepts responsibility for the accuracy of this data.").
+
+<h2><a name="toc19">Reference Data Elements</h2>
+
+<h3><a name="ReferenceData">ReferenceData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#ItemGroupData">ItemGroupData</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#Study>Study</a> that defines the metadata
+	for this reference data.
+  <tr><td><td>MetaDataVersionOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#MetaDataVersion>MetaDataVersion</a>
+        (within the above Study) for this reference data.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ODM">ODM</a>
+</table>
+<p>
+Reference data provides information on how to interpret clinical data.  For
+example, reference data might include lab normal ranges.  Signature elements
+nested within ReferenceData have no meaning, and should be ignored.
+
+<p>The StudyOID and MetaDataVersionOID attributes select a particular metadata
+version.  All metadata references (IDs) occuring within this ReferenceData
+element refer to definitions within the selected metadata version.
+
+<p>The TransactionType attribute behaves the same within ReferenceData as
+it does within ClinicalData.
+
+<p>Note:</b> Since reference data can be independent of any particular study, it
+may be desirable to keep the reference metadata separate from clinical
+metadata.  This can be done by creating a Study element with no Protocol,
+StudyEventDef, or FormDef elements.  All the ItemGroupDefs would have
+IsReferenceData=Yes.  Such a study would have no clinical data.
+
+<h2><a name="toc20">Clinical Data Elements</h2>
+
+<h3><a name="ClinicalData">ClinicalData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#SubjectData">SubjectData</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#Study>Study</a> that uses the data
+        nested within this element.
+  <tr><td><td>MetaDataVersionOID</b><td><a href="#t_oidref">oidref</a><td><td>
+References the <a href=#MetaDataVersion>MetaDataVersion</a>
+        (within the above Study) that governs the data nested within
+        this element.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ODM">ODM</a>
+</table>
+<p>
+Clinical data for multiple subjects.
+
+<p>The StudyOID and MetaDataVersionOID attributes select a particular metadata
+version.  All metadata references (IDs) occuring within this ClinicalData
+element refer to definitions within the selected metadata version.
+ 
+<h3><a name="SubjectData">SubjectData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#AuditRecord">AuditRecord</a></b>?,<a href="#Signature">Signature</a></b>?, <a href="#InvestigatorRef">InvestigatorRef</a></b>?, <a href="#SiteRef">SiteRef</a></b>?,
+		      </b><a href="#Annotation">Annotation</a></b>*,<a href="#StudyEventData">StudyEventData</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>SubjectKey</b><td><a href="#t_subjectKey">subjectKey</a><td><td>
+<tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ClinicalData">ClinicalData</a>
+</table>
+<p>
+Clinical data for a single subject.
+
+<p>The SubjectKey is used to name a specific subject.  This key is
+unique within the parent study.
+
+<p>Note:</b> Subject attributes (such as date of birth, sex, responsible
+investigator, and so on) should be treated as if they were clinical data.
+Thus they can be changed as needed, and are subject to normal auditing
+processes.
+
+<h3><a name="StudyEventData">StudyEventData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#AuditRecord">AuditRecord</a></b>?,<a href="#Signature">Signature</a></b>?,<a href="#Annotation">Annotation</a></b>*,<a href="#FormData">FormData</a></b>* ) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>StudyEventOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#StudyEventDef>StudyEventDef</a>.
+  <tr><td><td>StudyEventRepeatKey</b><td><a href="#t_repeatKey">repeatKey</a><td><em>(optional)</em><td>
+A key used to distinguish between repeats of the same
+        type of study event for a single subject.
+  <tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+Clinical data for a study event (visit).
+The model supports repeating study events (for example, when the same set
+of information is collected for a series of patient visits).
+
+<p>The StudyEventOID and StudyEventRepeatKey are used together to name a
+particular study event.  This pair of values is unique within the parent
+subject.  The StudyEventRepeatKey is present if and only if the
+StudyEventDef is repeating.
+
+<h3><a name="FormData">FormData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#AuditRecord">AuditRecord</a></b>?, <a href="#Signature">Signature</a></b>?, <a href="#ArchiveLayoutRef">ArchiveLayoutRef</a></b>?, 
+				<a href="#Annotation">Annotation</a></b>*,<a href="#ItemGroupData">ItemGroupData</a></b>* ) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>FormOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#FormDef>FormDef</a>.
+  <tr><td><td>FormRepeatKey</b><td><a href="#t_repeatKey">repeatKey</a><td><em>(optional)</em><td>
+A key used to distinguish between repeats of the same
+        type of form within a single study event.
+  <tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#StudyEventData">StudyEventData</a>
+</table>
+<p>
+Clinical data for a form (page).
+The model supports repeating forms in a single study event (for example,
+when several adverse events are recorded in a single patient visit).
+
+<p>The FormOID and FormRepeatKey are used together to name a
+particular form.  This pair of values is unique within the parent
+study event.  The FormRepeatKey is present if and only if the
+FormDef is repeating.
+
+<h3><a name="ArchiveLayoutRef">ArchiveLayoutRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>ArchiveLayoutOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#ArchiveLayoutDef>ArchiveLayoutDef</a>.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormData">FormData</a>
+</table>
+<p>
+A reference to the archive layout used to collect the form's data.
+
+<p>On Update, a NULL ArchiveLayoutOID is permitted.
+
+<h3><a name="ItemGroupData">ItemGroupData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#AuditRecord">AuditRecord</a></b>?,<a href="#Signature">Signature</a></b>?,<a href="#Annotation">Annotation</a></b>*,<a href="#ItemData">ItemData</a></b>* ) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>ItemGroupOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#ItemGroupDef>ItemGroupDef</a>.
+  <tr><td><td>ItemGroupRepeatKey</b><td><a href="#t_repeatKey">repeatKey</a><td><em>(optional)</em><td>
+A key used to distinguish between repeats of the same
+        type of item group within a single form.
+  <tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormData">FormData</a>, <a href="#ReferenceData">ReferenceData</a>
+</table>
+<p>
+Clinical data for an item group (record).
+The model supports repeating item groups in a single form (for example,
+when several previous hospitalizations are reported in one history).
+
+<p>The ItemGroupOID and ItemGroupRepeatKey are used together to name a
+particular item group.  This pair of values is unique within the parent
+form.  The ItemGroupRepeatKey is present if and only if the
+ItemGroupDef is repeating.
+
+<p>ItemGroupData can also occur as reference data.  In that case, the
+ItemGroupOID and ItemGroupRepeatKey pair must be unique within the reference
+data.
+<a name="ItemData"></a>
+<h3><a name="ItemData">ItemData</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#AuditRecord">AuditRecord</a></b>?,<a href="#Signature">Signature</a></b>?, <a href="#MeasurementUnitRef">MeasurementUnitRef</a></b>?,
+		   </b><a href="#Annotation">Annotation</a></b>* ) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>ItemOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#ItemDef>ItemDef</a>.
+  <tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+<tr><td><td>Value</b><td>CDATA<td><em>(optional)</em><td>
+The data collected for an item.  This data is represented according to
+DataType attribute of the ItemDef.
+  <tr><td><td>IsNull</b><td>(Yes)<td><em>(optional)</em><td>
+IsNull is a flag to signify that an item's value is to be set to null.
+IsNull is used only under these conditions: Transaction type is 
+Insert or Update or Upsert; the Value attribute is not supplied. In these
+conditions, if IsNull is "Yes", then this is an instruction to set the
+item's value to Null. If Value is specified, use it. 
+If neither Value nor IsNull is set, do not change the item's value.
+In the interest of creating non-verbose XML 
+instances, one should not use ItemData elements with IsNull set to "Yes" to 
+indicate uncollected data. The better practice is to transmit only 
+collected data.
+
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#ItemGroupData">ItemGroupData</a>
+</table>
+<p>
+Clinical data for an item.
+The model does <em>not</em> support repeating items within a single item group.
+
+<p>The ItemOID is used to name a particular item.  This value is unique
+within the parent item group.
+
+<h3><a name="Annotation">Annotation</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#Comment">Comment</a></b>?, <a href="#Flag">Flag</a></b>*) 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>SeqNum</b><td><a href="#t_integer">integer</a><td><td>
+<tr><td><td>TransactionType</b><td>(Insert | Update | Remove | Upsert | Context)<td><em>(optional)</em><td>
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormData">FormData</a>, <a href="#ItemData">ItemData</a>, <a href="#ItemGroupData">ItemGroupData</a>, <a href="#StudyEventData">StudyEventData</a>, <a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+A general note about clinical data.  If an annotation has both a comment and
+flags, the flags should be related to the comment.
+
+<p>The SeqNum attribute (a small positive integer) uniquely identifies the
+annotation within its parent entity.
+
+<p>An empty Annotation (one with no comment and no flags) is not allowed
+unless the TransactionType is Remove.  On Update, the entire value of the
+annotation is replaced.
+
+<h3><a name="Comment">Comment</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>SponsorOrSite</b><td>(Sponsor | Site)<td><em>(optional)</em><td>
+Source of the comment.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Annotation">Annotation</a>
+</table>
+<p>
+A free-text (uninterpreted) comment about clinical data.  The comment may
+have come from the Sponsor or the clinical Site.
+
+<h3><a name="Flag">Flag</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#FlagValue">FlagValue</a></b>, <a href="#FlagType">FlagType</a></b>?) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Annotation">Annotation</a>
+</table>
+<p>
+A machine-processable annotation on clinical data.
+
+<h3><a name="FlagValue">FlagValue</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>CodeListOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#CodeList>CodeList</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Flag">Flag</a>
+</table>
+<p>
+The value of the flag.  The meaning of this value is typically dependent on
+the associated FlagType.  The actual value must be a member of the
+referenced CodeList.
+
+<h3><a name="FlagType">FlagType</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_name">name</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>CodeListOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#CodeList>CodeList</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Flag">Flag</a>
+</table>
+<p>
+The type of flag.  This determines the purpose and semantics of the flag.
+Different applications are expected to be interested in different types of
+flags.  The actual value must be a member of the referenced CodeList.
+
+<a name="Signature"></a>
+<h3><a name="Signature">Signature</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#UserRef">UserRef</a></b>, <a href="#LocationRef">LocationRef</a></b>, <a href="#SignatureRef">SignatureRef</a></b>, <a href="#DateTimeStamp">DateTimeStamp</a></b>,
+                    </b><a href="#CryptoBindingManifest">CryptoBindingManifest</a></b>?) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormData">FormData</a>, <a href="#ItemData">ItemData</a>, <a href="#ItemGroupData">ItemGroupData</a>, <a href="#StudyEventData">StudyEventData</a>, <a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+An electronic signature applies to a collection of clinical data.  This
+indicates that some user accepts legal responsibility for that data.  See <a
+href="http://www.fda.gov/ora/compliance_ref/part11/FRs/background/pt11finr.pdf">21 CRF Part 11</a>.  The signature identifies the person
+signing, the location of signing, the signature meaning (via the referenced
+SignatureDef), the date and time of signing, and (in the case of a digital
+signature) an encrypted hash of the included data.
+
+<p>An electronic signature applies to the entity to which it is attached
+(typically a form).  The signature covers all clinical data in that entity
+at the time of the signing, including all clinical data in any subentities.
+Thus, a signature on a form includes all clinical data at the form, item
+group, and item levels.
+
+<p>For the purpose of this definition, clinical data includes all attributes
+and element content <em>except</em> for TransactionType attributes,
+Signature elements, and AuditRecord elements.
+
+<p>Note:</b> Signatures apply to data at a particular point in time.  Signatures
+cannot be modified.  However, new signatures can be applied when clinical
+data changes.
+
+<p>Note:</b> Signatures apply to the entire content of the <em>entity</em>, not
+just the content that is mentioned in the current ODM <em>element</em>.
+Signatures apply to (static) content, not to a change in content.
+
+<p>Note:</b> The practice of initialing and dating changes on paper forms is a
+way of maintaining an audit trail.  It should not be confused with 21 CFR
+Part 11 electronic signatures (Signature elements).
+
+<p>Note:</b> Contrast with <a href=#AuditRecord>AuditRecord</a>.
+
+<h3><a name="UserRef">UserRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>UserOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#User>User</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AuditRecord">AuditRecord</a>, <a href="#Signature">Signature</a>
+</table>
+<p>
+<h3><a name="SignatureRef">SignatureRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>SignatureOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to the <a href=#SignatureDef>SignatureDef</a>.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Signature">Signature</a>
+</table>
+<p>
+<h3><a name="DateTimeStamp">DateTimeStamp</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_datetime">datetime</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AuditRecord">AuditRecord</a>, <a href="#Signature">Signature</a>
+</table>
+<p>
+The date/time that the data entry, modification, or signature was
+performed.  This applies to the initial occurrence of the action,
+not to subsequent transfers between computer systems.
+
+<h3><a name="CryptoBindingManifest">CryptoBindingManifest</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#Signature">Signature</a>
+</table>
+<p>
+A cryptographic hash of the signed data.  Part of digital (as opposed to
+electronic) signature.  CryptoBindingManifest is not defined further in
+CDISC ODM V1.1.
+
+<h3><a name="AuditRecord">AuditRecord</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> (<a href="#UserRef">UserRef</a></b>, <a href="#LocationRef">LocationRef</a></b>, <a href="#DateTimeStamp">DateTimeStamp</a></b>, <a href="#ReasonForChange">ReasonForChange</a></b>?,
+                      </b><a href="#SourceID">SourceID</a></b>?) 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#FormData">FormData</a>, <a href="#ItemData">ItemData</a>, <a href="#ItemGroupData">ItemGroupData</a>, <a href="#StudyEventData">StudyEventData</a>, <a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+An AuditRecord carries information pertaining to the creation, deletion, or
+modification of clinical data.  This information includes who performed that
+action, and where, when, and why that action was performed.
+
+<p>AuditRecord information describes a change to clinical data, but is not
+itself clinical data.  The value of some clinical data can always be changed
+by a subsequent transaction, but history cannot be changed -- only added to.
+
+<p>AuditRecords are appropriate whenever an element has an TransactionType
+(either explicit or inherited).  AuditRecords are not meaningful in Snapshot
+transfers.
+
+<p>Like the TransactionType attribute, AuditRecords are inherited by any
+subelement that is allowed to have an AuditRecord and does not already have
+an explicit one.
+
+<p>Note:</b> Contrast with <a href=#Signature>Signature</a>.
+
+<p><a name="enote2"><a href="#enote3"><font color=red>Editor's note:</b></font></a>The inheritance of AuditRecords, along with their placement at the
+end of element bodies, implies the need for substantial lookahead in
+processing ODM files.  We may wish to change this.
+
+<h3><a name="ReasonForChange">ReasonForChange</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AuditRecord">AuditRecord</a>
+</table>
+<p>
+A user-supplied reason for a data change.
+
+<h3><a name="SourceID">SourceID</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> <a href="#t_text">text</a> 
+</table>
+<p>Attributes:<br>
+<table><col width=20><tr><td><td>NONE</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#AuditRecord">AuditRecord</a>
+</table>
+<p>
+Information that identifies the source of the data within an originating
+system.  It is only meaningful within the context of that system.
+
+<p>Example:</b> A SourceID attached to an ItemGroup could be used to
+carry the originating system's internal record OID for that data.
+
+<h3><a name="InvestigatorRef">InvestigatorRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>UserOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to a <a href=#User>User</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+<p>On Update, a NULL UserOID is permitted.
+
+<h3><a name="SiteRef">SiteRef</h3>
+<p>Body:<br>
+<table><col width=20><tr><td><td> EMPTY 
+</table>
+<p>Attributes:<br>
+<table><col width=20>
+<tr><td><td>LocationOID</b><td><a href="#t_oidref">oidref</a><td><td>
+Reference to a <a href=#Location>Location</a> definition.
+</table>
+<p>Contained in:<br>
+<table><col width=20><tr><td><td>
+<a href="#SubjectData">SubjectData</a>
+</table>
+<p>
+<p>On Update, a NULL LocationOID is permitted.
+
+<h2><a name="toc21">Element Index</h2>
+
+<table><col width=20>
+<tr><td><td><a href="#Address">Address</a>
+<tr><td><td><a href="#AdminData">AdminData</a>
+<tr><td><td><a href="#Annotation">Annotation</a>
+<tr><td><td><a href="#ArchiveLayout">ArchiveLayout</a>
+<tr><td><td><a href="#ArchiveLayoutRef">ArchiveLayoutRef</a>
+<tr><td><td><a href="#AuditRecord">AuditRecord</a>
+<tr><td><td><a href="#BasicDefinitions">BasicDefinitions</a>
+<tr><td><td><a href="#Certificate">Certificate</a>
+<tr><td><td><a href="#CheckValue">CheckValue</a>
+<tr><td><td><a href="#City">City</a>
+<tr><td><td><a href="#ClinicalData">ClinicalData</a>
+<tr><td><td><a href="#CodeList">CodeList</a>
+<tr><td><td><a href="#CodeListItem">CodeListItem</a>
+<tr><td><td><a href="#CodeListRef">CodeListRef</a>
+<tr><td><td><a href="#Comment">Comment</a>
+<tr><td><td><a href="#Country">Country</a>
+<tr><td><td><a href="#CryptoBindingManifest">CryptoBindingManifest</a>
+<tr><td><td><a href="#DateTimeStamp">DateTimeStamp</a>
+<tr><td><td><a href="#Decode">Decode</a>
+<tr><td><td><a href="#DisplayName">DisplayName</a>
+<tr><td><td><a href="#Email">Email</a>
+<tr><td><td><a href="#ErrorMessage">ErrorMessage</a>
+<tr><td><td><a href="#ExternalCodeList">ExternalCodeList</a>
+<tr><td><td><a href="#ExternalQuestion">ExternalQuestion</a>
+<tr><td><td><a href="#Fax">Fax</a>
+<tr><td><td><a href="#FirstName">FirstName</a>
+<tr><td><td><a href="#Flag">Flag</a>
+<tr><td><td><a href="#FlagType">FlagType</a>
+<tr><td><td><a href="#FlagValue">FlagValue</a>
+<tr><td><td><a href="#FormData">FormData</a>
+<tr><td><td><a href="#FormDef">FormDef</a>
+<tr><td><td><a href="#FormRef">FormRef</a>
+<tr><td><td><a href="#FullName">FullName</a>
+<tr><td><td><a href="#GlobalVariables">GlobalVariables</a>
+<tr><td><td><a href="#Include">Include</a>
+<tr><td><td><a href="#InvestigatorRef">InvestigatorRef</a>
+<tr><td><td><a href="#ItemData">ItemData</a>
+<tr><td><td><a href="#ItemDef">ItemDef</a>
+<tr><td><td><a href="#ItemGroupData">ItemGroupData</a>
+<tr><td><td><a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td><a href="#ItemGroupRef">ItemGroupRef</a>
+<tr><td><td><a href="#ItemRef">ItemRef</a>
+<tr><td><td><a href="#LastName">LastName</a>
+<tr><td><td><a href="#LegalReason">LegalReason</a>
+<tr><td><td><a href="#Location">Location</a>
+<tr><td><td><a href="#LocationRef">LocationRef</a>
+<tr><td><td><a href="#LoginName">LoginName</a>
+<tr><td><td><a href="#Meaning">Meaning</a>
+<tr><td><td><a href="#MeasurementUnit">MeasurementUnit</a>
+<tr><td><td><a href="#MeasurementUnitRef">MeasurementUnitRef</a>
+<tr><td><td><a href="#MetaDataVersion">MetaDataVersion</a>
+<tr><td><td><a href="#MetaDataVersionRef">MetaDataVersionRef</a>
+<tr><td><td><a href="#ODM">ODM</a>
+<tr><td><td><a href="#Organization">Organization</a>
+<tr><td><td><a href="#OtherText">OtherText</a>
+<tr><td><td><a href="#Pager">Pager</a>
+<tr><td><td><a href="#Phone">Phone</a>
+<tr><td><td><a href="#Picture">Picture</a>
+<tr><td><td><a href="#PostalCode">PostalCode</a>
+<tr><td><td><a href="#Presentation">Presentation</a>
+<tr><td><td><a href="#Protocol">Protocol</a>
+<tr><td><td><a href="#ProtocolName">ProtocolName</a>
+<tr><td><td><a href="#Question">Question</a>
+<tr><td><td><a href="#RangeCheck">RangeCheck</a>
+<tr><td><td><a href="#ReasonForChange">ReasonForChange</a>
+<tr><td><td><a href="#ReferenceData">ReferenceData</a>
+<tr><td><td><a href="#Role">Role</a>
+<tr><td><td><a href="#Signature">Signature</a>
+<tr><td><td><a href="#SignatureDef">SignatureDef</a>
+<tr><td><td><a href="#SignatureRef">SignatureRef</a>
+<tr><td><td><a href="#SiteRef">SiteRef</a>
+<tr><td><td><a href="#SourceID">SourceID</a>
+<tr><td><td><a href="#StateProv">StateProv</a>
+<tr><td><td><a href="#StreetName">StreetName</a>
+<tr><td><td><a href="#Study">Study</a>
+<tr><td><td><a href="#StudyDescription">StudyDescription</a>
+<tr><td><td><a href="#StudyEventData">StudyEventData</a>
+<tr><td><td><a href="#StudyEventDef">StudyEventDef</a>
+<tr><td><td><a href="#StudyEventRef">StudyEventRef</a>
+<tr><td><td><a href="#StudyName">StudyName</a>
+<tr><td><td><a href="#SubjectData">SubjectData</a>
+<tr><td><td><a href="#Symbol">Symbol</a>
+<tr><td><td><a href="#TranslatedText">TranslatedText</a>
+<tr><td><td><a href="#User">User</a>
+<tr><td><td><a href="#UserRef">UserRef</a>
+</table>
+<h2><a name="toc22">Attribute Index</h2>
+
+<p>This index lists all the attributes used, along with the elements that
+use them.
+
+<p>
+<table><col width=20>
+<tr><td><td>Archival<td><a href="#ODM">ODM</a>
+<tr><td><td>ArchiveLayoutOID<td><a href="#ArchiveLayoutRef">ArchiveLayoutRef</a>
+<tr><td><td>AsOfDateTime<td><a href="#ODM">ODM</a>
+<tr><td><td>Category<td><a href="#StudyEventDef">StudyEventDef</a>
+<tr><td><td>Code<td><a href="#ExternalQuestion">ExternalQuestion</a>
+<tr><td><td>CodeListOID<td><a href="#CodeListRef">CodeListRef</a>, <a href="#FlagType">FlagType</a>, <a href="#FlagValue">FlagValue</a>
+<tr><td><td>CodedValue<td><a href="#CodeListItem">CodeListItem</a>
+<tr><td><td>Comment<td><a href="#ItemDef">ItemDef</a>, <a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>Comparator<td><a href="#RangeCheck">RangeCheck</a>
+<tr><td><td>CreationDateTime<td><a href="#ODM">ODM</a>
+<tr><td><td>DataType<td><a href="#CodeList">CodeList</a>, <a href="#ItemDef">ItemDef</a>
+<tr><td><td>Description<td><a href="#ODM">ODM</a>
+<tr><td><td>Dictionary<td><a href="#ExternalCodeList">ExternalCodeList</a>, <a href="#ExternalQuestion">ExternalQuestion</a>
+<tr><td><td>Domain<td><a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>EffectiveDate<td><a href="#MetaDataVersionRef">MetaDataVersionRef</a>
+<tr><td><td>FileOID<td><a href="#ODM">ODM</a>
+<tr><td><td>FileType<td><a href="#ODM">ODM</a>
+<tr><td><td>FormOID<td><a href="#FormData">FormData</a>, <a href="#FormRef">FormRef</a>
+<tr><td><td>FormRepeatKey<td><a href="#FormData">FormData</a>
+<tr><td><td>Granularity<td><a href="#ODM">ODM</a>
+<tr><td><td>ImageType<td><a href="#Picture">Picture</a>
+<tr><td><td>IsNull<td><a href="#ItemData">ItemData</a>
+<tr><td><td>IsReferenceData<td><a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>ItemGroupOID<td><a href="#ItemGroupData">ItemGroupData</a>, <a href="#ItemGroupRef">ItemGroupRef</a>
+<tr><td><td>ItemGroupRepeatKey<td><a href="#ItemGroupData">ItemGroupData</a>
+<tr><td><td>ItemOID<td><a href="#ItemData">ItemData</a>, <a href="#ItemRef">ItemRef</a>
+<tr><td><td>Length<td><a href="#ItemDef">ItemDef</a>
+<tr><td><td>LocationOID<td><a href="#LocationRef">LocationRef</a>, <a href="#SiteRef">SiteRef</a>
+<tr><td><td>LocationType<td><a href="#Location">Location</a>
+<tr><td><td>Mandatory<td><a href="#FormRef">FormRef</a>, <a href="#ItemGroupRef">ItemGroupRef</a>, <a href="#ItemRef">ItemRef</a>, <a href="#StudyEventRef">StudyEventRef</a>
+<tr><td><td>MeasurementUnitOID<td><a href="#MeasurementUnitRef">MeasurementUnitRef</a>
+<tr><td><td>MetaDataVersionOID<td><a href="#ClinicalData">ClinicalData</a>, <a href="#Include">Include</a>, <a href="#MetaDataVersionRef">MetaDataVersionRef</a>, <a href="#ReferenceData">ReferenceData</a>
+<tr><td><td>Methodology<td><a href="#SignatureDef">SignatureDef</a>
+<tr><td><td>Name<td><a href="#CodeList">CodeList</a>, <a href="#FormDef">FormDef</a>, <a href="#ItemDef">ItemDef</a>, <a href="#ItemGroupDef">ItemGroupDef</a>, <a href="#Location">Location</a>, <a href="#MeasurementUnit">MeasurementUnit</a>, <a href="#MetaDataVersion">MetaDataVersion</a>, <a href="#StudyEventDef">StudyEventDef</a>
+<tr><td><td>OID<td><a href="#ArchiveLayout">ArchiveLayout</a>, <a href="#CodeList">CodeList</a>, <a href="#FormDef">FormDef</a>, <a href="#ItemDef">ItemDef</a>, <a href="#ItemGroupDef">ItemGroupDef</a>, <a href="#Location">Location</a>, <a href="#MeasurementUnit">MeasurementUnit</a>, <a href="#MetaDataVersion">MetaDataVersion</a>, <a href="#Presentation">Presentation</a>, <a href="#SignatureDef">SignatureDef</a>, <a href="#Study">Study</a>, <a href="#StudyEventDef">StudyEventDef</a>, <a href="#User">User</a>
+<tr><td><td>OrderNumber<td><a href="#FormRef">FormRef</a>, <a href="#ItemGroupRef">ItemGroupRef</a>, <a href="#ItemRef">ItemRef</a>, <a href="#StudyEventRef">StudyEventRef</a>
+<tr><td><td>Origin<td><a href="#ItemDef">ItemDef</a>, <a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>PdfFileName<td><a href="#ArchiveLayout">ArchiveLayout</a>
+<tr><td><td>PictureFileName<td><a href="#Picture">Picture</a>
+<tr><td><td>PresentationOID<td><a href="#ArchiveLayout">ArchiveLayout</a>
+<tr><td><td>PriorFileOID<td><a href="#ODM">ODM</a>
+<tr><td><td>Repeating<td><a href="#FormDef">FormDef</a>, <a href="#ItemGroupDef">ItemGroupDef</a>, <a href="#StudyEventDef">StudyEventDef</a>
+<tr><td><td>Role<td><a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>SASDatasetName<td><a href="#ItemGroupDef">ItemGroupDef</a>
+<tr><td><td>SASFieldName<td><a href="#ItemDef">ItemDef</a>
+<tr><td><td>SASFormatName<td><a href="#CodeList">CodeList</a>
+<tr><td><td>SDSVarName<td><a href="#ItemDef">ItemDef</a>
+<tr><td><td>SeqNum<td><a href="#Annotation">Annotation</a>
+<tr><td><td>SignatureOID<td><a href="#SignatureRef">SignatureRef</a>
+<tr><td><td>SignificantDigits<td><a href="#ItemDef">ItemDef</a>
+<tr><td><td>SoftHard<td><a href="#RangeCheck">RangeCheck</a>
+<tr><td><td>SponsorOrSite<td><a href="#Comment">Comment</a>
+<tr><td><td>StudyEventOID<td><a href="#StudyEventData">StudyEventData</a>, <a href="#StudyEventRef">StudyEventRef</a>
+<tr><td><td>StudyEventRepeatKey<td><a href="#StudyEventData">StudyEventData</a>
+<tr><td><td>StudyOID<td><a href="#AdminData">AdminData</a>, <a href="#ClinicalData">ClinicalData</a>, <a href="#Include">Include</a>, <a href="#MetaDataVersionRef">MetaDataVersionRef</a>, <a href="#ReferenceData">ReferenceData</a>
+<tr><td><td>SubjectKey<td><a href="#SubjectData">SubjectData</a>
+<tr><td><td>TransactionType<td><a href="#Annotation">Annotation</a>, <a href="#FormData">FormData</a>, <a href="#ItemData">ItemData</a>, <a href="#ItemGroupData">ItemGroupData</a>, <a href="#StudyEventData">StudyEventData</a>, <a href="#SubjectData">SubjectData</a>
+<tr><td><td>Type<td><a href="#StudyEventDef">StudyEventDef</a>
+<tr><td><td>UserOID<td><a href="#InvestigatorRef">InvestigatorRef</a>, <a href="#UserRef">UserRef</a>
+<tr><td><td>UserType<td><a href="#User">User</a>
+<tr><td><td>Value<td><a href="#ItemData">ItemData</a>
+<tr><td><td>Version<td><a href="#ExternalCodeList">ExternalCodeList</a>, <a href="#ExternalQuestion">ExternalQuestion</a>
+<tr><td><td>xml:lang<td><a href="#Presentation">Presentation</a>, <a href="#TranslatedText">TranslatedText</a>
+</table>
+</body>
+</html>
+

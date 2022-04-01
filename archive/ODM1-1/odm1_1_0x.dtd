@@ -1,0 +1,560 @@
+<!--
+  This is a generated file. Do not edit!
+  Source file:   odm1-1-0.adtd
+  Last modified: Fri Apr 26 16:52:47 EDT 2002
+-->
+
+<!--
+The Clinical Data Interchange Standards Consortium has developed an
+Operational Data Model for the storage and transfer of data and metadata
+pertaining to clinical trials.  Version 1.1 of this model is available at 
+http://www.cdisc.org/dtd/odm1-1-0.html.
+
+The present DTD is derived from the above specification and expresses
+certain syntactic constraints that all ODM documents must satisfy.  See the
+above specification for further constraints, and for a definition of the
+meaning of ODM documents.  This DTD is available at 
+http://www.cdisc.org/dtd/odm1-1-0.dtd. 
+
+The DTD is published in two forms: ODM1-1-0x.DTD includes 
+parameterized entities to enable vendor extensions. ODM1-1-0.DTD has no
+parameterized entities. As published, the two forms are functionally 
+identical. ODM1-1-0x.DTD is designed to make it possible for a vendor to add 
+elements and attributes, if they are needed, to more completely define
+the metadata or data being transmitted.
+
+Copyright (c) CDISC 2002
+This document is the property of CDISC Inc. This document can be freely used
+and reproduced without limitation as long as (1) it is not modified, and (2)
+the entire copyright statement is included in the copy.  Modifications to
+this document can only be made with written consent of CDISC Inc.
+-->
+
+<!ENTITY % ODM.content "(Study*, AdminData*, ReferenceData*, ClinicalData*)" >
+<!ELEMENT ODM %ODM.content; >
+
+<!ATTLIST ODM
+          Description CDATA #IMPLIED
+          FileType ( Snapshot | Transactional ) #REQUIRED
+          Granularity (  All 
+                     | Metadata 
+		     | AdminData 
+		     | ReferenceData 
+		     | AllClinicalData
+		     | SingleSite
+		     | SingleSubject
+   	            ) #IMPLIED
+          Archival (Yes) #IMPLIED
+          FileOID CDATA #REQUIRED
+          CreationDateTime CDATA #REQUIRED
+          PriorFileOID CDATA #IMPLIED
+          AsOfDateTime CDATA #IMPLIED
+          >
+
+<!ENTITY % Study.content "(GlobalVariables, BasicDefinitions, MetaDataVersion*)" >
+<!ELEMENT Study %Study.content; >
+
+<!ATTLIST Study
+          OID CDATA #REQUIRED
+          >
+
+<!ENTITY % GlobalVariables.content "(StudyName, StudyDescription, ProtocolName)" >
+<!ELEMENT GlobalVariables %GlobalVariables.content; >
+
+<!ENTITY % StudyName.content "(#PCDATA)" >
+<!ELEMENT StudyName %StudyName.content; >
+
+<!ENTITY % StudyDescription.content "(#PCDATA)" >
+<!ELEMENT StudyDescription %StudyDescription.content; >
+
+<!ENTITY % ProtocolName.content "(#PCDATA)" >
+<!ELEMENT ProtocolName %ProtocolName.content; >
+
+<!ENTITY % BasicDefinitions.content "(MeasurementUnit*)" >
+<!ELEMENT BasicDefinitions %BasicDefinitions.content; >
+
+<!ENTITY % MeasurementUnit.content "(Symbol)" >
+<!ELEMENT MeasurementUnit %MeasurementUnit.content; >
+
+<!ATTLIST MeasurementUnit
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ENTITY % Symbol.content "(TranslatedText+)" >
+<!ELEMENT Symbol %Symbol.content; >
+
+<!ENTITY % TranslatedText.content "(#PCDATA)" >
+<!ELEMENT TranslatedText %TranslatedText.content; >
+
+<!ATTLIST TranslatedText
+          xml:lang CDATA #REQUIRED
+          >
+
+<!ENTITY % MetaDataVersion.content "(Include?, Protocol?, StudyEventDef*, FormDef*,
+			  ItemGroupDef*, ItemDef*, CodeList*,
+			  Presentation*)" >
+<!ELEMENT MetaDataVersion %MetaDataVersion.content; >
+
+<!ATTLIST MetaDataVersion
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          >
+
+<!ENTITY % Include.content "EMPTY" >
+<!ELEMENT Include %Include.content; >
+
+<!ATTLIST Include
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ENTITY % Protocol.content "(StudyEventRef+)" >
+<!ELEMENT Protocol %Protocol.content; >
+
+<!ENTITY % StudyEventRef.content "EMPTY" >
+<!ELEMENT StudyEventRef %StudyEventRef.content; >
+
+<!ATTLIST StudyEventRef
+          StudyEventOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ENTITY % StudyEventDef.content "(FormRef+)" >
+<!ELEMENT StudyEventDef %StudyEventDef.content; >
+
+<!ATTLIST StudyEventDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          Type (Scheduled | Unscheduled | Common) #REQUIRED
+          Category CDATA #IMPLIED
+          >
+
+<!ENTITY % FormRef.content "EMPTY" >
+<!ELEMENT FormRef %FormRef.content; >
+
+<!ATTLIST FormRef
+          FormOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ENTITY % FormDef.content "(ItemGroupRef+, ArchiveLayout*)" >
+<!ELEMENT FormDef %FormDef.content; >
+
+<!ATTLIST FormDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          >
+
+<!ENTITY % ItemGroupRef.content "EMPTY" >
+<!ELEMENT ItemGroupRef %ItemGroupRef.content; >
+
+<!ATTLIST ItemGroupRef
+          ItemGroupOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ENTITY % ItemGroupDef.content "(ItemRef+)" >
+<!ELEMENT ItemGroupDef %ItemGroupDef.content; >
+
+<!ATTLIST ItemGroupDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          Repeating (Yes | No) #REQUIRED
+          IsReferenceData (Yes | No) #IMPLIED
+          SASDatasetName CDATA #IMPLIED
+          Domain CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Role CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ENTITY % ItemRef.content "EMPTY" >
+<!ELEMENT ItemRef %ItemRef.content; >
+
+<!ATTLIST ItemRef
+          ItemOID CDATA #REQUIRED
+          OrderNumber CDATA #IMPLIED
+          Mandatory (Yes | No) #REQUIRED
+          >
+
+<!ENTITY % ItemDef.content "(Question?, ExternalQuestion?, MeasurementUnitRef*,
+                  RangeCheck*, CodeListRef?, Role*)" >
+<!ELEMENT ItemDef %ItemDef.content; >
+
+<!ATTLIST ItemDef
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | date | datetime | time | 
+                  text) #REQUIRED
+          Length CDATA #IMPLIED
+          SignificantDigits CDATA #IMPLIED
+          SASFieldName CDATA #IMPLIED
+          SDSVarName CDATA #IMPLIED
+          Origin CDATA #IMPLIED
+          Comment CDATA #IMPLIED
+          >
+
+<!ENTITY % Question.content "(TranslatedText+)" >
+<!ELEMENT Question %Question.content; >
+
+<!ENTITY % ExternalQuestion.content "EMPTY" >
+<!ELEMENT ExternalQuestion %ExternalQuestion.content; >
+
+<!ATTLIST ExternalQuestion
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          Code CDATA #IMPLIED
+          >
+
+<!ENTITY % MeasurementUnitRef.content "EMPTY" >
+<!ELEMENT MeasurementUnitRef %MeasurementUnitRef.content; >
+
+<!ATTLIST MeasurementUnitRef
+          MeasurementUnitOID CDATA #REQUIRED
+          >
+
+<!ENTITY % RangeCheck.content "(CheckValue+, MeasurementUnitRef?, ErrorMessage?)" >
+<!ELEMENT RangeCheck %RangeCheck.content; >
+
+<!ATTLIST RangeCheck
+          Comparator (LT | LE | GT | GE | EQ | NE | IN | NOTIN) #REQUIRED
+          SoftHard (Soft | Hard) #REQUIRED
+          >
+
+<!ENTITY % CheckValue.content "(#PCDATA)" >
+<!ELEMENT CheckValue %CheckValue.content; >
+
+<!ENTITY % ErrorMessage.content "(TranslatedText+)" >
+<!ELEMENT ErrorMessage %ErrorMessage.content; >
+
+<!ENTITY % CodeListRef.content "EMPTY" >
+<!ELEMENT CodeListRef %CodeListRef.content; >
+
+<!ATTLIST CodeListRef
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ENTITY % Role.content "(#PCDATA)" >
+<!ELEMENT Role %Role.content; >
+
+<!ENTITY % CodeList.content "(CodeListItem* | ExternalCodeList)" >
+<!ELEMENT CodeList %CodeList.content; >
+
+<!ATTLIST CodeList
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          DataType (integer | float | text) #REQUIRED
+          SASFormatName CDATA #IMPLIED
+          >
+
+<!ENTITY % CodeListItem.content "(Decode)" >
+<!ELEMENT CodeListItem %CodeListItem.content; >
+
+<!ATTLIST CodeListItem
+          CodedValue CDATA #REQUIRED
+          >
+
+<!ENTITY % Decode.content "(TranslatedText+)" >
+<!ELEMENT Decode %Decode.content; >
+
+<!ENTITY % ExternalCodeList.content "EMPTY" >
+<!ELEMENT ExternalCodeList %ExternalCodeList.content; >
+
+<!ATTLIST ExternalCodeList
+          Dictionary CDATA #IMPLIED
+          Version CDATA #IMPLIED
+          >
+
+<!ENTITY % ArchiveLayout.content "EMPTY" >
+<!ELEMENT ArchiveLayout %ArchiveLayout.content; >
+
+<!ATTLIST ArchiveLayout
+          OID CDATA #REQUIRED
+          PdfFileName CDATA #REQUIRED
+          PresentationOID CDATA #IMPLIED
+          >
+
+<!ENTITY % Presentation.content "(#PCDATA)" >
+<!ELEMENT Presentation %Presentation.content; >
+
+<!ATTLIST Presentation
+          OID CDATA #REQUIRED
+          xml:lang CDATA #IMPLIED
+          >
+
+<!ENTITY % AdminData.content "(User*, Location*, SignatureDef*)" >
+<!ELEMENT AdminData %AdminData.content; >
+
+<!ATTLIST AdminData
+          StudyOID CDATA #IMPLIED
+          >
+
+<!ENTITY % User.content "(LoginName?, DisplayName?, FullName?, FirstName?, LastName?,
+               Organization?, Address*, Email*, Picture?, Pager?, Fax*, Phone*,
+               LocationRef*, Certificate*)" >
+<!ELEMENT User %User.content; >
+
+<!ATTLIST User
+          OID CDATA #REQUIRED
+          UserType (Sponsor | Investigator | Lab | Other) #IMPLIED
+          >
+
+<!ENTITY % LoginName.content "(#PCDATA)" >
+<!ELEMENT LoginName %LoginName.content; >
+
+<!ENTITY % DisplayName.content "(#PCDATA)" >
+<!ELEMENT DisplayName %DisplayName.content; >
+
+<!ENTITY % FullName.content "(#PCDATA)" >
+<!ELEMENT FullName %FullName.content; >
+
+<!ENTITY % FirstName.content "(#PCDATA)" >
+<!ELEMENT FirstName %FirstName.content; >
+
+<!ENTITY % LastName.content "(#PCDATA)" >
+<!ELEMENT LastName %LastName.content; >
+
+<!ENTITY % Organization.content "(#PCDATA)" >
+<!ELEMENT Organization %Organization.content; >
+
+<!ENTITY % Address.content "(StreetName*, City?, StateProv?, Country?, PostalCode?,
+                  OtherText?)" >
+<!ELEMENT Address %Address.content; >
+
+<!ENTITY % StreetName.content "(#PCDATA)" >
+<!ELEMENT StreetName %StreetName.content; >
+
+<!ENTITY % City.content "(#PCDATA)" >
+<!ELEMENT City %City.content; >
+
+<!ENTITY % StateProv.content "(#PCDATA)" >
+<!ELEMENT StateProv %StateProv.content; >
+
+<!ENTITY % Country.content "(#PCDATA)" >
+<!ELEMENT Country %Country.content; >
+
+<!ENTITY % PostalCode.content "(#PCDATA)" >
+<!ELEMENT PostalCode %PostalCode.content; >
+
+<!ENTITY % OtherText.content "(#PCDATA)" >
+<!ELEMENT OtherText %OtherText.content; >
+
+<!ENTITY % Email.content "(#PCDATA)" >
+<!ELEMENT Email %Email.content; >
+
+<!ENTITY % Picture.content "EMPTY" >
+<!ELEMENT Picture %Picture.content; >
+
+<!ATTLIST Picture
+          PictureFileName CDATA #REQUIRED
+          ImageType CDATA #IMPLIED
+          >
+
+<!ENTITY % Pager.content "(#PCDATA)" >
+<!ELEMENT Pager %Pager.content; >
+
+<!ENTITY % Fax.content "(#PCDATA)" >
+<!ELEMENT Fax %Fax.content; >
+
+<!ENTITY % Phone.content "(#PCDATA)" >
+<!ELEMENT Phone %Phone.content; >
+
+<!ENTITY % LocationRef.content "EMPTY" >
+<!ELEMENT LocationRef %LocationRef.content; >
+
+<!ATTLIST LocationRef
+          LocationOID CDATA #REQUIRED
+          >
+
+<!ENTITY % Certificate.content "(#PCDATA)" >
+<!ELEMENT Certificate %Certificate.content; >
+
+<!ENTITY % Location.content "(MetaDataVersionRef+)" >
+<!ELEMENT Location %Location.content; >
+
+<!ATTLIST Location
+          OID CDATA #REQUIRED
+          Name CDATA #REQUIRED
+          LocationType (Sponsor | Site | CRO | Lab | Other) #IMPLIED
+          >
+
+<!ENTITY % MetaDataVersionRef.content "EMPTY" >
+<!ELEMENT MetaDataVersionRef %MetaDataVersionRef.content; >
+
+<!ATTLIST MetaDataVersionRef
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          EffectiveDate CDATA #REQUIRED
+          >
+
+<!ENTITY % SignatureDef.content "(Meaning, LegalReason)" >
+<!ELEMENT SignatureDef %SignatureDef.content; >
+
+<!ATTLIST SignatureDef
+          OID CDATA #REQUIRED
+          Methodology (Digital | Electronic) #IMPLIED
+          >
+
+<!ENTITY % Meaning.content "(#PCDATA)" >
+<!ELEMENT Meaning %Meaning.content; >
+
+<!ENTITY % LegalReason.content "(#PCDATA)" >
+<!ELEMENT LegalReason %LegalReason.content; >
+
+<!ENTITY % ReferenceData.content "(ItemGroupData*)" >
+<!ELEMENT ReferenceData %ReferenceData.content; >
+
+<!ATTLIST ReferenceData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ENTITY % ClinicalData.content "(SubjectData*)" >
+<!ELEMENT ClinicalData %ClinicalData.content; >
+
+<!ATTLIST ClinicalData
+          StudyOID CDATA #REQUIRED
+          MetaDataVersionOID CDATA #REQUIRED
+          >
+
+<!ENTITY % SubjectData.content "(AuditRecord?,Signature?, InvestigatorRef?, SiteRef?,
+		      Annotation*,StudyEventData*)" >
+<!ELEMENT SubjectData %SubjectData.content; >
+
+<!ATTLIST SubjectData
+          SubjectKey CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ENTITY % StudyEventData.content "(AuditRecord?,Signature?,Annotation*,FormData* )" >
+<!ELEMENT StudyEventData %StudyEventData.content; >
+
+<!ATTLIST StudyEventData
+          StudyEventOID CDATA #REQUIRED
+          StudyEventRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ENTITY % FormData.content "(AuditRecord?, Signature?, ArchiveLayoutRef?, 
+				Annotation*,ItemGroupData* )" >
+<!ELEMENT FormData %FormData.content; >
+
+<!ATTLIST FormData
+          FormOID CDATA #REQUIRED
+          FormRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ENTITY % ArchiveLayoutRef.content "EMPTY" >
+<!ELEMENT ArchiveLayoutRef %ArchiveLayoutRef.content; >
+
+<!ATTLIST ArchiveLayoutRef
+          ArchiveLayoutOID CDATA #REQUIRED
+          >
+
+<!ENTITY % ItemGroupData.content "(AuditRecord?,Signature?,Annotation*,ItemData* )" >
+<!ELEMENT ItemGroupData %ItemGroupData.content; >
+
+<!ATTLIST ItemGroupData
+          ItemGroupOID CDATA #REQUIRED
+          ItemGroupRepeatKey CDATA #IMPLIED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ENTITY % ItemData.content "(AuditRecord?,Signature?, MeasurementUnitRef?,
+		   Annotation* )" >
+<!ELEMENT ItemData %ItemData.content; >
+
+<!ATTLIST ItemData
+          ItemOID CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          Value CDATA #IMPLIED
+          IsNull (Yes) #IMPLIED
+          >
+
+<!ENTITY % Annotation.content "(Comment?, Flag*)" >
+<!ELEMENT Annotation %Annotation.content; >
+
+<!ATTLIST Annotation
+          SeqNum CDATA #REQUIRED
+          TransactionType (Insert | Update | Remove | Upsert | Context) #IMPLIED
+          >
+
+<!ENTITY % Comment.content "(#PCDATA)" >
+<!ELEMENT Comment %Comment.content; >
+
+<!ATTLIST Comment
+          SponsorOrSite (Sponsor | Site) #IMPLIED
+          >
+
+<!ENTITY % Flag.content "(FlagValue, FlagType?)" >
+<!ELEMENT Flag %Flag.content; >
+
+<!ENTITY % FlagValue.content "(#PCDATA)" >
+<!ELEMENT FlagValue %FlagValue.content; >
+
+<!ATTLIST FlagValue
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ENTITY % FlagType.content "(#PCDATA)" >
+<!ELEMENT FlagType %FlagType.content; >
+
+<!ATTLIST FlagType
+          CodeListOID CDATA #REQUIRED
+          >
+
+<!ENTITY % Signature.content "(UserRef, LocationRef, SignatureRef, DateTimeStamp,
+                    CryptoBindingManifest?)" >
+<!ELEMENT Signature %Signature.content; >
+
+<!ENTITY % UserRef.content "EMPTY" >
+<!ELEMENT UserRef %UserRef.content; >
+
+<!ATTLIST UserRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ENTITY % SignatureRef.content "EMPTY" >
+<!ELEMENT SignatureRef %SignatureRef.content; >
+
+<!ATTLIST SignatureRef
+          SignatureOID CDATA #REQUIRED
+          >
+
+<!ENTITY % DateTimeStamp.content "(#PCDATA)" >
+<!ELEMENT DateTimeStamp %DateTimeStamp.content; >
+
+<!ENTITY % CryptoBindingManifest.content "(#PCDATA)" >
+<!ELEMENT CryptoBindingManifest %CryptoBindingManifest.content; >
+
+<!ENTITY % AuditRecord.content "(UserRef, LocationRef, DateTimeStamp, ReasonForChange?,
+                      SourceID?)" >
+<!ELEMENT AuditRecord %AuditRecord.content; >
+
+<!ENTITY % ReasonForChange.content "(#PCDATA)" >
+<!ELEMENT ReasonForChange %ReasonForChange.content; >
+
+<!ENTITY % SourceID.content "(#PCDATA)" >
+<!ELEMENT SourceID %SourceID.content; >
+
+<!ENTITY % InvestigatorRef.content "EMPTY" >
+<!ELEMENT InvestigatorRef %InvestigatorRef.content; >
+
+<!ATTLIST InvestigatorRef
+          UserOID CDATA #REQUIRED
+          >
+
+<!ENTITY % SiteRef.content "EMPTY" >
+<!ELEMENT SiteRef %SiteRef.content; >
+
+<!ATTLIST SiteRef
+          LocationOID CDATA #REQUIRED
+          >
+

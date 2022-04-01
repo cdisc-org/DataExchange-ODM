@@ -1,0 +1,708 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+<!DOCTYPE ODM SYSTEM "odm1-1-0.dtd">
+<ODM Description = "CDISC ODM version 1.1.0 format - use Include for MetaData Changes" FileType = "Snapshot" Granularity = "Metadata" FileOID = "MetadataUC2" CreationDateTime = "2002-04-29T11:07:23-05:00">
+	<Study OID = "123-456-789">
+		<GlobalVariables>
+			<StudyName>CDISC Connect-A-Thon Test Study III</StudyName>
+			<StudyDescription>This file contains test data for the CDISC Connect-A-Thon event scheduled for the DIA 38th annual meeting in Chicago.</StudyDescription>
+			<ProtocolName>CDISC-123-456-789</ProtocolName>
+		</GlobalVariables>
+		<BasicDefinitions/>
+		<MetaDataVersion OID = "v1.1.0" Name = "Version 1.1.0">
+			<Protocol>
+				<StudyEventRef StudyEventOID = "SE.VISIT0" OrderNumber = "1" Mandatory = "Yes"/>
+				<StudyEventRef StudyEventOID = "SE.VISIT1" OrderNumber = "2" Mandatory = "Yes"/>
+			</Protocol>
+			<StudyEventDef OID = "SE.VISIT0" Name = "Pre-treatment" Repeating = "No" Type = "Scheduled" Category = "PreTreatment">
+				<FormRef FormOID = "FORM.DEMOG" OrderNumber = "1" Mandatory = "No"/>
+				<FormRef FormOID = "FORM.DRUGPHRM" OrderNumber = "2" Mandatory = "No"/>
+				<FormRef FormOID = "FORM.PHARMVIT" OrderNumber = "3" Mandatory = "No"/>
+				<FormRef FormOID = "FORM.VITPHYEX" OrderNumber = "4" Mandatory = "No"/>
+			</StudyEventDef>
+			<StudyEventDef OID = "SE.VISIT1" Name = "Post-treatment" Repeating = "No" Type = "Scheduled" Category = "PostTreatment">
+				<FormRef FormOID = "FORM.AE" OrderNumber = "1" Mandatory = "No"/>
+				<FormRef FormOID = "FORM.CONMED" OrderNumber = "2" Mandatory = "No"/>
+				<FormRef FormOID = "FORM.VITPHYEX" OrderNumber = "3" Mandatory = "No"/>
+			</StudyEventDef>
+			<FormDef OID = "FORM.AE" Name = "Adverse Events" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.AE" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.AE.PDF" PdfFileName = "UC-AE.pdf"/>
+			</FormDef>
+			<FormDef OID = "FORM.CONMED" Name = "Concom Meds" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.CONMED" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.CONMED.PDF" PdfFileName = "UC-CONMED.pdf"/>
+			</FormDef>
+			<FormDef OID = "FORM.DEMOG" Name = "Demography" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.DEMOG" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.DEMOG.PDF" PdfFileName = "UC-DEMOG.pdf"/>
+			</FormDef>
+			<FormDef OID = "FORM.DRUGPHRM" Name = "Treatment Assignment" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.DRUG_TRT" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.DRUG_TRT.PDF" PdfFileName = "UC-DRUG_TRT.pdf"/>
+			</FormDef>
+			<FormDef OID = "FORM.PHARMVIT" Name = "Pharmacokinetics" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.PHARMO1" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.PHARM01.PDF" PdfFileName = "UC-PHARM01.pdf"/>
+			</FormDef>
+			<FormDef OID = "FORM.VITPHYEX" Name = "Physical Exam" Repeating = "No">
+				<ItemGroupRef ItemGroupOID = "IG.PHYEX" OrderNumber = "1" Mandatory = "No"/>
+				<ArchiveLayout OID = "FORM.PHYEX.PDF" PdfFileName = "UC-PHYEX.pdf"/>
+			</FormDef>
+			<ItemGroupDef OID = "IG.AE" Name = "Adverse Events" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "AE" Domain = "AE Domain" Origin = "AE Origin" Role = "AE Role" Comment = "AE Comment">
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.LINE_NO" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AETERM" OrderNumber = "6" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AESTMON" OrderNumber = "7" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AESTDAY" OrderNumber = "8" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AESTYR" OrderNumber = "9" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AESTDT" OrderNumber = "10" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEENMON" OrderNumber = "11" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEENDAY" OrderNumber = "12" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEENYR" OrderNumber = "13" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEENDT" OrderNumber = "14" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AESEV" OrderNumber = "15" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEREL" OrderNumber = "16" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEOUT" OrderNumber = "17" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AEACTTRT" OrderNumber = "18" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AECONTRT" OrderNumber = "19" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.CONMED" Name = "Concom Meds" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "CONMED" Domain = "Conmed Domain" Origin = "Conmed Origin" Role = "Conmed Role" Comment = "Conmed Comment">
+				<ItemRef ItemOID = "IT.R_DRUG" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.LINE_NO" OrderNumber = "6" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEDIC" OrderNumber = "7" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STRTMON" OrderNumber = "8" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STRTDAY" OrderNumber = "9" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STRTYR" OrderNumber = "10" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STRT_DT" OrderNumber = "11" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.ONGOING" OrderNumber = "12" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STOPMON" OrderNumber = "13" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STOPDAY" OrderNumber = "14" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STOPYR" OrderNumber = "15" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.STOP_DT" OrderNumber = "16" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.DOSEUNIT" OrderNumber = "17" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.ROUTE" OrderNumber = "18" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.REGIMEN" OrderNumber = "19" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.INDIC" OrderNumber = "20" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.AE_RELAT" OrderNumber = "21" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.DEMOG" Name = "Demography" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "DEMOG" Domain = "Demog Domain" Origin = "Demog Origin" Role = "Demog Role" Comment = "Demog Comment">
+				<ItemRef ItemOID = "IT.R_DRUG" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.HT" OrderNumber = "6" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.WT" OrderNumber = "7" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SEX" OrderNumber = "8" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.DOB" OrderNumber = "9" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.RACE" OrderNumber = "10" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.HTUNITS" OrderNumber = "11" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.WTUNITS" OrderNumber = "12" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.DRUG_TRT" Name = "Treatment Assignment" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "DRUG_TRT" Domain = "Treatment Domain" Origin = "Treatment Origin" Role = "Treatment Role" Comment = "Treatment Comment">
+				<ItemRef ItemOID = "IT.R_DRUG" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.DRUG_TRT" OrderNumber = "6" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.PHARMO1" Name = "Pharmacokinetics" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "PHARMO1" Domain = "PK Domain" Origin = "PK Origin" Role = "PK Role" Comment = "PK Comment">
+				<ItemRef ItemOID = "IT.R_DRUG" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR0" OrderNumber = "6" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR1" OrderNumber = "7" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR2" OrderNumber = "8" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR3" OrderNumber = "9" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR4" OrderNumber = "10" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR8" OrderNumber = "11" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR16" OrderNumber = "12" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKYR24" OrderNumber = "13" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEALYR" OrderNumber = "14" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON0" OrderNumber = "15" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON1" OrderNumber = "16" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON2" OrderNumber = "17" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON3" OrderNumber = "18" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON4" OrderNumber = "19" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON8" OrderNumber = "20" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON16" OrderNumber = "21" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKMON24" OrderNumber = "22" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEALMON" OrderNumber = "23" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY0" OrderNumber = "24" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY1" OrderNumber = "25" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY2" OrderNumber = "26" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY3" OrderNumber = "27" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY4" OrderNumber = "28" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY8" OrderNumber = "29" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY16" OrderNumber = "30" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PKDAY24" OrderNumber = "31" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEALDAY" OrderNumber = "32" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.NOTDONE" OrderNumber = "33" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT0" OrderNumber = "34" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT1" OrderNumber = "35" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT2" OrderNumber = "36" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT3" OrderNumber = "37" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT4" OrderNumber = "38" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT8" OrderNumber = "39" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT16" OrderNumber = "40" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_DT24" OrderNumber = "41" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEAL_DT" OrderNumber = "42" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM0" OrderNumber = "43" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM1" OrderNumber = "44" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM2" OrderNumber = "45" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM3" OrderNumber = "46" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM4" OrderNumber = "47" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM8" OrderNumber = "48" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM16" OrderNumber = "49" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PK_TIM24" OrderNumber = "50" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.MEALTIM" OrderNumber = "51" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.PHYEX" Name = "Physical Exam" Repeating = "Yes" IsReferenceData = "No" SASDatasetName = "PHYEX" Domain = "PE Domain" Origin = "PE Origin" Role = "PE Role" Comment = "PE Comment">
+				<ItemRef ItemOID = "IT.R_DRUG" OrderNumber = "1" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.TAREA" OrderNumber = "2" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.PNO" OrderNumber = "3" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.SCTRY" OrderNumber = "4" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.F_STATUS" OrderNumber = "5" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.BODY_SYS" OrderNumber = "6" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.ABNORM" OrderNumber = "7" Mandatory = "No"/>
+				<ItemRef ItemOID = "IT.COMMT1" OrderNumber = "8" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemGroupDef OID = "IG.REFSAMP" Name = "Sample Reference Data" Repeating = "Yes" IsReferenceData = "Yes" SASDatasetName = "REFSAMP">
+				<ItemRef ItemOID = "IT.REF1" OrderNumber = "1" Mandatory = "Yes"/>
+				<ItemRef ItemOID = "IT.REF2" OrderNumber = "2" Mandatory = "No"/>
+			</ItemGroupDef>
+			<ItemDef OID = "IT.ABNORM" Name = "Normal/Abnormal/Not Done" DataType = "integer" Length = "1" SASFieldName = "ABNORM" SDSVarName = "ABNORM SDS Variable Name" Origin = "ABNORM Origin" Comment = "ABNORM Comment">
+				<Question>
+					<TranslatedText xml:lang = "en">English: Normal/Abnormal/Not Done?</TranslatedText>
+					<TranslatedText xml:lang = "fr">French: Normal/Abnormal/Not Done?</TranslatedText>
+				</Question>
+				<ExternalQuestion Dictionary = "Websters" Version = "2001 Unabridged" Code = "NormAbnormNotDone"/>
+				<RangeCheck Comparator = "LT" SoftHard = "Hard">
+					<CheckValue>1</CheckValue>
+					<MeasurementUnitRef MeasurementUnitOID = "MU.DPML"/>
+					<ErrorMessage>
+						<TranslatedText xml:lang = "en">English: The value must be between 1 and 3.</TranslatedText>
+						<TranslatedText xml:lang = "fr">French: The value must be between 1 and 3.</TranslatedText>
+						<TranslatedText xml:lang = "es">Spanish: The value must be between 1 and 3.</TranslatedText>
+					</ErrorMessage>
+				</RangeCheck>
+				<RangeCheck Comparator = "GT" SoftHard = "Hard">
+					<CheckValue>3</CheckValue>
+					<MeasurementUnitRef MeasurementUnitOID = "MU.DPML"/>
+					<ErrorMessage>
+						<TranslatedText xml:lang = "en">The value must be between 1 and 3.</TranslatedText>
+					</ErrorMessage>
+				</RangeCheck>
+				<RangeCheck Comparator = "EQ" SoftHard = "Soft">
+					<CheckValue>2</CheckValue>
+					<MeasurementUnitRef MeasurementUnitOID = "MU.DPML"/>
+					<ErrorMessage>
+						<TranslatedText xml:lang = "en">English: Is the value really abnormal?</TranslatedText>
+						<TranslatedText xml:lang = "es">Spanish: ¿Is the value really abnormal?</TranslatedText>
+					</ErrorMessage>
+				</RangeCheck>
+				<CodeListRef CodeListOID = "CL.N_A_ND"/>
+				<Role>ABNORM Role</Role>
+			</ItemDef>
+			<ItemDef OID = "IT.AEACTTRT" Name = "Actions taken re study drug" DataType = "text" Length = "1" SASFieldName = "AEACTTRT">
+				<Question>
+					<TranslatedText xml:lang = "en">Actions taken re study drug?</TranslatedText>
+				</Question>
+				<CodeListRef CodeListOID = "CL.AEACTTR"/>
+			</ItemDef>
+			<ItemDef OID = "IT.AECONTRT" Name = "Actions taken, other" DataType = "text" Length = "1" SASFieldName = "AECONTRT">
+				<CodeListRef CodeListOID = "CL.AECONTR"/>
+			</ItemDef>
+			<ItemDef OID = "IT.AEENDAY" Name = "Stop Day - Enter Two Digits 01-31" DataType = "text" Length = "2" SASFieldName = "AEENDAY"/>
+			<ItemDef OID = "IT.AEENDT" Name = "Derived Stop Date" DataType = "text" Length = "8" SASFieldName = "AEENDT"/>
+			<ItemDef OID = "IT.AEENMON" Name = "Stop Month - Enter Two Digits 01-12" DataType = "text" Length = "2" SASFieldName = "AEENMON"/>
+			<ItemDef OID = "IT.AEENYR" Name = "Stop Year - Enter Four Digit Year" DataType = "text" Length = "4" SASFieldName = "AEENYR"/>
+			<ItemDef OID = "IT.AEOUT" Name = "Outcome" DataType = "text" Length = "1" SASFieldName = "AEOUT">
+				<CodeListRef CodeListOID = "CL.AEOUT"/>
+			</ItemDef>
+			<ItemDef OID = "IT.AEREL" Name = "Relationship to study drug" DataType = "text" Length = "1" SASFieldName = "AEREL">
+				<CodeListRef CodeListOID = "CL.AEREL"/>
+			</ItemDef>
+			<ItemDef OID = "IT.AESEV" Name = "Severity" DataType = "text" Length = "1" SASFieldName = "AESEV">
+				<CodeListRef CodeListOID = "CL.AESEV"/>
+			</ItemDef>
+			<ItemDef OID = "IT.AESTDAY" Name = "Start Day - Enter Two Digits 01-31" DataType = "text" Length = "2" SASFieldName = "AESTDAY"/>
+			<ItemDef OID = "IT.AESTDT" Name = "Derived Start Date" DataType = "text" Length = "8" SASFieldName = "AESTDT"/>
+			<ItemDef OID = "IT.AESTMON" Name = "Start Month - Enter Two Digits 01-12" DataType = "text" Length = "2" SASFieldName = "AESTMON"/>
+			<ItemDef OID = "IT.AESTYR" Name = "Start Year - Enter Four Digit Year" DataType = "text" Length = "4" SASFieldName = "AESTYR"/>
+			<ItemDef OID = "IT.AETERM" Name = "Conmed Indication" DataType = "text" Length = "100" SASFieldName = "AETERM"/>
+			<ItemDef OID = "IT.AE_RELAT" Name = "Check If Taken for AE" DataType = "text" Length = "1" SASFieldName = "AE_RELAT">
+				<CodeListRef CodeListOID = "CL.AEREL"/>
+			</ItemDef>
+			<ItemDef OID = "IT.BODY_SYS" Name = "Physical Exam Body System" DataType = "integer" Length = "2" SASFieldName = "BODY_SYS">
+				<CodeListRef CodeListOID = "CL.PE_TEST"/>
+			</ItemDef>
+			<ItemDef OID = "IT.COMMT1" Name = "Comment" DataType = "text" Length = "200" SASFieldName = "COMMT1"/>
+			<ItemDef OID = "IT.DOB" Name = "Date of Birth" DataType = "text" Length = "8" SASFieldName = "DOB"/>
+			<ItemDef OID = "IT.DOSEUNIT" Name = "Dose and Unit" DataType = "text" Length = "20" SASFieldName = "DOSEUNIT"/>
+			<ItemDef OID = "IT.DRUG_TRT" Name = "Assigned Study Drug Treatment" DataType = "integer" Length = "1" SASFieldName = "DRUG_TRT">
+				<CodeListRef CodeListOID = "CL.DRUGTRTF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.F_STATUS" Name = "Record status, 5 levels, internal use" DataType = "text" Length = "1" SASFieldName = "F_STATUS">
+				<CodeListRef CodeListOID = "CL.F_STATU"/>
+			</ItemDef>
+			<ItemDef OID = "IT.HT" Name = "Height" DataType = "float" Length = "4" SignificantDigits = "1" SASFieldName = "HT"/>
+			<ItemDef OID = "IT.HTUNITS" Name = "Height Units" DataType = "text" Length = "2" SASFieldName = "HTUNITS"/>
+			<ItemDef OID = "IT.INDIC" Name = "Conmed Indication" DataType = "text" Length = "100" SASFieldName = "INDIC"/>
+			<ItemDef OID = "IT.LINE_NO" Name = "Line Number" DataType = "integer" Length = "2" SASFieldName = "LINE_NO"/>
+			<ItemDef OID = "IT.MEALDAY" Name = "Meal day" DataType = "text" Length = "2" SASFieldName = "MEALDAY"/>
+			<ItemDef OID = "IT.MEALMON" Name = "Meal mon" DataType = "text" Length = "2" SASFieldName = "MEALMON"/>
+			<ItemDef OID = "IT.MEALTIM" Name = "Time of last meal" DataType = "text" Length = "4" SASFieldName = "MEALTIM"/>
+			<ItemDef OID = "IT.MEALYR" Name = "Meal year" DataType = "text" Length = "4" SASFieldName = "MEALYR"/>
+			<ItemDef OID = "IT.MEAL_DT" Name = "Date of last meal" DataType = "text" Length = "8" SASFieldName = "MEAL_DT"/>
+			<ItemDef OID = "IT.MEDIC" Name = "Medication For Conmed" DataType = "text" Length = "200" SASFieldName = "MEDIC"/>
+			<ItemDef OID = "IT.NOTDONE" Name = "Not done" DataType = "text" Length = "1" SASFieldName = "NOTDONE"/>
+			<ItemDef OID = "IT.ONGOING" Name = "Check if Ongoing" DataType = "text" Length = "1" SASFieldName = "ONGOING"/>
+			<ItemDef OID = "IT.PKDAY0" Name = "Pretreatment day" DataType = "text" Length = "2" SASFieldName = "PKDAY0"/>
+			<ItemDef OID = "IT.PKDAY1" Name = "1-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY1"/>
+			<ItemDef OID = "IT.PKDAY16" Name = "16-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY16"/>
+			<ItemDef OID = "IT.PKDAY2" Name = "2-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY2"/>
+			<ItemDef OID = "IT.PKDAY24" Name = "24-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY24"/>
+			<ItemDef OID = "IT.PKDAY3" Name = "3-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY3"/>
+			<ItemDef OID = "IT.PKDAY4" Name = "4-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY4"/>
+			<ItemDef OID = "IT.PKDAY8" Name = "8-h day" DataType = "text" Length = "2" SASFieldName = "PKDAY8"/>
+			<ItemDef OID = "IT.PKMON0" Name = "Pretreatment mon" DataType = "text" Length = "2" SASFieldName = "PKMON0"/>
+			<ItemDef OID = "IT.PKMON1" Name = "1-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON1"/>
+			<ItemDef OID = "IT.PKMON16" Name = "16-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON16"/>
+			<ItemDef OID = "IT.PKMON2" Name = "2-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON2"/>
+			<ItemDef OID = "IT.PKMON24" Name = "24-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON24"/>
+			<ItemDef OID = "IT.PKMON3" Name = "3-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON3"/>
+			<ItemDef OID = "IT.PKMON4" Name = "4-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON4"/>
+			<ItemDef OID = "IT.PKMON8" Name = "8-h mon" DataType = "text" Length = "2" SASFieldName = "PKMON8"/>
+			<ItemDef OID = "IT.PKYR0" Name = "Pretreatment yr" DataType = "text" Length = "4" SASFieldName = "PKYR0"/>
+			<ItemDef OID = "IT.PKYR1" Name = "1-h year" DataType = "text" Length = "4" SASFieldName = "PKYR1"/>
+			<ItemDef OID = "IT.PKYR16" Name = "16-h year" DataType = "text" Length = "4" SASFieldName = "PKYR16"/>
+			<ItemDef OID = "IT.PKYR2" Name = "2-h year" DataType = "text" Length = "4" SASFieldName = "PKYR2"/>
+			<ItemDef OID = "IT.PKYR24" Name = "24-h year" DataType = "text" Length = "4" SASFieldName = "PKYR24"/>
+			<ItemDef OID = "IT.PKYR3" Name = "3-h year" DataType = "text" Length = "4" SASFieldName = "PKYR3"/>
+			<ItemDef OID = "IT.PKYR4" Name = "4-h year" DataType = "text" Length = "4" SASFieldName = "PKYR4"/>
+			<ItemDef OID = "IT.PKYR8" Name = "8-h year" DataType = "text" Length = "4" SASFieldName = "PKYR8"/>
+			<ItemDef OID = "IT.PK_DT0" Name = "Pretreatment date" DataType = "text" Length = "8" SASFieldName = "PK_DT0"/>
+			<ItemDef OID = "IT.PK_DT1" Name = "1-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT1"/>
+			<ItemDef OID = "IT.PK_DT16" Name = "16-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT16"/>
+			<ItemDef OID = "IT.PK_DT2" Name = "2-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT2"/>
+			<ItemDef OID = "IT.PK_DT24" Name = "24-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT24"/>
+			<ItemDef OID = "IT.PK_DT3" Name = "3-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT3"/>
+			<ItemDef OID = "IT.PK_DT4" Name = "4-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT4"/>
+			<ItemDef OID = "IT.PK_DT8" Name = "8-h date" DataType = "text" Length = "8" SASFieldName = "PK_DT8"/>
+			<ItemDef OID = "IT.PK_TIM0" Name = "Pretreatment time" DataType = "text" Length = "4" SASFieldName = "PK_TIM0"/>
+			<ItemDef OID = "IT.PK_TIM1" Name = "1-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM1"/>
+			<ItemDef OID = "IT.PK_TIM16" Name = "16-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM16"/>
+			<ItemDef OID = "IT.PK_TIM2" Name = "2-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM2"/>
+			<ItemDef OID = "IT.PK_TIM24" Name = "24-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM24"/>
+			<ItemDef OID = "IT.PK_TIM3" Name = "3-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM3"/>
+			<ItemDef OID = "IT.PK_TIM4" Name = "4-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM4"/>
+			<ItemDef OID = "IT.PK_TIM8" Name = "8-h time" DataType = "text" Length = "4" SASFieldName = "PK_TIM8"/>
+			<ItemDef OID = "IT.PNO" Name = "Protocol Number" DataType = "text" Length = "15" SASFieldName = "PNO"/>
+			<ItemDef OID = "IT.RACE" Name = "Ethnic Group" DataType = "text" Length = "10" SASFieldName = "RACE"/>
+			<ItemDef OID = "IT.REGIMEN" Name = "Conmed Regimen" DataType = "integer" Length = "1" SASFieldName = "REGIMEN">
+				<CodeListRef CodeListOID = "CL.REGF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.ROUTE" Name = "Conmed Route" DataType = "integer" Length = "2" SASFieldName = "ROUTE">
+				<CodeListRef CodeListOID = "CL.ROUTEF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.R_DRUG" Name = "Compound" DataType = "text" Length = "8" SASFieldName = "R_DRUG"/>
+			<ItemDef OID = "IT.SCTRY" Name = "Country" DataType = "text" Length = "4" SASFieldName = "SCTRY">
+				<CodeListRef CodeListOID = "CL.SCTRYF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.SEX" Name = "Gender" DataType = "text" Length = "6" SASFieldName = "SEX">
+				<CodeListRef CodeListOID = "CL.SEXF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.STOPDAY" Name = "Stop Day - Enter Two Digits 01-31" DataType = "text" Length = "2" SASFieldName = "STOPDAY"/>
+			<ItemDef OID = "IT.STOPMON" Name = "Stop Month - Enter Two Digits 01-12" DataType = "text" Length = "2" SASFieldName = "STOPMON"/>
+			<ItemDef OID = "IT.STOPYR" Name = "Stop Year - Enter Four Digit Year" DataType = "text" Length = "4" SASFieldName = "STOPYR"/>
+			<ItemDef OID = "IT.STOP_DT" Name = "Derived Stop Date" DataType = "text" Length = "8" SASFieldName = "STOP_DT"/>
+			<ItemDef OID = "IT.STRTDAY" Name = "Start Day - Enter Two Digits 01-31" DataType = "text" Length = "2" SASFieldName = "STRTDAY"/>
+			<ItemDef OID = "IT.STRTMON" Name = "Start Month - Enter Two Digits 01-12" DataType = "text" Length = "2" SASFieldName = "STRTMON"/>
+			<ItemDef OID = "IT.STRTYR" Name = "Start Year - Enter Four Digit Year" DataType = "text" Length = "4" SASFieldName = "STRTYR"/>
+			<ItemDef OID = "IT.STRT_DT" Name = "Derived Start Date" DataType = "text" Length = "8" SASFieldName = "STRT_DT"/>
+			<ItemDef OID = "IT.TAREA" Name = "Therapeutic Area" DataType = "text" Length = "4" SASFieldName = "TAREA">
+				<CodeListRef CodeListOID = "CL.TAREAF"/>
+			</ItemDef>
+			<ItemDef OID = "IT.WT" Name = "Weight" DataType = "float" Length = "4" SignificantDigits = "1" SASFieldName = "WT"/>
+			<ItemDef OID = "IT.WTUNITS" Name = "Weight Units" DataType = "text" Length = "2" SASFieldName = "WTUNITS"/>
+			<ItemDef OID = "IT.REF1" Name = "Record Number" DataType = "integer" Length = "8" SASFieldName = "REF1"/>
+			<ItemDef OID = "IT.REF2" Name = "Text" DataType = "text" Length = "40" SASFieldName = "REF2"/>
+			<CodeList OID = "CL.AEACTTR" Name = "AE Action Taken, Study Drug" DataType = "text" SASFormatName = "AEACTTR">
+				<CodeListItem CodedValue = "0">
+					<Decode>
+						<TranslatedText xml:lang = "en">None</TranslatedText>
+						<TranslatedText xml:lang = "fr">French: None</TranslatedText>
+						<TranslatedText xml:lang = "es">Spanish: None</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Discontinued permanently</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Reduced</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Interrupted</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.AECONTR" Name = "AE Action Taken, Other" DataType = "text" SASFormatName = "AECONTR">
+				<CodeListItem CodedValue = "0">
+					<Decode>
+						<TranslatedText xml:lang = "en">None</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Medication required</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Hospitalization required or prolonged</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Other</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.AEOUT" Name = "AE Outcome" DataType = "text" SASFormatName = "AEOUT">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Resolved, no residual effects</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Continuing</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Resolved, residual effects</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "4">
+					<Decode>
+						<TranslatedText xml:lang = "en">Death</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.AEREL" Name = "AE Relationship to Study Drug" DataType = "text" SASFormatName = "AEREL">
+				<CodeListItem CodedValue = "0">
+					<Decode>
+						<TranslatedText xml:lang = "en">None</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Unlikely</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Possible</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Probable</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.AESEV" Name = "AE Severity" DataType = "text" SASFormatName = "AESEV">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Mild</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Moderate</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Severe</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "4">
+					<Decode>
+						<TranslatedText xml:lang = "en">Life Threatening</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.DRUGTRTF" Name = "Assigned Study Drug" DataType = "integer" SASFormatName = "DRUGTRTF">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Treatment A</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Treatment B</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Treatment C</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.F_STATU" Name = "Record Status, Internal" DataType = "text" SASFormatName = "F_STATU">
+				<CodeListItem CodedValue = "S">
+					<Decode>
+						<TranslatedText xml:lang = "en">Source verified, not queried</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "V">
+					<Decode>
+						<TranslatedText xml:lang = "en">Source verified, queried</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.N_A_ND" Name = "Normal/Abnormal/Not Done" DataType = "integer" SASFormatName = "N_A_ND">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Normal</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Abnormal</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Not Done</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.PE_TEST" Name = "PE Body System" DataType = "integer" SASFormatName = "PE_TEST">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">Head, Neck and Thyroid</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">Eyes, Ears, Nose and Throat</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">Chest</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "4">
+					<Decode>
+						<TranslatedText xml:lang = "en">Lungs</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "5">
+					<Decode>
+						<TranslatedText xml:lang = "en">Heart</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "6">
+					<Decode>
+						<TranslatedText xml:lang = "en">Lymph Nodes</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "7">
+					<Decode>
+						<TranslatedText xml:lang = "en">Abdomen</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "8">
+					<Decode>
+						<TranslatedText xml:lang = "en">Anorectal</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "9">
+					<Decode>
+						<TranslatedText xml:lang = "en">Genitalia</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "10">
+					<Decode>
+						<TranslatedText xml:lang = "en">Skin</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "11">
+					<Decode>
+						<TranslatedText xml:lang = "en">Musculoskeletal</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "12">
+					<Decode>
+						<TranslatedText xml:lang = "en">Neurological</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "13">
+					<Decode>
+						<TranslatedText xml:lang = "en">Other</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.REGF" Name = "Conmed Regimen" DataType = "integer" SASFormatName = "REGF">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">q.d.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">b.i.d.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">t.i.d.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "4">
+					<Decode>
+						<TranslatedText xml:lang = "en">q.i.d.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "5">
+					<Decode>
+						<TranslatedText xml:lang = "en">q.o.d.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "6">
+					<Decode>
+						<TranslatedText xml:lang = "en">q.h.s.</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "7">
+					<Decode>
+						<TranslatedText xml:lang = "en">cont. IV</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "8">
+					<Decode>
+						<TranslatedText xml:lang = "en">prn</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "9">
+					<Decode>
+						<TranslatedText xml:lang = "en">If not in list, record as Other</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.ROUTEF" Name = "Conmed Route" DataType = "integer" SASFormatName = "ROUTEF">
+				<CodeListItem CodedValue = "1">
+					<Decode>
+						<TranslatedText xml:lang = "en">IV</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "2">
+					<Decode>
+						<TranslatedText xml:lang = "en">IM</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "3">
+					<Decode>
+						<TranslatedText xml:lang = "en">PO</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "4">
+					<Decode>
+						<TranslatedText xml:lang = "en">SC</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "5">
+					<Decode>
+						<TranslatedText xml:lang = "en">PV</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "6">
+					<Decode>
+						<TranslatedText xml:lang = "en">PR</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "7">
+					<Decode>
+						<TranslatedText xml:lang = "en">Sublingual</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "8">
+					<Decode>
+						<TranslatedText xml:lang = "en">Inhaled</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "9">
+					<Decode>
+						<TranslatedText xml:lang = "en">Topical</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "10">
+					<Decode>
+						<TranslatedText xml:lang = "en">If not in list</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.SCTRYF" Name = "Country" DataType = "text" SASFormatName = "SCTRYF">
+				<CodeListItem CodedValue = "USA">
+					<Decode>
+						<TranslatedText xml:lang = "en">United States</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.SEXF" Name = "Gender" DataType = "text" SASFormatName = "SEXF">
+				<CodeListItem CodedValue = "F">
+					<Decode>
+						<TranslatedText xml:lang = "en">Female</TranslatedText>
+					</Decode>
+				</CodeListItem>
+				<CodeListItem CodedValue = "M">
+					<Decode>
+						<TranslatedText xml:lang = "en">Male</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "CL.TAREAF" Name = "Therapeutic Area" DataType = "text" SASFormatName = "TAREAF">
+				<CodeListItem CodedValue = "ONC">
+					<Decode>
+						<TranslatedText xml:lang = "en">Oncology</TranslatedText>
+					</Decode>
+				</CodeListItem>
+			</CodeList>
+			<CodeList OID = "LOINC" Name = "LOINC Version 2.0" DataType = "text" SASFormatName = "LOINC">
+				<ExternalCodeList Dictionary = "LOINC" Version = "2.0"/>
+			</CodeList>
+			<Presentation OID = "PRS.EN" xml:lang = "en">English</Presentation>
+			<Presentation OID = "PRS.FR" xml:lang = "fr">French</Presentation>
+			<Presentation OID = "PRS.ES" xml:lang = "es">Spanish</Presentation>
+		</MetaDataVersion>
+		<MetaDataVersion OID = "v1.1.0.1" Name = "Version1.1.0.1">
+			<Include StudyOID = "123-456-789" MetaDataVersionOID = "v1.1.0"/>
+			<StudyEventDef OID = "SE.VISIT1" Name = "Post-treatment" Repeating = "No" Type = "Scheduled">
+				<FormRef FormOID = "FORM.PHARMVIT" Mandatory = "No" OrderNumber = "1"/>
+				<FormRef FormOID = "FORM.AE" Mandatory = "No" OrderNumber = "2"/>
+				<FormRef FormOID = "FORM.CONMED" Mandatory = "No" OrderNumber = "3"/>
+				<FormRef FormOID = "FORM.PHYEX" Mandatory = "No" OrderNumber = "4"/>
+			</StudyEventDef>
+		</MetaDataVersion>
+	</Study>
+</ODM>
