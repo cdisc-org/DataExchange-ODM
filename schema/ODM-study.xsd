@@ -218,7 +218,14 @@
     <xs:attributeGroup name="FormalExpressionAttributeDefinition">
         <xs:attribute name="Context" type="text"/>
     </xs:attributeGroup>
-
+    <xs:attributeGroup name="ExternalCodeLibAttributeDefinition">
+        <xs:attribute name="Library" type="name" use="required"/>
+        <xs:attribute name="Method" type="name" use="required"/>
+        <xs:attribute name="Version" type="text"/>
+        <xs:attribute name="ref" type="text"/>
+        <xs:attribute name="href" type="xs:anyURI"/>
+    </xs:attributeGroup>
+    
     <!--
         +===========================================================================+
         | group definitions                                                         |
@@ -497,13 +504,28 @@
         <xs:attributeGroup ref="ConditionDefAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-FormalExpression">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element ref="Code" />            
+                <xs:element ref="ExternalCodeLib" />            
+            </xs:choice>
+            <xs:group ref="FormalExpressionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>            
+        <xs:attributeGroup ref="FormalExpressionAttributeDefinition"/>
+        <xs:attributeGroup ref="FormalExpressionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Code">
         <xs:simpleContent>
             <xs:extension base="text">
-                <xs:attributeGroup ref="FormalExpressionAttributeDefinition"/>
-                <xs:attributeGroup ref="FormalExpressionAttributeExtension"/>
+                <xs:attributeGroup ref="CodeAttributeExtension"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-ExternalCodeLib">
+        <xs:attributeGroup ref="ExternalCodeLibAttributeDefinition" />
+        <xs:attributeGroup ref="ExternalCodeLibAttributeExtension" />
+    </xs:complexType>
+    
 
 
     <!--
@@ -677,4 +699,6 @@
         </xs:unique>
     </xs:element>
     <xs:element name="FormalExpression" type="ODMcomplexTypeDefinition-FormalExpression"/>
+    <xs:element name="Code" type="ODMcomplexTypeDefinition-Code"/>
+    <xs:element name="ExternalCodeLib" type="ODMcomplexTypeDefinition-ExternalCodeLib"/>
 </xs:schema>

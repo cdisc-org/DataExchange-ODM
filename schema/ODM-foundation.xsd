@@ -172,6 +172,8 @@
 	<xs:attributeGroup name="DescriptionAttributeExtension"/>
 	<xs:attributeGroup name="ConditionDefAttributeExtension"/>
 	<xs:attributeGroup name="FormalExpressionAttributeExtension"/>
+	<xs:attributeGroup name="CodeAttributeExtension"/>
+	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
 	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
 	<xs:attributeGroup name="ItemDataStarAttributeExtension"/>
 	<xs:attributeGroup name="MethodDefAttributeExtension"/>
@@ -398,6 +400,9 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MethodDefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="FormalExpressionElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<!--
