@@ -177,6 +177,10 @@
 	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
 	<xs:attributeGroup name="ItemDataStarAttributeExtension"/>
 	<xs:attributeGroup name="MethodDefAttributeExtension"/>
+	<xs:attributeGroup name="MethodSignatureAttributeExtension"/>
+	<xs:attributeGroup name="ParameterAttributeExtension"/>
+	<xs:attributeGroup name="ReturnValueAttributeExtension"/>
+	<xs:attributeGroup name="CommentDefAttributeExtension"/>
 	<!--
         +===========================================================================+
         | these are purposely empty modelGroups to permit vendor extensions to the  |
@@ -402,7 +406,19 @@
 	<xs:group name="MethodDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="MethodSignatureElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ParameterElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ReturnValueElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="FormalExpressionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="CommentDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<!--

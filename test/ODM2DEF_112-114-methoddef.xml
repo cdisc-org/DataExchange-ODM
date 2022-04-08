@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xlink="http://www.w3.org/1999/xlink"
+    ODMVersion="2.0" FileOID="ODM2DEF-112-114-methoddef" FileType="Snapshot"
+    CreationDateTime="2022-04-07T00:00:00">
+
+    <Study OID="1" StudyName="ODM2DEF-112-114">
+        <MetaDataVersion OID="MDV.ODM2DEF-112-114" Name="ODM2DEF-112-114">
+            
+            <ItemDef OID="IT.112" Name="112 114" DataType="integer">
+                <RangeCheck SoftHard="Soft">
+                    <MethodSignature>
+                        <Parameter Name="param1" DataType="integer"/>
+                        <ReturnValue Name="return1" DataType="integer"/>
+                    </MethodSignature>
+                </RangeCheck>
+            </ItemDef>
+            
+            <ConditionDef OID="ODM.CD.112-114" Name="112 114">
+                <Description>
+                    <TranslatedText xml:lang="en">112 114</TranslatedText>
+                </Description>
+                <MethodSignature>
+                    <Parameter Name="param1" DataType="integer"/>
+                    <ReturnValue Name="return1" DataType="integer"/>
+                </MethodSignature>
+            </ConditionDef>
+            
+            <MethodDef OID="ODM.MT.112-114" Name="112 114" Type="Computation"
+                CommentOID="COM.112-114">
+                <Description>
+                    <TranslatedText xml:lang="en">112 114</TranslatedText>
+                </Description>
+                <MethodSignature>
+                    <Parameter Name="param1" DataType="integer"/>
+                    <ReturnValue Name="return1" DataType="integer"/>
+                </MethodSignature>
+                <FormalExpression Context="Python 3.7">
+                    <Code> smart = client.FHIRClient(settings={'app_id': 'rof_adapter', 'api_base':
+                        'https://api.logicahealth.org/STU301withSynthea/open'}) search_obs =
+                        ob.Observation.where(struct=dict(patient=patient_id, code=loinc_code)) value
+                        = "" if len(search_obs.perform_resources(smart.server)) > 0: obs =
+                        search_obs.perform_resources(smart.server).pop().as_json() value =
+                        obs["valueQuantity"]["value"] unit = obs["valueQuantity"]["unit"] return
+                        value, unit </Code>
+                </FormalExpression>
+                <FormalExpression Context="R 4.0">
+                    <ExternalCodeLib Method="MyMethod" Library="GitHub" Version="1.1"
+                        href="https://raw.githubusercontent.com/:owner/:repo/master/:path"
+                        ref="../code"/>
+                </FormalExpression>
+            </MethodDef>
+
+            <CommentDef OID="COM.112-114">
+                <Description>
+                    <TranslatedText xml:lang="en">This is a comment</TranslatedText>
+                </Description>
+            </CommentDef>
+
+        </MetaDataVersion>
+    </Study>
+</ODM>
