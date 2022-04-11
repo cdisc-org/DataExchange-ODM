@@ -70,8 +70,10 @@
     -->
 	<xs:attributeGroup name="AuditRecordAttributeDefinition">
 		<xs:attribute name="EditPoint" type="EditPointType"/>
-		<xs:attribute name="UsedImputationMethod" type="YesOrNo"/>
-		<xs:attribute name="ID" type="xs:ID"/>
+		<!-- <xs:attribute name="UsedImputationMethod" type="YesOrNo"/> -->
+		<xs:attribute name="UsedMethod" type="YesOrNo"/>
+		<!-- Deprecated -->
+		<!-- <xs:attribute name="ID" type="xs:ID"/> -->
 	</xs:attributeGroup>
 	<xs:attributeGroup name="SignatureAttributeDefinition">
 		<xs:attribute name="ID" type="xs:ID"/>

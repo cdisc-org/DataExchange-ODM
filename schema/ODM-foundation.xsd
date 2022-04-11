@@ -104,7 +104,6 @@
 	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
-	<xs:attributeGroup name="ExternalQuestionAttributeExtension"/>
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
@@ -172,9 +171,15 @@
 	<xs:attributeGroup name="DescriptionAttributeExtension"/>
 	<xs:attributeGroup name="ConditionDefAttributeExtension"/>
 	<xs:attributeGroup name="FormalExpressionAttributeExtension"/>
+	<xs:attributeGroup name="CodeAttributeExtension"/>
+	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
 	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
 	<xs:attributeGroup name="ItemDataStarAttributeExtension"/>
 	<xs:attributeGroup name="MethodDefAttributeExtension"/>
+	<xs:attributeGroup name="MethodSignatureAttributeExtension"/>
+	<xs:attributeGroup name="ParameterAttributeExtension"/>
+	<xs:attributeGroup name="ReturnValueAttributeExtension"/>
+	<xs:attributeGroup name="CommentDefAttributeExtension"/>
 	<!--
         +===========================================================================+
         | these are purposely empty modelGroups to permit vendor extensions to the  |
@@ -194,9 +199,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="AliasElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ExternalQuestionElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="CodeListRefElementExtension">
@@ -398,6 +400,21 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MethodDefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="MethodSignatureElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ParameterElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ReturnValueElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="FormalExpressionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="CommentDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<!--

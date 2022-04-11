@@ -18,7 +18,6 @@
         <xs:attribute name="Context" type="text" use="required"/>
         <xs:attribute name="Name" type="text" use="required"/>
     </xs:attributeGroup>
-
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
@@ -31,7 +30,9 @@
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Description" type="text"/>
+        <!-- Remove Description attribute, it is replaced by the Description child element --> 
+        <!-- <xs:attribute name="Description" type="text"/> -->
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEventGroupRefAttributeDefinition">
         <xs:attribute name="StudyEventGroupOID" type="oidref" use="required"/>
@@ -42,7 +43,9 @@
     <xs:attributeGroup name="StudyEventGroupDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="ArmOID" type="oidref" use="optional"/>
         <xs:attribute name="EpochOID" type="oidref" use="optional"/>
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEventRefAttributeDefinition">
         <xs:attribute name="StudyEventOID" type="oidref" use="required"/>
@@ -53,6 +56,7 @@
         <xs:attribute name="Repeating" type="YesOrNo" use="required"/>
         <xs:attribute name="Type" type="EventType" use="required"/>
         <xs:attribute name="Category" type="text"/>
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemGroupDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -60,14 +64,18 @@
         <!-- Repeating type changed from YesOrNo to ItemGroupRepeatingType -->
         <xs:attribute name="Repeating" type="ItemGroupRepeatingType" use="required"/>
         <xs:attribute name="IsReferenceData" type="YesOrNo"/>
-        <xs:attribute name="SASDatasetName" type="sasName"/>
+        <!-- <xs:attribute name="SASDatasetName" type="sasName"/> -->
+        <xs:attribute name="DatasetName" type="name"/>
         <xs:attribute name="Domain" type="text"/>
         <!-- TODO: remove Origin attribute, it is replaced by the Origin child element -->
         <xs:attribute name="Origin" type="text"/>
-        <xs:attribute name="Role" type="name"/>
-        <xs:attribute name="Purpose" type="text"/>
-        <xs:attribute name="Comment" type="text"/>
+        <!-- <xs:attribute name="Role" type="name"/> -->
         <xs:attribute name="Type" type="ItemGroupTypeType"/>
+        <xs:attribute name="Purpose" type="text"/>
+        <!-- Replace Comment by CommentOID -->
+        <!-- <xs:attribute name="Comment" type="text"/> -->
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemDefAttributeDefinition">
         <xs:annotation>
@@ -92,8 +100,9 @@
         </xs:attribute>
         <xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/>
 
-        <xs:attribute name="SASFieldName" type="sasName"/>
-        <xs:attribute name="SDSVarName" type="sasName">
+        <!-- <xs:attribute name="SASFieldName" type="sasName"/> -->
+        <!-- Replace by the use of the Alias child element of ItemDef 
+            xs:attribute name="SDSVarName" type="sasName">
             <xs:annotation>
                 <xs:documentation source="https://www.cdisc.org/standards/foundational/sdtm"> The
                     SDSVarName, Origin, and Comment attributes carry submission information as
@@ -128,26 +137,31 @@
                     Implementation Guide for more information about SDTM variables.
                 </xs:documentation>
             </xs:annotation>
-        </xs:attribute>
+        </xs:attribute> -->
         <xs:attribute name="Origin" type="text"/>
-        <xs:attribute name="Comment" type="text"/>
+        <!-- Replace Comment by CommentOID -->
+        <!-- <xs:attribute name="Comment" type="text"/> -->
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
         <xs:attribute name="Comparator" type="Comparator" use="optional"/>
         <xs:attribute name="SoftHard" type="SoftOrHard" use="required"/>
+        <xs:attribute name="ItemOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="CLDataType" use="required"/>
-        <xs:attribute name="SASFormatName" type="sasFormat"/>
+        <!--  <xs:attribute name="SASFormatName" type="sasFormat"/> -->
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListItemAttributeDefinition">
         <xs:attribute name="CodedValue" type="value" use="required"/>
         <xs:attribute name="Rank" type="decimal" use="optional"/>
         <!-- Other attribute signfies that the term represents "other" content -->
-        <xs:attribute name="Other" type="YesOnly"/>
-        <xs:attribute name="OrderNumber" type="integer"/>
+        <xs:attribute name="Other" type="YesOnly" use="optional"/>
+        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ImputationMethodAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -156,11 +170,12 @@
     <xs:attributeGroup name="IncludeAttributeDefinition">
         <xs:attribute name="StudyOID" type="oidref" use="required"/>
         <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
+        <xs:attribute name="href" type="xs:anyURI" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RefAttributeSharedDefinition">
-        <xs:attribute name="OrderNumber" type="integer"/>
+        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
-        <xs:attribute name="CollectionExceptionConditionOID" type="oidref"/>
+        <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="FormRefAttributeDefinition">
         <xs:attribute name="FormOID" type="oidref" use="required"/>
@@ -175,10 +190,11 @@
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemRefAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="required"/>
-        <xs:attribute name="KeySequence" type="integer"/>
-        <xs:attribute name="MethodOID" type="oidref"/>
-        <xs:attribute name="ImputationMethodOID" type="oidref"/>
-        <xs:attribute name="Role" type="text"/>
+        <xs:attribute name="KeySequence" type="integer" use="optional"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
+        <xs:attribute name="UnitsItemOID" type="oidref" use="optional"/>
+        <!-- <xs:attribute name="ImputationMethodOID" type="oidref"/> -->
+        <xs:attribute name="Role" type="text" use="optional"/>
         <xs:attribute name="RoleCodeListOID" type="oidref"/>
         <!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
         <xs:attribute name="Repeat" type="YesOnly" use="optional"/>
@@ -188,9 +204,6 @@
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
         <xs:attribute name="Version" type="text"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="ExternalQuestionAttributeDefinition">
-        <xs:attribute name="Code" type="text"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MeasurementUnitRefAttributeDefinition">
         <xs:attribute name="MeasurementUnitOID" type="oidref" use="required"/>
@@ -206,6 +219,19 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="Type" type="MethodType" use="optional"/>
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="ParameterAttributeDefinition">
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="DataType" type="DataType" use="required"/>
+        <xs:attribute name="Definition" type="text" use="optional"/>
+        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="ReturnValueAttributeDefinition">
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="DataType" type="DataType" use="required"/>
+        <xs:attribute name="Definition" type="text" use="optional"/>
+        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="PresentationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -214,11 +240,22 @@
     <xs:attributeGroup name="ConditionDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="FormalExpressionAttributeDefinition">
         <xs:attribute name="Context" type="text"/>
     </xs:attributeGroup>
-
+    <xs:attributeGroup name="ExternalCodeLibAttributeDefinition">
+        <xs:attribute name="Library" type="name" use="required"/>
+        <xs:attribute name="Method" type="name" use="required"/>
+        <xs:attribute name="Version" type="text"/>
+        <xs:attribute name="ref" type="text"/>
+        <xs:attribute name="href" type="xs:anyURI"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="CommentDefAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+    </xs:attributeGroup>
+    
     <!--
         +===========================================================================+
         | group definitions                                                         |
@@ -285,6 +322,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-MetaDataVersion">
         <xs:sequence>
             <xs:group ref="MetaDataVersionPreIncludeElementExtension" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Include" minOccurs="0"/>
             <xs:element ref="Protocol" minOccurs="0"/>
             <xs:element ref="WorkflowDef" minOccurs="0" maxOccurs="unbounded"/>
@@ -296,6 +334,7 @@
             <xs:element ref="CodeList" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="CommentDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
@@ -370,7 +409,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Question" minOccurs="0"/>
-            <xs:element ref="ExternalQuestion" minOccurs="0"/>
+            <!-- <xs:element ref="ExternalQuestion" minOccurs="0"/> -->
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
@@ -397,9 +436,10 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="CheckValue" maxOccurs="unbounded"/>
+                <xs:element ref="MethodSignature"/>
                 <xs:element ref="FormalExpression" maxOccurs="unbounded"/>
             </xs:choice>
-            <xs:element ref="ErrorMessage" minOccurs="0"/>
+            <xs:element ref="ErrorMessage" minOccurs="0" maxOccurs="1"/>
             <xs:group ref="RangeCheckElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="RangeCheckAttributeDefinition"/>
@@ -418,14 +458,6 @@
             <xs:group ref="ErrorMessageElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ErrorMessageAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExternalQuestion">
-        <xs:sequence>
-            <xs:group ref="ExternalQuestionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExternalSharedAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalQuestionAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalQuestionAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CodeList">
         <xs:sequence>
@@ -479,6 +511,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-MethodDef">
         <xs:sequence>
             <xs:element ref="Description"/>
+            <xs:element ref="MethodSignature"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="MethodDefElementExtension"/>
@@ -486,9 +519,32 @@
         <xs:attributeGroup ref="MethodDefAttributeDefinition"/>
         <xs:attributeGroup ref="MethodDefAttributeExtension"/>
     </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-MethodSignature">
+        <xs:sequence>
+            <xs:element ref="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="ReturnValue" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="MethodSignatureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="MethodSignatureAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Parameter">
+        <xs:sequence>
+            <xs:group ref="ParameterElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="ParameterAttributeDefinition"/>
+        <xs:attributeGroup ref="ParameterAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-ReturnValue">
+        <xs:sequence>
+            <xs:group ref="ReturnValueElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="ReturnValueAttributeDefinition"/>
+        <xs:attributeGroup ref="ReturnValueAttributeExtension"/>
+    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-ConditionDef">
         <xs:sequence>
             <xs:element ref="Description"/>
+            <xs:element ref="MethodSignature"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ConditionDefElementExtension"/>
@@ -497,13 +553,36 @@
         <xs:attributeGroup ref="ConditionDefAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-FormalExpression">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element ref="Code" />            
+                <xs:element ref="ExternalCodeLib" />            
+            </xs:choice>
+            <xs:group ref="FormalExpressionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>            
+        <xs:attributeGroup ref="FormalExpressionAttributeDefinition"/>
+        <xs:attributeGroup ref="FormalExpressionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Code">
         <xs:simpleContent>
             <xs:extension base="text">
-                <xs:attributeGroup ref="FormalExpressionAttributeDefinition"/>
-                <xs:attributeGroup ref="FormalExpressionAttributeExtension"/>
+                <xs:attributeGroup ref="CodeAttributeExtension"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-ExternalCodeLib">
+        <xs:attributeGroup ref="ExternalCodeLibAttributeDefinition" />
+        <xs:attributeGroup ref="ExternalCodeLibAttributeExtension" />
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-CommentDef">
+        <xs:sequence>
+            <xs:element ref="Description"/>
+            <xs:group ref="CommentDefElementExtension"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="CommentDefAttributeDefinition"/>
+        <xs:attributeGroup ref="CommentDefAttributeExtension"/>
+    </xs:complexType>
+    
 
 
     <!--
@@ -613,7 +692,6 @@
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="ExternalQuestion" type="ODMcomplexTypeDefinition-ExternalQuestion"/>
     <xs:element name="RangeCheck" type="ODMcomplexTypeDefinition-RangeCheck"/>
     <xs:element name="CheckValue" type="ODMcomplexTypeDefinition-CheckValue"/>
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">
@@ -670,6 +748,9 @@
             <xs:field xpath="@Context"/>
         </xs:unique>
     </xs:element>
+    <xs:element name="MethodSignature" type="ODMcomplexTypeDefinition-MethodSignature"/>
+    <xs:element name="Parameter" type="ODMcomplexTypeDefinition-Parameter"/>
+    <xs:element name="ReturnValue" type="ODMcomplexTypeDefinition-ReturnValue"/>
     <xs:element name="ConditionDef" type="ODMcomplexTypeDefinition-ConditionDef">
         <xs:unique name="UC-CON-1">
             <xs:selector xpath="odm:Alias"/>
@@ -677,4 +758,7 @@
         </xs:unique>
     </xs:element>
     <xs:element name="FormalExpression" type="ODMcomplexTypeDefinition-FormalExpression"/>
+    <xs:element name="Code" type="ODMcomplexTypeDefinition-Code"/>
+    <xs:element name="ExternalCodeLib" type="ODMcomplexTypeDefinition-ExternalCodeLib"/>
+    <xs:element name="CommentDef" type="ODMcomplexTypeDefinition-CommentDef"/>
 </xs:schema>
