@@ -101,7 +101,8 @@
         <xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/>
 
         <!-- <xs:attribute name="SASFieldName" type="sasName"/> -->
-        <xs:attribute name="SDSVarName" type="sasName">
+        <!-- Replace by the use of the Alias child element of ItemDef 
+            xs:attribute name="SDSVarName" type="sasName">
             <xs:annotation>
                 <xs:documentation source="https://www.cdisc.org/standards/foundational/sdtm"> The
                     SDSVarName, Origin, and Comment attributes carry submission information as
@@ -136,7 +137,7 @@
                     Implementation Guide for more information about SDTM variables.
                 </xs:documentation>
             </xs:annotation>
-        </xs:attribute>
+        </xs:attribute> -->
         <xs:attribute name="Origin" type="text"/>
         <!-- Replace Comment by CommentOID -->
         <!-- <xs:attribute name="Comment" type="text"/> -->
@@ -145,6 +146,7 @@
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
         <xs:attribute name="Comparator" type="Comparator" use="optional"/>
         <xs:attribute name="SoftHard" type="SoftOrHard" use="required"/>
+        <xs:attribute name="ItemOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -202,9 +204,6 @@
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
         <xs:attribute name="Version" type="text"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="ExternalQuestionAttributeDefinition">
-        <xs:attribute name="Code" type="text"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MeasurementUnitRefAttributeDefinition">
         <xs:attribute name="MeasurementUnitOID" type="oidref" use="required"/>
@@ -323,6 +322,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-MetaDataVersion">
         <xs:sequence>
             <xs:group ref="MetaDataVersionPreIncludeElementExtension" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Include" minOccurs="0"/>
             <xs:element ref="Protocol" minOccurs="0"/>
             <xs:element ref="WorkflowDef" minOccurs="0" maxOccurs="unbounded"/>
@@ -409,7 +409,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Question" minOccurs="0"/>
-            <xs:element ref="ExternalQuestion" minOccurs="0"/>
+            <!-- <xs:element ref="ExternalQuestion" minOccurs="0"/> -->
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
@@ -458,14 +458,6 @@
             <xs:group ref="ErrorMessageElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ErrorMessageAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExternalQuestion">
-        <xs:sequence>
-            <xs:group ref="ExternalQuestionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExternalSharedAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalQuestionAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalQuestionAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CodeList">
         <xs:sequence>
@@ -700,7 +692,6 @@
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="ExternalQuestion" type="ODMcomplexTypeDefinition-ExternalQuestion"/>
     <xs:element name="RangeCheck" type="ODMcomplexTypeDefinition-RangeCheck"/>
     <xs:element name="CheckValue" type="ODMcomplexTypeDefinition-CheckValue"/>
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">

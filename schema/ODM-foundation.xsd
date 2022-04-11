@@ -104,7 +104,6 @@
 	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
-	<xs:attributeGroup name="ExternalQuestionAttributeExtension"/>
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
@@ -200,9 +199,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="AliasElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ExternalQuestionElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="CodeListRefElementExtension">

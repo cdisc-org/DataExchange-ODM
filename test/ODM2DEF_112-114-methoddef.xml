@@ -5,7 +5,9 @@
 
     <Study OID="1" StudyName="ODM2DEF-112-114">
         <MetaDataVersion OID="MDV.ODM2DEF-112-114" Name="ODM2DEF-112-114">
-            
+            <Description>
+                <TranslatedText xml:lang="en">MDV description</TranslatedText>
+            </Description>
             <ItemDef OID="IT.112" Name="112 114" DataType="integer">
                 <RangeCheck SoftHard="Soft">
                     <MethodSignature>
