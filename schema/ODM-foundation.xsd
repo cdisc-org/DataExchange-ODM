@@ -149,6 +149,22 @@
 	<xs:attributeGroup name="StudyEventGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="StudyStructureAttributeExtension"/>
+	<!-- Additions 2022-03-14 to 2022-03-15 -->
+	<xs:attributeGroup name="StudyIndicationsAttributeExtension"/>
+	<xs:attributeGroup name="StudyIndicationAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionsAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionAttributeExtension"/>
+	<xs:attributeGroup name="StudyObjectivesAttributeExtension"/>
+	<xs:attributeGroup name="StudyObjectiveAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointRefAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointsAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointAttributeExtension"/>
+	<xs:attributeGroup name="StudyTargetPopulationAttributeExtension"/>
+	<xs:attributeGroup name="StudyEstimandsAttributeExtension"/>
+	<xs:attributeGroup name="StudyEstimandAttributeExtension"/>
+	<xs:attributeGroup name="StudyTargetPopulationRefAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionRefAttributeExtension"/>
+	<!--  -->
 	<xs:attributeGroup name="ArmAttributeExtension"/>
 	<xs:attributeGroup name="EpochAttributeExtension"/>
 	<xs:attributeGroup name="StudySummaryAttributeExtension"/>
@@ -328,6 +344,50 @@
 	<xs:group name="StudyStructureElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<!-- Added 2022-04-14 -->
+	<xs:group name="StudyIndicationsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyIndicationElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyInterventionsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyInterventionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyObjectivesElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyObjectiveElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyTargetPopulationElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEstimandsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEstimandElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="IntercurrentEventElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SummaryMeasureElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<!--  -->
 	<xs:group name="ArmElementExtension">
 		<xs:sequence/>
 	</xs:group>

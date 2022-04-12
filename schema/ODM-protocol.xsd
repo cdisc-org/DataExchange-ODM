@@ -11,6 +11,58 @@
         | these definitions are NOT to be extended and are internal to ODM USE ONLY |
         +===========================================================================+
     -->
+    <!-- Added 2022-03-14 -->
+    <xs:attributeGroup name="StudyIndicationAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyInterventionAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyObjectiveAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Type">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Primary"/>
+                    <xs:enumeration value="Secondary"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
+        <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
+        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyEndPointAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Type">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Simple"/>
+                    <xs:enumeration value="Humane"/>
+                    <xs:enumeration value="Surrogate"/>
+                    <xs:enumeration value="Composite"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyTargetPopulationAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyEstimandAttributeDefinition">
+        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyTargetPopulationRefAttributeDefinition">
+        <xs:attribute name="StudyTargetPopulationOID" type="oidref" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="StudyInterventionRefAttributeDefinition">
+        <xs:attribute name="StudyInterventionOID" use="required"/>
+    </xs:attributeGroup>
+    <!--  -->
     <xs:attributeGroup name="ArmAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
@@ -140,7 +192,16 @@
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="StudySummary" minOccurs="0"/>
             <xs:element ref="StudyStructure" minOccurs="0"/>
+            <!-- Additions 2022-03-14 -->
+            <xs:element ref="StudyIndications" minOccurs="0"/>
+            <xs:element ref="StudyInterventions" minOccurs="0"/>
+            <xs:element ref="StudyObjectives" minOccurs="0"/>
+            <xs:element ref="StudyEndPoints" minOccurs="0"/>
+            <xs:element ref="StudyTargetPopulation" minOccurs="0"/>
+            <xs:element ref="StudyEstimands" minOccurs="0"></xs:element>
+            <!-- Existing -->
             <xs:element ref="StudyEventGroupRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="WorkflowRef" minOccurs="0"/><!-- 2022-03-14 -->
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ProtocolElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -157,11 +218,145 @@
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Arm" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Epoch" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="WorkflowRef" minOccurs="1"/>
+            <!--xs:element ref="WorkflowRef" minOccurs="1"/-->
+            <!-- Change made 2022-03-14 -->
+            <xs:element ref="WorkflowRef" minOccurs="0"/>
             <xs:group ref="StudyStructureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyStructureAttributeExtension"/>
     </xs:complexType>
+    <!-- Additions 2022-03-14 -->
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyIndications">
+        <xs:sequence>
+            <xs:element ref="StudyIndication" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:group ref="StudyIndicationsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyIndicationsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyIndication">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="1"/>
+            <!-- TODO: check if exists - if not, create element Coding -->
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyIndicationElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyIndicationAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyIndicationAttributeExtension"></xs:attributeGroup>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyInterventions">
+        <xs:sequence>
+            <xs:element ref="StudyIntervention" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyInterventionsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyInterventionsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyIntervention">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="1"/>
+            <!-- TODO: check if exists - if not, create element Coding -->
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyInterventionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyInterventionAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyInterventionAttributeExtension"></xs:attributeGroup>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyObjectives">
+        <xs:sequence>
+            <xs:element ref="StudyObjective" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:group ref="StudyObjectivesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyObjectivesAttributeExtension"/>
+    </xs:complexType>
+    
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyObjective">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="1"/>
+            <xs:element ref="StudyEndPointRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyObjectiveElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyObjectiveAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyObjectiveAttributeExtension"></xs:attributeGroup>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyEndPointRef">
+        <xs:sequence>
+            <xs:group ref="StudyEndPointRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyEndPointRefAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyEndPointRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyEndPoints">
+        <xs:sequence>
+            <xs:element ref="StudyEndPoint" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:group ref="StudyEndPointsElementExtension" minOccurs="0" maxOccurs="unbounded"/>   
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyEndPointsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyEndPoint">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="1"/>
+            <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyEndPointElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyEndPointAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyEndPointAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyTargetPopulation">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="1"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="StudyTargetPopulationElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyTargetPopulationAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyTargetPopulationAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyEstimands">
+        <xs:sequence>
+            <xs:element ref="StudyEstimand" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:group ref="StudyEstimandsElementExtension" minOccurs="0" maxOccurs="unbounded"/>    
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyEstimandsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyEstimand">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="0"/>
+            <!-- P.S.: it may be that the estimand population need not necessarily be the full study population.
+            In that case, we need to replace StudyTargetPopulationRef by something else -->
+            <xs:element ref="StudyTargetPopulationRef" minOccurs="0"/>
+            <xs:element ref="StudyInterventionRef" minOccurs="0"/>
+            <xs:element ref="StudyEndPointRef" minOccurs="0"/>
+            <xs:element ref="IntercurrentEvent" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="SummaryMeasure" minOccurs="0"/>
+            <xs:group ref="StudyEstimandElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyEstimandAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyEstimandAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyTargetPopulationRef">
+        <xs:attributeGroup ref="StudyTargetPopulationRefAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyTargetPopulationRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-StudyInterventionRef">
+        <xs:attributeGroup ref="StudyInterventionRefAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyInterventionRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMCompexTypeDefinition-StudyEndPointRef">
+        <xs:attributeGroup ref="StudyEndPointRefAttributeDefinition"/>
+        <xs:attributeGroup ref="StudyEndPointRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-IntercurrentEvent">
+        <xs:sequence>
+            <xs:element ref="Description"/>
+            <xs:group ref="IntercurrentEventElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ODMComplexTypeDefinition-SummaryMeasure">
+        <xs:sequence>
+            <xs:element ref="Description"/>
+            <xs:group ref="SummaryMeasureElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  -->
     <xs:complexType name="ODMcomplexTypeDefinition-Arm">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
@@ -355,6 +550,24 @@
         </xs:unique>
     </xs:element>
     <xs:element name="StudyStructure" type="ODMcomplexTypeDefinition-StudyStructure"/>
+    <!-- Additions 2022-03-14 -->
+    <xs:element name="StudyIndications" type="ODMcomplexTypeDefinition-StudyIndications"/>
+    <xs:element name="StudyIndication" type="ODMcomplexTypeDefinition-StudyIndication"/>
+    <xs:element name="StudyInterventions" type="ODMcomplexTypeDefinition-StudyInterventions"/>
+    <xs:element name="StudyIntervention" type="ODMcomplexTypeDefinition-StudyIntervention"/>
+    <xs:element name="StudyObjectives" type="ODMcomplexTypeDefinition-StudyObjectives"/>
+    <xs:element name="StudyObjective" type="ODMcomplexTypeDefinition-StudyObjective"/>
+    <xs:element name="StudyEndPointRef" type="ODMcomplexTypeDefinition-StudyEndPointRef"/>
+    <xs:element name="StudyEndPoints" type="ODMComplexTypeDefinition-StudyEndPoints"/>
+    <xs:element name="StudyEndPoint" type="ODMComplexTypeDefinition-StudyEndPoint"/>
+    <xs:element name="StudyTargetPopulation" type="ODMComplexTypeDefinition-StudyTargetPopulation"/>
+    <xs:element name="StudyEstimands" type="ODMComplexTypeDefinition-StudyEstimands"/>
+    <xs:element name="StudyEstimand" type="ODMComplexTypeDefinition-StudyEstimand"/>
+    <xs:element name="StudyTargetPopulationRef" type="ODMComplexTypeDefinition-StudyTargetPopulationRef"/>
+    <xs:element name="StudyInterventionRef" type="ODMComplexTypeDefinition-StudyInterventionRef"/>
+    <xs:element name="IntercurrentEvent" type="ODMComplexTypeDefinition-IntercurrentEvent"/>
+    <xs:element name="SummaryMeasure" type="ODMComplexTypeDefinition-SummaryMeasure"></xs:element>
+    <!--  -->
     <xs:element name="Arm" type="ODMcomplexTypeDefinition-Arm"/>
     <xs:element name="Epoch" type="ODMcomplexTypeDefinition-Epoch"/>
     <xs:element name="WorkflowRef" type="ODMcomplexTypeDefinition-WorkflowRef"/>
