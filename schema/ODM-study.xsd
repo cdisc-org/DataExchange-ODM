@@ -77,6 +77,19 @@
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="ItemRefAttributeDefinition">
+        <xs:attribute name="ItemOID" type="oidref" use="required"/>
+        <xs:attribute name="KeySequence" type="integer" use="optional"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
+        <xs:attribute name="UnitsItemOID" type="oidref" use="optional"/>
+        <!-- <xs:attribute name="ImputationMethodOID" type="oidref"/> -->
+        <xs:attribute name="Role" type="text" use="optional"/>
+        <xs:attribute name="RoleCodeListOID" type="oidref"/>
+        <!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
+        <xs:attribute name="Repeat" type="YesOnly" use="optional"/>
+        <!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
+        <xs:attribute name="Other" type="YesOnly" use="optional"/>
+    </xs:attributeGroup>
     <xs:attributeGroup name="ItemDefAttributeDefinition">
         <xs:annotation>
             <xs:documentation>An ItemDef describes a type of item that can occur within a
@@ -187,19 +200,6 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="PdfFileName" type="fileName" use="required"/>
         <xs:attribute name="PresentationOID" type="oidref"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="ItemRefAttributeDefinition">
-        <xs:attribute name="ItemOID" type="oidref" use="required"/>
-        <xs:attribute name="KeySequence" type="integer" use="optional"/>
-        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
-        <xs:attribute name="UnitsItemOID" type="oidref" use="optional"/>
-        <!-- <xs:attribute name="ImputationMethodOID" type="oidref"/> -->
-        <xs:attribute name="Role" type="text" use="optional"/>
-        <xs:attribute name="RoleCodeListOID" type="oidref"/>
-        <!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
-        <xs:attribute name="Repeat" type="YesOnly" use="optional"/>
-        <!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
-        <xs:attribute name="Other" type="YesOnly" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
@@ -436,8 +436,10 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="CheckValue" maxOccurs="unbounded"/>
-                <xs:element ref="MethodSignature"/>
-                <xs:element ref="FormalExpression" maxOccurs="unbounded"/>
+                <xs:sequence>
+                    <xs:element ref="MethodSignature" minOccurs="0"/>
+                    <xs:element ref="FormalExpression" maxOccurs="unbounded"/>
+                </xs:sequence>
             </xs:choice>
             <xs:element ref="ErrorMessage" minOccurs="0" maxOccurs="1"/>
             <xs:group ref="RangeCheckElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -511,7 +513,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-MethodDef">
         <xs:sequence>
             <xs:element ref="Description"/>
-            <xs:element ref="MethodSignature"/>
+            <xs:element ref="MethodSignature" minOccurs="0"  maxOccurs="1"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="MethodDefElementExtension"/>
@@ -544,7 +546,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-ConditionDef">
         <xs:sequence>
             <xs:element ref="Description"/>
-            <xs:element ref="MethodSignature"/>
+            <xs:element ref="MethodSignature" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ConditionDefElementExtension"/>
