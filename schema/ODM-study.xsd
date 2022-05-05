@@ -352,6 +352,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventDefGroup" maxOccurs="unbounded" minOccurs="1"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyEventGroupDefAttributeDefinition"/>
@@ -369,6 +370,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="ItemGroupRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -388,7 +390,7 @@
             <xs:element ref="Description" minOccurs="0"/>
             <!-- 2022-02-25: For the moment we assume that ItemGroupRef and ItemRef can come in any order, any number of times -->
             <xs:group ref="ItemGroupDefGroup" minOccurs="1" maxOccurs="unbounded"/>
-            <!-- TODO: add Coding element -->
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="WorkflowRef" minOccurs="0"/>
             <!-- TODO: add Origin element and remove Origin attribute -->
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
@@ -412,6 +414,7 @@
             <!-- <xs:element ref="ExternalQuestion" minOccurs="0"/> -->
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -469,6 +472,7 @@
                 <xs:element ref="ExternalCodeList"/>
                 <xs:element ref="EnumeratedItem" minOccurs="1" maxOccurs="unbounded"/>
             </xs:choice>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -487,6 +491,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListItem">
         <xs:sequence>
             <xs:element ref="Decode"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -503,6 +508,7 @@
 
     <xs:complexType name="ODMcomplexTypeDefinition-EnumeratedItem">
         <xs:sequence>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="EnumeratedItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>

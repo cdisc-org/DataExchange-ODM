@@ -67,7 +67,15 @@
 	<xs:attributeGroup name="FlagTypeAttributeDefinition">
 		<xs:attribute name="CodeListOID" type="oidref" use="required"/>
 	</xs:attributeGroup>
-
+	<xs:attributeGroup name="CodingAttributeDefinition">
+		<xs:attribute name="Code" type="text" use="required"/>
+		<xs:attribute name="System" type="xs:anyURI" use="required"/>
+		<xs:attribute name="SystemName" type="text" use="optional"/>
+		<xs:attribute name="SystemVersion" type="text" use="optional"/>
+		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="CommentOID" type="text" use="optional"/>
+	</xs:attributeGroup>
+	
 	<!--
         +===========================================================================+
         | these are purposely empty attributeGroups to permit vendor extensions to  |
@@ -96,6 +104,7 @@
 	<xs:attributeGroup name="CommentAttributeExtension"/>
 	<xs:attributeGroup name="FlagValueAttributeExtension"/>
 	<xs:attributeGroup name="FlagTypeAttributeExtension"/>
+	<xs:attributeGroup name="CodingAttributeExtension"/>
 	<xs:attributeGroup name="DateTimeStampAttributeExtension"/>
 	<xs:attributeGroup name="ReasonForChangeAttributeExtension"/>
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
@@ -132,6 +141,24 @@
 	<xs:attributeGroup name="StudyEventGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="StudyStructureAttributeExtension"/>
+	<!-- Addition 2022-05-05 -->
+	<xs:attributeGroup name="TrialPhaseAttributeExtension"/>
+	<!-- Additions 2022-03-14 to 2022-03-15 -->
+	<xs:attributeGroup name="StudyIndicationsAttributeExtension"/>
+	<xs:attributeGroup name="StudyIndicationAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionsAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionAttributeExtension"/>
+	<xs:attributeGroup name="StudyObjectivesAttributeExtension"/>
+	<xs:attributeGroup name="StudyObjectiveAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointRefAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointsAttributeExtension"/>
+	<xs:attributeGroup name="StudyEndPointAttributeExtension"/>
+	<xs:attributeGroup name="StudyTargetPopulationAttributeExtension"/>
+	<xs:attributeGroup name="StudyEstimandsAttributeExtension"/>
+	<xs:attributeGroup name="StudyEstimandAttributeExtension"/>
+	<xs:attributeGroup name="StudyTargetPopulationRefAttributeExtension"/>
+	<xs:attributeGroup name="StudyInterventionRefAttributeExtension"/>
+	<!--  -->
 	<xs:attributeGroup name="ArmAttributeExtension"/>
 	<xs:attributeGroup name="EpochAttributeExtension"/>
 	<xs:attributeGroup name="StudySummaryAttributeExtension"/>
@@ -141,6 +168,7 @@
 	<xs:attributeGroup name="AbsoluteTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="RelativeTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="TransitionTimingConstraintAttributeExtension"/>
+	<xs:attributeGroup name="DurationTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
@@ -258,9 +286,6 @@
 	<xs:group name="DefaultTransitionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="EntryExitCriteriaElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="EntryCriteriaElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -285,6 +310,63 @@
 	<xs:group name="StudyStructureElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<!-- Added 2022-05-05 -->
+	<xs:group name="TrialPhaseElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<!-- Added 2022-04-14 -->
+	<xs:group name="StudyIndicationsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyIndicationElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyInterventionsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyInterventionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyObjectivesElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyObjectiveElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEndPointElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyTargetPopulationElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEstimandsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyEstimandElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="InclusionExclusionCriteriaElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="InclusionCriteriaElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ExclusionCriteriaElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="IntercurrentEventElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SummaryMeasureElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<!--  -->
 	<xs:group name="ArmElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -311,7 +393,10 @@
 	</xs:group>
 	<xs:group name="TransitionTimingConstraintElementExtension">
 		<xs:sequence/>
-	</xs:group>
+    </xs:group>
+    <xs:group name="DurationTimingConstraintElementExtension">
+	  <xs:sequence/>
+	  </xs:group>
 	<xs:group name="StudyEventDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -376,6 +461,9 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="FlagElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="CodingElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="SignatureElementExtension">
@@ -448,6 +536,7 @@
 	<xs:complexType name="ODMcomplexTypeDefinition-Annotation">
 		<xs:sequence>
 			<xs:element ref="Comment" minOccurs="0"/>
+			<xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Flag" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="AnnotationElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -486,7 +575,14 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-
+	<xs:complexType name="ODMcomplexTypeDefinition-Coding">
+		<xs:sequence>
+			<xs:group ref="CodingElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="CodingAttributeDefinition"/>
+		<xs:attributeGroup ref="CodingAttributeExtension"/>
+	</xs:complexType>
+	
 
 	<!--
         +===========================================================================+
@@ -521,5 +617,6 @@
 	<xs:element name="Flag" type="ODMcomplexTypeDefinition-Flag"/>
 	<xs:element name="FlagValue" type="ODMcomplexTypeDefinition-FlagValue"/>
 	<xs:element name="FlagType" type="ODMcomplexTypeDefinition-FlagType"/>
-
+	<xs:element name="Coding" type="ODMcomplexTypeDefinition-Coding"/>
+	
 </xs:schema>
