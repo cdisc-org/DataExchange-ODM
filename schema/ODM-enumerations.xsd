@@ -51,13 +51,6 @@
         +===========================================================================+
     -->
 
-    <xs:simpleType name="branchingType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Exclusive"/>
-            <xs:enumeration value="Parallel"/>
-        </xs:restriction>
-    </xs:simpleType>
-
     <xs:simpleType name="FileType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Snapshot"/>
@@ -93,6 +86,56 @@
             <xs:enumeration value="Scheduled"/>
             <xs:enumeration value="Unscheduled"/>
             <xs:enumeration value="Common"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BranchingType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Exclusive"/>
+            <xs:enumeration value="Parallel"/>
+        </xs:restriction>
+    </xs:simpleType>
+ 
+    <xs:simpleType name="StudyObjectiveType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Primary"/>
+            <xs:enumeration value="Secondary"/>
+        </xs:restriction>
+    </xs:simpleType>
+        
+    <!-- need to make this extensible -->    
+    <xs:simpleType name="TrialPhaseType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PHASE 0 TRIAL"/>
+            <xs:enumeration value="PHASE I TRIAL"/>
+            <xs:enumeration value="PHASE I/II TRIAL"/>
+            <xs:enumeration value="PHASE II TRIAL"/>
+            <xs:enumeration value="PHASE II/III TRIAL"/>
+            <xs:enumeration value="PHASE IIA TRIAL"/>
+            <xs:enumeration value="PHASE IIB TRIAL"/>
+            <xs:enumeration value="PHASE III TRIAL"/>
+            <xs:enumeration value="PHASE IIIA TRIAL"/>
+            <xs:enumeration value="PHASE IIIB TRIAL"/>
+            <xs:enumeration value="PHASE IV TRIAL"/>
+            <xs:enumeration value="PHASE V TRIAL"/>
+            <xs:enumeration value="NOT APPLICABLE"/>
+        </xs:restriction>           
+    </xs:simpleType>
+    
+    <xs:simpleType name="StudyEndPointType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Simple"/>
+            <xs:enumeration value="Humane"/>
+            <xs:enumeration value="Surrogate"/>
+            <xs:enumeration value="Composite"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="RelativeTimingConstraintType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="StartToStart"/>
+            <xs:enumeration value="StartToFinish"/>
+            <xs:enumeration value="FinishToStart"/>
+            <xs:enumeration value="FinishToFinish"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="Comparator">
@@ -190,14 +233,6 @@
             <xs:enumeration value="Form"/>
             <xs:enumeration value="Dataset"/>
             <xs:enumeration value="Concept"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="RelativeTimingConstraintType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="StartToStart"/>
-            <xs:enumeration value="StartToFinish"/>
-            <xs:enumeration value="FinishToStart"/>
-            <xs:enumeration value="FinishToFinish"/>
         </xs:restriction>
     </xs:simpleType>
 
