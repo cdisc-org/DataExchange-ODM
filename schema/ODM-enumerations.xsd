@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.cdisc.org/ns/odm/v2.0" elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
+    xmlns:nci="http://ncicb.nci.nih.gov/xml/odm/EVS/CDISC"
+    xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+
+    <xs:annotation>
+        <xs:documentation>ODM 2.0 enumerations schema as developed by the CDISC Data Exchange
+            Standards Team</xs:documentation>
+    </xs:annotation>
+
+    <xs:simpleType name="ODMVersion">
+        <xs:annotation>
+            <xs:documentation>Version of ODM that the file conforms to.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="2.0(.(0|([1-9][0-9]*)))?(-([0-9a-zA-Z])+)*"/>
+        </xs:restriction>
+    </xs:simpleType>
 
     <!--
         +===========================================================================+
@@ -75,12 +90,7 @@
             <xs:enumeration value="Submission"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:simpleType name="ODMVersion">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="2.0.1"/>
-            <xs:enumeration value="2.0"/>
-        </xs:restriction>
-    </xs:simpleType>
+
     <xs:simpleType name="EventType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Scheduled"/>
@@ -94,33 +104,124 @@
             <xs:enumeration value="Parallel"/>
         </xs:restriction>
     </xs:simpleType>
- 
+
     <xs:simpleType name="StudyObjectiveType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Primary"/>
             <xs:enumeration value="Secondary"/>
         </xs:restriction>
     </xs:simpleType>
-        
-    <!-- need to make this extensible -->    
+
+    <!-- TrialPhaseType is extensible -->
     <xs:simpleType name="TrialPhaseType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="PHASE 0 TRIAL"/>
-            <xs:enumeration value="PHASE I TRIAL"/>
-            <xs:enumeration value="PHASE I/II TRIAL"/>
-            <xs:enumeration value="PHASE II TRIAL"/>
-            <xs:enumeration value="PHASE II/III TRIAL"/>
-            <xs:enumeration value="PHASE IIA TRIAL"/>
-            <xs:enumeration value="PHASE IIB TRIAL"/>
-            <xs:enumeration value="PHASE III TRIAL"/>
-            <xs:enumeration value="PHASE IIIA TRIAL"/>
-            <xs:enumeration value="PHASE IIIB TRIAL"/>
-            <xs:enumeration value="PHASE IV TRIAL"/>
-            <xs:enumeration value="PHASE V TRIAL"/>
-            <xs:enumeration value="NOT APPLICABLE"/>
-        </xs:restriction>           
+        <xs:annotation>
+            <xs:documentation>A terminology codelist relevant to the phase, or stage, of the clinical trial.</xs:documentation>
+            <xs:appinfo>
+                <Alias Name="C66737" Context="nci:ExtCodeID"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="NOT APPLICABLE">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C48660" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE 0 TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C54721" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE I TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15600" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE I/II TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15693" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE II TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15601" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE II/III TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15694" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE IIA TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49686" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE IIB TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49688" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE III TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15602" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE IIIA TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49687" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE IIIB TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49689" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE IV TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C15603" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="PHASE V TRIAL">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C47865" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+        </xs:union>
     </xs:simpleType>
-    
+
     <xs:simpleType name="StudyEndPointType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Simple"/>
@@ -129,7 +230,7 @@
             <xs:enumeration value="Composite"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="RelativeTimingConstraintType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="StartToStart"/>
