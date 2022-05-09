@@ -185,6 +185,8 @@
             <xs:element ref="StudySummary" minOccurs="0"/>
             <xs:element ref="StudyStructure" minOccurs="0"/>
             <xs:element ref="TrialPhase" minOccurs="0"/>
+            <!-- TODO: create a container element "StudyTimings" -->
+            <xs:element ref="StudyTiming" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="StudyIndications" minOccurs="0"/>
             <xs:element ref="StudyInterventions" minOccurs="0"/>
             <xs:element ref="StudyObjectives" minOccurs="0"/>
