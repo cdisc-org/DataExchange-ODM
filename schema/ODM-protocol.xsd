@@ -186,7 +186,7 @@
             <xs:element ref="StudyStructure" minOccurs="0"/>
             <xs:element ref="TrialPhase" minOccurs="0"/>
             <!-- TODO: create a container element "StudyTimings" -->
-            <xs:element ref="StudyTiming" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="StudyTimings" minOccurs="0"/>
             <xs:element ref="StudyIndications" minOccurs="0"/>
             <xs:element ref="StudyInterventions" minOccurs="0"/>
             <xs:element ref="StudyObjectives" minOccurs="0"/>
@@ -425,6 +425,13 @@
         <xs:attributeGroup ref="ParameterValueAttributeDefinition"/>
         <xs:attributeGroup ref="ParameterValueAttributeExtension"/>
     </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-StudyTimings">
+        <xs:sequence>
+            <xs:element ref="StudyTiming" maxOccurs="unbounded"/>
+            <xs:group ref="StudyTimingElementExtension"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StudyTimingsAttributeExtension"/>
+    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StudyTiming">
         <xs:sequence>
             <xs:element ref="AbsoluteTimingConstraint" minOccurs="0" maxOccurs="unbounded"/>
@@ -589,6 +596,7 @@
     <xs:element name="StudySummary" type="ODMcomplexTypeDefinition-StudySummary"/>
     <xs:element name="StudyParameter" type="ODMcomplexTypeDefinition-StudyParameter"/>
     <xs:element name="ParameterValue" type="ODMcomplexTypeDefinition-ParameterValue"/>
+    <xs:element name="StudyTimings" type="ODMcomplexTypeDefinition-StudyTimings"/>
     <xs:element name="StudyTiming" type="ODMcomplexTypeDefinition-StudyTiming"/>
     <xs:element name="TransitionTimingConstraint" type="ODMcomplexTypeDefinition-TransitionTimingConstraint"/>
     <xs:element name="AbsoluteTimingConstraint" type="ODMcomplexTypeDefinition-AbsoluteTimingConstraint"/>

@@ -164,6 +164,7 @@
 	<xs:attributeGroup name="StudySummaryAttributeExtension"/>
 	<xs:attributeGroup name="StudyParameterAttributeExtension"/>
 	<xs:attributeGroup name="ParameterValueAttributeExtension"/>
+	<xs:attributeGroup name="StudyTimingsAttributeExtension"/>
 	<xs:attributeGroup name="StudyTimingAttributeExtension"/>
 	<xs:attributeGroup name="AbsoluteTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="RelativeTimingConstraintAttributeExtension"/>
@@ -380,6 +381,9 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ParameterValueElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="StudyTimingsElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyTimingElementExtension">
