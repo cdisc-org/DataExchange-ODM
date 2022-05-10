@@ -263,7 +263,7 @@
     -->
     <xs:group name="StudyEventDefGroup">
         <xs:sequence>
-            <xs:element ref="StudyEventGroupDef" minOccurs="0"/>
+            <xs:element ref="StudyEventGroupRef" minOccurs="0"/>
             <xs:element ref="StudyEventRef" minOccurs="0"/>
         </xs:sequence>
     </xs:group>
