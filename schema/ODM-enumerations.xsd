@@ -272,14 +272,42 @@
             <xs:enumeration value="Investigator"/>
             <xs:enumeration value="Lab"/>
             <xs:enumeration value="Other"/>
+            <!-- extended 2022 ODMv2 -->
+            <xs:enumeration value="Subject"/>
+            <xs:enumeration value="Monitor"/>
+            <xs:enumeration value="Data analyst"/>
+            <xs:enumeration value="Care provider"/>
+            <xs:enumeration value="Assessor"/>
         </xs:restriction>
     </xs:simpleType>
+    <!-- Not used anymore
     <xs:simpleType name="LocationType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Sponsor"/>
             <xs:enumeration value="Site"/>
             <xs:enumeration value="CRO"/>
             <xs:enumeration value="Lab"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType> -->
+    <xs:simpleType name="OrganizationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Sponsor"/>
+            <xs:enumeration value="Site"/>
+            <xs:enumeration value="CRO"/>
+            <xs:enumeration value="Lab"/>
+            <xs:enumeration value="Other"/>
+            <xs:enumeration value="TechnologyProvider"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TelecomTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Email"/>
+            <xs:enumeration value="Pager"/>
+            <xs:enumeration value="Phone"/>
+            <xs:enumeration value="Fax"/>
+            <xs:enumeration value="SMS"/>
+            <xs:enumeration value="URL"/>
             <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
@@ -334,6 +362,31 @@
             <xs:enumeration value="Form"/>
             <xs:enumeration value="Dataset"/>
             <xs:enumeration value="Concept"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QuerySourceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="System"/>
+            <xs:enumeration value="Data Management"/>
+            <xs:enumeration value="Site Monitor"/>
+            <xs:enumeration value="Coding System"/>
+            <xs:enumeration value="Safety Reviewer"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QueryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Manual"/>
+            <xs:enumeration value="System"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QueryStateType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Candidate"/>
+            <xs:enumeration value="Open"/>
+            <xs:enumeration value="Answered"/>
+            <xs:enumeration value="Closed"/>
+            <xs:enumeration value="Cancelled"/>
+            <xs:enumeration value="Resolved"/>
         </xs:restriction>
     </xs:simpleType>
 
