@@ -280,16 +280,6 @@
             <xs:enumeration value="Assessor"/>
         </xs:restriction>
     </xs:simpleType>
-    <!-- Not used anymore
-    <xs:simpleType name="LocationType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Sponsor"/>
-            <xs:enumeration value="Site"/>
-            <xs:enumeration value="CRO"/>
-            <xs:enumeration value="Lab"/>
-            <xs:enumeration value="Other"/>
-        </xs:restriction>
-    </xs:simpleType> -->
     <xs:simpleType name="OrganizationType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Sponsor"/>

@@ -77,7 +77,10 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="TransitionOID" type="oidref" use="required"/>
-        <xs:attribute name="TimepointRelativeTarget" type="durationDatetime" use="required"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
+        <!-- 2022-05-13: added "Type" having values like "StartToStart" -->
+        <xs:attribute name="Type" type="RelativeTimingConstraintType"/>
+        <xs:attribute name="TimepointTarget" type="durationDatetime" use="required"/>
         <xs:attribute name="TimepointPreWindow" type="durationDatetime" use="optional"/>
         <xs:attribute name="TimepointPostWindow" type="durationDatetime" use="optional"/>
     </xs:attributeGroup>

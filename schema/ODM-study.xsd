@@ -352,6 +352,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventDefGroup" maxOccurs="unbounded" minOccurs="1"/>
+            <xs:element ref="WorkflowRef" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -370,6 +371,7 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="ItemGroupRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="WorkflowRef" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyEventDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
