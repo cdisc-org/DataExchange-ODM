@@ -96,6 +96,8 @@
 			<xs:element ref="AuditRecords" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Signatures" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Annotations" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ClinicalDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ClinicalDataAttributeDefinition"/>
@@ -109,6 +111,7 @@
 			<xs:element ref="SiteRef" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="StudyEventData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="SubjectDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="SubjectDataAttributeDefinition"/>
@@ -134,6 +137,7 @@
 			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="StudyEventDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="StudyEventDataAttributeDefinition"/>
@@ -145,6 +149,7 @@
 			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ItemGroupDataAttributeDefinition"/>
@@ -155,6 +160,7 @@
 			<xs:element ref="AuditRecord" minOccurs="0"/>
 			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>

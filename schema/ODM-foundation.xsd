@@ -75,6 +75,18 @@
 		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
 		<xs:attribute name="CommentOID" type="text" use="optional"/>
 	</xs:attributeGroup>
+	<xs:attributeGroup name="QueryAttributeDefinition">
+		<xs:attribute name="OID" type="oid" use="required"/>
+		<xs:attribute name="Source" type="QuerySourceType" use="required"/>
+		<xs:attribute name="Target" type="text"/>
+		<xs:attribute name="Type" type="QueryType"/>
+		<xs:attribute name="State" type="QueryStateType" use="required"/>
+		<xs:attribute name="LastUpdateDatetime" type="datetime" use="required"/>
+		<xs:attribute name="Name" type="name"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ValueAttributeDefinition">
+		<xs:attribute name="SeqNum" type="positiveInteger"/>
+	</xs:attributeGroup>
 	
 	<!--
         +===========================================================================+
@@ -83,17 +95,24 @@
         +===========================================================================+
     -->
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
-	<xs:attributeGroup name="LoginNameAttributeExtension"/>
-	<xs:attributeGroup name="DisplayNameAttributeExtension"/>
+	<xs:attributeGroup name="UserNameAttributeExtension"/>
+	<!--xs:attributeGroup name="DisplayNameAttributeExtension"/-->
+	<xs:attributeGroup name="PrefixAttributeExtension"/>
+	<xs:attributeGroup name="SuffixAttributeExtension"/>
 	<xs:attributeGroup name="FullNameAttributeExtension"/>
-	<xs:attributeGroup name="FirstNameAttributeExtension"/>
-	<xs:attributeGroup name="LastNameAttributeExtension"/>
+	<xs:attributeGroup name="GivenNameAttributeExtension"/>
+	<!--xs:attributeGroup name="FirstNameAttributeExtension"/-->
+	<!--xs:attributeGroup name="LastNameAttributeExtension"/-->
+	<xs:attributeGroup name="FamilyNameAttributeExtension"/>
+	<xs:attributeGroup name="ImageAttributeExtension"/>
 	<xs:attributeGroup name="OrganizationAttributeExtension"/>
 	<xs:attributeGroup name="StreetNameAttributeExtension"/>
+	<xs:attributeGroup name="HouseNumberAttributeExtension"/>
 	<xs:attributeGroup name="CityAttributeExtension"/>
 	<xs:attributeGroup name="StateProvAttributeExtension"/>
 	<xs:attributeGroup name="CountryAttributeExtension"/>
 	<xs:attributeGroup name="PostalCodeAttributeExtension"/>
+	<xs:attributeGroup name="GeoPositionAttributeExtension"/>
 	<xs:attributeGroup name="OtherTextAttributeExtension"/>
 	<xs:attributeGroup name="EmailAttributeExtension"/>
 	<xs:attributeGroup name="PagerAttributeExtension"/>
@@ -209,6 +228,8 @@
 	<xs:attributeGroup name="ParameterAttributeExtension"/>
 	<xs:attributeGroup name="ReturnValueAttributeExtension"/>
 	<xs:attributeGroup name="CommentDefAttributeExtension"/>
+	<xs:attributeGroup name="QueryAttributeExtension"/>
+	<xs:attributeGroup name="ValueAttributeExtension"/>
 	<!--
         +===========================================================================+
         | these are purposely empty modelGroups to permit vendor extensions to the  |
@@ -234,6 +255,12 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ExternalCodeListElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="OrganizationElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ImageElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="LocationRefElementExtension">
@@ -440,6 +467,12 @@
 	<xs:group name="LocationElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="TelecomElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="GeoPositionElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="SignatureDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -507,6 +540,9 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="CommentDefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="QueryElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<!--
@@ -586,6 +622,23 @@
 		<xs:attributeGroup ref="CodingAttributeDefinition"/>
 		<xs:attributeGroup ref="CodingAttributeExtension"/>
 	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-Query">
+		<xs:sequence>
+			<xs:element ref="Value"/>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:group ref="QueryElementExtension"></xs:group>
+		</xs:sequence>
+		<xs:attributeGroup ref="QueryAttributeDefinition"/>
+		<xs:attributeGroup ref="QueryAttributeExtension"/>
+	</xs:complexType>
+	<xs:complexType name="ODMcomplexTypeDefinition-Value">
+		<xs:simpleContent>
+			<xs:extension base="text">
+				<xs:attributeGroup ref="ValueAttributeDefinition"/>
+				<xs:attributeGroup ref="ValueAttributeExtension"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
 	
 
 	<!--
@@ -622,5 +675,7 @@
 	<xs:element name="FlagValue" type="ODMcomplexTypeDefinition-FlagValue"/>
 	<xs:element name="FlagType" type="ODMcomplexTypeDefinition-FlagType"/>
 	<xs:element name="Coding" type="ODMcomplexTypeDefinition-Coding"/>
+	<xs:element name="Query" type="ODMcomplexTypeDefinition-Query"/>
+	<xs:element name="Value" type="ODMcomplexTypeDefinition-Value"/>
 	
 </xs:schema>
