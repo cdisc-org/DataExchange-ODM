@@ -111,7 +111,8 @@
                     datatypes.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/>
+        <!-- Remove FractionDigits ODM2DEV-146 -->
+        <!-- <xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/> -->
 
         <!-- <xs:attribute name="SASFieldName" type="sasName"/> -->
         <!-- Replace by the use of the Alias child element of ItemDef 
