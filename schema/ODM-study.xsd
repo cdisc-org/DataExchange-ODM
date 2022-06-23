@@ -13,6 +13,12 @@
     -->
     <xs:attributeGroup name="TranslatedTextAttributeDefinition">
         <xs:attribute ref="xml:lang"/>
+        <!-- 
+            Added Type to support expansion of TranslatedText.
+            Type is a Media Type as described in https://www.iana.org/assignments/media-types/media-types.xhtml
+            A TranslatedText element with Type="text/plain" must be present. 
+        -->
+        <xs:attribute name="Type" type="text" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="AliasAttributeDefinition">
         <xs:attribute name="Context" type="text" use="required"/>
