@@ -23,36 +23,19 @@
     <xs:simpleType name="double">
         <xs:restriction base="xs:double"/>
     </xs:simpleType>
-    <!--
-        +===========================================================================+
-        | ODM (v2.0.0)                                                              |
-        | Workflow - 02-27-2020                                                     |
-        | tightened the restriction pattern on time & datetime to disallow 24-29 HH |
-        | tightened the restriction pattern on date & datetime to disallow 32-39 DD |
-        | ODM (v1.3.1)																|
-        | removed the pattern on xs:date, xs:time and xs:datetime                   |
-        +===========================================================================+
-    -->
+
     <xs:simpleType name="date">
         <xs:restriction base="xs:date"/>
     </xs:simpleType>
     <xs:simpleType name="time">
-        <xs:restriction base="xs:time">
-            <!--xs:pattern value="(((([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?)(((\+|-)(([0-1][0-9])|([2][0-3])):[0-5][0-9])|(Z))?)"/-->
-        </xs:restriction>
+        <xs:restriction base="xs:time"/>
     </xs:simpleType>
     <xs:simpleType name="datetime">
-        <xs:restriction base="xs:dateTime">
-            <!--xs:pattern value="((([0-9][0-9][0-9][0-9])-(([0][0-9])|([1][0-2]))-(([0-2][0-9])|([3][0-1])))T(((([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?)(((\+|-)(([0-1][0-9])|([2][0-3])):[0-5][0-9])|(Z))?))"/-->
-        </xs:restriction>
+        <xs:restriction base="xs:dateTime"/>
     </xs:simpleType>
 
     <xs:simpleType name="positiveInteger">
         <xs:restriction base="xs:positiveInteger"> </xs:restriction>
-    </xs:simpleType>
-    <!-- this is used for the FractionDigits attribute on ItemDef -->
-    <xs:simpleType name="nonNegativeInteger">
-        <xs:restriction base="xs:nonNegativeInteger"> </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="boolean">
@@ -274,18 +257,6 @@
     <xs:simpleType name="name">
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="sasName">
-        <xs:restriction base="xs:string">
-            <xs:maxLength value="8"/>
-            <xs:pattern value="[A-Za-z_][A-Za-z0-9_]*"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="sasFormat">
-        <xs:restriction base="xs:string">
-            <xs:maxLength value="8"/>
-            <xs:pattern value="[A-Za-z_$][A-Za-z0-9_.]*"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="fileName">
