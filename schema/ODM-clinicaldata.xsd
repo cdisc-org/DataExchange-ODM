@@ -30,9 +30,6 @@
 		<xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
 	</xs:attributeGroup>
-	<xs:attributeGroup name="ArchiveLayoutRefAttributeDefinition">
-		<xs:attribute name="ArchiveLayoutOID" type="oidref" use="required"/>
-	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemGroupDataAttributeDefinition">
 		<xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
@@ -46,7 +43,6 @@
 	<xs:attributeGroup name="ItemDataTypeAttributeSharedDefinition">
 		<xs:attribute name="ItemOID" type="oidref" use="required"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
-		<!-- no IsNull attribute here -->
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDataAttributeDefinition">
 		<xs:attribute name="Value" type="value"/>
