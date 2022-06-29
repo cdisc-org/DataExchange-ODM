@@ -205,12 +205,12 @@
     <xs:attributeGroup name="ItemGroupRefAttributeDefinition">
         <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="ArchiveLayoutAttributeDefinition">
+<!--    <xs:attributeGroup name="ArchiveLayoutAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="PdfFileName" type="fileName" use="required"/>
         <xs:attribute name="PresentationOID" type="oidref"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="ExternalSharedAttributeDefinition">
+-->    <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
         <xs:attribute name="Version" type="text"/>
     </xs:attributeGroup>
@@ -242,11 +242,11 @@
         <xs:attribute name="Definition" type="text" use="optional"/>
         <xs:attribute name="OrderNumber" type="integer" use="optional"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="PresentationAttributeDefinition">
+<!--    <xs:attributeGroup name="PresentationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute ref="xml:lang"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="ConditionDefAttributeDefinition">
+-->    <xs:attributeGroup name="ConditionDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>

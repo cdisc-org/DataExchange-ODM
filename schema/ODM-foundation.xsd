@@ -98,13 +98,10 @@
     -->
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
 	<xs:attributeGroup name="UserNameAttributeExtension"/>
-	<!--xs:attributeGroup name="DisplayNameAttributeExtension"/-->
 	<xs:attributeGroup name="PrefixAttributeExtension"/>
 	<xs:attributeGroup name="SuffixAttributeExtension"/>
 	<xs:attributeGroup name="FullNameAttributeExtension"/>
 	<xs:attributeGroup name="GivenNameAttributeExtension"/>
-	<!--xs:attributeGroup name="FirstNameAttributeExtension"/-->
-	<!--xs:attributeGroup name="LastNameAttributeExtension"/-->
 	<xs:attributeGroup name="FamilyNameAttributeExtension"/>
 	<xs:attributeGroup name="ImageAttributeExtension"/>
 	<xs:attributeGroup name="OrganizationAttributeExtension"/>
@@ -116,10 +113,6 @@
 	<xs:attributeGroup name="PostalCodeAttributeExtension"/>
 	<xs:attributeGroup name="GeoPositionAttributeExtension"/>
 	<xs:attributeGroup name="OtherTextAttributeExtension"/>
-	<xs:attributeGroup name="EmailAttributeExtension"/>
-	<xs:attributeGroup name="PagerAttributeExtension"/>
-	<xs:attributeGroup name="FaxAttributeExtension"/>
-	<xs:attributeGroup name="PhoneAttributeExtension"/>
 	<xs:attributeGroup name="MeaningAttributeExtension"/>
 	<xs:attributeGroup name="LegalReasonAttributeExtension"/>
 	<xs:attributeGroup name="CommentAttributeExtension"/>
@@ -162,9 +155,7 @@
 	<xs:attributeGroup name="StudyEventGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventGroupDefAttributeExtension"/>
 	<xs:attributeGroup name="StudyStructureAttributeExtension"/>
-	<!-- Addition 2022-05-05 -->
 	<xs:attributeGroup name="TrialPhaseAttributeExtension"/>
-	<!-- Additions 2022-03-14 to 2022-03-15 -->
 	<xs:attributeGroup name="StudyIndicationsAttributeExtension"/>
 	<xs:attributeGroup name="StudyIndicationAttributeExtension"/>
 	<xs:attributeGroup name="StudyInterventionsAttributeExtension"/>
@@ -179,7 +170,6 @@
 	<xs:attributeGroup name="StudyEstimandAttributeExtension"/>
 	<xs:attributeGroup name="StudyTargetPopulationRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyInterventionRefAttributeExtension"/>
-	<!--  -->
 	<xs:attributeGroup name="ArmAttributeExtension"/>
 	<xs:attributeGroup name="EpochAttributeExtension"/>
 	<xs:attributeGroup name="StudySummaryAttributeExtension"/>
@@ -340,11 +330,9 @@
 	<xs:group name="StudyStructureElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<!-- Added 2022-05-05 -->
 	<xs:group name="TrialPhaseElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<!-- Added 2022-04-14 -->
 	<xs:group name="StudyIndicationsElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -396,7 +384,6 @@
 	<xs:group name="SummaryMeasureElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<!--  -->
 	<xs:group name="ArmElementExtension">
 		<xs:sequence/>
 	</xs:group>
