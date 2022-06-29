@@ -1,12 +1,14 @@
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:odm="http://www.cdisc.org/ns/odm/v2.0"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	targetNamespace="http://www.cdisc.org/ns/odm/v2.0" elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
 
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
 		schemaLocation="xmldsig-core-schema.xsd"/>
-
+	<xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
+	
 	<xs:include schemaLocation="ODM-types.xsd"/>
 	<xs:include schemaLocation="ODM-enumerations.xsd"/>
 	<xs:include schemaLocation="ODM-study.xsd"/>
