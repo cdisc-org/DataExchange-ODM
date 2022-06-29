@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/1999/xhtml" targetNamespace="http://www.w3.org/1999/xhtml" elementFormDefault="qualified" version="1.0" xml:lang="en">
   <!--
+  ODM XHTML Schema  
+  
+  This is a further modification of the XHTML schema published by the W3C,
+  as modified by FHIR.
+  
+  -->
+  <!--
   FHIR XHTML Schema
   
   This is a pared down modification of the XHTML schema published by the W3C. 
@@ -351,7 +358,9 @@
     <xs:choice>
       <xs:element ref="br"/>
       <xs:element ref="span"/>
+      <!-- ODM: not used
       <xs:element ref="bdo"/>
+      -->
       <xs:element ref="map"/>
     </xs:choice>
   </xs:group>
@@ -367,19 +376,24 @@
   </xs:group>
   <xs:group name="fontstyle">
     <xs:choice>
+      <!-- ODM: not used
       <xs:element ref="tt"/>
+      -->
       <xs:element ref="i"/>
       <xs:element ref="b"/>
+      <!-- ODM: not used
       <xs:element ref="big"/>
       <xs:element ref="small"/>
-    </xs:choice>
+      -->
+</xs:choice>
   </xs:group>
   <xs:group name="phrase">
     <xs:choice>
       <xs:element ref="em"/>
       <xs:element ref="strong"/>
-      <xs:element ref="dfn"/>
       <xs:element ref="code"/>
+      <!-- ODM: not used
+      <xs:element ref="dfn"/>
       <xs:element ref="q"/>
       <xs:element ref="samp"/>
       <xs:element ref="kbd"/>
@@ -389,6 +403,7 @@
       <xs:element ref="acronym"/>
       <xs:element ref="sub"/>
       <xs:element ref="sup"/>
+       -->
     </xs:choice>
   </xs:group>
   <!--
@@ -473,7 +488,9 @@
       <xs:element ref="pre"/>
       <xs:element ref="hr"/>
       <xs:element ref="blockquote"/>
+      <!-- ODM: not used
       <xs:element ref="address"/>
+      -->
     </xs:choice>
   </xs:group>
   <xs:group name="block">
@@ -952,6 +969,7 @@
     =================== Address ==========================================
     </xs:documentation>
   </xs:annotation>
+  <!-- ODM: not used
   <xs:element name="address">
     <xs:annotation>
       <xs:documentation>
@@ -966,6 +984,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  -->
   <xs:annotation>
     <xs:documentation>
     =================== Horizontal Rule ==================================
@@ -1092,6 +1111,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  <!-- ODM: not used
   <xs:element name="bdo">
     <xs:annotation>
       <xs:documentation>
@@ -1117,6 +1137,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  -->
   <xs:element name="br">
     <xs:annotation>
       <xs:documentation>
@@ -1155,6 +1176,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  <!-- ODM: not used
   <xs:element name="dfn">
     <xs:annotation>
       <xs:documentation>
@@ -1169,6 +1191,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  -->
   <xs:element name="code">
     <xs:annotation>
       <xs:documentation>
@@ -1183,6 +1206,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  <!-- ODM: not used
   <xs:element name="samp">
     <xs:annotation>
       <xs:documentation>
@@ -1310,7 +1334,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="tt">
+<xs:element name="tt">
     <xs:annotation>
       <xs:documentation>
       fixed pitch font
@@ -1324,6 +1348,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+ -->
   <xs:element name="i">
     <xs:annotation>
       <xs:documentation>
@@ -1352,6 +1377,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  <!-- ODM: not used
   <xs:element name="big">
     <xs:annotation>
       <xs:documentation>
@@ -1380,6 +1406,7 @@
       </xs:complexContent>
     </xs:complexType>
   </xs:element>
+  -->
   <!--
   FHIR: no objects in FHIR
   <xs:annotation>

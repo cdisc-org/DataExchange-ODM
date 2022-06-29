@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
-
+    <xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
+    
     <!--
         +===========================================================================+
         | attribute definition groups                                               |
@@ -14,11 +16,11 @@
     <xs:attributeGroup name="TranslatedTextAttributeDefinition">
         <xs:attribute ref="xml:lang"/>
         <!-- 
-            Added Type to support expansion of TranslatedText.
+            Added type to support expansion of TranslatedText.
             Type is a Media Type as described in https://www.iana.org/assignments/media-types/media-types.xhtml
             A TranslatedText element with Type="text/plain" must be present. 
         -->
-        <xs:attribute name="Type" type="text" use="required"/>
+        <xs:attribute name="type" type="text" use="optional" default="text/plain" />
     </xs:attributeGroup>
     <xs:attributeGroup name="AliasAttributeDefinition">
         <xs:attribute name="Context" type="text" use="required"/>
@@ -300,15 +302,13 @@
         </xs:sequence>
         <xs:attributeGroup ref="DescriptionAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-TranslatedText">
-        <xs:simpleContent>
-            <xs:extension base="text">
-                <xs:attributeGroup ref="TranslatedTextAttributeDefinition"/>
-                <xs:attributeGroup ref="TranslatedTextAttributeExtension"/>
-            </xs:extension>
-        </xs:simpleContent>
+    <xs:complexType name="ODMcomplexTypeDefinition-TranslatedText" mixed="true">
+      <xs:sequence>
+        <xs:element ref="xhtml:div" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+      <xs:attributeGroup ref="TranslatedTextAttributeDefinition"/>
+      <xs:attributeGroup ref="TranslatedTextAttributeExtension"/>
     </xs:complexType>
-
     <xs:complexType name="ODMcomplexTypeDefinition-Include">
         <xs:sequence>
             <xs:group ref="IncludeElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -616,7 +616,12 @@
     <xs:element name="Description" type="ODMcomplexTypeDefinition-Description">
         <xs:unique name="UC-DES-1">
             <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+        </xs:unique>
+        <xs:unique name="UC-DES-2">
+            <xs:selector xpath="odm:TranslatedText"/>
             <xs:field xpath="@xml:lang"/>
+            <xs:field xpath="@type"/>
         </xs:unique>
     </xs:element>
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>

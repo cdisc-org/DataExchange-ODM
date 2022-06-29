@@ -7,7 +7,7 @@
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
 		schemaLocation="xmldsig-core-schema.xsd"/>
-	<xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="fhir-xhtml.xsd"/>
+	<xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
 	
 	<xs:include schemaLocation="ODM-types.xsd"/>
 	<xs:include schemaLocation="ODM-enumerations.xsd"/>
