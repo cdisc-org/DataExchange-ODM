@@ -335,8 +335,8 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="Computation"/>
             <xs:enumeration value="Imputation"/>
+            <xs:enumeration value="Preload"/>
             <xs:enumeration value="Transpose"/>
-            <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="ItemGroupRepeatingType">
