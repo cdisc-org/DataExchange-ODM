@@ -448,7 +448,7 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-TransitionTimingConstraint">
         <xs:sequence>
-            <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:group ref="TransitionTimingConstraintElementExtension" minOccurs="0"
                 maxOccurs="unbounded"/>
         </xs:sequence>
@@ -457,7 +457,7 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-DurationTimingConstraint">
         <xs:sequence>
-        <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="Description" minOccurs="0"/>
         <xs:group ref="DurationTimingConstraintElementExtension" minOccurs="0"
             maxOccurs="unbounded"/>
         </xs:sequence>

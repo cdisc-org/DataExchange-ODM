@@ -357,7 +357,7 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StudyEventGroupDef">
         <xs:sequence>
-            <xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:group ref="StudyEventDefGroup" maxOccurs="unbounded" minOccurs="1"/>
             <xs:element ref="WorkflowRef" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
