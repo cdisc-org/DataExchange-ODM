@@ -157,6 +157,7 @@
 			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Value" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>
