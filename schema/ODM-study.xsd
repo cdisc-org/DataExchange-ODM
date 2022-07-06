@@ -20,7 +20,7 @@
             Type is a Media Type as described in https://www.iana.org/assignments/media-types/media-types.xhtml
             A TranslatedText element with Type="text/plain" must be present. 
         -->
-        <xs:attribute name="type" type="text" use="optional" default="text/plain" />
+        <xs:attribute name="type" type="text" use="required" />
     </xs:attributeGroup>
     <xs:attributeGroup name="AliasAttributeDefinition">
         <xs:attribute name="Context" type="text" use="required"/>
