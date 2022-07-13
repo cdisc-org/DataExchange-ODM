@@ -256,10 +256,10 @@
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalCodeLibAttributeDefinition">
         <xs:attribute name="Library" type="name" use="required"/>
-        <xs:attribute name="Method" type="name" use="required"/>
-        <xs:attribute name="Version" type="text"/>
-        <xs:attribute name="ref" type="text"/>
-        <xs:attribute name="href" type="xs:anyURI"/>
+        <xs:attribute name="Method" type="name" use="optional"/>
+        <xs:attribute name="Version" type="text" use="optional"/>
+        <xs:attribute name="ref" type="text" use="optional"/>
+        <xs:attribute name="href" type="xs:anyURI" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CommentDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
