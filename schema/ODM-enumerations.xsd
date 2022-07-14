@@ -272,7 +272,6 @@
             <xs:enumeration value="Investigator"/>
             <xs:enumeration value="Lab"/>
             <xs:enumeration value="Other"/>
-            <!-- extended 2022 ODMv2 -->
             <xs:enumeration value="Subject"/>
             <xs:enumeration value="Monitor"/>
             <xs:enumeration value="Data analyst"/>
@@ -380,4 +379,85 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="OriginSource">
+        <xs:restriction base="odm:string">
+            <xs:enumeration value="Investigator">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C25936" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Sponsor">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C70793" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Subject">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C41189" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Vendor">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C68608" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="OriginType">
+        <xs:restriction base="odm:string">
+            <xs:enumeration value="Assigned">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C170547" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Collected">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C170548" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Derived">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C170549" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="EHR"></xs:enumeration>
+            <xs:enumeration value="Not Available">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C126101" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Other">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C17649" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="Predecessor">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C170550" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
 </xs:schema>

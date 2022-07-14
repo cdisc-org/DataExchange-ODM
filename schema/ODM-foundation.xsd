@@ -74,6 +74,7 @@
 		<xs:attribute name="System" type="xs:anyURI" use="required"/>
 		<xs:attribute name="SystemName" type="text" use="optional"/>
 		<xs:attribute name="SystemVersion" type="text" use="optional"/>
+		<xs:attribute name="Name" type="text" use="optional"/>
 		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
 		<xs:attribute name="CommentOID" type="text" use="optional"/>
 	</xs:attributeGroup>
@@ -126,6 +127,11 @@
 	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
+	<xs:attributeGroup name="OriginAttributeExtension"/>
+	<xs:attributeGroup name="SourceAttributeExtension"/>
+	<xs:attributeGroup name="SourceItemAttributeExtension"/>
+	<xs:attributeGroup name="ResourceAttributeExtension"/>
+	<xs:attributeGroup name="SelectionAttributeExtension"/>
 	<xs:attributeGroup name="AliasAttributeExtension"/>
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
@@ -214,7 +220,6 @@
 	<xs:attributeGroup name="CodeAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
 	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
-	<xs:attributeGroup name="ItemDataStarAttributeExtension"/>
 	<xs:attributeGroup name="MethodDefAttributeExtension"/>
 	<xs:attributeGroup name="MethodSignatureAttributeExtension"/>
 	<xs:attributeGroup name="ParameterAttributeExtension"/>
@@ -238,6 +243,21 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="OriginElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SourceElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SourceItemElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ResourceElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SelectionElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="AliasElementExtension">
