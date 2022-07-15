@@ -5,8 +5,6 @@
 	attributeFormDefault="unqualified">
 
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
-	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
-		schemaLocation="xmldsig-core-schema.xsd"/>
 	<xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
 	
 	<xs:include schemaLocation="ODM-types.xsd"/>
@@ -36,7 +34,6 @@
 		<xs:attribute name="Originator" type="text"/>
 		<xs:attribute name="SourceSystem" type="text"/>
 		<xs:attribute name="SourceSystemVersion" type="text"/>
-		<xs:attribute name="ID" type="xs:ID"/>
 	</xs:attributeGroup>
 
 	<xs:attributeGroup name="AssociationAttributeDefinition">
@@ -671,7 +668,6 @@
 				<xs:element ref="ReferenceData" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="ClinicalData" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="Association" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="ds:Signature" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:group ref="ODMElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attributeGroup ref="ODMAttributeDefinition"/>
