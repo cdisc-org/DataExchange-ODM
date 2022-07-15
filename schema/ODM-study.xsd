@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
     <xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
     
     <!--
@@ -26,6 +27,19 @@
         <xs:attribute name="Context" type="text" use="required"/>
         <xs:attribute name="Name" type="text" use="required"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="DocumentRefAttributeDefinition">
+        <xs:attribute name="leafID" type="xs:IDREF" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="leafAttributeDefinition">
+    <xs:attribute name="ID" type="xs:ID" use="required">
+        <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
+    </xs:attribute>
+    <xs:attribute ref="xlink:href" use="required">
+        <xs:annotation><xs:documentation>URL that can be used to identify the location of a document or dataset file relative to the folder containing the Define-XML file.</xs:documentation></xs:annotation>
+    </xs:attribute>
+    </xs:attributeGroup>    
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
@@ -97,7 +111,28 @@
         <xs:attribute name="Repeat" type="YesOnly" use="optional"/>
         <!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
-    </xs:attributeGroup>
+      </xs:attributeGroup>
+      <xs:attributeGroup name="OriginAttributeDefinition">
+          <xs:attribute name="Type" type="OriginType" use="required" />        
+          <xs:attribute name="Source" type="OriginSource" use="optional" />
+      </xs:attributeGroup>    
+    <xs:attributeGroup name="SourceAttributeDefinition">
+    </xs:attributeGroup>    
+    <xs:attributeGroup name="SourceItemAttributeDefinition">
+        <xs:attribute name="ItemOID" type="oidref" use="optional"/>
+        <xs:attribute name="ItemGroupOID" type="oidref" use="optional"/>
+        <xs:attribute name="leafID" type="oidref" use="optional"/>
+        <xs:attribute name="Name" type="name" use="optional"/>
+    </xs:attributeGroup>    
+    <xs:attributeGroup name="ResourceAttributeDefinition">
+        <xs:attribute name="Type" type="text" use="required"/>
+        <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Attribute" type="text" use="optional"/>
+        <xs:attribute name="Label" type="text" use="optional"/>
+    </xs:attributeGroup>    
+    <xs:attributeGroup name="SelectionAttributeDefinition">
+        <xs:attribute name="Path" type="text" use="required"/>
+    </xs:attributeGroup>    
     <xs:attributeGroup name="ItemDefAttributeDefinition">
         <xs:annotation>
             <xs:documentation>An ItemDef describes a type of item that can occur within a
@@ -204,13 +239,9 @@
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemGroupRefAttributeDefinition">
         <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
-<!--    <xs:attributeGroup name="ArchiveLayoutAttributeDefinition">
-        <xs:attribute name="OID" type="oid" use="required"/>
-        <xs:attribute name="PdfFileName" type="fileName" use="required"/>
-        <xs:attribute name="PresentationOID" type="oidref"/>
-    </xs:attributeGroup>
--->    <xs:attributeGroup name="ExternalSharedAttributeDefinition">
+    <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
         <xs:attribute name="Version" type="text"/>
     </xs:attributeGroup>
@@ -242,11 +273,7 @@
         <xs:attribute name="Definition" type="text" use="optional"/>
         <xs:attribute name="OrderNumber" type="integer" use="optional"/>
     </xs:attributeGroup>
-<!--    <xs:attributeGroup name="PresentationAttributeDefinition">
-        <xs:attribute name="OID" type="oid" use="required"/>
-        <xs:attribute ref="xml:lang"/>
-    </xs:attributeGroup>
--->    <xs:attributeGroup name="ConditionDefAttributeDefinition">
+    <xs:attributeGroup name="ConditionDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
@@ -316,6 +343,28 @@
         <xs:attributeGroup ref="IncludeAttributeDefinition"/>
         <xs:attributeGroup ref="IncludeAttributeExtension"/>
     </xs:complexType>
+
+    <xs:complexType name="ODMcomplexTypeDefinition-DocumentRef">
+        <xs:annotation><xs:documentation>Links to a leaf element with the location of the document.</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:group ref="DocumentRefElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DocumentRefAttributeDefinition"/>
+        <xs:attributeGroup ref="DocumentRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
+        <xs:annotation><xs:documentation>Contains the XLink information referenced by def:DocumentRef or def:ArchiveLocationID</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element name="title" minOccurs="1" maxOccurs="1">
+                <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="leafAttributeDefinition"/>
+        <xs:attributeGroup ref="leafAttributeExtension"/>
+    </xs:complexType>
+    
+
     <xs:complexType name="ODMcomplexTypeDefinition-Study">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
@@ -342,6 +391,7 @@
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CommentDef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="leaf" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
@@ -401,7 +451,7 @@
             <xs:group ref="ItemGroupDefGroup" minOccurs="1" maxOccurs="unbounded"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="WorkflowRef" minOccurs="0"/>
-            <!-- TODO: add Origin element and remove Origin attribute -->
+            <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -410,11 +460,56 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-ItemRef">
         <xs:sequence>
+            <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:group ref="ItemRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemRefAttributeDefinition"/>
         <xs:attributeGroup ref="RefAttributeSharedDefinition"/>
         <xs:attributeGroup ref="ItemRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Origin">
+        <xs:sequence>
+            <xs:element ref="Description" minOccurs="0"/>
+            <xs:element ref="Source" minOccurs="0"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded" />
+            <xs:group ref="OriginElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="OriginAttributeDefinition"/>
+        <xs:attributeGroup ref="OriginAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Source">
+        <xs:sequence>
+            <xs:element ref="SourceItem" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="SourceElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SourceAttributeDefinition"/>
+        <xs:attributeGroup ref="SourceAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-SourceItem">
+        <xs:sequence>
+            <xs:element ref="Resource" minOccurs="1" maxOccurs="unbounded"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="SourceItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SourceItemAttributeDefinition"/>
+        <xs:attributeGroup ref="SourceItemAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Resource">
+        <xs:sequence>
+            <xs:element ref="Selection" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="ResourceElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="ResourceAttributeDefinition"/>
+        <xs:attributeGroup ref="ResourceAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Selection">
+        <xs:sequence>
+            <xs:group ref="SelectionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SelectionAttributeDefinition"/>
+        <xs:attributeGroup ref="SelectionAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-ItemDef">
         <xs:sequence>
@@ -625,7 +720,8 @@
         </xs:unique>
     </xs:element>
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>
-
+    <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
+    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
     <xs:element name="Study" type="ODMcomplexTypeDefinition-Study">
         <xs:unique name="UC-S-2">
             <xs:selector xpath="odm:MetaDataVersion"/>
@@ -702,6 +798,11 @@
         </xs:unique>
     </xs:element>
     <xs:element name="ItemRef" type="ODMcomplexTypeDefinition-ItemRef"/>
+    <xs:element name="Origin" type="ODMcomplexTypeDefinition-Origin"/>
+    <xs:element name="Source" type="ODMcomplexTypeDefinition-Source"/>
+    <xs:element name="SourceItem" type="ODMcomplexTypeDefinition-SourceItem"/>
+    <xs:element name="Resource" type="ODMcomplexTypeDefinition-Resource"/>
+    <xs:element name="Selection" type="ODMcomplexTypeDefinition-Selection"/>
     <xs:element name="ItemDef" type="ODMcomplexTypeDefinition-ItemDef">
         <xs:unique name="UC-ID-1">
             <xs:selector xpath="odm:Alias"/>
