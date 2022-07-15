@@ -45,8 +45,6 @@
 		<xs:attribute name="SubjectKey" type="subjectKey"/>
 		<xs:attribute name="StudyEventOID" type="oidref"/>
 		<xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
-		<xs:attribute name="FormOID" type="oidref"/>
-		<xs:attribute name="FormRepeatKey" type="repeatKey"/>
 		<xs:attribute name="ItemGroupOID" type="oidref"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
 		<xs:attribute name="ItemOID" type="oidref"/>

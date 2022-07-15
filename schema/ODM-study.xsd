@@ -52,8 +52,6 @@
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <!-- Remove Description attribute, it is replaced by the Description child element --> 
-        <!-- <xs:attribute name="Description" type="text"/> -->
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEventGroupRefAttributeDefinition">
@@ -83,19 +81,13 @@
     <xs:attributeGroup name="ItemGroupDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <!-- Repeating type changed from YesOrNo to ItemGroupRepeatingType -->
         <xs:attribute name="Repeating" type="ItemGroupRepeatingType" use="required"/>
-        <xs:attribute name="IsReferenceData" type="YesOrNo"/>
-        <!-- <xs:attribute name="SASDatasetName" type="sasName"/> -->
-        <xs:attribute name="DatasetName" type="name"/>
-        <xs:attribute name="Domain" type="text"/>
-        <!-- TODO: remove Origin attribute, it is replaced by the Origin child element -->
-        <xs:attribute name="Origin" type="text"/>
-        <!-- <xs:attribute name="Role" type="name"/> -->
-        <xs:attribute name="Type" type="ItemGroupTypeType"/>
-        <xs:attribute name="Purpose" type="text"/>
-        <!-- Replace Comment by CommentOID -->
-        <!-- <xs:attribute name="Comment" type="text"/> -->
+        <xs:attribute name="IsReferenceData" type="YesOrNo" use="optional"/>
+        <xs:attribute name="Structure" type="text" use="optional"/>
+        <xs:attribute name="DatasetName" type="name" use="optional"/>
+        <xs:attribute name="Domain" type="text" use="optional"/>
+        <xs:attribute name="Type" type="ItemGroupTypeType" use="optional"/>
+        <xs:attribute name="Purpose" type="text" use="optional"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -104,13 +96,12 @@
         <xs:attribute name="KeySequence" type="integer" use="optional"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
         <xs:attribute name="UnitsItemOID" type="oidref" use="optional"/>
-        <!-- <xs:attribute name="ImputationMethodOID" type="oidref"/> -->
-        <xs:attribute name="Role" type="text" use="optional"/>
-        <xs:attribute name="RoleCodeListOID" type="oidref"/>
         <!-- Repeat attribute signifies that the Item drives the IG repeats based on a code list -->
         <xs:attribute name="Repeat" type="YesOnly" use="optional"/>
-        <!-- Other attribute signfies that the Item represents "other" content added to an ItemGroup -->
+        <!-- Other attribute signfies that the Item represents "Other" content added to an ItemGroup -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
+        <xs:attribute name="Role" type="text" use="optional"/>
+        <xs:attribute name="RoleCodeListOID" type="oidref"/>
       </xs:attributeGroup>
       <xs:attributeGroup name="OriginAttributeDefinition">
           <xs:attribute name="Type" type="OriginType" use="required" />        
@@ -140,7 +131,6 @@
         </xs:annotation>
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-
         <xs:attribute name="DataType" type="DataType" use="required">
             <xs:annotation>
                 <xs:documentation>The DataType attribute specifies how the corresponding value
@@ -154,50 +144,6 @@
                     datatypes.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <!-- Remove FractionDigits ODM2DEV-146 -->
-        <!-- <xs:attribute name="FractionDigits" type="nonNegativeInteger" use="optional"/> -->
-
-        <!-- <xs:attribute name="SASFieldName" type="sasName"/> -->
-        <!-- Replace by the use of the Alias child element of ItemDef 
-            xs:attribute name="SDSVarName" type="sasName">
-            <xs:annotation>
-                <xs:documentation source="https://www.cdisc.org/standards/foundational/sdtm"> The
-                    SDSVarName, Origin, and Comment attributes carry submission information as
-                    described in the latest version of CDISC SDTM. Note: In the ODM model, all
-                    internal keys are assumed to be unchangeable. This was done to make the audit
-                    trail issues work: if the SubjectKey in the model were the actual external
-                    subject identifier (or randomization ID) of a patient, and that value is sent
-                    incorrectly in one ODM file, there would be no way to correct the mistake in a
-                    followup file. In doing this, we intend that the external subject keys (and
-                    other externally visible key variables) should be defined as Items in the
-                    metadata. Thus they can be modified through normal modify/audit mechanism. While
-                    this solves the problem of supporting modification of study keys, it leaves the
-                    user without a way to identify which ItemDefs have special meaning or what the
-                    meaning is. The most obvious place where this is a problem is in matching up
-                    patients when loading data from an external source. If you can't find the
-                    patient ID how do you do the matching? The answer is to use the SDSVarName
-                    attribute of ItemDef. SDSVarName is an optional attribute which can be used to
-                    tag the Item with a business meaning. Rather than try to enumerate all possible
-                    meanings in the ODM model, the ODM working group thought it best to rely on the
-                    set of variable names defined in the CDISC SDTM, since this list covers the core
-                    variables used in managing clinical data. Software that is processing an
-                    ODM-compliant XML instance can therefore use specific values of the SDSVarName
-                    attribute to identify standard, frequently used variables. The use of this
-                    attribute is restricted to variables defined in the SDTM model. In tagging a
-                    variable, you are identifying it as matching the SDTM definition for that
-                    variable. A partial list of commonly used values includes: STUDYID (Study
-                    Identifier Unique within a Submission) USUBJID (Study Identifier Unique within a
-                    Submission), SUBJID (Subject Identifier Unique within a Study), SITEID (Unique
-                    Identifier for a study Site) SEX (Sex or Gender, coded value), VISITNUM
-                    (Clinical encounter Number) VISIT (Protocol-defined description of clinical
-                    encounter), VISITDY (Planned study day of VISIT) See the SDTM Specification and
-                    Implementation Guide for more information about SDTM variables.
-                </xs:documentation>
-            </xs:annotation>
-        </xs:attribute> -->
-        <xs:attribute name="Origin" type="text"/>
-        <!-- Replace Comment by CommentOID -->
-        <!-- <xs:attribute name="Comment" type="text"/> -->
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
@@ -209,7 +155,6 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="CLDataType" use="required"/>
-        <!--  <xs:attribute name="SASFormatName" type="sasFormat"/> -->
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListItemAttributeDefinition">
@@ -223,7 +168,6 @@
     <xs:attributeGroup name="ImputationMethodAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
     </xs:attributeGroup>
-    <!-- COMPLETE ALL elements and Attributes added by Jozef -->
     <xs:attributeGroup name="IncludeAttributeDefinition">
         <xs:attribute name="StudyOID" type="oidref" use="required"/>
         <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
@@ -233,9 +177,6 @@
         <xs:attribute name="OrderNumber" type="integer" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="FormRefAttributeDefinition">
-        <xs:attribute name="FormOID" type="oidref" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemGroupRefAttributeDefinition">
         <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
@@ -453,6 +394,7 @@
             <xs:element ref="WorkflowRef" minOccurs="0"/>
             <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="leaf" minOccurs="0"/>
             <xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemGroupDefAttributeDefinition"/>
@@ -594,6 +536,7 @@
 
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListItem">
         <xs:sequence>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Decode"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
@@ -612,6 +555,7 @@
 
     <xs:complexType name="ODMcomplexTypeDefinition-EnumeratedItem">
         <xs:sequence>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="EnumeratedItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -626,6 +570,7 @@
             <xs:element ref="MethodSignature" minOccurs="0"  maxOccurs="1"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded" />
             <xs:group ref="MethodDefElementExtension"/>
         </xs:sequence>
         <xs:attributeGroup ref="MethodDefAttributeDefinition"/>
