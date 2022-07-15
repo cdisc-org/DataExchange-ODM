@@ -74,7 +74,7 @@
 		<xs:attribute name="System" type="xs:anyURI" use="required"/>
 		<xs:attribute name="SystemName" type="text" use="optional"/>
 		<xs:attribute name="SystemVersion" type="text" use="optional"/>
-		<xs:attribute name="Name" type="text" use="optional"/>
+		<xs:attribute name="Label" type="text" use="optional"/>
 		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
 		<xs:attribute name="CommentOID" type="text" use="optional"/>
 	</xs:attributeGroup>
@@ -98,6 +98,8 @@
         +===========================================================================+
     -->
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
+	<xs:attributeGroup name="DocumentRefAttributeExtension"/>
+	<xs:attributeGroup name="leafAttributeExtension"/>
 	<xs:attributeGroup name="UserNameAttributeExtension"/>
 	<xs:attributeGroup name="PrefixAttributeExtension"/>
 	<xs:attributeGroup name="SuffixAttributeExtension"/>
@@ -261,6 +263,12 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="AliasElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="DocumentRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="leafElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="CodeListRefElementExtension">

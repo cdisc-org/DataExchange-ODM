@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink"
     elementFormDefault="qualified" attributeFormDefault="unqualified">
 
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
     <xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
     
     <!--
@@ -26,6 +27,19 @@
         <xs:attribute name="Context" type="text" use="required"/>
         <xs:attribute name="Name" type="text" use="required"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="DocumentRefAttributeDefinition">
+        <xs:attribute name="leafID" type="xs:IDREF" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="leafAttributeDefinition">
+    <xs:attribute name="ID" type="xs:ID" use="required">
+        <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
+    </xs:attribute>
+    <xs:attribute ref="xlink:href" use="required">
+        <xs:annotation><xs:documentation>URL that can be used to identify the location of a document or dataset file relative to the folder containing the Define-XML file.</xs:documentation></xs:annotation>
+    </xs:attribute>
+    </xs:attributeGroup>    
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
@@ -329,6 +343,28 @@
         <xs:attributeGroup ref="IncludeAttributeDefinition"/>
         <xs:attributeGroup ref="IncludeAttributeExtension"/>
     </xs:complexType>
+
+    <xs:complexType name="ODMcomplexTypeDefinition-DocumentRef">
+        <xs:annotation><xs:documentation>Links to a leaf element with the location of the document.</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:group ref="DocumentRefElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DocumentRefAttributeDefinition"/>
+        <xs:attributeGroup ref="DocumentRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
+        <xs:annotation><xs:documentation>Contains the XLink information referenced by def:DocumentRef or def:ArchiveLocationID</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element name="title" minOccurs="1" maxOccurs="1">
+                <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="leafAttributeDefinition"/>
+        <xs:attributeGroup ref="leafAttributeExtension"/>
+    </xs:complexType>
+    
+
     <xs:complexType name="ODMcomplexTypeDefinition-Study">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
@@ -355,6 +391,7 @@
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CommentDef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="leaf" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
@@ -435,6 +472,7 @@
             <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="Source" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded" />
             <xs:group ref="OriginElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="OriginAttributeDefinition"/>
@@ -682,7 +720,8 @@
         </xs:unique>
     </xs:element>
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>
-
+    <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
+    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
     <xs:element name="Study" type="ODMcomplexTypeDefinition-Study">
         <xs:unique name="UC-S-2">
             <xs:selector xpath="odm:MetaDataVersion"/>
