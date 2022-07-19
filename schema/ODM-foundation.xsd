@@ -1,12 +1,11 @@
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:odm="http://www.cdisc.org/ns/odm/v2.0"
-	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-	targetNamespace="http://www.cdisc.org/ns/odm/v2.0" elementFormDefault="qualified"
-	attributeFormDefault="unqualified">
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
 
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	<xs:import namespace="http://www.w3.org/1999/xhtml" schemaLocation="ODM-xhtml.xsd"/>
-	
+
 	<xs:include schemaLocation="ODM-types.xsd"/>
 	<xs:include schemaLocation="ODM-enumerations.xsd"/>
 	<xs:include schemaLocation="ODM-study.xsd"/>
@@ -85,7 +84,7 @@
 	<xs:attributeGroup name="ValueAttributeDefinition">
 		<xs:attribute name="SeqNum" type="positiveInteger"/>
 	</xs:attributeGroup>
-	
+
 	<!--
         +===========================================================================+
         | these are purposely empty attributeGroups to permit vendor extensions to  |
@@ -93,8 +92,6 @@
         +===========================================================================+
     -->
 	<xs:attributeGroup name="TranslatedTextAttributeExtension"/>
-	<xs:attributeGroup name="DocumentRefAttributeExtension"/>
-	<xs:attributeGroup name="leafAttributeExtension"/>
 	<xs:attributeGroup name="UserNameAttributeExtension"/>
 	<xs:attributeGroup name="PrefixAttributeExtension"/>
 	<xs:attributeGroup name="SuffixAttributeExtension"/>
@@ -134,13 +131,19 @@
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
 	<xs:attributeGroup name="LocationRefAttributeExtension"/>
-	<xs:attributeGroup name="MetaDataVersionRefAttributeExtension"/>
 	<xs:attributeGroup name="UserRefAttributeExtension"/>
 	<xs:attributeGroup name="SignatureRefAttributeExtension"/>
 	<xs:attributeGroup name="InvestigatorRefAttributeExtension"/>
 	<xs:attributeGroup name="SiteRefAttributeExtension"/>
+	<xs:attributeGroup name="MetaDataVersionRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionAttributeExtension"/>
+	<xs:attributeGroup name="DocumentRefAttributeExtension"/>
+	<xs:attributeGroup name="leafAttributeExtension"/>
+	<xs:attributeGroup name="PDFPageRefAttributeExtension"/>
+	<xs:attributeGroup name="StandardAttributeExtension"/>
+	<xs:attributeGroup name="AnnotatedCRFAttributeExtension"/>
+	<xs:attributeGroup name="SupplementalDocAttributeExtension"/>
 	<xs:attributeGroup name="ProtocolAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowDefAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowStartAttributeExtension"/>
@@ -308,6 +311,15 @@
 	<xs:group name="MetaDataVersionElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="StandardElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="AnnotatedCRFElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="SupplementalDocElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="ProtocolElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -436,10 +448,10 @@
 	</xs:group>
 	<xs:group name="TransitionTimingConstraintElementExtension">
 		<xs:sequence/>
-    </xs:group>
-    <xs:group name="DurationTimingConstraintElementExtension">
-	  <xs:sequence/>
-	  </xs:group>
+	</xs:group>
+	<xs:group name="DurationTimingConstraintElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="StudyEventDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -638,7 +650,7 @@
 		<xs:sequence>
 			<xs:element ref="Value"/>
 			<xs:element ref="AuditRecord" minOccurs="0"/>
-			<xs:group ref="QueryElementExtension"></xs:group>
+			<xs:group ref="QueryElementExtension"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="QueryAttributeDefinition"/>
 		<xs:attributeGroup ref="QueryAttributeExtension"/>
@@ -651,7 +663,7 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	
+
 
 	<!--
         +===========================================================================+
@@ -676,7 +688,7 @@
 			<xs:field xpath="@OID"/>
 		</xs:unique>
 	</xs:element>
-	
+
 	<xs:element name="Association" type="ODMcomplexTypeDefinition-Association"/>
 	<xs:element name="KeySet" type="ODMcomplexTypeDefinition-KeySet"/>
 	<xs:element name="Annotations" type="ODMcomplexTypeDefinition-Annotations"/>
@@ -688,5 +700,5 @@
 	<xs:element name="Coding" type="ODMcomplexTypeDefinition-Coding"/>
 	<xs:element name="Query" type="ODMcomplexTypeDefinition-Query"/>
 	<xs:element name="Value" type="ODMcomplexTypeDefinition-Value"/>
-	
+
 </xs:schema>

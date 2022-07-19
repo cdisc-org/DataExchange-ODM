@@ -27,19 +27,6 @@
         <xs:attribute name="Context" type="text" use="required"/>
         <xs:attribute name="Name" type="text" use="required"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="DocumentRefAttributeDefinition">
-        <xs:attribute name="leafID" type="xs:IDREF" use="required">
-            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
-        </xs:attribute>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="leafAttributeDefinition">
-    <xs:attribute name="ID" type="xs:ID" use="required">
-        <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
-    </xs:attribute>
-    <xs:attribute ref="xlink:href" use="required">
-        <xs:annotation><xs:documentation>URL that can be used to identify the location of a document or dataset file relative to the folder containing the Define-XML file.</xs:documentation></xs:annotation>
-    </xs:attribute>
-    </xs:attributeGroup>    
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
@@ -54,6 +41,63 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="StandardAttributeDefinition">
+        <xs:annotation><xs:documentation>Definition of a standard referenced in the Define-XML document.</xs:documentation></xs:annotation>
+        <xs:attribute name="OID" type="oid" use="required">
+            <xs:annotation><xs:documentation>Unique identifier of the version within the XML document.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Name" type="StandardName"  use="required">
+            <xs:annotation><xs:documentation>Name of Standard.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Type" type="StandardType"  use="required">
+            <xs:annotation><xs:documentation>Type of Standard.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="PublishingSet" type="StandardPublishingSet"  use="optional">
+            <xs:annotation><xs:documentation>Set of published files of Standard when Type="CT" (e.g. SDTM, ADaM, SEND, CDASH, COA).</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Version" type="text"  use="required">
+            <xs:annotation><xs:documentation>Version of Standard.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Status" type="StandardStatus"  use="required">
+            <xs:annotation><xs:documentation>Status of Standard.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CommentOID" type="oidref" use="optional">
+            <xs:annotation><xs:documentation>The Comment identifier that this value refers to.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="DocumentRefAttributeDefinition">
+        <xs:attribute name="leafID" type="xs:IDREF" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="PDFPageRefAttributeDefinition">
+        <xs:attribute name="PageRefs" type="odm:text" use="optional">
+            <xs:annotation><xs:documentation>List of PDF pages separated by a space.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FirstPage" type="odm:integer" use="optional">
+            <xs:annotation><xs:documentation>First page in a range of pages.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LastPage" type="odm:integer" use="optional">
+            <xs:annotation><xs:documentation>Last page in a range of pages.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Type" type="PDFPageType"  use="required">
+            <xs:annotation><xs:documentation>Type of page for page references indicated in the PageRefs attribute.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Title" type="odm:text" use="optional">
+            <xs:annotation><xs:documentation>Text with the label for the document reference.</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="leafAttributeDefinition">
+        <xs:attribute name="ID" type="xs:ID" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute ref="xlink:href" use="required">
+            <xs:annotation><xs:documentation>URL that can be used to identify the location of a document or dataset file relative to the folder containing the ODM file.</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>    
+    
     <xs:attributeGroup name="StudyEventGroupRefAttributeDefinition">
         <xs:attribute name="StudyEventGroupOID" type="oidref" use="required"/>
         <xs:attribute name="OrderNumber" type="integer" use="optional"/>
@@ -144,6 +188,7 @@
                     datatypes.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="DisplayFormat" type="text" use="optional"></xs:attribute>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
@@ -230,7 +275,9 @@
         <xs:attribute name="href" type="xs:anyURI" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CommentDefAttributeDefinition">
-        <xs:attribute name="OID" type="oid" use="required"/>
+        <xs:attribute name="OID" type="oid" use="required">
+            <xs:annotation><xs:documentation>Unique identifier of the comment within the XML document.</xs:documentation></xs:annotation>            
+        </xs:attribute>
     </xs:attributeGroup>
     
     <!--
@@ -277,35 +324,6 @@
       <xs:attributeGroup ref="TranslatedTextAttributeDefinition"/>
       <xs:attributeGroup ref="TranslatedTextAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Include">
-        <xs:sequence>
-            <xs:group ref="IncludeElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="IncludeAttributeDefinition"/>
-        <xs:attributeGroup ref="IncludeAttributeExtension"/>
-    </xs:complexType>
-
-    <xs:complexType name="ODMcomplexTypeDefinition-DocumentRef">
-        <xs:annotation><xs:documentation>Links to a leaf element with the location of the document.</xs:documentation></xs:annotation>
-        <xs:sequence>
-            <xs:group ref="DocumentRefElementExtension" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="DocumentRefAttributeDefinition"/>
-        <xs:attributeGroup ref="DocumentRefAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
-        <xs:annotation><xs:documentation>Contains the XLink information referenced by def:DocumentRef or def:ArchiveLocationID</xs:documentation></xs:annotation>
-        <xs:sequence>
-            <xs:element name="title" minOccurs="1" maxOccurs="1">
-                <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
-            </xs:element>
-            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="leafAttributeDefinition"/>
-        <xs:attributeGroup ref="leafAttributeExtension"/>
-    </xs:complexType>
-    
-
     <xs:complexType name="ODMcomplexTypeDefinition-Study">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
@@ -320,10 +338,13 @@
         <xs:sequence>
             <xs:group ref="MetaDataVersionPreIncludeElementExtension" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Include" minOccurs="0"/>
-            <xs:element ref="Protocol" minOccurs="0"/>
+            <xs:element ref="Include" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Standards" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="AnnotatedCRF" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="SupplementalDoc" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Protocol" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="WorkflowDef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="StudyTiming" minOccurs="0"/>
+            <xs:element ref="StudyTiming" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="StudyEventGroupDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="StudyEventDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ItemGroupDef" minOccurs="0" maxOccurs="unbounded"/>
@@ -338,6 +359,83 @@
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
         <xs:attributeGroup ref="MetaDataVersionAttributeExtension"/>
     </xs:complexType>
+
+    <xs:complexType name="ODMcomplexTypeDefinition-DocumentRef">
+        <xs:annotation><xs:documentation>Links to a leaf element with the location of the document.</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element ref="PDFPageRef" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>The PDFPageRef element is a container for page references in a PDF file.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="DocumentRefElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DocumentRefAttributeDefinition"/>
+        <xs:attributeGroup ref="DocumentRefAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-PDFPageRef">
+        <xs:annotation><xs:documentation>This element is the container for CRF page references.</xs:documentation></xs:annotation>
+        <xs:complexContent>
+            <xs:restriction base="xs:anyType">
+                <xs:attributeGroup ref="PDFPageRefAttributeDefinition"/>
+                <xs:attributeGroup ref="PDFPageRefAttributeExtension"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
+        <xs:annotation><xs:documentation>Contains the XLink information referenced by DocumentRef or ArchiveLocationID</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element name="title" minOccurs="1" maxOccurs="1">
+                <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="leafAttributeDefinition"/>
+        <xs:attributeGroup ref="leafAttributeExtension"/>
+    </xs:complexType>
+    
+    <xs:complexType name="ODMcomplexTypeDefinition-Include">
+        <xs:sequence>
+            <xs:group ref="IncludeElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="IncludeAttributeDefinition"/>
+        <xs:attributeGroup ref="IncludeAttributeExtension"/>
+    </xs:complexType>
+    
+    <xs:complexType name="ODMcomplexTypeDefinition-Standards">
+        <xs:sequence>
+            <xs:element ref="Standard" minOccurs="1" maxOccurs="unbounded" >
+                <xs:annotation><xs:documentation>Definition of a standard referenced in the Define-XML document.</xs:documentation></xs:annotation>                
+            </xs:element>            
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Standard">
+        <xs:sequence>
+            <xs:group ref="StandardElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="StandardAttributeDefinition"/>
+        <xs:attributeGroup ref="StandardAttributeExtension"/>
+    </xs:complexType>
+ 
+    <xs:complexType name="ODMcomplexTypeDefinition-AnnotatedCRF">
+        <xs:annotation><xs:documentation>An Annotated Case Report Form (CRF) is a Portable File Format (PDF) document that provides the mapping of data collection fields to the variables or discrete variable values contained within the datasets.</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element ref="DocumentRef" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>Links to a def:leaf element with the location of the document.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="AnnotatedCRFElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="AnnotatedCRFAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-SupplementalDoc">
+        <xs:annotation><xs:documentation>Supplemental data definitions</xs:documentation></xs:annotation>
+        <xs:sequence>
+            <xs:element ref="DocumentRef" minOccurs="1" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>Links to a def:leaf element with the location of the document.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:group ref="SupplementalDocElementExtension" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="SupplementalDocAttributeExtension"/>
+    </xs:complexType>
+    
     <xs:complexType name="ODMcomplexTypeDefinition-StudyEventGroupRef">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
@@ -632,8 +730,14 @@
         <xs:attributeGroup ref="ExternalCodeLibAttributeExtension" />
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CommentDef">
+        <xs:annotation><xs:documentation>The Comment element allows referencing short comments self-contained in the XML document or long comments normally included in external documents. For comments included in external documents, the reference could include specific pages of a document where the comments are included.</xs:documentation></xs:annotation>        
         <xs:sequence>
-            <xs:element ref="Description"/>
+            <xs:element ref="Description">
+                <xs:annotation><xs:documentation>Text of the comment.</xs:documentation></xs:annotation>
+            </xs:element>
+            <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>The DocumentRef element is a container for page references in a PDF file.</xs:documentation></xs:annotation>
+            </xs:element>
             <xs:group ref="CommentDefElementExtension"/>
         </xs:sequence>
         <xs:attributeGroup ref="CommentDefAttributeDefinition"/>
@@ -665,8 +769,6 @@
         </xs:unique>
     </xs:element>
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>
-    <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
-    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
     <xs:element name="Study" type="ODMcomplexTypeDefinition-Study">
         <xs:unique name="UC-S-2">
             <xs:selector xpath="odm:MetaDataVersion"/>
@@ -705,7 +807,29 @@
             <xs:field xpath="@OID"/>
         </xs:unique>
     </xs:element>
+    <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
+    <xs:element name="PDFPageRef" type="ODMcomplexTypeDefinition-PDFPageRef" />
+    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
     <xs:element name="Include" type="ODMcomplexTypeDefinition-Include"/>
+    <xs:element name="Standards" type="ODMcomplexTypeDefinition-Standards">
+        <xs:unique name="UC-STD-1">
+            <xs:selector xpath="odm:Standard"/>
+            <xs:field xpath="@OID"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="Standard" type="ODMcomplexTypeDefinition-Standard"/>
+    <xs:element name="AnnotatedCRF" type="ODMcomplexTypeDefinition-AnnotatedCRF">
+        <xs:unique name="UC-ACRFG-1">
+            <xs:selector xpath="odm:DocumentRef"/>
+            <xs:field xpath="@leafID"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="SupplementalDoc" type="ODMcomplexTypeDefinition-SupplementalDoc">
+        <xs:unique name="UC-SUPPD-1">
+            <xs:selector xpath="odm:DocumentRef"/>
+            <xs:field xpath="@leafID"/>
+        </xs:unique>
+    </xs:element>
     <xs:element name="StudyEventGroupRef" type="ODMcomplexTypeDefinition-StudyEventGroupRef"/>
     <xs:element name="StudyEventGroupDef" type="ODMcomplexTypeDefinition-StudyEventGroupDef"/>
     <xs:element name="StudyEventRef" type="ODMcomplexTypeDefinition-StudyEventRef"/>
