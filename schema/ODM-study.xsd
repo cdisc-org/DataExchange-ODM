@@ -128,12 +128,14 @@
         <xs:attribute name="Repeating" type="ItemGroupRepeatingType" use="required"/>
         <xs:attribute name="IsReferenceData" type="YesOrNo" use="optional"/>
         <xs:attribute name="Structure" type="text" use="optional"/>
+        <xs:attribute name="ArchiveLocationID" type="oidref" use="optional"/>
         <xs:attribute name="DatasetName" type="name" use="optional"/>
         <xs:attribute name="Domain" type="text" use="optional"/>
         <xs:attribute name="Type" type="ItemGroupTypeType" use="optional"/>
         <xs:attribute name="Purpose" type="text" use="optional"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
+        <xs:attribute name="StandardOID" type="oidref" use="optional"/>        
     </xs:attributeGroup>
     <xs:attributeGroup name="ItemRefAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="required"/>
@@ -193,7 +195,7 @@
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
         <xs:attribute name="Comparator" type="Comparator" use="optional"/>
-        <xs:attribute name="SoftHard" type="SoftOrHard" use="required"/>
+        <xs:attribute name="SoftHard" type="SoftOrHard" use="optional"/>
         <xs:attribute name="ItemOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListAttributeDefinition">
@@ -201,6 +203,7 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="CLDataType" use="required"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
+        <xs:attribute name="StandardOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="CodeListItemAttributeDefinition">
         <xs:attribute name="CodedValue" type="value" use="required"/>

@@ -457,6 +457,13 @@
                     </xs:appinfo>
                 </xs:annotation>
             </xs:enumeration>
+            <xs:enumeration value="Protocol">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <Alias Name="C170551" Context="nci:ExtCodeID"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
