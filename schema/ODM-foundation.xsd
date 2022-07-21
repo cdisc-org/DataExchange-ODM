@@ -118,18 +118,6 @@
 	<xs:attributeGroup name="ReasonForChangeAttributeExtension"/>
 	<xs:attributeGroup name="SourceIDAttributeExtension"/>
 	<xs:attributeGroup name="IncludeAttributeExtension"/>
-	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
-	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
-	<xs:attributeGroup name="ItemRefAttributeExtension"/>
-	<xs:attributeGroup name="OriginAttributeExtension"/>
-	<xs:attributeGroup name="SourceAttributeExtension"/>
-	<xs:attributeGroup name="SourceItemAttributeExtension"/>
-	<xs:attributeGroup name="ResourceAttributeExtension"/>
-	<xs:attributeGroup name="SelectionAttributeExtension"/>
-	<xs:attributeGroup name="AliasAttributeExtension"/>
-	<xs:attributeGroup name="CheckValueAttributeExtension"/>
-	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
-	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
 	<xs:attributeGroup name="LocationRefAttributeExtension"/>
 	<xs:attributeGroup name="UserRefAttributeExtension"/>
 	<xs:attributeGroup name="SignatureRefAttributeExtension"/>
@@ -144,6 +132,8 @@
 	<xs:attributeGroup name="StandardAttributeExtension"/>
 	<xs:attributeGroup name="AnnotatedCRFAttributeExtension"/>
 	<xs:attributeGroup name="SupplementalDocAttributeExtension"/>
+	<xs:attributeGroup name="ValueListDefAttributeExtension"/>
+	<xs:attributeGroup name="WhereClauseDefAttributeExtension"/>
 	<xs:attributeGroup name="ProtocolAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowDefAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowStartAttributeExtension"/>
@@ -187,8 +177,24 @@
 	<xs:attributeGroup name="RelativeTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="TransitionTimingConstraintAttributeExtension"/>
 	<xs:attributeGroup name="DurationTimingConstraintAttributeExtension"/>
+	<xs:attributeGroup name="StudyEventRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventDefAttributeExtension"/>
+	<xs:attributeGroup name="ItemGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemGroupDefAttributeExtension"/>
+	<xs:attributeGroup name="ClassAttributeExtension"/>
+	<xs:attributeGroup name="SubClassAttributeExtension"/>
+	<xs:attributeGroup name="ItemRefAttributeExtension"/>
+	<xs:attributeGroup name="WhereClauseRefAttributeExtension"/>
+	<xs:attributeGroup name="OriginAttributeExtension"/>
+	<xs:attributeGroup name="SourceAttributeExtension"/>
+	<xs:attributeGroup name="SourceItemAttributeExtension"/>
+	<xs:attributeGroup name="ResourceAttributeExtension"/>
+	<xs:attributeGroup name="SelectionAttributeExtension"/>
+	<xs:attributeGroup name="AliasAttributeExtension"/>
+	<xs:attributeGroup name="CheckValueAttributeExtension"/>
+	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
+	<xs:attributeGroup name="ValueListRefAttributeExtension"/>
+	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
 	<xs:attributeGroup name="QuestionAttributeExtension"/>
 	<xs:attributeGroup name="RangeCheckAttributeExtension"/>
@@ -196,6 +202,8 @@
 	<xs:attributeGroup name="CodeListAttributeExtension"/>
 	<xs:attributeGroup name="CodeListItemAttributeExtension"/>
 	<xs:attributeGroup name="DecodeAttributeExtension"/>
+	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
+	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
 	<xs:attributeGroup name="AdminDataAttributeExtension"/>
 	<xs:attributeGroup name="UserAttributeExtension"/>
 	<xs:attributeGroup name="AddressAttributeExtension"/>
@@ -218,8 +226,6 @@
 	<xs:attributeGroup name="ConditionDefAttributeExtension"/>
 	<xs:attributeGroup name="FormalExpressionAttributeExtension"/>
 	<xs:attributeGroup name="CodeAttributeExtension"/>
-	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
-	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
 	<xs:attributeGroup name="MethodDefAttributeExtension"/>
 	<xs:attributeGroup name="MethodSignatureAttributeExtension"/>
 	<xs:attributeGroup name="ParameterAttributeExtension"/>
@@ -234,15 +240,6 @@
         +===========================================================================+
     -->
 	<xs:group name="IncludeElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="StudyEventRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ItemGroupRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ItemRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="OriginElementExtension">
@@ -267,12 +264,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="leafElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="CodeListRefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ExternalCodeListElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="OrganizationElementExtension">
@@ -318,6 +309,15 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="SupplementalDocElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ValueListDefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="WhereClauseRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="WhereClauseDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ProtocolElementExtension">
@@ -452,10 +452,22 @@
 	<xs:group name="DurationTimingConstraintElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="StudyEventRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="StudyEventDefElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="ItemGroupRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="ItemGroupDefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ClassElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ItemRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ItemDefElementExtension">
@@ -470,6 +482,12 @@
 	<xs:group name="ErrorMessageElementExtension">
 		<xs:sequence/>
 	</xs:group>
+	<xs:group name="CodeListRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ValueListRefElementExtension">
+		<xs:sequence/>
+	</xs:group>
 	<xs:group name="CodeListElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -477,6 +495,9 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="DecodeElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ExternalCodeListElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="AdminDataElementExtension">
