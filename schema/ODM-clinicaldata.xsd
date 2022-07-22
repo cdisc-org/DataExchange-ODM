@@ -34,6 +34,7 @@
 		<xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
+		<xs:attribute name="ItemGroupDataSeq" type="integer"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDataAttributeSharedDefinition">
 		<xs:attribute name="ItemOID" type="oidref" use="required"/>
@@ -79,8 +80,14 @@
         +===========================================================================+
         | group definitions                                                         |
         +===========================================================================+
-    -->
-
+  -->
+	<xs:group name="ItemGroupDataGroup">
+		<xs:sequence>
+			<xs:element ref="ItemGroupData" minOccurs="0"/>
+			<xs:element ref="ItemData" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	
 	<!--
         +===========================================================================+
         | complexType definitions                                                   |
@@ -144,7 +151,8 @@
 			<xs:element ref="AuditRecord" minOccurs="0"/>
 			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- 2022-07-22: For the moment we assume that ItemGroupData and ItemData can come in any order, any number of times -->
+			<xs:group ref="ItemGroupDataGroup" minOccurs="1" maxOccurs="unbounded"/>
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
