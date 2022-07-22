@@ -78,7 +78,6 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="TransitionOID" type="oidref" use="required"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
-        <!-- 2022-05-13: added "Type" having values like "StartToStart" -->
         <xs:attribute name="Type" type="RelativeTimingConstraintType"/>
         <xs:attribute name="TimepointTarget" type="durationDatetime" use="required"/>
         <xs:attribute name="TimepointPreWindow" type="durationDatetime" use="optional"/>
@@ -188,7 +187,6 @@
             <xs:element ref="StudySummary" minOccurs="0"/>
             <xs:element ref="StudyStructure" minOccurs="0"/>
             <xs:element ref="TrialPhase" minOccurs="0"/>
-            <!-- TODO: create a container element "StudyTimings" -->
             <xs:element ref="StudyTimings" minOccurs="0"/>
             <xs:element ref="StudyIndications" minOccurs="0"/>
             <xs:element ref="StudyInterventions" minOccurs="0"/>
@@ -431,7 +429,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyTimings">
         <xs:sequence>
             <xs:element ref="StudyTiming" maxOccurs="unbounded"/>
-            <xs:group ref="StudyTimingElementExtension"/>
+            <xs:group ref="StudyTimingsElementExtension"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyTimingsAttributeExtension"/>
     </xs:complexType>
