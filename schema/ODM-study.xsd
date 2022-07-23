@@ -858,11 +858,7 @@
         <xs:unique name="UC-DES-1">
             <xs:selector xpath="odm:TranslatedText"/>
             <xs:field xpath="@type"/>
-        </xs:unique>
-        <xs:unique name="UC-DES-2">
-            <xs:selector xpath="odm:TranslatedText"/>
             <xs:field xpath="@xml:lang"/>
-            <xs:field xpath="@type"/>
         </xs:unique>
     </xs:element>
     <xs:element name="TranslatedText" type="ODMcomplexTypeDefinition-TranslatedText"/>
@@ -992,6 +988,7 @@
     <xs:element name="Question" type="ODMcomplexTypeDefinition-Question">
         <xs:unique name="UC-QU-1">
             <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -1000,6 +997,7 @@
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">
         <xs:unique name="UC-ERM-1">
             <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -1036,6 +1034,7 @@
     <xs:element name="Decode" type="ODMcomplexTypeDefinition-Decode">
         <xs:unique name="UC-DEC-1">
             <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
