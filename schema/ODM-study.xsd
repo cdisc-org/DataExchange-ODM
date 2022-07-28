@@ -762,7 +762,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-MethodDef">
         <xs:sequence>
             <xs:element ref="Description"/>
-            <xs:element ref="MethodSignature" minOccurs="0"  maxOccurs="1"/>
+            <xs:element ref="MethodSignature" minOccurs="1"  maxOccurs="1"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded" />
@@ -796,7 +796,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-ConditionDef">
         <xs:sequence>
             <xs:element ref="Description"/>
-            <xs:element ref="MethodSignature" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="MethodSignature" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="FormalExpression" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ConditionDefElementExtension"/>
