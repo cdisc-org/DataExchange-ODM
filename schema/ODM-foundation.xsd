@@ -21,10 +21,9 @@
         +===========================================================================+
     -->
 	<xs:attributeGroup name="ODMAttributeDefinition">
-		<xs:attribute name="Description" type="text"/>
 		<xs:attribute name="FileType" type="FileType" use="required"/>
 		<xs:attribute name="Granularity" type="Granularity"/>
-		<xs:attribute name="Context" type="Context"/>
+		<xs:attribute name="Context" type="Context" default="Exchange"/>
 		<xs:attribute name="FileOID" type="oid" use="required"/>
 		<xs:attribute name="CreationDateTime" type="datetime" use="required"/>
 		<xs:attribute name="PriorFileOID" type="oidref"/>
@@ -694,6 +693,7 @@
 	<xs:element name="ODM">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="Study" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="AdminData" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="ReferenceData" minOccurs="0" maxOccurs="unbounded"/>
