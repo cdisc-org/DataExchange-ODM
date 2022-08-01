@@ -346,13 +346,22 @@
             <xs:enumeration value="Static"/>
         </xs:restriction>
     </xs:simpleType>
+
     <xs:simpleType name="ItemGroupTypeType">
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Form"/>
-            <xs:enumeration value="Dataset"/>
-            <xs:enumeration value="Concept"/>
-        </xs:restriction>
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Form"/>
+                    <xs:enumeration value="Dataset"/>
+                    <xs:enumeration value="Concept"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+        </xs:union>
     </xs:simpleType>
+
     <xs:simpleType name="QuerySourceType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="System"/>
