@@ -382,7 +382,6 @@
             <xs:element ref="WhereClauseDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Protocol" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="WorkflowDef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="StudyTiming" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="StudyEventGroupDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="StudyEventDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="ItemGroupDef" minOccurs="0" maxOccurs="unbounded"/>
