@@ -135,6 +135,10 @@
         <xs:attribute name="Category" type="text"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="ItemGroupRefAttributeDefinition">
+        <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
+        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
+    </xs:attributeGroup>
     <xs:attributeGroup name="ItemGroupDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
@@ -151,7 +155,6 @@
         <xs:attribute name="IsNonStandard" type="YesOnly" use="optional"/>        
         <xs:attribute name="HasNoData" type="YesOnly" use="optional"/>        
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
-        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ClassAttributeDefinition">
         <xs:attribute name="Name" type="ItemGroupClass" use="required" >
@@ -265,10 +268,6 @@
         <xs:attribute name="OrderNumber" type="integer" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="ItemGroupRefAttributeDefinition">
-        <xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
-        <xs:attribute name="MethodOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="text"/>
