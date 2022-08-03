@@ -25,9 +25,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-ReferenceData">
         <xs:sequence>
             <xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="AuditRecords" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Signatures" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Annotations" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>
             <xs:group ref="ReferenceDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ReferenceDataAttributeDefinition"/>

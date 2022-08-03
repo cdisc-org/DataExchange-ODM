@@ -612,11 +612,6 @@
 		<xs:attributeGroup ref="KeySetAttributeExtension"/>
 	</xs:complexType>
 
-	<xs:complexType name="ODMcomplexTypeDefinition-Annotations">
-		<xs:sequence>
-			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-Annotation">
 		<xs:sequence>
 			<xs:element ref="Comment" minOccurs="0"/>
@@ -645,7 +640,7 @@
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-FlagValue">
 		<xs:simpleContent>
-			<xs:extension base="text">
+			<xs:extension base="name">
 				<xs:attributeGroup ref="FlagValueAttributeDefinition"/>
 				<xs:attributeGroup ref="FlagValueAttributeExtension"/>
 			</xs:extension>
@@ -712,7 +707,6 @@
 
 	<xs:element name="Association" type="ODMcomplexTypeDefinition-Association"/>
 	<xs:element name="KeySet" type="ODMcomplexTypeDefinition-KeySet"/>
-	<xs:element name="Annotations" type="ODMcomplexTypeDefinition-Annotations"/>
 	<xs:element name="Annotation" type="ODMcomplexTypeDefinition-Annotation"/>
 	<xs:element name="Comment" type="ODMcomplexTypeDefinition-Comment"/>
 	<xs:element name="Flag" type="ODMcomplexTypeDefinition-Flag"/>

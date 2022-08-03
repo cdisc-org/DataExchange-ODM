@@ -87,6 +87,15 @@
 			<xs:element ref="ItemData" minOccurs="0"/>
 		</xs:sequence>
 	</xs:group>
+
+
+	<xs:group name="AuditRecordSignatureNotationGroup">
+		<xs:sequence>
+			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="Signature" minOccurs="0"/>
+			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
 	
 	<!--
         +===========================================================================+
@@ -96,10 +105,8 @@
 	<xs:complexType name="ODMcomplexTypeDefinition-ClinicalData">
 		<xs:sequence>
 			<xs:element ref="SubjectData" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="AuditRecords" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="Signatures" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="Annotations" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ClinicalDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -108,12 +115,10 @@
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-SubjectData">
 		<xs:sequence>
-			<xs:element ref="AuditRecord" minOccurs="0"/>
-			<xs:element ref="Signature" minOccurs="0"/>
 			<xs:element ref="InvestigatorRef" minOccurs="0"/>
 			<xs:element ref="SiteRef" minOccurs="0"/>
-			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="StudyEventData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>			
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="SubjectDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -136,10 +141,8 @@
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-StudyEventData">
 		<xs:sequence>
-			<xs:element ref="AuditRecord" minOccurs="0"/>
-			<xs:element ref="Signature" minOccurs="0"/>
-			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ItemGroupData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>			
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="StudyEventDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -148,11 +151,9 @@
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-ItemGroupData">
 		<xs:sequence>
-			<xs:element ref="AuditRecord" minOccurs="0"/>
-			<xs:element ref="Signature" minOccurs="0"/>
-			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
 			<!-- 2022-07-22: For the moment we assume that ItemGroupData and ItemData can come in any order, any number of times -->
 			<xs:group ref="ItemGroupDataGroup" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>			
 			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemGroupDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -161,11 +162,9 @@
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-ItemData">
 		<xs:sequence>
-			<xs:element ref="AuditRecord" minOccurs="0"/>
-			<xs:element ref="Signature" minOccurs="0"/>
-			<xs:element ref="Annotation" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Value" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="AuditRecordSignatureNotationGroup" minOccurs="1"/>			
+			<xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>
@@ -184,38 +183,12 @@
 		<xs:attributeGroup ref="SignatureAttributeExtension"/>
 	</xs:complexType>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!--
         +===========================================================================+
         | ODM (v1.3.0)                                                              |
         | Container definitions                                                     |
         +===========================================================================+
     -->
-	<xs:complexType name="ODMcomplexTypeDefinition-AuditRecords">
-		<xs:sequence>
-			<xs:element ref="AuditRecord" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-AuditRecord">
 		<xs:sequence>
 			<xs:element ref="UserRef"/>
@@ -270,12 +243,6 @@
 		<xs:attributeGroup ref="SignatureRefAttributeDefinition"/>
 		<xs:attributeGroup ref="SignatureRefAttributeExtension"/>
 	</xs:complexType>
-	<xs:complexType name="ODMcomplexTypeDefinition-Signatures">
-		<xs:sequence>
-			<xs:element ref="Signature" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-
 	<!--
         +===========================================================================+
         | element definitions                                                       |
@@ -288,7 +255,6 @@
 	<xs:element name="StudyEventData" type="ODMcomplexTypeDefinition-StudyEventData"/>
 	<xs:element name="ItemGroupData" type="ODMcomplexTypeDefinition-ItemGroupData"/>
 	<xs:element name="ItemData" type="ODMcomplexTypeDefinition-ItemData"/>
-	<xs:element name="AuditRecords" type="ODMcomplexTypeDefinition-AuditRecords"/>
 	<xs:element name="AuditRecord" type="ODMcomplexTypeDefinition-AuditRecord"/>
 	<xs:element name="UserRef" type="ODMcomplexTypeDefinition-UserRef"/>
 	<xs:element name="LocationRef" type="ODMcomplexTypeDefinition-LocationRef"/>
@@ -297,6 +263,5 @@
 	<xs:element name="SourceID" type="ODMcomplexTypeDefinition-SourceID"/>
 	<xs:element name="Signature" type="ODMcomplexTypeDefinition-Signature"/>
 	<xs:element name="SignatureRef" type="ODMcomplexTypeDefinition-SignatureRef"/>
-	<xs:element name="Signatures" type="ODMcomplexTypeDefinition-Signatures"/>
 
 </xs:schema>
