@@ -270,12 +270,12 @@
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
-        <xs:attribute name="Dictionary" type="text"/>
-        <xs:attribute name="Version" type="text"/>
+        <xs:attribute name="Dictionary" type="DictionaryNameType" use="optional"/>
+        <xs:attribute name="Version" type="text" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalCodeListAttributeDefinition">
-        <xs:attribute name="href" type="xs:anyURI"/>
-        <xs:attribute name="ref" type="text"/>
+        <xs:attribute name="href" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="ref" type="text" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MethodDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>

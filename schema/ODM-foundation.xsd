@@ -541,10 +541,13 @@
 	<xs:group name="AnnotationElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="FlagElementExtension">
+	<xs:group name="CommentElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="CodingElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="FlagElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="SignatureElementExtension">
@@ -594,6 +597,20 @@
         | complexType definitions                                                   |
         +===========================================================================+
     -->
+    <xs:complexType name="ODMcomplexTypeDefinition-ODM">
+    	<xs:sequence>
+    		<xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
+    		<xs:element ref="Study" minOccurs="0" maxOccurs="unbounded"/>
+    		<xs:element ref="AdminData" minOccurs="0" maxOccurs="unbounded"/>
+    		<xs:element ref="ReferenceData" minOccurs="0" maxOccurs="unbounded"/>
+    		<xs:element ref="ClinicalData" minOccurs="0" maxOccurs="unbounded"/>
+    		<xs:element ref="Association" minOccurs="0" maxOccurs="unbounded"/>
+    		<xs:group ref="ODMElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+    	</xs:sequence>
+    	<xs:attributeGroup ref="ODMAttributeDefinition"/>
+    	<xs:attributeGroup ref="ODMAttributeExtension"/>
+    </xs:complexType>
+
 	<xs:complexType name="ODMcomplexTypeDefinition-Association">
 		<xs:sequence>
 			<xs:element ref="KeySet"/>
@@ -623,12 +640,12 @@
 		<xs:attributeGroup ref="AnnotationAttributeExtension"/>
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-Comment">
-		<xs:simpleContent>
-			<xs:extension base="text">
-				<xs:attributeGroup ref="CommentAttributeDefinition"/>
-				<xs:attributeGroup ref="CommentAttributeExtension"/>
-			</xs:extension>
-		</xs:simpleContent>
+		<xs:sequence>
+			<xs:element ref="TranslatedText" maxOccurs="unbounded"/>	
+			<xs:group ref="CommentElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="CommentAttributeDefinition"/>
+		<xs:attributeGroup ref="CommentAttributeExtension"/>
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-Flag">
 		<xs:sequence>
@@ -685,26 +702,12 @@
         | element definitions                                                       |
         +===========================================================================+
     -->
-	<xs:element name="ODM">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
-				<xs:element ref="Study" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="AdminData" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="ReferenceData" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="ClinicalData" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="Association" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:group ref="ODMElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-			</xs:sequence>
-			<xs:attributeGroup ref="ODMAttributeDefinition"/>
-			<xs:attributeGroup ref="ODMAttributeExtension"/>
-		</xs:complexType>
+	<xs:element name="ODM" type="ODMcomplexTypeDefinition-ODM">
 		<xs:unique name="UC-O-1">
 			<xs:selector xpath="odm:Study"/>
 			<xs:field xpath="@OID"/>
 		</xs:unique>
 	</xs:element>
-
 	<xs:element name="Association" type="ODMcomplexTypeDefinition-Association"/>
 	<xs:element name="KeySet" type="ODMcomplexTypeDefinition-KeySet"/>
 	<xs:element name="Annotation" type="ODMcomplexTypeDefinition-Annotation"/>

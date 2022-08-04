@@ -271,6 +271,7 @@
                <li><a href="#attribute-def:StandardPublishingSet">StandardPublishingSet</a></li>
                <li><a href="#attribute-def:StandardStatus">StandardStatus</a></li>
                <li><a href="#attribute-def:StandardType">StandardType</a></li>
+               <li><a href="#attribute-def:DictionaryNameType">DictionaryNameType</a></li>
                <li><a href="#attribute-def:ItemGroupClass">ItemGroupClass</a></li>
                <li><a href="#attribute-def:ItemGroupSubClass">ItemGroupSubClass</a></li>
                <li><a href="#attribute-def:ItemGroupClassSubClass">ItemGroupClassSubClass</a></li>
@@ -548,6 +549,14 @@
                   <td class="values"><span class="code">'CT' [<span class="nci">C163415</span>]</span><br><span class="code">'IG' [<span class="nci">C170454</span>]</span></td>
                </tr>
                <tr class="tablerowodd">
+                  <td class="name"><a id="attribute-def:DictionaryNameType"></a><a id="type-def:DictionaryNameType">DictionaryNameType</a></td>
+                  <td class="description">A name given to a reference source that lists words and gives their meaning.
+                     (NCI) [<span class="nci">C66788</span>]</td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">Yes (odm:text)</td>
+                  <td class="values"><span class="code">'CDISC CT' [<span class="nci">C163415</span>]</span><br><span class="code">'COSTART' [<span class="nci">C49471</span>]</span><br><span class="code">'CTCAE' [<span class="nci">C49704</span>]</span><br><span class="code">'D-U-N-S NUMBER' [<span class="nci">C134003</span>]</span><br><span class="code">'ICD' [<span class="nci">C49474</span>]</span><br><span class="code">'LOINC' [<span class="nci">C49476</span>]</span><br><span class="code">'MED-RT' [<span class="nci">C163416</span>]</span><br><span class="code">'MedDRA' [<span class="nci">C43820</span>]</span><br><span class="code">'SNOMED' [<span class="nci">C53489</span>]</span><br><span class="code">'UNII' [<span class="nci">C163417</span>]</span><br><span class="code">'WHO ATC CLASSIFICATION SYSTEM' [<span class="nci">C154331</span>]</span><br><span class="code">'WHOART' [<span class="nci">C49468</span>]</span><br><span class="code">'WHODD' [<span class="nci">C49475</span>]</span></td>
+               </tr>
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:ItemGroupClass"></a><a id="type-def:ItemGroupClass">ItemGroupClass</a></td>
                   <td class="description">Terminology related to the classification of a CDISC
                      domain. [<span class="nci">C103329</span>]</td>
@@ -555,14 +564,14 @@
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADAM OTHER' [<span class="nci">C103375</span>]</span><br><span class="code">'BASIC DATA STRUCTURE' [<span class="nci">C103371</span>]</span><br><span class="code">'DEVICE LEVEL ANALYSIS DATASET' [<span class="nci">C177921</span>]</span><br><span class="code">'EVENTS' [<span class="nci">C103372</span>]</span><br><span class="code">'FINDINGS' [<span class="nci">C103373</span>]</span><br><span class="code">'FINDINGS ABOUT' [<span class="nci">C135396</span>]</span><br><span class="code">'INTERVENTIONS' [<span class="nci">C103374</span>]</span><br><span class="code">'MEDICAL DEVICE BASIC DATA STRUCTURE' [<span class="nci">C177922</span>]</span><br><span class="code">'MEDICAL DEVICE OCCURRENCE DATA STRUCTURE' [<span class="nci">C177923</span>]</span><br><span class="code">'OCCURRENCE DATA STRUCTURE' [<span class="nci">C123454</span>]</span><br><span class="code">'RELATIONSHIP' [<span class="nci">C103376</span>]</span><br><span class="code">'SPECIAL PURPOSE' [<span class="nci">C103377</span>]</span><br><span class="code">'STUDY REFERENCE' [<span class="nci">C147271</span>]</span><br><span class="code">'SUBJECT LEVEL ANALYSIS DATASET' [<span class="nci">C103378</span>]</span><br><span class="code">'TRIAL DESIGN' [<span class="nci">C103379</span>]</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:ItemGroupSubClass"></a><a id="type-def:ItemGroupSubClass">ItemGroupSubClass</a></td>
                   <td class="description">Sub class of a general observation class.</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADVERSE EVENT' [<span class="nci">C176265</span>]</span><br><span class="code">'MEDICAL DEVICE TIME-TO-EVENT' [<span class="nci">C177920</span>]</span><br><span class="code">'NON-COMPARTMENTAL ANALYSIS' [<span class="nci">C172452</span>]</span><br><span class="code">'TIME-TO-EVENT' [<span class="nci">C165637</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:ItemGroupClassSubClass"></a><a id="type-def:ItemGroupClassSubClass">ItemGroupClassSubClass</a></td>
                   <td class="description">Sub class of a general observation class. Union of ItemGroupClass and
                      ItemGroupSubClass</td>
