@@ -668,6 +668,116 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="DictionaryNameType">
+        <xs:annotation>
+            <xs:documentation>A name given to a reference source that lists words and gives their meaning.
+                (NCI)</xs:documentation>
+            <xs:appinfo>
+                <Alias Name="C66788" Context="nci:ExtCodeID"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="odm:text">
+                    <xs:enumeration value="CDISC CT">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C163415" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="COSTART">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49471" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="CTCAE">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49704" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="D-U-N-S NUMBER">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C134003" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="ICD">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49474" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="LOINC">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49476" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="MED-RT">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C163416" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="MedDRA">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C43820" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="SNOMED">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C53489" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="UNII">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C163417" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="WHO ATC CLASSIFICATION SYSTEM">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C154331" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="WHOART">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49468" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="WHODD">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C49475" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    
     <xs:simpleType name="ItemGroupClass">
         <xs:annotation>
             <xs:documentation>Terminology related to the classification of a CDISC
