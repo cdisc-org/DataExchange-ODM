@@ -1,5 +1,5 @@
 <xs:schema xmlns="http://www.cdisc.org/ns/odm/v2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:odm="http://www.cdisc.org/ns/odm/v2.0"
+	xmlns:odm="http://www.cdisc.org/ns/odm/v2.0"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://www.cdisc.org/ns/odm/v2.0"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
 
