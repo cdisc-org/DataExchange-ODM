@@ -707,10 +707,10 @@
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
             <xs:choice>
-                <xs:element ref="CodeListItem" minOccurs="1" maxOccurs="unbounded"/>
-                <xs:element ref="ExternalCodeList"/>
-                <xs:element ref="EnumeratedItem" minOccurs="1" maxOccurs="unbounded"/>
-            </xs:choice>
+                <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="EnumeratedItem" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>                
+            <xs:element ref="ExternalCodeList" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
