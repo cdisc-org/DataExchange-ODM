@@ -149,7 +149,7 @@
         <xs:attribute name="ArchiveLocationID" type="oidref" use="optional"/>
         <xs:attribute name="DatasetName" type="name" use="optional"/>
         <xs:attribute name="Domain" type="text" use="optional"/>
-        <xs:attribute name="Type" type="ItemGroupTypeType" use="optional"/>
+        <xs:attribute name="Type" type="ItemGroupTypeType" use="required"/>
         <xs:attribute name="Purpose" type="text" use="optional"/>
         <xs:attribute name="StandardOID" type="oidref" use="optional"/>        
         <xs:attribute name="IsNonStandard" type="YesOnly" use="optional"/>        
@@ -193,6 +193,8 @@
     <xs:attributeGroup name="SourceItemAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="optional"/>
         <xs:attribute name="ItemGroupOID" type="oidref" use="optional"/>
+        <xs:attribute name="MetaDataVersionOID" type="oidref" use="optional"/>
+        <xs:attribute name="StudyOID" type="oidref" use="optional"/>
         <xs:attribute name="leafID" type="oidref" use="optional"/>
         <xs:attribute name="Name" type="name" use="optional"/>
     </xs:attributeGroup>    
