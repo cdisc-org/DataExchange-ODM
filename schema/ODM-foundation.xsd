@@ -184,7 +184,7 @@
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="WhereClauseRefAttributeExtension"/>
 	<xs:attributeGroup name="OriginAttributeExtension"/>
-	<xs:attributeGroup name="SourceAttributeExtension"/>
+	<xs:attributeGroup name="SourceItemsAttributeExtension"/>
 	<xs:attributeGroup name="SourceItemAttributeExtension"/>
 	<xs:attributeGroup name="ResourceAttributeExtension"/>
 	<xs:attributeGroup name="SelectionAttributeExtension"/>
@@ -243,7 +243,7 @@
 	<xs:group name="OriginElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="SourceElementExtension">
+	<xs:group name="SourceItemsElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="SourceItemElementExtension">
