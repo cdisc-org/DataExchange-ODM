@@ -41,6 +41,7 @@
 	<xs:attributeGroup name="KeySetAttributeDefinition">
 		<xs:attribute name="StudyOID" type="oidref" use="required"/>
 		<xs:attribute name="SubjectKey" type="subjectKey"/>
+		<xs:attribute name="MetaDataVersionOID" type="oidref"/>
 		<xs:attribute name="StudyEventOID" type="oidref"/>
 		<xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
 		<xs:attribute name="ItemGroupOID" type="oidref"/>
