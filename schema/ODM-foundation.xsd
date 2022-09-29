@@ -41,12 +41,12 @@
 	<xs:attributeGroup name="KeySetAttributeDefinition">
 		<xs:attribute name="StudyOID" type="oidref" use="required"/>
 		<xs:attribute name="SubjectKey" type="subjectKey"/>
+		<xs:attribute name="MetaDataVersionOID" type="oidref"/>
 		<xs:attribute name="StudyEventOID" type="oidref"/>
 		<xs:attribute name="StudyEventRepeatKey" type="repeatKey"/>
 		<xs:attribute name="ItemGroupOID" type="oidref"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
 		<xs:attribute name="ItemOID" type="oidref"/>
-		<xs:attribute name="OID" type="oidref"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AnnotationAttributeDefinition">
 		<xs:attribute name="SeqNum" type="integer" use="required"/>
@@ -185,7 +185,7 @@
 	<xs:attributeGroup name="ItemRefAttributeExtension"/>
 	<xs:attributeGroup name="WhereClauseRefAttributeExtension"/>
 	<xs:attributeGroup name="OriginAttributeExtension"/>
-	<xs:attributeGroup name="SourceAttributeExtension"/>
+	<xs:attributeGroup name="SourceItemsAttributeExtension"/>
 	<xs:attributeGroup name="SourceItemAttributeExtension"/>
 	<xs:attributeGroup name="ResourceAttributeExtension"/>
 	<xs:attributeGroup name="SelectionAttributeExtension"/>
@@ -244,7 +244,7 @@
 	<xs:group name="OriginElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="SourceElementExtension">
+	<xs:group name="SourceItemsElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="SourceItemElementExtension">
