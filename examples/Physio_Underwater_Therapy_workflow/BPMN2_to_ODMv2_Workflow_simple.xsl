@@ -2,8 +2,9 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:odm="http://www.cdisc.org/ns/odm/v2.0" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" version="2.0">
 	<xsl:output method="xml" indent="yes"/>
-	<!-- XSLT to transform BPMN2 into ODMv2 workflow -->
+	<!-- XSLT to transform BPMN2 into ODMv2 workflow using the XSLT BPMN2_to_ODMv2_Workflow_simple.xsl -->
 	<xsl:template match="/">
+		<xsl:comment>ODMv2 Workflow automatically created from a Workflow definition in BPMN2-XML format using the XSLT BPMN2_to_ODMv2_Workflow_simple.xsl</xsl:comment>
 		<xsl:apply-templates/>
 	</xsl:template>
 	<xsl:template match="bpmn:definitions">
@@ -13,44 +14,13 @@
 		<odm:MetaDataVersion OID="MV.001" Name="MetaDataVersion 1">
 			<xsl:comment>We model all the tasks as StudyEvents</xsl:comment>
 			<xsl:comment>For a repeating task, we would set @Repeating='Yes'</xsl:comment>
-			<!-- 2020-03-31: adding start- and end as StudyEvents -->
-			<xsl:for-each select="./bpmn:startEvent">
-				<xsl:element name="odm:StudyEvent" namespace="http://www.cdisc.org/ns/odm/v2.0">
-					<xsl:attribute name="OID">
-						<xsl:value-of select="@id"/>
-					</xsl:attribute>
-					<xsl:attribute name="Name">
-						<xsl:value-of select="@name"/>
-					</xsl:attribute>
-					<xsl:attribute name="Repeating">No</xsl:attribute>
-				</xsl:element>
-			</xsl:for-each>
-			<!-- all other tasks -->
-			<xsl:for-each select="bpmn:task">
-				<xsl:element name="odm:StudyEvent" namespace="http://www.cdisc.org/ns/odm/v2.0">
-					<xsl:attribute name="OID">
-						<xsl:value-of select="@id"/>
-					</xsl:attribute>
-					<xsl:attribute name="Name">
-						<xsl:value-of select="@name"/>
-					</xsl:attribute>
-					<xsl:attribute name="Repeating">No</xsl:attribute>
-				</xsl:element>
-			</xsl:for-each>
-			<!-- End Event -->
-			<xsl:for-each select="./bpmn:endEvent">
-				<xsl:element name="odm:StudyEvent" namespace="http://www.cdisc.org/ns/odm/v2.0">
-					<xsl:attribute name="OID">
-						<xsl:value-of select="@id"/>
-					</xsl:attribute>
-					<xsl:attribute name="Name">
-						<xsl:value-of select="@name"/>
-					</xsl:attribute>
-					<xsl:attribute name="Repeating">No</xsl:attribute>
-				</xsl:element>
-			</xsl:for-each>
+			
 			<!-- Workflow part -->
-			<xsl:element name="odm:Workflow">
+			<xsl:element name="odm:WorkflowDef">
+				<!-- Assign an OID - take it from the BPMN2 process-id prefixed by "WF." -->
+				<xsl:attribute name="OID"><xsl:value-of select="concat('WF.',@id)"/></xsl:attribute>
+				<!-- Assign a Name - simply take it from the BPMN2 process-id -->
+				<xsl:attribute name="Name"><xsl:value-of select="@id"/></xsl:attribute>
 				<xsl:if test="./bpmn:startEvent">
 					<xsl:element name="odm:WorkflowStart">
 						<xsl:attribute name="StartOID"><xsl:value-of select="./bpmn:startEvent/@id"/></xsl:attribute>
@@ -162,7 +132,7 @@
 							<xsl:element name="odm:TargetTransition">
 								<xsl:variable name="oid" select="concat('TR.',.)"/>
 								<xsl:variable name="conditionoid" select="concat('COND.',.)"/>
-								<xsl:attribute name="TransitionOID">
+								<xsl:attribute name="TargetTransitionOID">
 									<xsl:value-of select="$oid"/>
 								</xsl:attribute>
 								<xsl:attribute name="ConditionOID">
@@ -187,7 +157,7 @@
 							<xsl:element name="odm:TargetTransition">
 								<xsl:variable name="oid" select="concat('TR.',.)"/>
 								<xsl:variable name="conditionoid" select="concat('COND.',.)"/>
-								<xsl:attribute name="TransitionOID">
+								<xsl:attribute name="TargetTransitionOID">
 									<xsl:value-of select="$oid"/>
 								</xsl:attribute>
 							</xsl:element>
@@ -200,6 +170,46 @@
 					</xsl:element>
 				</xsl:if>
 			</xsl:element>
+			<!-- StudyEventDef part - needs to come AFTER WorkflowDef-->
+			<!-- 2020-03-31: adding start- and end as StudyEvents -->
+			<xsl:for-each select="./bpmn:startEvent">
+				<xsl:element name="odm:StudyEventDef" namespace="http://www.cdisc.org/ns/odm/v2.0">
+					<xsl:attribute name="OID">
+						<xsl:value-of select="@id"/>
+					</xsl:attribute>
+					<xsl:attribute name="Name">
+						<xsl:value-of select="@name"/>
+					</xsl:attribute>
+					<xsl:attribute name="Type">Scheduled</xsl:attribute>
+					<xsl:attribute name="Repeating">No</xsl:attribute>
+				</xsl:element>
+			</xsl:for-each>
+			<!-- all other tasks -->
+			<xsl:for-each select="bpmn:task">
+				<xsl:element name="odm:StudyEventDef" namespace="http://www.cdisc.org/ns/odm/v2.0">
+					<xsl:attribute name="OID">
+						<xsl:value-of select="@id"/>
+					</xsl:attribute>
+					<xsl:attribute name="Name">
+						<xsl:value-of select="@name"/>
+					</xsl:attribute>
+					<xsl:attribute name="Type">Scheduled</xsl:attribute>
+					<xsl:attribute name="Repeating">No</xsl:attribute>
+				</xsl:element>
+			</xsl:for-each>
+			<!-- End Event -->
+			<xsl:for-each select="./bpmn:endEvent">
+				<xsl:element name="odm:StudyEventDef" namespace="http://www.cdisc.org/ns/odm/v2.0">
+					<xsl:attribute name="OID">
+						<xsl:value-of select="@id"/>
+					</xsl:attribute>
+					<xsl:attribute name="Name">
+						<xsl:value-of select="@name"/>
+					</xsl:attribute>
+					<xsl:attribute name="Type">Scheduled</xsl:attribute>
+					<xsl:attribute name="Repeating">No</xsl:attribute>
+				</xsl:element>
+			</xsl:for-each>
 			<!-- End of Workflow element -->
 			<!-- 2019-03-29: Relative timings -->
 			<xsl:if test="count(//bpmn:intermediateCatchEvent/bpmn:timerEventDefinition) gt 0">
@@ -258,8 +268,13 @@
 					</xsl:attribute>
 					<xsl:attribute name="Name">Condition for <xsl:value-of select="//bpmn:sequenceFlow[@id=$flowid]/@name"/></xsl:attribute>
 					<xsl:element name="odm:Description">
-						<xsl:element name="odm:TranslatedText">Condition for <xsl:value-of select="//bpmn:sequenceFlow[@id=$flowid]/@name"/></xsl:element>
+						<xsl:element name="odm:TranslatedText">
+							<xsl:attribute name="type">text/plain</xsl:attribute>
+							<xsl:text>Condition for </xsl:text><xsl:value-of select="//bpmn:sequenceFlow[@id=$flowid]/@name"/>
+						</xsl:element>
 					</xsl:element>
+					<!-- MethodSignature is required in ODMv2 but can be empty -->
+					<xsl:element name="odm:MethodSignature"></xsl:element>
 				</xsl:element>
 			</xsl:for-each>
 		</odm:MetaDataVersion>

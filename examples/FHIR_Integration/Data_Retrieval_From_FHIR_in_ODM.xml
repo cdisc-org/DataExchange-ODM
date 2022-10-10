@@ -8,15 +8,14 @@
     <Study OID="ST.COVID19" StudyName="COVID-19 study with data retrieval from FHIR EHRs">
         <MetaDataVersion OID="MV.001" Name="Version 1">
             <Description>
-                <TranslatedText xml:lang="en">Example of metadata and data for a COVID-19 study that retrieves all data from EHRs that support the FHIR API</TranslatedText>
+                <TranslatedText xml:lang="en" type="text/plain">Example of metadata and data for a COVID-19 study that retrieves all data from EHRs that support the FHIR API</TranslatedText>
             </Description>
             <!-- Example ItemGroupDef where all data is retrieved from the EHR using the FHIR API -->
-            <ItemGroupDef OID="IG.MH" Name="Medical History" Domain="MH" Repeating="Yes" Origin="EHR">
+            <ItemGroupDef OID="IG.MH" Name="Medical History" Domain="MH" Type="Section" Repeating="Simple">
                 <Description>
-                    <TranslatedText xml:lang="en"><div xmlns="http://www.w3.org/1999/xhtml">
+                    <TranslatedText xml:lang="en" type="application/xhtml+xml"><div xmlns="http://www.w3.org/1999/xhtml">
                         <p>The ItemGroupDef describes how the medical history data is retrieved from the EHR system,<br/>using the FHIR API.</p>
-                        <p>In order to do so, all the "Condition" FHIR resource instances for the given patient are queries for.</p>
-                        <p>TODO? The base of the FHIR query (i.e. the EHR server) is taken from AdminData</p>
+                        <p>In order to do so, all the "Condition" FHIR resource instances for the given patient are queried for.</p>
                     </div></TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.SUBJID" Mandatory="Yes"/>
@@ -33,64 +32,72 @@
             This of course needs to change in future, or we need to use a call to a subject ID - patient ID mapping call.
             Does the FHIR resource "ResearchSubject" do this? -->
             <ItemDef OID="IT.SUBJID" Name="Subject ID" DataType="text" Length="20">
-                <Description><TranslatedText xml:lang="en">Subject Identifier</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">Subject Identifier</TranslatedText></Description>
             </ItemDef>
-            <ItemDef OID="IT.TERM" Name="Medical history term" SDSVarName="MHTERM" DataType="text" Length="100">
-                <Description><TranslatedText xml:lang="en">Medical History term coming from xxx in the FHIR "Condition" resource instance</TranslatedText></Description>
+            <ItemDef OID="IT.TERM" Name="Medical history term" DataType="text" Length="100">
+                <Description><TranslatedText xml:lang="en" type="text/plain">Medical History term coming from xxx in the FHIR "Condition" resource instance</TranslatedText></Description>
+                <!-- Mapping to SDTM -->
+                <Alias Context="SDTM" Name="MHTERM"/>
             </ItemDef>
             <ItemDef OID="IT.SNOMEDCD" Name="SNOMED-CT code" DataType="text" Length="12">
-                <Description><TranslatedText xml:lang="en">SNOMED-CT code of the Medical History term, directly retrieved from the FHIR "Condition" resource instance</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">SNOMED-CT code of the Medical History term, directly retrieved from the FHIR "Condition" resource instance</TranslatedText></Description>
             </ItemDef>
-            <ItemDef OID="IT.DTC" Name="Date/time of collection" DataType="datetime" SDSVarName="MHDTC">
+            <ItemDef OID="IT.DTC" Name="Date/time of collection" DataType="datetime">
                 <!-- TO DISCUSS: is this the date/time of collection in the EHR, or date/time of retrieval? -->
-                <Description><TranslatedText xml:lang="en">Datetime of collection</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">Datetime of collection</TranslatedText></Description>
+                <!-- Mapping to SDTM -->
+                <Alias Context="SDTM" Name="MHDTC"/>
             </ItemDef>
-            <ItemDef OID="IT.STDTC" Name="Start date/time of condition" DataType="partialDatetime" SDSVarName="MHSTDTC">
-                <Description><TranslatedText xml:lang="en">Start date/time of the condition</TranslatedText></Description>
+            <ItemDef OID="IT.STDTC" Name="Start date/time of condition" DataType="partialDatetime">
+                <Description><TranslatedText xml:lang="en" type="text/plain">Start date/time of the condition</TranslatedText></Description>
+                <!-- Mapping to SDTM -->
+                <Alias Context="SDTM" Name="MHSTDTC"/>
             </ItemDef>
-            <ItemDef OID="IT.ENDTC" Name="End date/time of condition" DataType="partialDatetime" SDSVarName="MHENDDTC">
-                <Description><TranslatedText xml:lang="en">End date/time of the condition</TranslatedText></Description>
+            <ItemDef OID="IT.ENDTC" Name="End date/time of condition" DataType="partialDatetime">
+                <Description><TranslatedText xml:lang="en" type="text/plain">End date/time of the condition</TranslatedText></Description>
+                <!-- Mapping to SDTM -->
+                <Alias Context="SDTM" Name="MHENDDTC"/>
             </ItemDef>
             <ItemDef OID="IT.STATUS" Name="Status of the condition at collection time" DataType="text">
-                <Description><TranslatedText xml:lang="en">Status of the condition at collection time</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">Status of the condition at collection time</TranslatedText></Description>
                 <CodeListRef CodeListOID="CL.STATUS"/>
             </ItemDef>
             <ItemDef OID="IT.ONGOING" Name="Condition ongoing" DataType="text" Length="1">
-                <Description><TranslatedText xml:lang="en">Whether the condition is ongoing</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">Whether the condition is ongoing</TranslatedText></Description>
                 <CodeListRef CodeListOID="CL.YESNO"/>
             </ItemDef>
             <!-- This codelist is an semantically exact copy of the FHIR valueset condition-clinical
             (see https://www.hl7.org/fhir/valueset-condition-clinical.html) -->
             <CodeList OID="CL.STATUS" Name="FHIR condition status" DataType="text">
                 <CodeListItem CodedValue="active">
-                    <Decode><TranslatedText xml:lang="en">The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.</TranslatedText></Decode>
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.</TranslatedText></Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="recurrence">
-                    <Decode><TranslatedText xml:lang="en">The subject is experiencing a re-occurence or repeating of a previously resolved condition, e.g. urinary tract infection, pancreatitis, cholangitis, conjunctivitis.</TranslatedText></Decode>
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is experiencing a re-occurence or repeating of a previously resolved condition, e.g. urinary tract infection, pancreatitis, cholangitis, conjunctivitis.</TranslatedText></Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="relapse">
-                    <Decode><TranslatedText xml:lang="en">The subject is experiencing a return of a condition, or signs and symptoms after a period of improvement or remission, e.g. relapse of cancer, multiple sclerosis, rheumatoid arthritis, systemic lupus erythematosus, bipolar disorder, [psychotic relapse of] schizophrenia, etc.</TranslatedText></Decode>
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is experiencing a return of a condition, or signs and symptoms after a period of improvement or remission, e.g. relapse of cancer, multiple sclerosis, rheumatoid arthritis, systemic lupus erythematosus, bipolar disorder, [psychotic relapse of] schizophrenia, etc.</TranslatedText></Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="inactive">
-                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition</TranslatedText></Decode>
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition</TranslatedText></Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="remission">
-                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.</TranslatedText></Decode>
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.</TranslatedText></Decode>
                 </CodeListItem>
-                <CodeListItem CodedValue="">
-                    <Decode><TranslatedText xml:lang="en">The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.</TranslatedText></Decode>
+                <CodeListItem CodedValue="resolved">
+                    <Decode><TranslatedText xml:lang="en" type="text/plain">The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.</TranslatedText></Decode>
                 </CodeListItem>
             </CodeList>
             <!-- Codelists -->
             <CodeList OID="CL.ONGOING" Name="Yes-No codelist" DataType="text">
                 <CodeListItem CodedValue="Y">
                     <Decode>
-                        <TranslatedText xml:lang="en">Yes</TranslatedText>
+                        <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="N">
                     <Decode>
-                        <TranslatedText xml:lang="en">No</TranslatedText>
+                        <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -98,7 +105,7 @@
             <!-- Method definitions:
             The method definitions provide the machine-executable instructions in order to retrieve the data directly from the EHR -->
             <MethodDef OID="MT.TERM" Name="Method to retrieve Medical History Term">
-                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History term from FHIR 'Condition' resource</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">FHIR API call definition to retrieve Medical History term from FHIR 'Condition' resource</TranslatedText></Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -111,7 +118,7 @@
                 </FormalExpression>
             </MethodDef>
             <MethodDef OID="MT.SNOMEDCT" Name="Method to retrieve the SNOMED-CT code of the Medical History Term">
-                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History SNOMED-CT code from FHIR 'Condition' resource</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">FHIR API call definition to retrieve Medical History SNOMED-CT code from FHIR 'Condition' resource</TranslatedText></Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -123,7 +130,7 @@
                 </FormalExpression>
             </MethodDef>
             <MethodDef OID="MT.DTC" Name="Method to retrieve the collection date/time (in the EHR system) of the Medical History Term">
-                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History date/time of collection from FHIR 'Condition' resource</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">FHIR API call definition to retrieve Medical History date/time of collection from FHIR 'Condition' resource</TranslatedText></Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -135,7 +142,7 @@
                 </FormalExpression>
             </MethodDef>
             <MethodDef OID="MT.STDTC" Name="Method to retrieve the start date/time of the Medical History Term">
-                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History start date/time from FHIR 'Condition' resource</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">FHIR API call definition to retrieve Medical History start date/time from FHIR 'Condition' resource</TranslatedText></Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -148,7 +155,7 @@
                 </FormalExpression>
             </MethodDef>
             <MethodDef OID="MT.ENDTC" Name="Method to retrieve the end date/time of the Medical History Term">
-                <Description><TranslatedText xml:lang="en">FHIR API call definition to retrieve Medical History end date/time from FHIR 'Condition' resource</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" type="text/plain">FHIR API call definition to retrieve Medical History end date/time from FHIR 'Condition' resource</TranslatedText></Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -160,7 +167,10 @@
                     <!-- Example query from HAPI FHIR: 	http://hapi.fhir.org/baseR4/Condition?subject=Patient/2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47&_format=xml//Condition/abatementDateTime/@value -->
                 </FormalExpression>
             </MethodDef>
-            <MethodDef OID="MT.STATUS" Name="Method to retrieve the clinical status (active | recurrence | relapse | inactive | remission | resolved) of the Medical History Term">
+            <MethodDef OID="MT.STATUS" Name="Method to retrieve the clinical status">
+                <Description>
+                    <TranslatedText xml:lang="en" type="text/plain">Method to retrieve the clinical status (active | recurrence | relapse | inactive | remission | resolved) of the Medical History Term</TranslatedText>
+                </Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="BASE" Definition="Base (server address) of the FHIR EHR system" DataType="text"/>
@@ -170,7 +180,10 @@
                     <Code>{BASE}//Condition?subject={PATIENTID}&amp;=format=xml/clinicalStatus/@value</Code>
                 </FormalExpression>
             </MethodDef>
-            <MethodDef OID="MT.ONGOING" Name="Whether condition ongoing at reference start date/time" DataType="text">
+            <MethodDef OID="MT.ONGOING" Name="Ongoing derivation">
+                <Description>
+                    <TranslatedText xml:lang="en" type="text/plain">Method to derive condition ongoing at reference start date/time</TranslatedText>
+                </Description>
                 <MethodSignature>
                     <Parameter Name="PATIENTID" Definition="Patient ID in the EHR system" DataType="text"/>
                     <Parameter Name="RFSTDTC" Definition="Reference start date/time of the subject for the current study" DataType="partialDatetime"/>
@@ -188,18 +201,17 @@
     <!-- The data come from the HAPI-FHIR COVID-19 Synthea data -->
     <ClinicalData StudyOID="ST.COVID19" MetaDataVersionOID="MV.001">
         <SubjectData SubjectKey="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47">
+            <StudyEventData StudyEventOID="SE.MH">
             <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
-                <ItemData ItemOID="IT.SUBJID" Value="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47"/>
-                <ItemData ItemOID="IT.TERM" Value="Chronic congestive heart failure (disorder)"/>
-                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
-                <ItemData ItemOID="IT.DTC" Value="2009-05-27T11:08:30-05:00"/>
-                <ItemData ItemOID="IT.STDTC" Value="2009-05-27T11:08:30-05:00"/>
+                <ItemData ItemOID="IT.SUBJID"><Value>2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47</Value></ItemData>
+                <ItemData ItemOID="IT.TERM"><Value>Chronic congestive heart failure (disorder)</Value></ItemData>
+                <ItemData ItemOID="IT.SNOMEDCD"><Value>88805009</Value></ItemData>
+                <ItemData ItemOID="IT.DTC"><Value>2009-05-27T11:08:30-05:00</Value></ItemData>
+                <ItemData ItemOID="IT.STDTC"><Value>2009-05-27T11:08:30-05:00</Value></ItemData>
                 <!-- There is no value for IT.ENDTC -->
-                <ItemData ItemOID="IT.STATUS" Value="active"/>
-                <ItemData ItemOID="IT.ONGOING" Value="Y"/>
-                <!-- Example of indirect (reference) incorporation of the source record -->
-                <Source xlink:href="http://hapi.fhir.org/baseR4/Condition/edf4e1cc-5436-426a-a467-45c493e9ab2a"/>
-                <!-- Example of direct incorporation of the source record -->
+                <ItemData ItemOID="IT.STATUS"><Value>active</Value></ItemData>
+                <ItemData ItemOID="IT.ONGOING"><Value>Y</Value></ItemData>
+                <!-- Example of direct incorporation of the source record (as ODM-extension) -->
                 <Condition xmlns="http://hl7.org/fhir">
                     <id value="edf4e1cc-5436-426a-a467-45c493e9ab2a"/>
                     <meta>
@@ -250,45 +262,47 @@
                 </Condition>
             </ItemGroupData>
             <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="2">
-                <ItemData ItemOID="IT.SUBJID" Value="2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47"/>
-                <ItemData ItemOID="IT.TERM" Value="Anemia (disorder)"/>
-                <ItemData ItemOID="IT.SNOMEDCD" Value="271737000"/>
-                <ItemData ItemOID="IT.DTC" Value="2009-05-27T11:08:30-05:00"/>
-                <ItemData ItemOID="IT.STDTC" Value="2009-05-27T11:08:30-05:00"/>
+                <ItemData ItemOID="IT.SUBJID"><Value>2f14ef24-6b25-42f2-8e98-bd1ba3a4ab47</Value></ItemData>
+                <ItemData ItemOID="IT.TERM"><Value>Anemia (disorder)</Value></ItemData>
+                <ItemData ItemOID="IT.SNOMEDCD"><Value>271737000</Value></ItemData>
+                <ItemData ItemOID="IT.DTC"><Value>2009-05-27T11:08:30-05:00</Value></ItemData>
+                <ItemData ItemOID="IT.STDTC"><Value>2009-05-27T11:08:30-05:00</Value></ItemData>
                 <!-- There is no value for IT.ENDTC -->
-                <ItemData ItemOID="IT.STATUS" Value="active"/>
-                <ItemData ItemOID="IT.ONGOING" Value="Y"/>
+                <ItemData ItemOID="IT.STATUS"><Value>active</Value></ItemData>
+                <ItemData ItemOID="IT.ONGOING"><Value>Y</Value></ItemData>
             </ItemGroupData>
+            </StudyEventData>
         </SubjectData>
         <SubjectData SubjectKey="247796">
+            <StudyEventData StudyEventOID="SE.MH">
             <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
-                <ItemData ItemOID="IT.SUBJID" Value="247796"/>
-                <ItemData ItemOID="IT.TERM" Value="Burnt Ear"/>
-                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
-                <ItemData ItemOID="IT.DTC" Value="2013-04-04"/>
+                <ItemData ItemOID="IT.SUBJID"><Value>247796</Value></ItemData>
+                <ItemData ItemOID="IT.TERM"><Value>Burnt Ear</Value></ItemData>
+                <ItemData ItemOID="IT.SNOMEDCD"><Value>88805009</Value></ItemData>
+                <ItemData ItemOID="IT.DTC"><Value>2013-04-04</Value></ItemData>
                 <!-- Remark: the original FHIR record has <onsetString value="around August 15, 2015"/> -->
-                <ItemData ItemOID="IT.STDTC" Value="2013-08"/>
+                <ItemData ItemOID="IT.STDTC"><Value>2013-08</Value></ItemData>
                 <!-- Remark: the original FHIR record has <abatementString value="around April 9, 2013"/> -->
-                <ItemData ItemOID="IT.ENDTC" Value="2009-04"/>
-                <ItemData ItemOID="IT.STATUS" Value="active"/>
-                <ItemData ItemOID="IT.ONGOING" Value="N"/>
+                <ItemData ItemOID="IT.ENDTC"><Value>2009-04</Value></ItemData>
+                <ItemData ItemOID="IT.STATUS"><Value>active</Value></ItemData>
+                <ItemData ItemOID="IT.ONGOING"><Value>N</Value></ItemData>
             </ItemGroupData>
             <ItemGroupData ItemGroupOID="IG.MH" ItemGroupRepeatKey="1">
-                <ItemData ItemOID="IT.SUBJID" Value="247796"/>
-                <ItemData ItemOID="IT.TERM" Value="Burnt Ear"/>
-                <ItemData ItemOID="IT.SNOMEDCD" Value="88805009"/>
-                <ItemData ItemOID="IT.DTC" Value="2013-04-04"/>
+                <ItemData ItemOID="IT.SUBJID"><Value>247796</Value></ItemData>
+                <ItemData ItemOID="IT.TERM"><Value></Value></ItemData>
+                <ItemData ItemOID="IT.SNOMEDCD"><Value>88805009</Value></ItemData>
+                <ItemData ItemOID="IT.DTC"><Value>2013-04-04</Value></ItemData>
                 <!-- Remark: the original FHIR record has <onsetString value="around August 15, 2015"/> -->
-                <ItemData ItemOID="IT.STDTC" Value="2013-08"/>
+                <ItemData ItemOID="IT.STDTC"><Value>2013-08</Value></ItemData>
                 <!-- Remark: the original FHIR record has <abatementString value="around April 9, 2013"/> -->
-                <ItemData ItemOID="IT.ENDTC" Value="2009-04"/>
-                <ItemData ItemOID="IT.STATUS" Value="active"/>
-                <ItemData ItemOID="IT.ONGOING" Value="N"/>
+                <ItemData ItemOID="IT.ENDTC"><Value>2009-04</Value></ItemData>
+                <ItemData ItemOID="IT.STATUS"><Value>active</Value></ItemData>
+                <ItemData ItemOID="IT.ONGOING"><Value>N</Value></ItemData>
             </ItemGroupData>
             <!-- etc.. -->
+            </StudyEventData>
         </SubjectData>
         <!-- etc.. -->
-        
     </ClinicalData>
     
 </ODM>

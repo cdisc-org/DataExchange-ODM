@@ -953,7 +953,7 @@
 					<ErrorMessage>
 						<TranslatedText xml:lang="en">The value should be between 3.5 and 12</TranslatedText>
 						<TranslatedText xml:lang="fr">La valuer doit être entre 3.5 et 12</TranslatedText>
-						<TranslatedText xml:lang="en">Der Wert sollte zwischen 3.5 und 12 sein</TranslatedText>
+						<TranslatedText xml:lang="de">Der Wert sollte zwischen 3.5 und 12 sein</TranslatedText>
 						<TranslatedText xml:lang="ko"/>
 					</ErrorMessage>
 				</RangeCheck>

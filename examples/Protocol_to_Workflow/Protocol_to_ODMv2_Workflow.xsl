@@ -19,9 +19,21 @@
 	</xsl:template>
 	
 	<!-- ODM element: move to ODMv2 namespace -->
+	<!-- Copy the attributes except for "Description" and "ODMVersion" -->
 	<xsl:template match="odm:ODM">
 		<xsl:element name="ODM" namespace="{$ODMv2NS}">
-			<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+			<xsl:for-each select="@*[not(name()='Description')][not(name()='ODMVersion')]"><xsl:copy-of select="."/></xsl:for-each>
+			<!-- Add the ODMVersion attribute -->
+			<xsl:attribute name="ODMVersion">2.0</xsl:attribute>
+			<!-- Move the "Description" attribute to a child element -->
+			<xsl:if test="@Description">
+				<xsl:element name="Description" namespace="{$ODMv2NS}">
+					<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
+						<xsl:attribute name="type">text/plain</xsl:attribute>
+						<xsl:value-of select="@Description"/>
+					</xsl:element>
+				</xsl:element>
+			</xsl:if>
 			<xsl:apply-templates/>
 		</xsl:element>
 	</xsl:template>
@@ -31,12 +43,16 @@
 		<!-- first move to ODMv2 namespace -->
 		<xsl:element name="Study" namespace="{$ODMv2NS}">
 			<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
-			<xsl:for-each select="odm:GlobalVariables">
+			<!-- REMARK that we do not have "GlobalVariables" and "BasicDefinitions" in ODMv2 anymore, so that part is NOT copied -->
+			<!--xsl:for-each select="odm:GlobalVariables">
 				<xsl:call-template name="makedeepcopy_to_ODMv2"/>
-			</xsl:for-each>
-			<xsl:for-each select="odm:BasicDefinitions">
+			</xsl:for-each-->
+			<!--xsl:for-each select="odm:BasicDefinitions">
 				<xsl:call-template name="makedeepcopy_to_ODMv2"/>
-			</xsl:for-each>
+			</xsl:for-each-->
+			<!-- Instead we have "StudyName" and "ProtocolName" as attributes on the ODM element -->
+			<xsl:attribute name="StudyName"><xsl:value-of select="odm:GlobalVariables/odm:StudyName"/></xsl:attribute>
+			<xsl:attribute name="ProtocolName"><xsl:value-of select="odm:GlobalVariables/odm:ProtocolName"/></xsl:attribute>
 			<xsl:for-each select="odm:MetaDataVersion">
 				<xsl:call-template name="odm:MetaDataVersion"/>
 			</xsl:for-each>
@@ -45,24 +61,185 @@
 	
 	<!-- makes a deep copy moving everything to the ODMv2 namespace -->
 	<xsl:template name="makedeepcopy_to_ODMv2">
-		<!-- create the element in the ODMv2 namespace -->
-		<xsl:element name="{local-name()}" namespace="{$ODMv2NS}">
-			<!-- copy the attributes -->
-			<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
-			<!-- make a deep copy of the child elements in the new namespace
-				(uses recursion) -->
-			<xsl:for-each select="./*">
-				<xsl:call-template name="makedeepcopy_to_ODMv2"/>
-			</xsl:for-each>
-			<!-- copy any text content -->
-			<xsl:copy-of select="./text()"/>
-		</xsl:element>
+		<!-- 2022-10-04: we need to replace FormRef by ItemGroupDef and FormDef by ItemGroupDef with attribute "Type" with the value "Form" -->
+		<xsl:choose>
+			<xsl:when test="name()='FormRef'">
+				<xsl:element name="ItemGroupRef" namespace="{$ODMv2NS}">
+					<!-- and just copy the attributes, except for FormOID -->
+					<xsl:for-each select="@*[not(name()='FormOID')]"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- and add the attribute "ItemGroupOID" -->
+					<xsl:attribute name="ItemGroupOID"><xsl:value-of select="@FormOID"/></xsl:attribute>
+					<!-- make a deep copy of the child elements in the new namespace
+						(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<xsl:when test="name()='FormDef'">
+				<xsl:element name="ItemGroupDef" namespace="{$ODMv2NS}">
+					<!-- just copy the attributes -->
+					<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- and add a "Type" attribute with value "Form" -->
+					<xsl:attribute name="Type">Form</xsl:attribute>
+					<!-- If there is an attribute "Repeating" with value "Yes", replace the value by "Simple" -->
+					<xsl:if test="@Repeating='Yes'">
+						<xsl:attribute name="Repeating">Simple</xsl:attribute>
+					</xsl:if>
+					<!-- make a deep copy of the child elements in the new namespace
+						(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<xsl:when test="name()='ItemGroupDef'">
+				<xsl:element name="ItemGroupDef" namespace="{$ODMv2NS}">
+					<!-- copy all the attributes, except for SASDatasetName -->
+					<xsl:for-each select="@*[not(name()='SASDatasetName')]"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- If there is an attribute "Repeating" with value "Yes", replace the value by "Simple" -->
+					<xsl:if test="@Repeating='Yes'">
+						<xsl:attribute name="Repeating">Simple</xsl:attribute>
+					</xsl:if>
+					<!-- Move the value of @SASDatasetName to the new attribute DatasetName -->
+					<xsl:if test="@SASDatasetName">
+						<xsl:attribute name="DatasetName"><xsl:value-of select="@SASDatasetName"/></xsl:attribute>
+					</xsl:if>
+					<!-- Add the "Type" attribute with value "Section" -->
+					<xsl:attribute name="Type">Section</xsl:attribute>
+					<!-- make a deep copy of the child elements in the new namespace
+						(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<!-- ItemDef -->
+			<xsl:when test="name()='ItemDef'">
+				<xsl:element name="ItemDef" namespace="{$ODMv2NS}">
+					<!-- copy all attributes, except for SDSVarName and SASFieldName and SignificantDigits -->
+					<xsl:for-each select="@*[not(name()='SASFieldName')][not(name()='SDSVarName')][not(name()='SignificantDigits')]"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- make a deep copy of the child elements in the new namespace
+							(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- Move the value of "SDSVarName" to an "Alias" with @Context=SDTM, 
+						except when already present -->
+					<xsl:if test="@SDSVarName and not(./odm:Alias[@Context='SDTM'])">
+						<xsl:element name="Alias" namespace="{$ODMv2NS}">
+							<xsl:attribute name="Context">SDTM</xsl:attribute>
+							<xsl:attribute name="Name"><xsl:value-of select="@SDSVarName"/></xsl:attribute>
+						</xsl:element>
+					</xsl:if>
+				</xsl:element>
+			</xsl:when>
+			<!-- CodeList -->
+			<xsl:when test="name()='CodeList'">
+				<xsl:element name="CodeList" namespace="{$ODMv2NS}">
+					<!-- copy all attributes, except for SASFormatName -->
+					<xsl:for-each select="@*[not(name()='SASFormatName')]"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- make a deep copy of the child elements in the new namespace
+							(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<!-- ConditionDef: we need to insert an empty "MethodSignature" element -->
+			<xsl:when test="name()='ConditionDef'">
+				<xsl:element name="ConditionDef" namespace="{$ODMv2NS}">
+					<!-- copy all attributes -->
+					<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- copy the Description child element, remark that it needs adaption for TranslatedText -->
+					<xsl:for-each select="odm:Description">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- Insert an empty MethodSignature element -->
+					<xsl:element name="MethodSignature" namespace="{$ODMv2NS}"/>
+					<!-- copy the FormalExpression element. Remark that it requires adaption -->
+					<xsl:for-each select="odm:FormalExpression">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- copy any Alias elements -->
+					<xsl:for-each select="odm:Alias">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<!-- MethodDef: we need to insert an empty "MethodSignature" element -->
+			<xsl:when test="name()='MethodDef'">
+				<xsl:element name="MethodDef" namespace="{$ODMv2NS}">
+					<!-- copy all attributes -->
+					<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- copy the Description child element, remark that it needs adaption for TranslatedText -->
+					<xsl:for-each select="odm:Description">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- Insert an empty MethodSignature element -->
+					<xsl:element name="MethodSignature" namespace="{$ODMv2NS}"/>
+					<!-- copy the FormalExpression element. Remark that it requires adaption -->
+					<xsl:for-each select="odm:FormalExpression">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- copy any Alias elements -->
+					<xsl:for-each select="odm:Alias">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:when>
+			<!-- FormalExpression: text content is not allowed anymore, goes into the "Code" element -->
+			<xsl:when test="name()='FormalExpression'">
+				<xsl:element name="FormalExpression" namespace="{$ODMv2NS}">
+					<!-- Copy the Context attribute -->
+					<xsl:copy-of select="@Context"/>
+					<!-- and the text content goes into the new "Code" element -->
+					<xsl:element name="Code" namespace="{$ODMv2NS}">
+						<xsl:value-of select="."/>
+					</xsl:element>
+				</xsl:element>
+			</xsl:when>
+			<!-- Do not copy MeasurementUnitRef - it has been removed -->
+			<xsl:when test="name()='MeasurementUnitRef'"/>
+			<!-- Do not copy Presentation - it has been removed -->
+			<xsl:when test="name()='Presentation'"/>
+			<!-- Other cases -->
+			<xsl:otherwise>
+				<!-- create the element in the ODMv2 namespace -->
+				<xsl:element name="{local-name()}" namespace="{$ODMv2NS}">
+					<!-- copy the attributes -->
+					<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+					<!-- NEW for TranslatedText: we need an additional attribute "type" with value "text/plain" -->
+					<xsl:if test="name()='TranslatedText'">
+						<xsl:attribute name="type">text/plain</xsl:attribute>
+					</xsl:if>
+					<!-- make a deep copy of the child elements in the new namespace
+						(uses recursion) -->
+					<xsl:for-each select="./*">
+						<xsl:call-template name="makedeepcopy_to_ODMv2"/>
+					</xsl:for-each>
+					<!-- copy any text content -->
+					<xsl:copy-of select="./text()"/>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
+		
 	</xsl:template>
 	
 	<!-- we start from "MetaDataVersion" -->
 	<xsl:template name="odm:MetaDataVersion">
 		<xsl:element name="MetaDataVersion" namespace="{$ODMv2NS}">
-			<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
+			<!-- Copy the attributes except for "Description" -->
+			<xsl:for-each select="@*[not(name()='Description')]"><xsl:copy-of select="."/></xsl:for-each>
+			<!-- The "Description" is moved from an attribute to a child element -->
+			<xsl:if test="@Description">
+				<xsl:element name="Description" namespace="{$ODMv2NS}">
+					<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
+						<xsl:attribute name="type">text/plain</xsl:attribute>
+						<xsl:value-of select="@Description"/>
+					</xsl:element>
+				</xsl:element>
+			</xsl:if>
 			<!-- get the Protocol element containing StudyEventRef elements -->
 			<!-- Make a temporary structure of StudyEvents of type 'Scheduled' -->
 			<xsl:variable name="scheduledstudyevents">
@@ -89,6 +266,7 @@
 					<!-- give it a description -->
 					<xsl:element name="Description" namespace="{$ODMv2NS}">
 						<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
+							<xsl:attribute name="type">text/plain</xsl:attribute>
 							<xsl:attribute name="xml:lang">en</xsl:attribute>
 							<xsl:text>Linear workflow generated from ODM 1.3 'Protocol' element for 'Scheduled' StudyEvents</xsl:text>
 						</xsl:element>

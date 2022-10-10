@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Example Demographics form with "check all that apply" and "other, specify" for "Race". 
 Implemented as: Use Case D - CodeList repeat with "other" field - see https://wiki.cdisc.org/display/XMLT/Details+of+Repeating+IG+Use+Cases+A-E -->
-<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3"
+<ODM xmlns="http://www.cdisc.org/ns/odm/v2.0"
      xmlns:xs="http://www.w3.org/2001/XMLSchema"
-     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
      xmlns:xlink="http://www.w3.org/1999/xlink"
      CreationDateTime="2020-07-06T10:20:15+01:00"
-     Description=""
      FileOID="DEMOGRAPHICS_EXAMPLE"
      FileType="Snapshot"
      Granularity="Metadata"
-     ODMVersion="1.3.1"
+     ODMVersion="2.0"
      SourceSystem="XML4Pharma CDISC ODM Study Designer"
      SourceSystemVersion="2015-R1">
-   <Study OID="ST.DEMOGRAPHICS_EXAMPLE">
-      <GlobalVariables>
-         <StudyName>Demographics example</StudyName>
-         <StudyDescription>Demographics example with Race, with "check all that apply"</StudyDescription>
-         <ProtocolName>Demographics example protocol</ProtocolName>
-      </GlobalVariables>
-      <BasicDefinitions/>
-      <MetaDataVersion Description="Version 1" Name="Version 1" OID="MV.1.0">
+   <Study OID="ST.DEMOGRAPHICS_EXAMPLE" StudyName="Study with Demographics example" ProtocolName="MyStudy">
+      <Description><TranslatedText xml:lang="en" type="text/plain">Demographics example with Race, with "check all that apply"</TranslatedText></Description>
+      <MetaDataVersion Name="Version 1" OID="MV.1.0">
+         <Description><TranslatedText xml:lang="en" type="text/plain">Version 1</TranslatedText></Description>
          <StudyEventDef Name="Screening visit with demographics" OID="SE.SCREENING" Repeating="No"
                         Type="Scheduled">
-            <FormRef FormOID="FO.DEMOGRAPHICS" Mandatory="Yes"/>
+            <ItemGroupRef ItemGroupOID="FO.DEMOGRAPHICS" Mandatory="Yes"/>
          </StudyEventDef>
-         <FormDef Name="Demographics form" OID="FO.DEMOGRAPHICS" Repeating="No">
+         <ItemGroupDef Name="Demographics form" OID="FO.DEMOGRAPHICS" Type="Form" Repeating="No">
             <ItemGroupRef ItemGroupOID="IG.DEMOGRAPHICS" Mandatory="Yes"/>
-         </FormDef>
-         <ItemGroupDef Name="Demographics" OID="IG.DEMOGRAPHICS" Repeating="No">
+         </ItemGroupDef>
+         <ItemGroupDef Name="Demographics" OID="IG.DEMOGRAPHICS" Type="Section" Repeating="No">
             <ItemRef ItemOID="IT.DOB" Mandatory="Yes"/>
             <ItemRef ItemOID="IT.SEX" Mandatory="Yes"/>
             <ItemRef ItemOID="IT.ETHNIC" Mandatory="Yes"/>
@@ -41,43 +35,43 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
          </ItemGroupDef>
          <!-- ItemGroup that repeats over all allowed values for "Race" (IT.RACE_CODE) from a codelist, with "Other, specifiy".
          This corresponds to "Repeating Item Groups Use Case D" - see https://wiki.cdisc.org/display/XMLT/Details+of+Repeating+IG+Use+Cases+A-E -->
-         <ItemGroupDef OID="IG.RACE" Name="Race" Repeating="Static">
-            <ItemRef ItemOID="IT.RACE_CODE" Mandatory="Yes"/>
+         <ItemGroupDef OID="IG.RACE" Name="Race" Repeating="Static" Type="Section">
+            <ItemRef ItemOID="IT.RACE_CODE" Mandatory="Yes" Repeat="Yes"/>
             <ItemRef ItemOID="IT.RACE_BOOLEAN" Mandatory="Yes"/>
-            <ItemRef ItemOID="IT.RACEOTH" Mandatory="No"/>
+            <ItemRef ItemOID="IT.RACEOTH" Mandatory="No" Other="Yes"/>
          </ItemGroupDef>
          <ItemDef DataType="date" Name="Date of birth" OID="IT.DOB">
             <Question>
-               <TranslatedText xml:lang="en">Date of Birth</TranslatedText>
+               <TranslatedText xml:lang="en" type="text/plain">Date of Birth</TranslatedText>
             </Question>
          </ItemDef>
          <ItemDef DataType="integer" Length="1" Name="Sex" OID="IT.SEX">
             <Question>
-               <TranslatedText xml:lang="en">Sex</TranslatedText>
+               <TranslatedText xml:lang="en" type="text/plain">Sex</TranslatedText>
             </Question>
             <CodeListRef CodeListOID="CL.SEX"/>
          </ItemDef>
          <ItemDef DataType="integer" Length="1" Name="Ethnicity" OID="IT.ETHNIC">
             <Question>
-               <TranslatedText xml:lang="en">Ethnicity</TranslatedText>
+               <TranslatedText xml:lang="en" type="text/plain">Ethnicity</TranslatedText>
             </Question>
             <CodeListRef CodeListOID="CL.ETHNIC"/>
          </ItemDef>
          <!-- Code for Race - over which is repeated through the associated codelist -->
-         <ItemDef OID="IT.RACE_CODE" Name="Race code" DataType="integer" Length="1" RepeatItem="Yes">
+         <ItemDef OID="IT.RACE_CODE" Name="Race code" DataType="integer" Length="1">
             <CodeListRef CodeListOID="CL.RACE"/>
          </ItemDef>
          <!-- "Race" lines are treated a boolean each: disadvantage: cannot be kept in the database as coded values 1,2, ... 99. 
          This is separately done in IT.RACE_CODE -->
          <ItemDef DataType="boolean" Length="1" Name="Race" OID="IT.RACE_BOOLEAN">
             <Description>
-               <TranslatedText xml:lang="en">Race</TranslatedText>
+               <TranslatedText xml:lang="en" type="text/plain">Race</TranslatedText>
             </Description>
          </ItemDef>
          <!-- Item for keeping the value of "Race Other" -->
-         <ItemDef DataType="text" Length="20" Name="Other Race" OID="IT.RACEOTH" OtherItem="Yes">
+         <ItemDef DataType="text" Length="20" Name="Other Race" OID="IT.RACEOTH">
             <Question>
-               <TranslatedText xml:lang="en">Other race - specify</TranslatedText>
+               <TranslatedText xml:lang="en" type="text/plain">Other race - specify</TranslatedText>
             </Question>
          </ItemDef>
          <!-- "Race" lines are treated as integer coded values -->
@@ -121,56 +115,56 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
          <CodeList DataType="integer" Name="Sex" OID="CL.SEX">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en">Male</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Male</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en">Female</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Female</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
          <CodeList DataType="integer" Name="Ethnicity" OID="CL.ETHNIC">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en">Hispanic</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Hispanic</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en">Non-hispanic</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Non-hispanic</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
          <CodeList DataType="integer" Name="Race" OID="CL.RACE">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en">White</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">White</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en">Black/African American</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Black/African American</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="3">
                <Decode>
-                  <TranslatedText xml:lang="en">Asian</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Asian</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="4">
                <Decode>
-                  <TranslatedText xml:lang="en">Native Hawaiian/Other Pacific Islander</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Native Hawaiian/Other Pacific Islander</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="5">
                <Decode>
-                  <TranslatedText xml:lang="en">American Indian/Alaska Native</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">American Indian/Alaska Native</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="99">
                <Decode>
-                  <TranslatedText xml:lang="en">Other - specify</TranslatedText>
+                  <TranslatedText xml:lang="en" type="text/plain">Other - specify</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
@@ -181,116 +175,115 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
       <!-- Subject 001 is a male African American, non-hispanic -->
       <SubjectData SubjectKey="001">
          <StudyEventData StudyEventOID="SE.SCREENING">
-            <FormData FormOID="FO.DEMOGRAPHICS">
+            <ItemGroupData ItemGroupOID="FO.DEMOGRAPHICS">
                <ItemGroupData ItemGroupOID="IG.DEMOGRAPHICS">
-                  <ItemData ItemOID="IT.DOB" Value="1957-05-07"/>
-                  <ItemData ItemOID="IT.SEX" Value="1"/><!-- 1=male, 2=female -->
-                  <ItemData ItemOID="IT.ETHNIC" Value="2"/><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
+                  <ItemData ItemOID="IT.DOB"><Value>1957-05-07</Value></ItemData>
+                  <ItemData ItemOID="IT.SEX"><Value>1</Value></ItemData><!-- 1=male, 2=female -->
+                  <ItemData ItemOID="IT.ETHNIC"><Value>2</Value></ItemData><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
                   <!-- Race as a group of booleans, one for each possible value of Race -->
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="1">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="1"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>1</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <!-- subject is African American (only) -->
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="2">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="2"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="true"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>2</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>true</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="3">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="3"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>3</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="4">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="4"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>4</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>4</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="5">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="5"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>5</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="6">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="99"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>99</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                </ItemGroupData>
-            </FormData>
+            </ItemGroupData>
          </StudyEventData>
       </SubjectData>
       <!-- Subject 002 is a female, having indicated she is both Asian and White, non-hispanic -->
       <SubjectData SubjectKey="002">
          <StudyEventData StudyEventOID="SE.SCREENING">
-            <FormData FormOID="FO.DEMOGRAPHICS">
+            <ItemGroupData ItemGroupOID="FO.DEMOGRAPHICS">
                <ItemGroupData ItemGroupOID="IG.DEMOGRAPHICS">
-                  <ItemData ItemOID="IT.DOB" Value="1975-01-31"/>
-                  <ItemData ItemOID="IT.SEX" Value="2"/><!-- 1=male, 2=female -->
-                  <ItemData ItemOID="IT.ETHNIC" Value="2"/><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
+                  <ItemData ItemOID="IT.DOB"><Value>1975-01-31></Value></ItemData>
+                  <ItemData ItemOID="IT.SEX"><Value>2</Value></ItemData><!-- 1=male, 2=female -->
+                  <ItemData ItemOID="IT.ETHNIC"><Value>2</Value></ItemData><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
                   <!-- Race as a group of booleans, one for each possible value of Race -->
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="1">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="1"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="true"/><!-- White -->
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>1</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>1</Value></ItemData><!-- White -->
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="2">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="2"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>2</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="3">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="3"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="true"/><!-- Asian -->
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>3</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>true</Value></ItemData><!-- Asian -->
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="4">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="4"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>4</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="5">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="5"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>5</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="6">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="99"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>99</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                </ItemGroupData>
-            </FormData>
+            </ItemGroupData>
          </StudyEventData>
       </SubjectData>
       <!-- Subject 003 is female, having indicated she is of "other" race, being "Native Amazonian", and hispanic fo culture -->
       <SubjectData SubjectKey="003">
          <StudyEventData StudyEventOID="SE.SCREENING">
-            <FormData FormOID="FO.DEMOGRAPHICS">
+            <ItemGroupData ItemGroupOID="FO.DEMOGRAPHICS">
                <ItemGroupData ItemGroupOID="IG.DEMOGRAPHICS">
-                  <ItemData ItemOID="IT.DOB" Value="1961-06-09"/>
-                  <ItemData ItemOID="IT.SEX" Value="2"/><!-- 1=male, 2=female -->
-                  <ItemData ItemOID="IT.ETHNIC" Value="1"/><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
+                  <ItemData ItemOID="IT.DOB"><Value>1961-06-09</Value></ItemData>
+                  <ItemData ItemOID="IT.SEX"><Value>2</Value></ItemData><!-- 1=male, 2=female -->
+                  <ItemData ItemOID="IT.ETHNIC"><Value>1</Value></ItemData><!-- 1=hispanic/latino, 2=non-hispanic/latino -->
                   <!-- Race as a group of booleans, one for each possible value of Race -->
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="1">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="1"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>1</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="2">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="2"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>2</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="3">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="3"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>3</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="4">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="4"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>4</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="5">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="5"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="false"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>5</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>false</Value></ItemData>
                   </ItemGroupData>
                   <ItemGroupData ItemGroupOID="IG.RACE" ItemGroupRepeatKey="6">
-                     <ItemData ItemOID="IT.RACE_CODE" Value="99"/>
-                     <ItemData ItemOID="IT.RACE_BOOLEAN" Value="true"/>
-                     <ItemData ItemOID="IT.RACEOTH" Value="Native Amazonian"/>
+                     <ItemData ItemOID="IT.RACE_CODE"><Value>99</Value></ItemData>
+                     <ItemData ItemOID="IT.RACE_BOOLEAN"><Value>true</Value></ItemData>
+                     <ItemData ItemOID="IT.RACEOTH"><Value>Native Amazonian</Value></ItemData>
                   </ItemGroupData>
                </ItemGroupData>
-            </FormData>
+            </ItemGroupData>
          </StudyEventData>
       </SubjectData>
-      
    </ClinicalData>
 </ODM>
