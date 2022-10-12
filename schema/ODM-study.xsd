@@ -30,7 +30,7 @@
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
-        <xs:attribute name="ProtocolName" type="name" use="optional"/>
+        <xs:attribute name="ProtocolName" type="name" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
