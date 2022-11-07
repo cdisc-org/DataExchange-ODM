@@ -23,12 +23,13 @@
     <xs:attributeGroup name="LocationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Role" type="text"></xs:attribute>
+        <xs:attribute name="Role" type="text"/>
         <xs:attribute name="OrganizationOID" type="oidref"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="OrganizationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Role" type="text"/>
         <xs:attribute name="Type" type="OrganizationType" use="required"/>
         <xs:attribute name="LocationOID" type="oidref"/>
         <xs:attribute name="PartOfOrganizationOID" type="oidref"/>

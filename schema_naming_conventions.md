@@ -1,4 +1,4 @@
-# ODM XML Schema Naming Conventions
+# ODM XML v2 Schema Naming Conventions
 
 This document defines naming conventions for the ODM v2 schema. The names and case sensitivity of the XML elements, attributes and types from other standards used by ODM v2 are governed by their respective standards. For example, *complexType* is the name defined by XML Schema. The names from the vendor extensions are not governed by this. However, it is recommended that they follow this naming convention.
 
@@ -19,7 +19,7 @@ The following table contains the ODMv2 namespaces with their prefixes
 | Namespace URI                                      | Prefix  |
 |----------------------------------------------------|---------|
 | [http://www.w3.org/2001/XMLSchema]                 | xs      |
-| [http://www.w3.org/XML/1998/namespace]             | xml     | 
+| [http://www.w3.org/XML/1998/namespace]             | xml     |
 | [http://www.cdisc.org/ns/odm/v2.0]                 | odm     |
 
 [http://www.w3.org/2001/XMLSchema]: http://www.w3.org/2001/XMLSchema

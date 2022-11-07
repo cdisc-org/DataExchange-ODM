@@ -351,9 +351,10 @@
         <xs:union>
             <xs:simpleType>
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="Form"/>
-                    <xs:enumeration value="Dataset"/>
                     <xs:enumeration value="Concept"/>
+                    <xs:enumeration value="Dataset"/>
+                    <xs:enumeration value="Form"/>
+                    <xs:enumeration value="Section"/>
                 </xs:restriction>
             </xs:simpleType>
             <xs:simpleType>

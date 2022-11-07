@@ -45,9 +45,6 @@
 		<xs:attribute name="ItemOID" type="oidref" use="required"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
 	</xs:attributeGroup>
-	<xs:attributeGroup name="ItemDataAttributeDefinition">
-		<xs:attribute name="Value" type="value"/>
-	</xs:attributeGroup>
 	<xs:attributeGroup name="UserRefAttributeDefinition">
 		<xs:attribute name="UserOID" type="oidref" use="required"/>
 	</xs:attributeGroup>
@@ -168,8 +165,7 @@
 			<xs:group ref="ItemDataElementExtension" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="ItemDataAttributeSharedDefinition"/>
-		<xs:attributeGroup ref="ItemDataAttributeDefinition"/>
-		<xs:attributeGroup ref="ItemDataAttributeExtension"/>
+   	<xs:attributeGroup ref="ItemDataAttributeExtension"/>
 	</xs:complexType>
 	<xs:complexType name="ODMcomplexTypeDefinition-Signature">
 		<xs:sequence>

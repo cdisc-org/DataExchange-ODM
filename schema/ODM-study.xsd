@@ -30,7 +30,7 @@
     <xs:attributeGroup name="StudyAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
-        <xs:attribute name="ProtocolName" type="name" use="optional"/>
+        <xs:attribute name="ProtocolName" type="name" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -149,7 +149,7 @@
         <xs:attribute name="ArchiveLocationID" type="oidref" use="optional"/>
         <xs:attribute name="DatasetName" type="name" use="optional"/>
         <xs:attribute name="Domain" type="text" use="optional"/>
-        <xs:attribute name="Type" type="ItemGroupTypeType" use="optional"/>
+        <xs:attribute name="Type" type="ItemGroupTypeType" use="required"/>
         <xs:attribute name="Purpose" type="text" use="optional"/>
         <xs:attribute name="StandardOID" type="oidref" use="optional"/>        
         <xs:attribute name="IsNonStandard" type="YesOnly" use="optional"/>        
@@ -188,11 +188,13 @@
           <xs:attribute name="Type" type="OriginType" use="required" />        
           <xs:attribute name="Source" type="OriginSource" use="optional" />
       </xs:attributeGroup>    
-    <xs:attributeGroup name="SourceAttributeDefinition">
+    <xs:attributeGroup name="SourceItemsAttributeDefinition">
     </xs:attributeGroup>    
     <xs:attributeGroup name="SourceItemAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="optional"/>
         <xs:attribute name="ItemGroupOID" type="oidref" use="optional"/>
+        <xs:attribute name="MetaDataVersionOID" type="oidref" use="optional"/>
+        <xs:attribute name="StudyOID" type="oidref" use="optional"/>
         <xs:attribute name="leafID" type="oidref" use="optional"/>
         <xs:attribute name="Name" type="name" use="optional"/>
     </xs:attributeGroup>    
@@ -596,7 +598,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-Origin">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Source" minOccurs="0"/>
+            <xs:element ref="SourceItems" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="DocumentRef" minOccurs="0" maxOccurs="unbounded" />
             <xs:group ref="OriginElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -604,14 +606,14 @@
         <xs:attributeGroup ref="OriginAttributeDefinition"/>
         <xs:attributeGroup ref="OriginAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-Source">
+    <xs:complexType name="ODMcomplexTypeDefinition-SourceItems">
         <xs:sequence>
             <xs:element ref="SourceItem" minOccurs="1" maxOccurs="unbounded"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="SourceElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group ref="SourceItemsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attributeGroup ref="SourceAttributeDefinition"/>
-        <xs:attributeGroup ref="SourceAttributeExtension"/>
+        <xs:attributeGroup ref="SourceItemsAttributeDefinition"/>
+        <xs:attributeGroup ref="SourceItemsAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-SourceItem">
         <xs:sequence>
@@ -973,7 +975,7 @@
     <xs:element name="SubClass" type="ODMcomplexTypeDefinition-SubClass"/>
     <xs:element name="ItemRef" type="ODMcomplexTypeDefinition-ItemRef"/>
     <xs:element name="Origin" type="ODMcomplexTypeDefinition-Origin"/>
-    <xs:element name="Source" type="ODMcomplexTypeDefinition-Source"/>
+    <xs:element name="SourceItems" type="ODMcomplexTypeDefinition-SourceItems"/>
     <xs:element name="SourceItem" type="ODMcomplexTypeDefinition-SourceItem"/>
     <xs:element name="Resource" type="ODMcomplexTypeDefinition-Resource"/>
     <xs:element name="Selection" type="ODMcomplexTypeDefinition-Selection"/>
