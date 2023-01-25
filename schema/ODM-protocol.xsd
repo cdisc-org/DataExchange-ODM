@@ -352,6 +352,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-Criterion">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="CriterionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="CriterionAttributeDefinition"/>
