@@ -275,10 +275,6 @@
         <xs:attribute name="Dictionary" type="DictionaryNameType" use="optional"/>
         <xs:attribute name="Version" type="text" use="optional"/>
     </xs:attributeGroup>
-    <xs:attributeGroup name="ExternalCodeListAttributeDefinition">
-        <xs:attribute name="href" type="xs:anyURI" use="optional"/>
-        <xs:attribute name="ref" type="text" use="optional"/>
-    </xs:attributeGroup>
     <xs:attributeGroup name="MethodDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
@@ -708,25 +704,13 @@
     <xs:complexType name="ODMcomplexTypeDefinition-CodeList">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:choice>
-                <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="EnumeratedItem" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:choice>                
-            <xs:element ref="ExternalCodeList" minOccurs="0"/>
+            <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="CodeListAttributeDefinition"/>
         <xs:attributeGroup ref="CodeListAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExternalCodeList">
-        <xs:sequence>
-            <xs:group ref="ExternalCodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExternalSharedAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalCodeListAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalCodeListAttributeExtension"/>
     </xs:complexType>
 
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListItem">
@@ -748,17 +732,6 @@
         <xs:attributeGroup ref="DecodeAttributeExtension"/>
     </xs:complexType>
 
-    <xs:complexType name="ODMcomplexTypeDefinition-EnumeratedItem">
-        <xs:sequence>
-            <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="EnumeratedItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="CodeListItemAttributeDefinition"/>
-        <xs:attributeGroup ref="EnumeratedItemAttributeExtension"/>
-        <!-- this is not a typo, EnumeratedItem uses CodeListItem attributes -->
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-MethodDef">
         <xs:sequence>
             <xs:element ref="Description"/>
@@ -1012,14 +985,6 @@
             <xs:selector xpath="odm:CodeListItem"/>
             <xs:field xpath="@OrderNumber"/>
         </xs:unique>
-        <xs:unique name="UC-CL-3">
-            <xs:selector xpath="odm:EnumeratedItem"/>
-            <xs:field xpath="@CodedValue"/>
-        </xs:unique>
-        <xs:unique name="UC-CL-4">
-            <xs:selector xpath="odm:EnumeratedItem"/>
-            <xs:field xpath="@OrderNumber"/>
-        </xs:unique>
         <xs:unique name="UC-CL-5">
             <xs:selector xpath="odm:Alias"/>
             <xs:field xpath="@Context"/>
@@ -1038,13 +1003,6 @@
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="EnumeratedItem" type="ODMcomplexTypeDefinition-EnumeratedItem">
-        <xs:unique name="UC-ENU-1">
-            <xs:selector xpath="odm:Alias"/>
-            <xs:field xpath="@Context"/>
-        </xs:unique>
-    </xs:element>
-    <xs:element name="ExternalCodeList" type="ODMcomplexTypeDefinition-ExternalCodeList"/>
     <xs:element name="MethodDef" type="ODMcomplexTypeDefinition-MethodDef">
         <xs:unique name="UC-ME-1">
             <xs:selector xpath="odm:Alias"/>

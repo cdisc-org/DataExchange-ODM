@@ -63,12 +63,13 @@
 		<xs:attribute name="CodeListOID" type="oidref" use="required"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="CodingAttributeDefinition">
-		<xs:attribute name="Code" type="text" use="required"/>
+		<xs:attribute name="Code" type="text" use="optional"/>
 		<xs:attribute name="System" type="xs:anyURI" use="required"/>
 		<xs:attribute name="SystemName" type="text" use="optional"/>
 		<xs:attribute name="SystemVersion" type="text" use="optional"/>
 		<xs:attribute name="Label" type="text" use="optional"/>
 		<xs:attribute name="href" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="ref" type="xs:anyURI" use="optional"/>
 		<xs:attribute name="CommentOID" type="text" use="optional"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="QueryAttributeDefinition">
@@ -193,7 +194,6 @@
 	<xs:attributeGroup name="CheckValueAttributeExtension"/>
 	<xs:attributeGroup name="CodeListRefAttributeExtension"/>
 	<xs:attributeGroup name="ValueListRefAttributeExtension"/>
-	<xs:attributeGroup name="ExternalCodeListAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
 	<xs:attributeGroup name="QuestionAttributeExtension"/>
 	<xs:attributeGroup name="RangeCheckAttributeExtension"/>
@@ -201,7 +201,6 @@
 	<xs:attributeGroup name="CodeListAttributeExtension"/>
 	<xs:attributeGroup name="CodeListItemAttributeExtension"/>
 	<xs:attributeGroup name="DecodeAttributeExtension"/>
-	<xs:attributeGroup name="EnumeratedItemAttributeExtension"/>
 	<xs:attributeGroup name="ExternalCodeLibAttributeExtension"/>
 	<xs:attributeGroup name="AdminDataAttributeExtension"/>
 	<xs:attributeGroup name="UserAttributeExtension"/>
@@ -496,9 +495,6 @@
 	<xs:group name="DecodeElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="ExternalCodeListElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="AdminDataElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -566,9 +562,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ConditionDefElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="EnumeratedItemElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="MethodDefElementExtension">
