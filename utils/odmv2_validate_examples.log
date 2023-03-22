@@ -1,0 +1,102 @@
+
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Atlas_RS\Atlas_QS_ODMv2.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Chronic_Low_Back_Pain\Chronic_Low_Back_Pain_example.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Columbia_Suicidal_Scale\Columbia-Suicide_Severity_Scale_ODMv2.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Conditional_Repeats\Conditional_Repeats.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Crossover_Studydesign\Crossover_Studydesign.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Data-Collection\RepeatingIG-UC-D-Example.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Demographics_RACE\Demographics_RACE_check_all_that_apply.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\FHIR\fhir-example.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\FHIR_Integration\Data_Retrieval_From_FHIR_in_ODM.xml 
+     [echo] CDISC define validation starting
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\FHIR_Integration\Data_Retrieval_From_FHIR_in_ODM.xml:215:56: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://hl7.org/fhir":Condition}'. One of '{"http://www.cdisc.org/ns/odm/v2.0":ItemGroupData, "http://www.cdisc.org/ns/odm/v2.0":ItemData, "http://www.cdisc.org/ns/odm/v2.0":AuditRecord, "http://www.cdisc.org/ns/odm/v2.0":Signature, "http://www.cdisc.org/ns/odm/v2.0":Annotation, "http://www.cdisc.org/ns/odm/v2.0":Query}' is expected.
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\FHIR_Integration\Data_Retrieval_From_FHIR_in_ODM.xml is not a valid XML document
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Inclusion_Exclusion_Criteria_Workflow\Inclusion_Exclusion_Simple_Workflow.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml 
+     [echo] CDISC define validation starting
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml:2:203: cvc-elt.1.a: Cannot find the declaration of element 'ODM'.
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml is not a valid XML document
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_alternative_ValueLists.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Physio_Underwater_Therapy_workflow\Physio_Underwater_Therapy_BPMN_to_ODMv2_Workflow_2019-10-18_result.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Physio_Underwater_Therapy_workflow\Physio_Underwater_Therapy_BPMN_to_ODMv2_Workflow_result.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml 
+     [echo] CDISC define validation starting
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml:3:512: cvc-elt.1.a: Cannot find the declaration of element 'ODM'.
+[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml is not a valid XML document
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\Result_ODMv2.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Repeating_ItemGroup_CDASH_1-1_Stroke_LungDisease_IBD_CancerHistory_CRF\CDASH_1-1_MH_Example_Stroke_LungDisease_IBD_CancerHistory.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\SimpleTimingConstraints\SimpleTimingConstraints.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+*** C:\_github\cdisc-org\DataExchange-ODM\examples\Timing_LZZT\Timing_LZZT_Example_ODM.xml 
+     [echo] CDISC define validation starting
+
+BUILD SUCCESSFUL
+Total time: 0 seconds

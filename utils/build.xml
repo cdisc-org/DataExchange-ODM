@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<project name="XML-Validate" default="validate_cdisc_odm.v20">
+
+  <property file = "xmlvalidate.properties"/>
+  
+  <!--CDISC define schema namespace and location-->
+  <property name="cdisc.odm.v20.schema.namespace" value="http://www.cdisc.org/ns/odm/v2.0"/>
+
+
+  <target name="validate_cdisc_odm.v20">
+    <echo>CDISC define validation starting</echo>
+    <schemavalidate file="${cdisc.odm.file.v20}" warn="yes" fullchecking="true" failonerror="false">
+      <schema namespace="${cdisc.odm.v20.schema.namespace}" file="${cdisc.odm.v20.schema.file}"/>
+    </schemavalidate>
+  </target>
+
+</project>

@@ -13,7 +13,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
    CreationDateTime="2020-07-15T18:05:00" FileOID="CDASH_MH" FileType="Snapshot"
    Granularity="Metadata" ODMVersion="2.0" SourceSystem="XML4Pharma CDISC ODM Study Designer"
    SourceSystemVersion="2015-R1">
-   <Study OID="ODV2_Example_MH_1" StudyName="ODM Example Medical History Stroke / Lung disease / IBD / Cancer History - CDASH User Guide v.1.1.1">
+   <Study OID="ODV2_Example_MH_1" StudyName="ODM Example Medical History Stroke / Lung disease / IBD / Cancer History - CDASH User Guide v.1.1.1" ProtocolName="ODM_Example_Repeating">
       <MetaDataVersion Name="Version 1.0" OID="MDV.1.0">
          <Description><TranslatedText xml:lang="en" type="text/plain">Version 1.0</TranslatedText></Description>
          
@@ -152,24 +152,24 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <!-- CodeList for Condition/Procedure - used for iteration of ItemGroup. 
 			Includes SNOMED-CT code for each item -->
          <CodeList OID="CL.CONDITION_PROCEDURE" Name="Condition/Procedure name" DataType="text"> 
-            <EnumeratedItem CodedValue="Stroke">
+            <CodeListItem CodedValue="Stroke">
                <!-- Remark that annotation for a synonym code in another coding system 
                is now being taken care of by the "Coding" element -->
 				<!--Alias Context="SNOMED-CT" Name="366609000"/-->
             <Coding Code="366609000" System="http://snomed.info/sct" SystemName="SNOMED-CT" SystemVersion="2019.10.03"/>
-			</EnumeratedItem>
-            <EnumeratedItem CodedValue="Chronic lung disease">
+			</CodeListItem>
+            <CodeListItem CodedValue="Chronic lung disease">
 				<!--Alias Context="SNOMED-CT" Name="413839001"/-->
             <Coding Code="413839001" System="http://snomed.info/sct" SystemName="SNOMED-CT" SystemVersion="2019.10.03"/>
-			</EnumeratedItem>
-            <EnumeratedItem CodedValue="Inflammatory bowel disease">
+			</CodeListItem>
+            <CodeListItem CodedValue="Inflammatory bowel disease">
 				<!--Alias Context="SNOMED-CT" Name="24526004"/-->
             <Coding Code="24526004" System="http://snomed.info/sct" SystemName="SNOMED-CT" SystemVersion="2019.10.03"/>
-			</EnumeratedItem>
-            <EnumeratedItem CodedValue="Family history of cancer">
+			</CodeListItem>
+            <CodeListItem CodedValue="Family history of cancer">
 				<!--Alias Context="SNOMED-CT" Name="275937001"/-->
             <Coding Code="275937001" System="http://snomed.info/sct" SystemName="SNOMED-CT" SystemVersion="2019.10.03"/>
-			</EnumeratedItem>
+			</CodeListItem>
          </CodeList>
          
          <!-- individual codelists "Type" for each condition/procedure -->
@@ -177,41 +177,41 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
             <Description>
                <TranslatedText xml:lang="en" type="text/plain">Stroke type</TranslatedText>
             </Description>
-            <EnumeratedItem CodedValue="Hemorrhagic"/>
-            <EnumeratedItem CodedValue="Non-hemorrhagic"/>
-            <EnumeratedItem CodedValue="Other"/>
-            <EnumeratedItem CodedValue="Unknown"/>
+            <CodeListItem CodedValue="Hemorrhagic"/>
+            <CodeListItem CodedValue="Non-hemorrhagic"/>
+            <CodeListItem CodedValue="Other"/>
+            <CodeListItem CodedValue="Unknown"/>
          </CodeList>
          <CodeList DataType="text" Name="Chronic Lund Disease Type"
             OID="CL.CHRONIC_LUNG_DISEASE_TYPE">
             <Description>
                <TranslatedText xml:lang="en" type="text/plain">Chronic lung disease type</TranslatedText>
             </Description>
-            <EnumeratedItem CodedValue="Interstitial lung disease"/>
-            <EnumeratedItem CodedValue="Obstructive lung disease"/>
-            <EnumeratedItem CodedValue="Other"/>
+            <CodeListItem CodedValue="Interstitial lung disease"/>
+            <CodeListItem CodedValue="Obstructive lung disease"/>
+            <CodeListItem CodedValue="Other"/>
          </CodeList>
          <CodeList DataType="text" Name="Inflammatory Bowel Disease Type"
             OID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE">
             <Description>
                <TranslatedText xml:lang="en" type="text/plain">Inflammatory bowel disease</TranslatedText>
             </Description>
-            <EnumeratedItem CodedValue="Chron's disease"/>
-            <EnumeratedItem CodedValue="Other"/>
-            <EnumeratedItem CodedValue="Ulcerative Colitis"/>
+            <CodeListItem CodedValue="Chron's disease"/>
+            <CodeListItem CodedValue="Other"/>
+            <CodeListItem CodedValue="Ulcerative Colitis"/>
          </CodeList>
          <CodeList DataType="text" Name="Family History of Cancer Type"
             OID="CL.FAMILY_HISTORY_OF_CANCER_TYPE">
             <Description>
                <TranslatedText xml:lang="en" type="text/plain">Family History of Cancer Type</TranslatedText>
             </Description>
-            <EnumeratedItem CodedValue="Breast"/>
-            <EnumeratedItem CodedValue="Colon"/>
-            <EnumeratedItem CodedValue="Lung"/>
-            <EnumeratedItem CodedValue="Other"/>
-            <EnumeratedItem CodedValue="Ovarian"/>
-            <EnumeratedItem CodedValue="Skin"/>
-            <EnumeratedItem CodedValue="Unknown"/>
+            <CodeListItem CodedValue="Breast"/>
+            <CodeListItem CodedValue="Colon"/>
+            <CodeListItem CodedValue="Lung"/>
+            <CodeListItem CodedValue="Other"/>
+            <CodeListItem CodedValue="Ovarian"/>
+            <CodeListItem CodedValue="Skin"/>
+            <CodeListItem CodedValue="Unknown"/>
          </CodeList>
          <CodeList DataType="text" Name="Yes-No" OID="CL.NY">
             <CodeListItem CodedValue="Y">
