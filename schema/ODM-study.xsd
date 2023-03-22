@@ -31,6 +31,9 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
         <xs:attribute name="ProtocolName" type="name" use="required"/>
+        <xs:attribute name="VersionID" type="name" use="optional"/>
+        <xs:attribute name="VersionName" type="name" use="optional"/>
+        <xs:attribute name="Status" type="name" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
