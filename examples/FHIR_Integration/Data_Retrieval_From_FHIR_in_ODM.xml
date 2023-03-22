@@ -5,7 +5,7 @@
     FileType="Snapshot"
     CreationDateTime="2020-08-28T09:33:00">
     
-    <Study OID="ST.COVID19" StudyName="COVID-19 study with data retrieval from FHIR EHRs">
+    <Study OID="ST.COVID19" StudyName="COVID-19 study with data retrieval from FHIR EHRs" ProtocolName="COVID-19 study with data retrieval from FHIR EHRs">
         <MetaDataVersion OID="MV.001" Name="Version 1">
             <Description>
                 <TranslatedText xml:lang="en" type="text/plain">Example of metadata and data for a COVID-19 study that retrieves all data from EHRs that support the FHIR API</TranslatedText>

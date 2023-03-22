@@ -716,7 +716,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListItem">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Decode"/>
+            <xs:element ref="Decode" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
