@@ -64,9 +64,9 @@
             </ItemDef>
             
             <CodeList OID="CL.LBORRESU" Name="Unit (LBRESU)" DataType="text">
-                <EnumeratedItem CodedValue="10^9/L"> 
+                <CodeListItem CodedValue="10^9/L"> 
                     <Coding Code="C67255" System="https://www.cdisc.org/standards/terminology" SystemName="CDISC/NCI CT" SystemVersion="2019-12-20"/>
-                </EnumeratedItem>
+                </CodeListItem>
                 <Coding Code="C71620" System="https://www.cdisc.org/standards/terminology" SystemName="CDISC/NCI CT" SystemVersion="2019-12-20"/>
             </CodeList>
             

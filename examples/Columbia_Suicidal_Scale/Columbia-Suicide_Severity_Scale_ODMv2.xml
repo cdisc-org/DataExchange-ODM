@@ -1723,12 +1723,9 @@
             </CodeList>
             <!-- Actual/Potential Lethality Type - used for repeat -->
             <CodeList OID="CL.Lethality_Type" Name="Lethality Type" DataType="text">
-                <!-- We use "EnumeratedItem" here, just as an example.
-                Of course one could also use CodeListItem with Decode, 
-                which in case of EDC may be more appropriate -->
-                <EnumeratedItem CodedValue="Most Recent Attempt"/>
-                <EnumeratedItem CodedValue="Most Lethal Attempt"/>
-                <EnumeratedItem CodedValue="Initial/First Attempt"/>
+                <CodeListItem CodedValue="Most Recent Attempt"/>
+                <CodeListItem CodedValue="Most Lethal Attempt"/>
+                <CodeListItem CodedValue="Initial/First Attempt"/>
             </CodeList>
             <!-- Potential Lethality CodeList -->
             <CodeList OID="CL.Potential_Lethality" Name="Potential Lethality" DataType="text">
