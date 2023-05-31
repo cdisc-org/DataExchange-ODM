@@ -562,6 +562,7 @@
             <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="leaf" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemGroupDefAttributeDefinition"/>
@@ -588,6 +589,7 @@
         <xs:sequence>
             <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="WhereClauseRef" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemRefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemRefAttributeDefinition"/>
@@ -649,6 +651,7 @@
             <xs:element ref="ValueListRef" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="ItemDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemDefAttributeDefinition"/>
@@ -710,6 +713,7 @@
             <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Query" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="CodeListAttributeDefinition"/>
