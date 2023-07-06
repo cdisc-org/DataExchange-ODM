@@ -105,10 +105,11 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="StudyObjectiveType">
+    <xs:simpleType name="StudyObjectiveLevel">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Primary"/>
             <xs:enumeration value="Secondary"/>
+            <xs:enumeration value="Exploratory"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -230,7 +231,15 @@
             <xs:enumeration value="Composite"/>
         </xs:restriction>
     </xs:simpleType>
-
+    
+    <xs:simpleType name="StudyEndPointLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Primary"/>
+            <xs:enumeration value="Secondary"/>
+            <xs:enumeration value="Exploratory"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
     <xs:simpleType name="RelativeTimingConstraintType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="StartToStart"/>
