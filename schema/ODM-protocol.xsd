@@ -24,7 +24,7 @@
     <xs:attributeGroup name="StudyObjectiveAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyObjectiveType"/>
+        <xs:attribute name="Type" type="StudyObjectiveLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
         <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
@@ -33,7 +33,8 @@
     <xs:attributeGroup name="StudyEndPointAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyEndPointType"/>
+        <xs:attribute name="Type" type="StudyEndPointType" use="optional"/>
+        <xs:attribute name="Level" type="StudyEndPointLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -78,7 +79,7 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="TransitionOID" type="oidref" use="required"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
-        <xs:attribute name="Type" type="RelativeTimingConstraintType"/>
+        <xs:attribute name="Type" type="RelativeTimingConstraintType" use="optional"/>
         <xs:attribute name="TimepointTarget" type="durationDatetime" use="required"/>
         <xs:attribute name="TimepointPreWindow" type="durationDatetime" use="optional"/>
         <xs:attribute name="TimepointPostWindow" type="durationDatetime" use="optional"/>
