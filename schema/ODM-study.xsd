@@ -185,8 +185,10 @@
         <!-- Other attribute signfies that the Item represents "Other" content added to an ItemGroup -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
         <xs:attribute name="Role" type="text" use="optional"/>
-        <xs:attribute name="RoleCodeListOID" type="oidref"/>
-      </xs:attributeGroup>
+        <xs:attribute name="RoleCodeListOID" type="oidref" use="optional"/>
+        <xs:attribute name="Core" type="CoreType" use="optional"/>
+        <xs:attribute name="PreSpecifiedValue" type="text" use="optional"/>
+    </xs:attributeGroup>
       <xs:attributeGroup name="OriginAttributeDefinition">
           <xs:attribute name="Type" type="OriginType" use="required" />        
           <xs:attribute name="Source" type="OriginSource" use="optional" />
@@ -230,7 +232,8 @@
                     datatypes.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="DisplayFormat" type="text" use="optional"></xs:attribute>
+        <xs:attribute name="DisplayFormat" type="text" use="optional"/>
+        <xs:attribute name="VariableSet" type="text" use="optional"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
@@ -641,7 +644,12 @@
     <xs:complexType name="ODMcomplexTypeDefinition-ItemDef">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
+            <xs:element ref="Definition" minOccurs="0"/>
             <xs:element ref="Question" minOccurs="0"/>
+            <xs:element ref="Prompt" minOccurs="0"/>
+            <xs:element ref="CRFCompletionInstructions" minOccurs="0"/>
+            <xs:element ref="ImplementationNotes" minOccurs="0"/>
+            <xs:element ref="CDISCNotes" minOccurs="0"/>
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0" maxOccurs="1"/>
             <!-- Moved to ItemRef -->
@@ -660,6 +668,41 @@
             <xs:group ref="QuestionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="QuestionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Definition">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="DefinitionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DefinitionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Prompt">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="PromptElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="PromptAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-CRFCompletionInstructions">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="CRFCompletionInstructionsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="CRFCompletionInstructionsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-ImplementationNotes">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="ImplementationNotesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="ImplementationNotesAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-CDISCNotes">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="CDISCNotesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="CDISCNotesAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListRef">
         <xs:sequence>
@@ -963,6 +1006,41 @@
     </xs:element>
     <xs:element name="Question" type="ODMcomplexTypeDefinition-Question">
         <xs:unique name="UC-QU-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="Definition" type="ODMcomplexTypeDefinition-Definition">
+        <xs:unique name="UC-DEF-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="Prompt" type="ODMcomplexTypeDefinition-Prompt">
+        <xs:unique name="UC-PR-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="CRFCompletionInstructions" type="ODMcomplexTypeDefinition-CRFCompletionInstructions">
+        <xs:unique name="UC-CRFCI-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="ImplementationNotes" type="ODMcomplexTypeDefinition-ImplementationNotes">
+        <xs:unique name="UC-IMPLN-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="CDISCNotes" type="ODMcomplexTypeDefinition-CDISCNotes">
+        <xs:unique name="UC-CDISCN-1">
             <xs:selector xpath="odm:TranslatedText"/>
             <xs:field xpath="@type"/>
             <xs:field xpath="@xml:lang"/>

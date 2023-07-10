@@ -398,6 +398,37 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="DefCoreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Cond" />
+            <xs:enumeration value="Exp" />
+            <xs:enumeration value="Perm" />
+            <xs:enumeration value="Req" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="ODMCoreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="HR" />
+            <xs:enumeration value="O" />
+            <xs:enumeration value="R/C" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CoreType">
+        <xs:annotation>
+            <xs:documentation>Core.</xs:documentation>
+        </xs:annotation>
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="DefCoreType" />
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="ODMCoreType" />
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+    
     <xs:simpleType name="OriginSource">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Investigator">
