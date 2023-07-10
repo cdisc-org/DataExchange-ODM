@@ -196,6 +196,11 @@
 	<xs:attributeGroup name="ValueListRefAttributeExtension"/>
 	<xs:attributeGroup name="ItemDefAttributeExtension"/>
 	<xs:attributeGroup name="QuestionAttributeExtension"/>
+	<xs:attributeGroup name="DefinitionAttributeExtension"/>
+	<xs:attributeGroup name="PromptAttributeExtension"/>
+	<xs:attributeGroup name="CRFCompletionInstructionsAttributeExtension"/>
+	<xs:attributeGroup name="ImplementationNotesAttributeExtension"/>
+	<xs:attributeGroup name="CDISCNotesAttributeExtension"/>
 	<xs:attributeGroup name="RangeCheckAttributeExtension"/>
 	<xs:attributeGroup name="ErrorMessageAttributeExtension"/>
 	<xs:attributeGroup name="CodeListAttributeExtension"/>
@@ -472,6 +477,21 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="QuestionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="DefinitionElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="PromptElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="CRFCompletionInstructionsElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="ImplementationNotesElementExtension">
+		<xs:sequence/>
+	</xs:group>
+	<xs:group name="CDISCNotesElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="RangeCheckElementExtension">
