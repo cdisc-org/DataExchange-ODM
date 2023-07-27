@@ -694,7 +694,7 @@
 	<xs:complexType name="ODMcomplexTypeDefinition-Query">
 		<xs:sequence>
 			<xs:element ref="Value"/>
-			<xs:element ref="AuditRecord" minOccurs="0"/>
+			<xs:element ref="AuditRecord" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:group ref="QueryElementExtension"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="QueryAttributeDefinition"/>
