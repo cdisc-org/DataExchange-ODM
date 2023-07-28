@@ -49,7 +49,7 @@
 		<xs:attribute name="ItemOID" type="oidref"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="AnnotationAttributeDefinition">
-		<xs:attribute name="SeqNum" type="integer" use="required"/>
+		<xs:attribute name="SeqNum" type="positiveInteger" use="required"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
 		<xs:attribute name="ID" type="xs:ID"/>
 	</xs:attributeGroup>

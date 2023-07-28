@@ -34,7 +34,7 @@
 		<xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
-		<xs:attribute name="ItemGroupDataSeq" type="integer"/>
+		<xs:attribute name="ItemGroupDataSeq" type="positiveIinteger"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDataAttributeSharedDefinition">
 		<xs:attribute name="ItemOID" type="oidref" use="required"/>
