@@ -48,7 +48,7 @@
         <xs:attribute name="StudyTargetPopulationOID" type="oidref" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyInterventionRefAttributeDefinition">
-        <xs:attribute name="StudyInterventionOID" use="required"/>
+        <xs:attribute name="StudyInterventionOID" type="oidref" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ArmAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
