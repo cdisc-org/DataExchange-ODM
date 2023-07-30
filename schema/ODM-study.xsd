@@ -260,7 +260,7 @@
         <xs:attribute name="Rank" type="decimal" use="optional"/>
         <!-- Other attribute signfies that the term represents "other" content -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="ExtendedValue" type="YesOnly" use="optional"/>        
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
