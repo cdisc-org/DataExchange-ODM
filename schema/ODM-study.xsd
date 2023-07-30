@@ -92,10 +92,10 @@
         <xs:attribute name="PageRefs" type="text" use="optional">
             <xs:annotation><xs:documentation>List of PDF pages separated by a space.</xs:documentation></xs:annotation>
         </xs:attribute>
-        <xs:attribute name="FirstPage" type="integer" use="optional">
+        <xs:attribute name="FirstPage" type="positiveInteger" use="optional">
             <xs:annotation><xs:documentation>First page in a range of pages.</xs:documentation></xs:annotation>
         </xs:attribute>
-        <xs:attribute name="LastPage" type="integer" use="optional">
+        <xs:attribute name="LastPage" type="positiveInteger" use="optional">
             <xs:annotation><xs:documentation>Last page in a range of pages.</xs:documentation></xs:annotation>
         </xs:attribute>
         <xs:attribute name="Type" type="PDFPageType"  use="required">
@@ -116,7 +116,7 @@
     
     <xs:attributeGroup name="StudyEventGroupRefAttributeDefinition">
         <xs:attribute name="StudyEventGroupOID" type="oidref" use="required"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -175,7 +175,7 @@
     
     <xs:attributeGroup name="ItemRefAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="required"/>
-        <xs:attribute name="KeySequence" type="integer" use="optional"/>
+        <xs:attribute name="KeySequence" type="positiveInteger" use="optional"/>
         <xs:attribute name="IsNonStandard" type="YesOnly" use="optional"/>        
         <xs:attribute name="HasNoData" type="YesOnly" use="optional"/>        
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
@@ -260,7 +260,7 @@
         <xs:attribute name="Rank" type="decimal" use="optional"/>
         <!-- Other attribute signfies that the term represents "other" content -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="ExtendedValue" type="YesOnly" use="optional"/>        
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -273,7 +273,7 @@
         <xs:attribute name="href" type="xs:anyURI" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RefAttributeSharedDefinition">
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -291,13 +291,13 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="DataType" use="required"/>
         <xs:attribute name="Definition" type="text" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ReturnValueAttributeDefinition">
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="DataType" use="required"/>
         <xs:attribute name="Definition" type="text" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ConditionDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>

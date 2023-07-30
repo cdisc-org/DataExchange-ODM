@@ -28,7 +28,7 @@
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
         <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
