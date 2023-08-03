@@ -652,8 +652,6 @@
             <xs:element ref="CDISCNotes" minOccurs="0"/>
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0" maxOccurs="1"/>
-            <!-- Moved to ItemRef -->
-            <!-- <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/> -->
             <xs:element ref="ValueListRef" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
