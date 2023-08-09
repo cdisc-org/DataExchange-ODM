@@ -265,6 +265,9 @@
                <li><a href="#attribute-def:QuerySourceType">QuerySourceType</a></li>
                <li><a href="#attribute-def:QueryType">QueryType</a></li>
                <li><a href="#attribute-def:QueryStateType">QueryStateType</a></li>
+               <li><a href="#attribute-def:DefCoreType">DefCoreType</a></li>
+               <li><a href="#attribute-def:ODMCoreType">ODMCoreType</a></li>
+               <li><a href="#attribute-def:CoreType">CoreType</a></li>
                <li><a href="#attribute-def:OriginSource">OriginSource</a></li>
                <li><a href="#attribute-def:OriginType">OriginType</a></li>
                <li><a href="#attribute-def:PDFPageType">PDFPageType</a></li>
@@ -357,7 +360,8 @@
                </tr>
                <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:TrialPhaseType"></a><a id="type-def:TrialPhaseType">TrialPhaseType</a></td>
-                  <td class="description">A terminology codelist relevant to the phase, or stage, of the clinical trial. [<span class="nci">C66737</span>]</td>
+                  <td class="description">A terminology codelist relevant to the phase, or stage, of the
+                     clinical trial. [<span class="nci">C66737</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'NOT APPLICABLE' [<span class="nci">C48660</span>]</span><br><span class="code">'PHASE 0 TRIAL' [<span class="nci">C54721</span>]</span><br><span class="code">'PHASE I TRIAL' [<span class="nci">C15600</span>]</span><br><span class="code">'PHASE I/II TRIAL' [<span class="nci">C15693</span>]</span><br><span class="code">'PHASE II TRIAL' [<span class="nci">C15601</span>]</span><br><span class="code">'PHASE II/III TRIAL' [<span class="nci">C15694</span>]</span><br><span class="code">'PHASE IIA TRIAL' [<span class="nci">C49686</span>]</span><br><span class="code">'PHASE IIB TRIAL' [<span class="nci">C49688</span>]</span><br><span class="code">'PHASE III TRIAL' [<span class="nci">C15602</span>]</span><br><span class="code">'PHASE IIIA TRIAL' [<span class="nci">C49687</span>]</span><br><span class="code">'PHASE IIIB TRIAL' [<span class="nci">C49689</span>]</span><br><span class="code">'PHASE IV TRIAL' [<span class="nci">C15603</span>]</span><br><span class="code">'PHASE V TRIAL' [<span class="nci">C47865</span>]</span></td>
@@ -503,20 +507,41 @@
                   <td class="values"><span class="code">'Candidate'</span><br><span class="code">'Open'</span><br><span class="code">'Answered'</span><br><span class="code">'Closed'</span><br><span class="code">'Cancelled'</span><br><span class="code">'Resolved'</span></td>
                </tr>
                <tr class="tablerowodd">
+                  <td class="name"><a id="attribute-def:DefCoreType"></a><a id="type-def:DefCoreType">DefCoreType</a></td>
+                  <td class="description"></td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">'Cond'</span><br><span class="code">'Exp'</span><br><span class="code">'Perm'</span><br><span class="code">'Req'</span></td>
+               </tr>
+               <tr class="tableroweven">
+                  <td class="name"><a id="attribute-def:ODMCoreType"></a><a id="type-def:ODMCoreType">ODMCoreType</a></td>
+                  <td class="description"></td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">'HR'</span><br><span class="code">'O'</span><br><span class="code">'R/C'</span></td>
+               </tr>
+               <tr class="tablerowodd">
+                  <td class="name"><a id="attribute-def:CoreType"></a><a id="type-def:CoreType">CoreType</a></td>
+                  <td class="description">Core.</td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">DefCoreType</span><br><span class="code">ODMCoreType</span></td>
+               </tr>
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:OriginSource"></a><a id="type-def:OriginSource">OriginSource</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Investigator' [<span class="nci">C25936</span>]</span><br><span class="code">'Sponsor' [<span class="nci">C70793</span>]</span><br><span class="code">'Subject' [<span class="nci">C41189</span>]</span><br><span class="code">'Vendor' [<span class="nci">C68608</span>]</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:OriginType"></a><a id="type-def:OriginType">OriginType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Assigned' [<span class="nci">C170547</span>]</span><br><span class="code">'Collected' [<span class="nci">C170548</span>]</span><br><span class="code">'Derived' [<span class="nci">C170549</span>]</span><br><span class="code">'EHR'</span><br><span class="code">'Not Available' [<span class="nci">C126101</span>]</span><br><span class="code">'Other' [<span class="nci">C17649</span>]</span><br><span class="code">'Predecessor' [<span class="nci">C170550</span>]</span><br><span class="code">'Protocol' [<span class="nci">C170551</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:PDFPageType"></a><a id="type-def:PDFPageType">PDFPageType</a></td>
                   <td class="description">Type of PDF reference (Physical reference or named
                      destination).</td>
@@ -524,15 +549,15 @@
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'NamedDestination'</span><br><span class="code">'PhysicalRef'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:StandardName"></a><a id="type-def:StandardName">StandardName</a></td>
-                  <td class="description">Terminology relevant to the name of the standard described in the Define-XML
-                     document. [<span class="nci">C170452</span>]</td>
+                  <td class="description">Terminology relevant to the name of the standard described in the
+                     Define-XML document. [<span class="nci">C170452</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADaMIG' [<span class="nci">C170552</span>]</span><br><span class="code">'CDISC/NCI' [<span class="nci">C163415</span>]</span><br><span class="code">'SDTMIG' [<span class="nci">C170455</span>]</span><br><span class="code">'SDTMIG-AP' [<span class="nci">C170553</span>]</span><br><span class="code">'SDTMIG-MD' [<span class="nci">C170554</span>]</span><br><span class="code">'SENDIG' [<span class="nci">C170456</span>]</span><br><span class="code">'SENDIG-AR' [<span class="nci">C181230</span>]</span><br><span class="code">'SENDIG-DART' [<span class="nci">C170556</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:StandardPublishingSet"></a><a id="type-def:StandardPublishingSet">StandardPublishingSet</a></td>
                   <td class="description">Terminology relevant to the classification of the CDISC controlled
                      terminology standard described in the Define-XML document. [<span class="nci">C172331</span>]</td>
@@ -540,7 +565,7 @@
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADaM' [<span class="nci">C180548</span>]</span><br><span class="code">'CDASH' [<span class="nci">C180549</span>]</span><br><span class="code">'DEFINE-XML' [<span class="nci">C180550</span>]</span><br><span class="code">'SDTM' [<span class="nci">C180551</span>]</span><br><span class="code">'SEND' [<span class="nci">C180552</span>]</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:StandardStatus"></a><a id="type-def:StandardStatus">StandardStatus</a></td>
                   <td class="description">Terminology relevant to the development or publication status of the
                      standard. [<span class="nci">C172332</span>]</td>
@@ -548,23 +573,23 @@
                   <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'Draft' [<span class="nci">C172453</span>]</span><br><span class="code">'Final' [<span class="nci">C172455</span>]</span><br><span class="code">'Provisional' [<span class="nci">C172454</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:StandardType"></a><a id="type-def:StandardType">StandardType</a></td>
-                  <td class="description">Terminology relevant to the classification of the standard described in the
-                     Define-XML document. [<span class="nci">C170451</span>]</td>
+                  <td class="description">Terminology relevant to the classification of the standard described
+                     in the Define-XML document. [<span class="nci">C170451</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'CT' [<span class="nci">C163415</span>]</span><br><span class="code">'IG' [<span class="nci">C170454</span>]</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:DictionaryNameType"></a><a id="type-def:DictionaryNameType">DictionaryNameType</a></td>
-                  <td class="description">A name given to a reference source that lists words and gives their meaning.
-                     (NCI) [<span class="nci">C66788</span>]</td>
+                  <td class="description">A name given to a reference source that lists words and gives their
+                     meaning. (NCI) [<span class="nci">C66788</span>]</td>
                   <td class="type">Enumeration</td>
-                  <td class="extensible">Yes (odm:text)</td>
+                  <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'CDISC CT' [<span class="nci">C163415</span>]</span><br><span class="code">'COSTART' [<span class="nci">C49471</span>]</span><br><span class="code">'CTCAE' [<span class="nci">C49704</span>]</span><br><span class="code">'D-U-N-S NUMBER' [<span class="nci">C134003</span>]</span><br><span class="code">'ICD' [<span class="nci">C49474</span>]</span><br><span class="code">'LOINC' [<span class="nci">C49476</span>]</span><br><span class="code">'MED-RT' [<span class="nci">C163416</span>]</span><br><span class="code">'MedDRA' [<span class="nci">C43820</span>]</span><br><span class="code">'SNOMED' [<span class="nci">C53489</span>]</span><br><span class="code">'UNII' [<span class="nci">C163417</span>]</span><br><span class="code">'WHO ATC CLASSIFICATION SYSTEM' [<span class="nci">C154331</span>]</span><br><span class="code">'WHOART' [<span class="nci">C49468</span>]</span><br><span class="code">'WHODD' [<span class="nci">C49475</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:ItemGroupClass"></a><a id="type-def:ItemGroupClass">ItemGroupClass</a></td>
                   <td class="description">Terminology related to the classification of a CDISC
                      domain. [<span class="nci">C103329</span>]</td>
@@ -572,14 +597,14 @@
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADAM OTHER' [<span class="nci">C103375</span>]</span><br><span class="code">'BASIC DATA STRUCTURE' [<span class="nci">C103371</span>]</span><br><span class="code">'DEVICE LEVEL ANALYSIS DATASET' [<span class="nci">C177921</span>]</span><br><span class="code">'EVENTS' [<span class="nci">C103372</span>]</span><br><span class="code">'FINDINGS' [<span class="nci">C103373</span>]</span><br><span class="code">'FINDINGS ABOUT' [<span class="nci">C135396</span>]</span><br><span class="code">'INTERVENTIONS' [<span class="nci">C103374</span>]</span><br><span class="code">'MEDICAL DEVICE BASIC DATA STRUCTURE' [<span class="nci">C177922</span>]</span><br><span class="code">'MEDICAL DEVICE OCCURRENCE DATA STRUCTURE' [<span class="nci">C177923</span>]</span><br><span class="code">'OCCURRENCE DATA STRUCTURE' [<span class="nci">C123454</span>]</span><br><span class="code">'RELATIONSHIP' [<span class="nci">C103376</span>]</span><br><span class="code">'SPECIAL PURPOSE' [<span class="nci">C103377</span>]</span><br><span class="code">'STUDY REFERENCE' [<span class="nci">C147271</span>]</span><br><span class="code">'SUBJECT LEVEL ANALYSIS DATASET' [<span class="nci">C103378</span>]</span><br><span class="code">'TRIAL DESIGN' [<span class="nci">C103379</span>]</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:ItemGroupSubClass"></a><a id="type-def:ItemGroupSubClass">ItemGroupSubClass</a></td>
                   <td class="description">Sub class of a general observation class.</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADVERSE EVENT' [<span class="nci">C176265</span>]</span><br><span class="code">'MEDICAL DEVICE TIME-TO-EVENT' [<span class="nci">C177920</span>]</span><br><span class="code">'NON-COMPARTMENTAL ANALYSIS' [<span class="nci">C172452</span>]</span><br><span class="code">'TIME-TO-EVENT' [<span class="nci">C165637</span>]</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:ItemGroupClassSubClass"></a><a id="type-def:ItemGroupClassSubClass">ItemGroupClassSubClass</a></td>
                   <td class="description">Sub class of a general observation class. Union of ItemGroupClass and
                      ItemGroupSubClass</td>
