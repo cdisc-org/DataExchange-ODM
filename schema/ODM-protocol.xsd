@@ -166,7 +166,7 @@
     <xs:group name="WorkflowTransitionGroupDefinition">
         <xs:sequence>
             <xs:element ref="Transition" minOccurs="0"/>
-            <xs:element ref="Branching " minOccurs="0"/>
+            <xs:element ref="Branching" minOccurs="0"/>
         </xs:sequence>
     </xs:group>
     <xs:group name="ExceptionEventGroupDefinition">
@@ -269,7 +269,7 @@
     
     <xs:complexType name="ODMcomplexTypeDefinition-StudyObjective">
         <xs:sequence>
-            <xs:element ref="Description" minOccurs="1"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="StudyEndPointRef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyObjectiveElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -412,7 +412,7 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StudyParameter">
         <xs:sequence>
-            <xs:element ref="ParameterValue" maxOccurs="unbounded"/>
+            <xs:element ref="ParameterValue" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyParameterElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
