@@ -21,7 +21,7 @@
             Type is a Media Type as described in https://www.iana.org/assignments/media-types/media-types.xhtml
             A TranslatedText element with Type="text/plain" must be present. 
         -->
-        <xs:attribute name="type" type="text" use="required" />
+        <xs:attribute name="Type" type="text" use="required" />
     </xs:attributeGroup>
     <xs:attributeGroup name="AliasAttributeDefinition">
         <xs:attribute name="Context" type="text" use="required"/>
@@ -84,8 +84,8 @@
     </xs:attributeGroup>    
     
     <xs:attributeGroup name="DocumentRefAttributeDefinition">
-        <xs:attribute name="leafID" type="xs:IDREF" use="required">
-            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
+        <xs:attribute name="LeafID" type="xs:IDREF" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the Leaf element with the document location.</xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
     <xs:attributeGroup name="PDFPageRefAttributeDefinition">
@@ -105,7 +105,7 @@
             <xs:annotation><xs:documentation>Text with the label for the document reference.</xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
-    <xs:attributeGroup name="leafAttributeDefinition">
+    <xs:attributeGroup name="LeafAttributeDefinition">
         <xs:attribute name="ID" type="xs:ID" use="required">
             <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
         </xs:attribute>
@@ -394,7 +394,7 @@
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CommentDef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="leaf" minOccurs="0" maxOccurs="unbounded"/>            
+            <xs:element ref="Leaf" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
@@ -421,16 +421,16 @@
             </xs:restriction>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
+    <xs:complexType name="ODMcomplexTypeDefinition-Leaf">
         <xs:annotation><xs:documentation>Contains the XLink information referenced by DocumentRef or ArchiveLocationID</xs:documentation></xs:annotation>
         <xs:sequence>
-            <xs:element name="title" minOccurs="1" maxOccurs="1">
+            <xs:element name="Title" minOccurs="1" maxOccurs="1">
                 <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
             </xs:element>
-            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
+            <xs:group ref="LeafElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
-        <xs:attributeGroup ref="leafAttributeDefinition"/>
-        <xs:attributeGroup ref="leafAttributeExtension"/>
+        <xs:attributeGroup ref="LeafAttributeDefinition"/>
+        <xs:attributeGroup ref="LeafAttributeExtension"/>
     </xs:complexType>
     
     <xs:complexType name="ODMcomplexTypeDefinition-Include">
@@ -564,7 +564,7 @@
             <xs:element ref="WorkflowRef" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="leaf" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Leaf" minOccurs="0" maxOccurs="1"/>
             <xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemGroupDefAttributeDefinition"/>
@@ -874,7 +874,7 @@
     <xs:element name="Description" type="ODMcomplexTypeDefinition-Description">
         <xs:unique name="UC-DES-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -919,7 +919,7 @@
     </xs:element>
     <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
     <xs:element name="PDFPageRef" type="ODMcomplexTypeDefinition-PDFPageRef" />
-    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
+    <xs:element name="Leaf" type="ODMcomplexTypeDefinition-Leaf"/>    
     <xs:element name="Include" type="ODMcomplexTypeDefinition-Include"/>
     <xs:element name="Standards" type="ODMcomplexTypeDefinition-Standards">
         <xs:unique name="UC-STD-1">
@@ -931,13 +931,13 @@
     <xs:element name="AnnotatedCRF" type="ODMcomplexTypeDefinition-AnnotatedCRF">
         <xs:unique name="UC-ACRFG-1">
             <xs:selector xpath="odm:DocumentRef"/>
-            <xs:field xpath="@leafID"/>
+            <xs:field xpath="@LeafID"/>
         </xs:unique>
     </xs:element>
     <xs:element name="SupplementalDoc" type="ODMcomplexTypeDefinition-SupplementalDoc">
         <xs:unique name="UC-SUPPD-1">
             <xs:selector xpath="odm:DocumentRef"/>
-            <xs:field xpath="@leafID"/>
+            <xs:field xpath="@LeafID"/>
         </xs:unique>
     </xs:element>
     <xs:element name="ValueListDef" type="ODMcomplexTypeDefinition-ValueListDef">
@@ -1005,42 +1005,42 @@
     <xs:element name="Question" type="ODMcomplexTypeDefinition-Question">
         <xs:unique name="UC-QU-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
     <xs:element name="Definition" type="ODMcomplexTypeDefinition-Definition">
         <xs:unique name="UC-DEF-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
     <xs:element name="Prompt" type="ODMcomplexTypeDefinition-Prompt">
         <xs:unique name="UC-PR-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
     <xs:element name="CRFCompletionInstructions" type="ODMcomplexTypeDefinition-CRFCompletionInstructions">
         <xs:unique name="UC-CRFCI-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
     <xs:element name="ImplementationNotes" type="ODMcomplexTypeDefinition-ImplementationNotes">
         <xs:unique name="UC-IMPLN-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
     <xs:element name="CDISCNotes" type="ODMcomplexTypeDefinition-CDISCNotes">
         <xs:unique name="UC-CDISCN-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -1049,7 +1049,7 @@
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">
         <xs:unique name="UC-ERM-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -1078,7 +1078,7 @@
     <xs:element name="Decode" type="ODMcomplexTypeDefinition-Decode">
         <xs:unique name="UC-DEC-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
