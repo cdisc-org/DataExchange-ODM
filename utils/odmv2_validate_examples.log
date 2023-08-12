@@ -51,13 +51,6 @@ Total time: 0 seconds
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
-*** C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml 
-     [echo] CDISC define validation starting
-[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml:2:203: cvc-elt.1.a: Cannot find the declaration of element 'ODM'.
-[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_1_3_2.xml is not a valid XML document
-
-BUILD SUCCESSFUL
-Total time: 0 seconds
 *** C:\_github\cdisc-org\DataExchange-ODM\examples\Matrix_CRF_From_TAUG_Dyslipidemia_1_0\Hypercholesterolemia_CV_Risk_factors_FH_CRF_alternative_ValueLists.xml 
      [echo] CDISC define validation starting
 
@@ -70,13 +63,6 @@ BUILD SUCCESSFUL
 Total time: 0 seconds
 *** C:\_github\cdisc-org\DataExchange-ODM\examples\Physio_Underwater_Therapy_workflow\Physio_Underwater_Therapy_BPMN_to_ODMv2_Workflow_result.xml 
      [echo] CDISC define validation starting
-
-BUILD SUCCESSFUL
-Total time: 0 seconds
-*** C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml 
-     [echo] CDISC define validation starting
-[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml:3:512: cvc-elt.1.a: Cannot find the declaration of element 'ODM'.
-[schemavalidate] C:\_github\cdisc-org\DataExchange-ODM\examples\Protocol_to_Workflow\MetaData_Dave_1_3_2_new_2006_01_26_extra_languages.xml is not a valid XML document
 
 BUILD SUCCESSFUL
 Total time: 0 seconds

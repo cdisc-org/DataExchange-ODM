@@ -11,11 +11,11 @@
      SourceSystemVersion="2018-R1">
    <Study OID="MATRIX EXAMPLE" StudyName="Example of Matrix-CRF" ProtocolName="Example of Matrix-CRF protocol">
       <Description>
-         <TranslatedText xml:lang="en" type="text/plain">Example of Matrix-CRF</TranslatedText>
+         <TranslatedText xml:lang="en" Type="text/plain">Example of Matrix-CRF</TranslatedText>
       </Description>
       <MetaDataVersion Name="Version 1" OID="MV.1.0">
          <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Version 1</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Version 1</TranslatedText>
          </Description>
          <!-- ValueLists -->
          <ValueListDef OID="VL.MH_TERM_FAMILY_RELATIONSHIP">
@@ -88,17 +88,17 @@
          <CodeList DataType="text" Name="Yes-No-Unknown codelist" OID="CL.Y_N_UNK">
             <CodeListItem CodedValue="Y">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="N">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="UNK">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Unknown</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Unknown</TranslatedText>
                </Decode>
             </CodeListItem>
             <!-- 
@@ -109,48 +109,48 @@
                    OID="CL.Y_N_UNK_NA">
             <CodeListItem CodedValue="Y">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="N">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="UNK">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Unknown</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Unknown</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="NA">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Not Applicable</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Not Applicable</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
          <CodeList DataType="integer" Name="Medical History term (pre-defined)" OID="CL.MHTERM">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">History of Hypercholesterolemia</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">History of Hypercholesterolemia</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">History of Premature (*) Cardiovascular Disease (CVF, Fatal or non-Fatal).
+                  <TranslatedText xml:lang="en" Type="text/plain">History of Premature (*) Cardiovascular Disease (CVF, Fatal or non-Fatal).
 * Premature: For males: if diagnosed or event occurred at &lt;55 years of age.
 For females: if diagnosed or event occurred at &lt;65 year of age.</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="3">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">History of Premature (*) Mycardial Infarction (MI, Fatal or non-Fatal)
+                  <TranslatedText xml:lang="en" Type="text/plain">History of Premature (*) Mycardial Infarction (MI, Fatal or non-Fatal)
 * Premature: For males: if diagnosed or event occurred at &lt;55 years of age.
 For females: if diagnosed or event occurred at &lt;65 year of age.</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="4">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">History of premature (*) Stroke (Non-Fatal or Fatal) or Transient Ischemic Attack (TIA).
+                  <TranslatedText xml:lang="en" Type="text/plain">History of premature (*) Stroke (Non-Fatal or Fatal) or Transient Ischemic Attack (TIA).
 * Premature: For males: if diagnosed or event occurred at &lt;55 years of age.
 For females: if diagnosed or event occurred at &lt;65 year of age.</TranslatedText>
                </Decode>
@@ -159,32 +159,32 @@ For females: if diagnosed or event occurred at &lt;65 year of age.</TranslatedTe
          <CodeList DataType="integer" Name="Family Relationship" OID="CL.FAMILY_RELATIONSHIP">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Father (Biological)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Father (Biological)</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Mother (Biological)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Mother (Biological)</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="3">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Brothers (Biologiocal)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Brothers (Biologiocal)</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="4">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Sisters (Biological)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Sisters (Biological)</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="5">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Sons (Biological)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Sons (Biological)</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="6">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Daughters (Biological)</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Daughters (Biological)</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>

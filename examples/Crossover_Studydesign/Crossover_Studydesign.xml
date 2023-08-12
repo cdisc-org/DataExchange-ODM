@@ -5,7 +5,7 @@
     <Protocol>
         <StudyStructure>
             <Description>
-                <TranslatedText xml:lang="en" type="text/plain">Study design example from the SDTM-IG 3.3: 
+                <TranslatedText xml:lang="en" Type="text/plain">Study design example from the SDTM-IG 3.3: 
                     Example Trial 2: Crossover. The study design has 3 arms: "P-L-H" (placebo-low-high dose), 
                     "L-P-H" (low-placebo-high dose), 
                     and "L-H-P" (low-high-placebo dose</TranslatedText>
@@ -13,54 +13,54 @@
             <!-- description of the 3 arms -->
             <Arm OID="ARM.P-L-H" Name="Crossover study arm P-L-H">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Study arm with sequence placebo - low dose - high dose</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Study arm with sequence placebo - low dose - high dose</TranslatedText>
                 </Description>
             </Arm>
             <Arm OID="ARM.L-P-H" Name="Crossover study arm L-P-H">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Study arm with sequence low dose - placebo - high dose</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Study arm with sequence low dose - placebo - high dose</TranslatedText>
                 </Description>
             </Arm>
             <Arm OID="ARM.L-H-P" Name="Crossover study arm L-H-P">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Study arm with sequence low dose - high dose - placebo</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Study arm with sequence low dose - high dose - placebo</TranslatedText>
                 </Description>
             </Arm>
             <!-- The study has 7 epochs: screening, first treatment, first rest, second treatment, second rest, third treatment, 
                 and follow-up -->
             <Epoch OID="EP.SCREEN" Name="Screening epoch" SequenceNumber="1">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Screening epoch, the first epoch in the study</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Screening epoch, the first epoch in the study</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.FIRST_TREATMENT" Name="First treatment epoch" SequenceNumber="2">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">First treatment epoch, the second epoch in the study</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">First treatment epoch, the second epoch in the study</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.FIRST_REST" Name="First rest epoch" SequenceNumber="3">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">First rest epoch, comes after the first treatment epoch</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">First rest epoch, comes after the first treatment epoch</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.SECOND_TREATMENT" Name="Second treatment epoch" SequenceNumber="4">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Second treatment epoch, comes after first rest epoch</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Second treatment epoch, comes after first rest epoch</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.SECOND_REST" Name="Second rest epoch" SequenceNumber="5">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Second rest epoch, comes after the second treatment epoch</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Second rest epoch, comes after the second treatment epoch</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.THIRD_TREATMENT" Name="Third treatment epoch" SequenceNumber="6">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Third treatment epoch, comes after second rest epoch</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Third treatment epoch, comes after second rest epoch</TranslatedText>
                 </Description>
             </Epoch>
             <Epoch OID="EP.FOLLOWUP" Name="Follow-up epoch" SequenceNumber="7">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Follow-up epoch, last epoch in the study</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Follow-up epoch, last epoch in the study</TranslatedText>
                 </Description>
             </Epoch>
         </StudyStructure>
@@ -69,7 +69,7 @@
     <StudyEventGroupDef OID="SE.SCREEN.P-L-H" Name="P-L-H screening study cell" ArmOID="ARM.P-L-H"
         EpochOID="EP.SCREEN">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Screening cell in Placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Screening cell in Placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the screening segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.SCREEN" Mandatory="Yes"/>
@@ -77,7 +77,7 @@
     <StudyEventGroupDef OID="SE.SCREEN.L-P-H" Name="L-P-H screening study cell" ArmOID="ARM.L-P-H"
         EpochOID="EP.SCREEN">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Screening cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Screening cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the screening segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.SCREEN" Mandatory="Yes"/>
@@ -85,7 +85,7 @@
     <StudyEventGroupDef OID="SE.SCREEN.L-H-P" Name="L-H-P screening study cell" ArmOID="ARM.L-H-P"
         EpochOID="EP.SCREEN">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Screening cell in low-dose - high-dose - placebo arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Screening cell in low-dose - high-dose - placebo arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the screening segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.SCREEN" Mandatory="Yes"/>
@@ -93,21 +93,21 @@
     <!-- First treatment cells -->
     <StudyEventGroupDef OID="SE.FIRST_TREATMENT.P-L-H" Name="P-L-H first treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the placebo treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.PLACEBO" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FIRST_TREATMENT.L-P-H" Name="L-P-H first treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the low-dose (5mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.LOWDOSE" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FIRST_TREATMENT.L-H-P" Name="L-H-P first treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the low-dose (5mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.LOWDOSE" Mandatory="Yes"/>
@@ -115,21 +115,21 @@
     <!-- First rest cells -->
     <StudyEventGroupDef OID="SE.FIRST_REST.P-L-H" Name="P-L-H first rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First rest cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First rest cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FIRST_REST.L-P-H" Name="L-P-H first rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First rest cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First rest cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FIRST_REST.L-H-P" Name="L-H-P first rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">First rest cell in low-dose - high-dose - placebo</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">First rest cell in low-dose - high-dose - placebo</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
@@ -137,21 +137,21 @@
     <!-- Second treatment cells -->
     <StudyEventGroupDef OID="SE.SECOND_TREATMENT.P-L-H" Name="P-L-H second treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the low-dose (5mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.LOWDOSE" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.SECOND_TREATMENT.L-P-H" Name="L-P-H second treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the placebo treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.PLACEBO" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.SECOND_TREATMENT.L-H-P" Name="L-H-P second treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the high-dose (10mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.HIGHDOSE" Mandatory="Yes"/>
@@ -159,21 +159,21 @@
     <!-- Second rest cells -->
     <StudyEventGroupDef OID="SE.SECOND_REST.P-L-H" Name="P-L-H second rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second rest cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second rest cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.SECOND_REST.L-P-H" Name="L-P-H second rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second rest cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second rest cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.SECOND_REST.L-H-P" Name="L-H-P second rest study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Second rest cell in low-dose - high-dose - placebo</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Second rest cell in low-dose - high-dose - placebo</TranslatedText>
         </Description>
         <!-- The cell consists of only one "Segment", which is the rest cell -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.REST" Mandatory="Yes"/>
@@ -181,21 +181,21 @@
     <!-- Third treatment cells -->
     <StudyEventGroupDef OID="SE.THIRD_TREATMENT.P-L-H" Name="P-L-H third treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Third treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Third treatment cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the high-dose (10mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.HIGHDOSE" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.THIRD_TREATMENT.L-P-H" Name="L-P-H third treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Third treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Third treatment cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the high-dose (10mg) treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.HIGHDOSE" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.THIRD_TREATMENT.L-H-P" Name="L-H-P third treatment study cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Third treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Third treatment cell in low-dose - high-dose - placebo arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the placebo treatment segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.PLACEBO" Mandatory="Yes"/>
@@ -203,21 +203,21 @@
     <!-- Follow-up epoch cells -->
     <StudyEventGroupDef OID="SE.FOLLOW_UP.P-L-H" Name="P-L-H follow-up cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Follow-up cell in placebo - low-dose - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Follow-up cell in placebo - low-dose - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the follow-up segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.FOLLOW-UP" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FOLLOW_UP.L-P-H" Name="L-P-H follow-up cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Follow-up cell in low-dose - placebo - high-dose arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Follow-up cell in low-dose - placebo - high-dose arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the follow-up segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.FOLLOW-UP" Mandatory="Yes"/>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SE.FOLLOW_UP.L-H-P" Name="L-H-P follow-up cell">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Follow-up cell in low-dose - high-dose - placebo arm</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Follow-up cell in low-dose - high-dose - placebo arm</TranslatedText>
         </Description>
         <!-- The cell consist of only one "Segment", which is the follow-up segment -->
         <StudyEventGroupRef StudyEventGroupOID="SEG.FOLLOW-UP" Mandatory="Yes"/>
@@ -228,32 +228,32 @@
     <!-- Remark that a Segment corresponds to a "trial element" in SDTM -->
     <StudyEventGroupDef OID="SEG.SCREEN" Name="Screening Segment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Screening segment</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Screening segment</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SEG.PLACEBO" Name="Placebo segment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Placebo treatment segment</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Placebo treatment segment</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SEG.LOWDOSE" Name="Low-dose segment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Low-dose (5mg) treatment segment</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Low-dose (5mg) treatment segment</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SEG.HIGHDOSE" Name="High-dose treatment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">High-dose (10mg) treatment segment</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">High-dose (10mg) treatment segment</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SEG.REST" Name="Rest segment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Rest segment - no treatment is provided to the subject</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Rest segment - no treatment is provided to the subject</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <StudyEventGroupDef OID="SEG.FOLLOW-UP" Name="Follow-up segment">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Follow-up segment</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Follow-up segment</TranslatedText>
         </Description>
     </StudyEventGroupDef>
     <!-- Classic visits, using forms, can now be defined as "StudyEventDef" elements -->

@@ -7,9 +7,9 @@
                     Name="Study start absolute timing constraint" StudyEventOID="SE.STUDYSTART"
                     TimepointTarget="2021-01-01" TimepointPostWindow="P6M">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">The study must start between January 2021 and June
+                        <TranslatedText xml:lang="en" Type="text/plain">The study must start between January 2021 and June
                             30 2021</TranslatedText>
-                        <TranslatedText xml:lang="nl" type="text/plain">The studie moet tussen 1 januari 2021 en 30 juni
+                        <TranslatedText xml:lang="nl" Type="text/plain">The studie moet tussen 1 januari 2021 en 30 juni
                             2021 aangevangen worden worden</TranslatedText>
                     </Description>
                 </AbsoluteTimingConstraint>
@@ -18,9 +18,9 @@
                     PredecessorOID="SE.STUDYSTART" SuccessorOID="SE.STUDYEND"
                     TimepointRelativeTarget="P1Y" TimepointPostWindow="P1M">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">The study must be completed within one year after
+                        <TranslatedText xml:lang="en" Type="text/plain">The study must be completed within one year after
                             study start, with a pardon period of one month</TranslatedText>
-                        <TranslatedText xml:lang="nl" type="text/plain">De studie moet binnen een jaar na studie aanvang,
+                        <TranslatedText xml:lang="nl" Type="text/plain">De studie moet binnen een jaar na studie aanvang,
                             met een uitloopperiode van 1 maand</TranslatedText>
                     </Description>
                 </RelativeTimingConstraint>
@@ -32,9 +32,9 @@
                     Name="Timing between study start and visit 1" TransitionOID="TR.START-VISIT1"
                     TimepointTarget="P2M" TimepointPreWindow="P7D" TimepointPostWindow="P7D">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">Visit 1 must be within two months after study
+                        <TranslatedText xml:lang="en" Type="text/plain">Visit 1 must be within two months after study
                             start for the subject, with a window of +/- 7 days</TranslatedText>
-                        <TranslatedText xml:lang="nl" type="text/plain">Visite 1 moet binnen twee maanden na aanvang van
+                        <TranslatedText xml:lang="nl" Type="text/plain">Visite 1 moet binnen twee maanden na aanvang van
                             de studie zijn, met een venster van +/- 7 dagen</TranslatedText>
                     </Description>
                 </TransitionTimingConstraint>
@@ -42,9 +42,9 @@
                     Name="Timing between visit 1 and visit 2" TransitionOID="TR.VISIT1-VISIT2"
                     TimepointTarget="P3M" TimepointPreWindow="P14D" TimepointPostWindow="P14D">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">Visit 2 must be within three months after visit 1
+                        <TranslatedText xml:lang="en" Type="text/plain">Visit 2 must be within three months after visit 1
                             for the subject, with a window of +/- 14 days</TranslatedText>
-                        <TranslatedText xml:lang="nl" type="text/plain">Visite 2 moet binnen drie maanden na aanvang van
+                        <TranslatedText xml:lang="nl" Type="text/plain">Visite 2 moet binnen drie maanden na aanvang van
                             visite 1 zijn, met een venster van +/- 14 dagen</TranslatedText>
                     </Description>
                 </TransitionTimingConstraint>
@@ -52,9 +52,9 @@
                     Name="Timing between visit 2 and study end" TransitionOID="TR.VISIT2-END"
                     TimepointTarget="P1M" TimepointPreWindow="P7D" TimepointPostWindow="P7D">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">Study end must be within one month after visit 2
+                        <TranslatedText xml:lang="en" Type="text/plain">Study end must be within one month after visit 2
                             for the subject, with a window of +/- 7 days</TranslatedText>
-                        <TranslatedText xml:lang="nl" type="text/plain">Einde van de studie moet binnen een maand na
+                        <TranslatedText xml:lang="nl" Type="text/plain">Einde van de studie moet binnen een maand na
                             visite 2 zijn, met een venster van +/- 7 dagen</TranslatedText>
                     </Description>
                 </TransitionTimingConstraint>
@@ -63,9 +63,9 @@
     </Protocol>        
     <WorkflowDef OID="WF.SIMPLE" Name="Simple linear workflow">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Simple linear workflow
+            <TranslatedText xml:lang="en" Type="text/plain">Simple linear workflow
                 example</TranslatedText>
-            <TranslatedText xml:lang="nl" type="text/plain">Eenvoudige rechtlijnige
+            <TranslatedText xml:lang="nl" Type="text/plain">Eenvoudige rechtlijnige
                 workflow</TranslatedText>
         </Description>
         <WorkflowStart StartOID="SE.STUDYSTART"/>
