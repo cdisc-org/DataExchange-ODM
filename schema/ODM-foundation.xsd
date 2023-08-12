@@ -127,7 +127,7 @@
 	<xs:attributeGroup name="StudyAttributeExtension"/>
 	<xs:attributeGroup name="MetaDataVersionAttributeExtension"/>
 	<xs:attributeGroup name="DocumentRefAttributeExtension"/>
-	<xs:attributeGroup name="leafAttributeExtension"/>
+	<xs:attributeGroup name="LeafAttributeExtension"/>
 	<xs:attributeGroup name="PDFPageRefAttributeExtension"/>
 	<xs:attributeGroup name="StandardAttributeExtension"/>
 	<xs:attributeGroup name="AnnotatedCRFAttributeExtension"/>
@@ -266,7 +266,7 @@
 	<xs:group name="DocumentRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="leafElementExtension">
+	<xs:group name="LeafElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="OrganizationElementExtension">

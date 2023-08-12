@@ -15,12 +15,12 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
    SourceSystemVersion="2015-R1">
    <Study OID="ODV2_Example_MH_1" StudyName="ODM Example Medical History Stroke / Lung disease / IBD / Cancer History - CDASH User Guide v.1.1.1" ProtocolName="ODM_Example_Repeating">
       <MetaDataVersion Name="Version 1.0" OID="MDV.1.0">
-         <Description><TranslatedText xml:lang="en" type="text/plain">Version 1.0</TranslatedText></Description>
+         <Description><TranslatedText xml:lang="en" Type="text/plain">Version 1.0</TranslatedText></Description>
          
          <!-- ValueList (but we could also use another construct) for "Condition Type", 
          for which the values (codelist) are dependent on the Condition/Procedute -->
          <ValueListDef OID="VL.IT.CONDITION_TYPE">
-            <Description><TranslatedText xml:lang="en" type="text/plain">ValueList for "condition type"</TranslatedText></Description>
+            <Description><TranslatedText xml:lang="en" Type="text/plain">ValueList for "condition type"</TranslatedText></Description>
             <ItemRef ItemOID="IT.CONDITION_TYPE.STROKE" Mandatory="No">
                <WhereClauseRef WhereClauseOID="WC.CONDITION_TYPE.STROKE"/>
             </ItemRef>
@@ -59,14 +59,14 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          
          <!-- Form consists of a header and a list of groups of items (one group for each condition/procedure -->
          <ItemGroupDef OID="FO.MEDICAL_HISTORY" Name="Medical History of Stroke / Lung disease / IBD / Cancer Family History" Type="Form" Repeating="No">
-            <Description><TranslatedText xml:lang="en" type="text/plain">Medical History of Stroke / Lung disease / IBD / Cancer Family History</TranslatedText></Description>
+            <Description><TranslatedText xml:lang="en" Type="text/plain">Medical History of Stroke / Lung disease / IBD / Cancer Family History</TranslatedText></Description>
             <ItemGroupRef ItemGroupOID="IG.HEADER" Mandatory="Yes"/>
 			   <ItemGroupRef ItemGroupOID="IG.SINGLE_CONDITION_PROCEDURE" Mandatory="Yes"/>
          </ItemGroupDef>
          <!-- ItemGroup containg the form "header", i.e. only SUBJECT ID and collection date/time -->
          <ItemGroupDef OID="IG.HEADER" Name="Header" Repeating="No" Type="Section">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Header</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Header</TranslatedText>
             </Description>
             <ItemRef ItemOID="IT.SUBJECT_ID" Mandatory="Yes"/>
             <ItemRef ItemOID="IT.VISIT_DATE_TIME" Mandatory="Yes"/>
@@ -87,17 +87,17 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <!-- ItemDef -->
          <ItemDef DataType="text" Length="10" Name="Subject ID" OID="IT.SUBJECT_ID">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Subject ID</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Subject ID</TranslatedText>
             </Question>
          </ItemDef>
          <ItemDef DataType="partialDatetime" Name="Visit Date/Time" OID="IT.VISIT_DATE_TIME">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Visit date/time</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Visit date/time</TranslatedText>
             </Question>
          </ItemDef>
          <ItemDef DataType="integer" Length="2" Name="Line number" OID="IT.LINE_NUMBER">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">#</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">#</TranslatedText>
             </Description>
          </ItemDef>
          <!-- RepeatItem="Yes" indicates that the item is or can be used to repeat over,
@@ -105,19 +105,19 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <ItemDef DataType="text" Length="40" Name="Condition/Procedure Name"
             OID="IT.CONDITION_PROCEDURE_NAME">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Condition/Procedure</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Condition/Procedure</TranslatedText>
             </Description>
             <CodeListRef CodeListOID="CL.CONDITION_PROCEDURE"/>
          </ItemDef>
          <ItemDef DataType="text" Name="Condition/Procedure Presence" OID="IT.CONDITION_PROCEDURE_YES_NO">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Condition/Procedure</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Condition/Procedure</TranslatedText>
             </Question>
             <CodeListRef CodeListOID="CL.NY"/>
          </ItemDef>
          <ItemDef OID="IT.CONDITION_TYPE" Name="Condition Type" DataType="text" Length="40">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Type</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Type</TranslatedText>
             </Question>
             <!-- CodeList is dependent of IT.CONDITION_PROCEDURE_NAME -->
             <!-- PROPOSAL: use ValueList (or something similar) for this -->
@@ -125,7 +125,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          </ItemDef>
          <ItemDef DataType="text" Length="100" Name="Other type specification" OID="IT.TYPE_OTHER">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Other type, specify</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Other type, specify</TranslatedText>
             </Question>
          </ItemDef>
 
@@ -175,7 +175,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <!-- individual codelists "Type" for each condition/procedure -->
          <CodeList DataType="text" Name="Stroke Type" OID="CL.STROKE_TYPE">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Stroke type</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Stroke type</TranslatedText>
             </Description>
             <CodeListItem CodedValue="Hemorrhagic"/>
             <CodeListItem CodedValue="Non-hemorrhagic"/>
@@ -185,7 +185,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <CodeList DataType="text" Name="Chronic Lund Disease Type"
             OID="CL.CHRONIC_LUNG_DISEASE_TYPE">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Chronic lung disease type</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Chronic lung disease type</TranslatedText>
             </Description>
             <CodeListItem CodedValue="Interstitial lung disease"/>
             <CodeListItem CodedValue="Obstructive lung disease"/>
@@ -194,7 +194,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <CodeList DataType="text" Name="Inflammatory Bowel Disease Type"
             OID="CL.INFLAMMATORY_BOWEL_DISEASE_TYPE">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Inflammatory bowel disease</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Inflammatory bowel disease</TranslatedText>
             </Description>
             <CodeListItem CodedValue="Chron's disease"/>
             <CodeListItem CodedValue="Other"/>
@@ -203,7 +203,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <CodeList DataType="text" Name="Family History of Cancer Type"
             OID="CL.FAMILY_HISTORY_OF_CANCER_TYPE">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Family History of Cancer Type</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Family History of Cancer Type</TranslatedText>
             </Description>
             <CodeListItem CodedValue="Breast"/>
             <CodeListItem CodedValue="Colon"/>
@@ -216,12 +216,12 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <CodeList DataType="text" Name="Yes-No" OID="CL.NY">
             <CodeListItem CodedValue="Y">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="N">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
@@ -229,7 +229,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
          <!-- Conditions -->
          <ConditionDef OID="COND.CONDITION_PROCEDURE_NOT_PRESENT" Name="Condition/Procedure is not present">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Condition/Procedure "No" was checked in Yes/No</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Condition/Procedure "No" was checked in Yes/No</TranslatedText>
             </Description>
             <MethodSignature/>
             <FormalExpression Context="XPath"><Code>../ItemData[@ItemOID='IT.CONDITION_PROCEDURE_YES_NO']='N'</Code></FormalExpression>
@@ -240,7 +240,7 @@ are dependent on the value of the "Condition/Procedure" (OID="IT.CONDITION_PROCE
 			Or do we need nested ItemGroup IG.LIST_CONDITIONS for counting the # of instances on the group IG.SINGLE_CONDITION_PROCEDURE anyway? -->
          <MethodDef OID="METH.LINE_NUMBER" Name="Line number assignment">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Position of ItemGroup with OID IG.SINGLE_CONDITION_PROCEDURE in Form with OID FO.MEDICAL_HISTORY</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Position of ItemGroup with OID IG.SINGLE_CONDITION_PROCEDURE in Form with OID FO.MEDICAL_HISTORY</TranslatedText>
             </Description>
             <MethodSignature/>
             <FormalExpression Context="XPath"><Code>position()</Code></FormalExpression>

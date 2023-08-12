@@ -47,17 +47,17 @@
             
             <!-- Individual items -->
             <ItemDef OID="IT.AGE" Name="Age" DataType="integer">
-                <Question><TranslatedText xml:lang="en" type="text/plain">Age</TranslatedText></Question>
+                <Question><TranslatedText xml:lang="en" Type="text/plain">Age</TranslatedText></Question>
                 <CodeListRef CodeListOID="CL.AGE"/>
                 <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC where RSTESTCD=ATLAS101"/>
             </ItemDef>
             <ItemDef OID="IT.SYST_ANTIBIOTICS" Name="Treatment with systemic antibiotics" DataType="integer">
-                <Question><TranslatedText xml:lang="en" type="text/plain">Treatment with systemic antibiotics during CDI therapy (&gt;= 1 day)</TranslatedText></Question>
+                <Question><TranslatedText xml:lang="en" Type="text/plain">Treatment with systemic antibiotics during CDI therapy (&gt;= 1 day)</TranslatedText></Question>
                 <CodeListRef CodeListOID="CL.SYST_ANTIBIOTICS"/>
                 <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC where RSTESTCD=ATLAS102"/>
             </ItemDef>
             <ItemDef OID="IT.LEUKOCYTE_COUNT" Name="Luekocyte count" DataType="integer">
-                <Question><TranslatedText xml:lang="en" type="text/plain">Leukocyte count (total)</TranslatedText></Question>
+                <Question><TranslatedText xml:lang="en" Type="text/plain">Leukocyte count (total)</TranslatedText></Question>
                 <CodeListRef CodeListOID="CL.LEUKOCYTE_COUNT" />
                 <!-- Example of instruction to have the test performed according to LOINC code 6690-2
                 (https://loinc.org/6690-2/): Leukocytes [#/volume] in Blood by Automated count -->
@@ -66,7 +66,7 @@
                 <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC where RSTESTCD=ATLAS103"/>
             </ItemDef>
             <ItemDef OID="IT.ALBUMIN" Name="Serum albumin" DataType="integer">
-                <Question><TranslatedText xml:lang="en" type="text/plain">Albumin (serum)</TranslatedText></Question>
+                <Question><TranslatedText xml:lang="en" Type="text/plain">Albumin (serum)</TranslatedText></Question>
                 <CodeListRef CodeListOID="CL.ALBUMIN" />
                 <!-- Example of instruction to have the test performed according to LOINC code 1751-7
                 (https://loinc.org/1751-7/): Albumin [Mass/volume] in Serum or Plasma -->
@@ -75,7 +75,7 @@
                 <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC where RSTESTCD=ATLAS104"/>
             </ItemDef>
             <ItemDef OID="IT.CREATININE" Name="Serum creatinine" DataType="integer">
-                <Question><TranslatedText xml:lang="en" type="text/plain">Serum creatinine (as a measure of renal function></TranslatedText></Question>
+                <Question><TranslatedText xml:lang="en" Type="text/plain">Serum creatinine (as a measure of renal function></TranslatedText></Question>
                 <CodeListRef CodeListOID="CL.CREATININE" />
                 <!-- Example of instruction to have the test performed according to LOINC code 14682-9
                 (https://loinc.org/14682-9/): Creatinine [Moles/volume] in Serum or Plasma -->
@@ -85,30 +85,30 @@
             <!-- Total score -->
             <ItemDef OID="IT.TOTAL_SCORE" Name="Total score" DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Total Points: </TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Total Points: </TranslatedText>
                 </Question>
             </ItemDef>
             <!-- CodeLists -->
             <!-- Scores for age -->
             <CodeList OID="CL.AGE" Name="Age" DataType="integer"><!-- coded values are used for the scores -->
-                <Description><TranslatedText xml:lang="en" type="text/plain">Age</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Age</TranslatedText></Description>
                 <!-- The "CodedValue" represents the number of points, goint into SDTM QSSTRESC/QSSTRESN
                 The "Decode" will go into SDTM QSORRES -->
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&lt; 60 years</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&lt; 60 years</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">60 - 79 years</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">60 - 79 years</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&gt;= 80 years</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&gt;= 80 years</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
@@ -116,16 +116,16 @@
             </CodeList>
             <!-- Scores for treatment with systemic antibiotics -->
             <CodeList OID="CL.SYST_ANTIBIOTICS" Name="Treatment with systemic antibiotics" DataType="integer">
-                <Description><TranslatedText xml:lang="en" type="text/plain">Treatment with systemic antibiotics during CDI therapy (&gt;= 1 day)</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Treatment with systemic antibiotics during CDI therapy (&gt;= 1 day)</TranslatedText></Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
@@ -133,22 +133,22 @@
             </CodeList>
             <!-- Scores for leukocyte count -->
             <CodeList OID="CL.LEUKOCYTE_COUNT" Name="Leukocyte count" DataType="integer">
-                <Description><TranslatedText xml:lang="en" type="text/plain">Leukocyte count (total)</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Leukocyte count (total)</TranslatedText></Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&lt;16,000</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&lt;16,000</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">16,000 - 25,000</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">16,000 - 25,000</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&gt;25,000</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&gt;25,000</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
@@ -157,22 +157,22 @@
             </CodeList>
             <!-- Scores for albumin -->
             <CodeList OID="CL.ALBUMIN" Name="Serum Albumin" DataType="integer">
-                <Description><TranslatedText xml:lang="en" type="text/plain">Albumin (serum)</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Albumin (serum)</TranslatedText></Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&gt;35 g/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&gt;35 g/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">26 - 35 g/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">26 - 35 g/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&lt;= 25 g/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&lt;= 25 g/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
@@ -180,22 +180,22 @@
             </CodeList>
             <!-- Scores for creatinine -->
             <CodeList OID="CL.CREATININE" Name="Serum creatinine" DataType="integer">
-                <Description><TranslatedText xml:lang="en" type="text/plain">Serum creatinine (as a measure of renal function)</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Serum creatinine (as a measure of renal function)</TranslatedText></Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&lt;= 120 umol/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&lt;= 120 umol/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">121 - 179 umol/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">121 - 179 umol/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">&gt;= 180 umol/L</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">&gt;= 180 umol/L</TranslatedText>
                     </Decode>
                     <Alias Context="SDTM" Name="RSSTRESN/RSSTRESC"/>
                 </CodeListItem>
@@ -203,7 +203,7 @@
             </CodeList>
             <MethodDef OID="MT.TOTAL_SCORE" Name="ATLAS total score calculation">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">The total score is calculated as the sum of the scores of the 5 questions</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">The total score is calculated as the sum of the scores of the 5 questions</TranslatedText>
                 </Description>
                 <!-- MethodSignature content (example) -->
                 <MethodSignature>

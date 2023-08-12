@@ -6,7 +6,7 @@ echo.>%logfile%
 set odmv2schema=..\schema\ODM.xsd
 set example_folder=..\examples
 
-for /F "eol=; tokens=1 delims=" %%i IN ('dir /b /s %example_folder%\*.xml') do @call :ValidateFile %%i 
+for /F "eol=; tokens=1 delims=" %%i IN ('dir /b /s %example_folder%\*.xml ^| findstr /v "1_3_2"') do @call :ValidateFile %%i 
 goto:EOF
 
 :ValidateFile

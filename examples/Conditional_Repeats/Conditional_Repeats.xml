@@ -8,8 +8,8 @@
                 <TransitionTimingConstraint OID="TIM.1" Name="Duration between two radiotherapies" 
                     TransitionOID="TR.2_REPEAT" TimepointTarget="P7D" TimepointPreWindow="P1D" TimepointPostWindow="P2D">
                     <Description>
-                        <TranslatedText xml:lang="en" type="text/plain">There must always be 7 days between two cycles of radiotherapy</TranslatedText>
-                        <TranslatedText xml:lang="de" type="text/plain">Zwischen zwei Radiotherapie Behandlungen muss es immer 7 Tagen geben</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">There must always be 7 days between two cycles of radiotherapy</TranslatedText>
+                        <TranslatedText xml:lang="de" Type="text/plain">Zwischen zwei Radiotherapie Behandlungen muss es immer 7 Tagen geben</TranslatedText>
                     </Description>
                 </TransitionTimingConstraint>
             </StudyTiming>
