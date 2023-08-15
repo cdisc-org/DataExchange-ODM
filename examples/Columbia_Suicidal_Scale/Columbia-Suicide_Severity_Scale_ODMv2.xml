@@ -15,7 +15,7 @@
             <WorkflowDef OID="WF.CSSRS_SUICIDAL_IDEATION"
                 Name="Workflow Columbia Suicid Severity Rating Scale questionnaire, part Suicidal Ideation">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Workflow Columbia Suicid Severity Rating Scale
+                    <TranslatedText xml:lang="en" Type="text/plain">Workflow Columbia Suicid Severity Rating Scale
                         questionnaire, section "Suicidal Ideation"</TranslatedText>
                 </Description>
                 <WorkflowStart StartOID="IT.1.Wish_to_be_Dead"/>
@@ -186,7 +186,7 @@
             <!-- 2021-03-11: Risk assessment part "Check all risk and protective factors that apply" -->
             <ItemGroupDef OID="IG.Risk_assessment" Name="Risk Assessment" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">RISK ASSESSMENT VERSION</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">RISK ASSESSMENT VERSION</TranslatedText>
                 </Description>
                 <!-- List of sub-sections -->
                 <ItemGroupRef ItemGroupOID="IG.Suicidal_and_Self-Injury_Behavior" Mandatory="No"/>
@@ -202,7 +202,7 @@
             <ItemGroupDef OID="IG.Suicidal_and_Self-Injury_Behavior"
                 Name="Section Suicidal and Self-Injury Behavior" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Section Suicidal and Self-Injury
+                    <TranslatedText xml:lang="en" Type="text/plain">Section Suicidal and Self-Injury
                         Behavior</TranslatedText>
                 </Description>
                 <!-- This section has 5 questions that each repeat over "Past week" and "Lifetime" -->
@@ -268,7 +268,7 @@
             <ItemGroupDef OID="IG.Activating_Events_Recent" Name="Activating Events (Recent)"
                 Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Activating Events (Recent)</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Activating Events (Recent)</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Recent_loss_or_other_significant_negative_event" Mandatory="No"/>
                 <!-- TODO: add the corresponding ConditionDef. Alternative: mini-workflow -->
@@ -280,7 +280,7 @@
             <!-- Section Treatment History -->
             <ItemGroupDef OID="IG.Treatment_History" Name="Treatment History" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Treatment History</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Treatment History</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Previous_psychiatric_diagnoses_and_treatments" Mandatory="No"/>
                 <ItemRef ItemOID="IT.Hopeless_or_dissatisfied_with_treatment" Mandatory="No"/>
@@ -290,7 +290,7 @@
             <!-- Other Risk Factors -->
             <ItemGroupDef OID="IG.Other_Risk_Factors" Name="Other Risk Factors" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Other Risk Factors</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Other Risk Factors</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Other_Risk_Factors" Mandatory="No"/>
                 <!-- TODO: add the Condition Def for COND.Other_Risk_Factors -->
@@ -301,7 +301,7 @@
             <ItemGroupDef OID="IG.Clinical_Status_Recent" Name="Clinical Status (Recent)"
                 Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Clinical Status (Recent)</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Clinical Status (Recent)</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Hopelessness" Mandatory="No"/>
                 <ItemRef ItemOID="IT.Helplessness" Mandatory="No"/>
@@ -324,7 +324,7 @@
             <!-- Section Protective factors -->
             <ItemGroupDef OID="IG.Protective_factors" Name="Protective factors" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Protective Factors (Recent)</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Protective Factors (Recent)</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Identifies_reasons_for_living" Mandatory="No"/>
                 <ItemRef ItemOID="IT.Responsibility_to_family_or_others" Mandatory="No"/>
@@ -338,7 +338,7 @@
             <ItemGroupDef OID="IG.Other_Protective_Factors" Name="Other Protective Factors"
                 Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Other Protective Factors</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Other Protective Factors</TranslatedText>
                 </Description>
                 <ItemRef ItemOID="IT.Other_Protective_Factors" Mandatory="No"/>
                 <!-- TODO: ConditionDef for CL.Other_Protective_Factors -->
@@ -351,7 +351,7 @@
             <!-- We have 5 rows in the table -->
             <ItemGroupDef OID="IG.Suicidal_Ideation" Name="SUICIDAL IDEATION" Repeating="No" Type="Section">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Ask questions 1 and 2. If both are negative,
+                    <TranslatedText xml:lang="en" Type="text/plain">Ask questions 1 and 2. If both are negative,
                         proceed to "Suicidal Behavior" section. If the answer to question 2 is
                         "yes", ask questions 3, 4 and 5. If the answer to question 1 and/or 2 is
                         "yes", complete "Intensity of Ideation" section below.</TranslatedText>
@@ -465,7 +465,7 @@
             <ItemGroupDef OID="IG.Intensity_of_Ideation" Name="Intensity of Ideation" Repeating="No" Type="Section">
                 <!-- Remark that no specific workflow is defined here, as the questions are treaded in a linear order -->
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Intensity of Ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Intensity of Ideation</TranslatedText>
                 </Description>
                 <!-- TODO? make this a separate (nested) ItemGroup for reasons of layout as section -->
                 <ItemRef ItemOID="IT.Most_Severe_Ideation_Lifetime" Mandatory="No"/>
@@ -487,7 +487,7 @@
             without generating an explicit workflow. 
             For more complicated branching however, we STRONGLY recommend to use "WorkflowDef" -->
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal Behavior</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal Behavior</TranslatedText>
                 </Description>
                 <!-- Suicidial Behavior, containing groups "Actual Attemp", "Interrupted Attempt", "Aborted or self-interrupted Attempt", 
                 and "Preparatory Acts or Behavior" -->
@@ -606,7 +606,7 @@
                 <ItemRef ItemOID="IT.Lethality_Type" Mandatory="No" Repeat="Yes"/>
             </ItemGroupDef>
             <ItemGroupDef OID="IG.Potential_Lethality" Name="Potential Lethality" Repeating="Static" Type="Section">
-                <Description><TranslatedText xml:lang="en" type="text/plain">Potential Lethality: Only Answer if Actual Lethality=0</TranslatedText></Description>
+                <Description><TranslatedText xml:lang="en" Type="text/plain">Potential Lethality: Only Answer if Actual Lethality=0</TranslatedText></Description>
                 <ItemRef ItemOID="IT.Potential_Lethality" Mandatory="No"/>
                 <ItemRef ItemOID="IT.Potential_Lethality_Date" Mandatory="No"/>
                 <!-- The questions repeats over "Most Recent Attempt", "Most Lethal Attempt", and "Initial/First Attempt" -->
@@ -634,21 +634,21 @@
             <!-- Suicidal and Self-Injury Behavior -->
             <ItemDef OID="IT.Actual_suicide_attempt" Name="Actual suicide attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Actual suicide attempt</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Actual suicide attempt</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Interrupted_attempt" Name="Interrupted attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Interrupted attempt</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Interrupted attempt</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Aborted_attempt" Name="Aborted attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Aborted attempt</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Aborted attempt</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -656,7 +656,7 @@
             <ItemDef OID="IT.Other_preparatory_acts" Name="Other preparatory acts to kill self"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Other preparatory acts to kill
+                    <TranslatedText xml:lang="en" Type="text/plain">Other preparatory acts to kill
                         self</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -665,7 +665,7 @@
             <ItemDef OID="IT.Self-injury_behavior_without_suicide_intent"
                 Name="Self-injury behavior w/o suicide intent" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Self-injury behavior w/o suicide
+                    <TranslatedText xml:lang="en" Type="text/plain">Self-injury behavior w/o suicide
                         intent</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -674,14 +674,14 @@
             <!-- Suicide Ideation (Most Severe in Past Week) -->
             <ItemDef OID="IT.Wish_to_be_dead_assessment" Name="Wish to be dead" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Wish to be dead</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Wish to be dead</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Suicidal_thoughts" Name="Suicidal thoughts" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal thoughts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal thoughts</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -691,7 +691,7 @@
         plan or intent to act)"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal thoughts with method (but without
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal thoughts with method (but without
                         specific plan or intent to act)</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -699,7 +699,7 @@
             </ItemDef>
             <ItemDef OID="IT.Suicidal_intent" Name="Suicidal intent" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal intent</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal intent</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -707,7 +707,7 @@
             <ItemDef OID="IT.Suicidal_intent_with_specific_plan"
                 Name="Suicidal intent with specific plan" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal intent with specific
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal intent with specific
                         plan</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -716,7 +716,7 @@
             <!--ItemDef OID="IT.Suicidal_intent_with_specific_plan"
                 Name="Suicidal intent with specific plan" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Suicidal intent with specific
+                    <TranslatedText xml:lang="en" Type="text/plain">Suicidal intent with specific
                         plan</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -725,7 +725,7 @@
             <ItemDef OID="IT.Recent_loss_or_other_significant_negative_event"
                 Name="Recent loss or other significant negative event" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Recent loss or other significant negative
+                    <TranslatedText xml:lang="en" Type="text/plain">Recent loss or other significant negative
                         event</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -735,13 +735,13 @@
                 Name="Recent loss or other significant negative event description" DataType="text">
                 <!-- This is a free text field, to be skipped when checkbox "Recent loss or other significant negative event" is NOT checked -->
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Describe: </TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Describe: </TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Pending_incarceration_or_homelessness"
                 Name="Pending incarceration or homelessness" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Pending incarceration or
+                    <TranslatedText xml:lang="en" Type="text/plain">Pending incarceration or
                         homelessness</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -750,7 +750,7 @@
             <ItemDef OID="IT.Current_or_pending_isolation_or_feeling_alone"
                 Name="Pending incarceration or homelessness" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Pending incarceration or
+                    <TranslatedText xml:lang="en" Type="text/plain">Pending incarceration or
                         homelessness</TranslatedText>
                 </Question>
                 <!-- TODO: discuss with the team whether this should be a boolean -->
@@ -760,7 +760,7 @@
             <ItemDef OID="IT.Previous_psychiatric_diagnoses_and_treatments"
                 Name="Previous psychiatric diagnoses and treatments" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Previous psychiatric diagnoses and
+                    <TranslatedText xml:lang="en" Type="text/plain">Previous psychiatric diagnoses and
                         treatments</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -768,7 +768,7 @@
             <ItemDef OID="IT.Hopeless_or_dissatisfied_with_treatment"
                 Name="Hopeless or dissatisfied with treatment" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Hopeless or dissatisfied with
+                    <TranslatedText xml:lang="en" Type="text/plain">Hopeless or dissatisfied with
                         treatment</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -776,20 +776,20 @@
             <ItemDef OID="IT.Noncompliant_with_treatment" Name="Noncompliant with treatment"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Noncompliant with treatment</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Noncompliant with treatment</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Not_receiving_treatment" Name="Not receiving treatment" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Not receiving treatment</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Not receiving treatment</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <!-- Other Risk factors -->
             <ItemDef OID="IT.Other_Risk_Factors" Name="Other Risk Factors" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Other Risk Factors</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Other Risk Factors</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
@@ -798,45 +798,45 @@
             <ItemDef OID="IT.Other_Risk_Factors_Description" Name="Other Risk Factors Description"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- Clinical Status (Recent) -->
             <ItemDef OID="IT.Hopelessness" Name="Hopelessness" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Hopelessness</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Hopelessness</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Helplessness" Name="Helplessness" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Helplessness</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Helplessness</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Feeling_Trapped" Name="Feeling Trapped" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Feeling Trapped</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Feeling Trapped</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Major_depressive_episode" Name="Major depressive episode"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Major depressive episode</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Major depressive episode</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Mixed_affective_episode" Name="Mixed affective episode" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Mixed affective episode</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Mixed affective episode</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Command_hallucinations_to_hurt_self"
                 Name="Command hallucinations to hurt self" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Command hallucinations to hurt
+                    <TranslatedText xml:lang="en" Type="text/plain">Command hallucinations to hurt
                         self</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -844,49 +844,49 @@
             <ItemDef OID="IT.Highly_impulsive_behavior" Name="Highly impulsive behavior"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Highly impulsive behavior</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Highly impulsive behavior</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Substance_abuse_or_dependence" Name="Substance abuse or dependence"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Substance abuse or dependence</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Substance abuse or dependence</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Agitation_or_severe_anxiety" Name="Agitation or severe anxiety"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Agitation or severe anxiety</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Agitation or severe anxiety</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Perceived_burden_on_family_or_others"
                 Name="Perceived burden on family or others" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Perceived burden on family or
+                    <TranslatedText xml:lang="en" Type="text/plain">Perceived burden on family or
                         others</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Chronic_physical_pain" Name="Chronic physical pain" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Chronic physical pain or other acute medical
+                    <TranslatedText xml:lang="en" Type="text/plain">Chronic physical pain or other acute medical
                         problem (AIDS, COPD, cancer, etc.)</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Homicidal_ideation" Name="Homicidal ideation" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Homicidal ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Homicidal ideation</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Aggressive_behavior_towards_others"
                 Name="Aggressive behavior towards others" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Aggressive behavior towards
+                    <TranslatedText xml:lang="en" Type="text/plain">Aggressive behavior towards
                         others</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -894,7 +894,7 @@
             <ItemDef OID="IT.Method_for_suicide_available"
                 Name="Method for suicide available (gun, pills, etc.)" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Method for suicide available (gun, pills,
+                    <TranslatedText xml:lang="en" Type="text/plain">Method for suicide available (gun, pills,
                         etc.)</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -902,21 +902,21 @@
             <ItemDef OID="IT.Refuses_or_feels_unable_to_agree_to_safety_plan"
                 Name="Refuses or feels unable to agree to safety plan" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Refuses or feels unable to agree to safety
+                    <TranslatedText xml:lang="en" Type="text/plain">Refuses or feels unable to agree to safety
                         plan</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Sexual_abuse_lifetime" Name="Sexual abuse (lifetime)" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Sexual abuse (lifetime)</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Sexual abuse (lifetime)</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Family_history_of_suicide" Name="Family history of suicide (lifetime)"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Family history of suicide
+                    <TranslatedText xml:lang="en" Type="text/plain">Family history of suicide
                         (lifetime)</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -925,14 +925,14 @@
             <ItemDef OID="IT.Identifies_reasons_for_living" Name="Identifies reasons for living"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Identifies reasons for living</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Identifies reasons for living</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Responsibility_to_family_or_others"
                 Name="Responsibility to family or others" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Responsibility to family or others; living with
+                    <TranslatedText xml:lang="en" Type="text/plain">Responsibility to family or others; living with
                         family</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -940,7 +940,7 @@
             <ItemDef OID="IT.Supportive_social_network_or_family"
                 Name="Supportive social network or family" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Supportive social network or
+                    <TranslatedText xml:lang="en" Type="text/plain">Supportive social network or
                         family</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -948,7 +948,7 @@
             <ItemDef OID="IT.Fear_of_death" Name="Fear of death or dying due to pain and suffering"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Fear of death or dying due to pain and
+                    <TranslatedText xml:lang="en" Type="text/plain">Fear of death or dying due to pain and
                         suffering</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -956,7 +956,7 @@
             <ItemDef OID="IT.Belief_that_suicide_is_immoral"
                 Name="Belief that suicide is immoral, high spirituality" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Belief that suicide is immoral, high
+                    <TranslatedText xml:lang="en" Type="text/plain">Belief that suicide is immoral, high
                         spirituality</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
@@ -964,14 +964,14 @@
             <ItemDef OID="IT.Engaged_in_work_or_school" Name="Engaged in work or school"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Engaged in work or school</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Engaged in work or school</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Engaged_with_Phone_Worker" Name="Engaged with Phone Worker"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Engaged with Phone Worker</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Engaged with Phone Worker</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
@@ -979,14 +979,14 @@
             <ItemDef OID="IT.Other_Protective_Factors" Name="Other Protective Factors"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Other Protective Factors</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Other Protective Factors</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesOnly"/>
             </ItemDef>
             <ItemDef OID="IT.Other_Protective_Factors_Description"
                 Name="Other Protective Factors Description" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- Describe any suicidal, self-injury or aggressive behavior (include dates) -->
@@ -994,7 +994,7 @@
                 Name="Any suicida self-injury or aggressive behavior" 
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Describe any suicidal, self-injury or aggressive
+                    <TranslatedText xml:lang="en" Type="text/plain">Describe any suicidal, self-injury or aggressive
                         behavior (include dates):</TranslatedText>
                 </Question>
             </ItemDef>
@@ -1003,12 +1003,12 @@
             <!-- "Wish to be Dead" questions -->
             <ItemDef OID="IT.1.Wish_to_be_Dead" Name="1. Wish to be Dead" DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Subject endorses thoughts about a wish to be dead
+                    <TranslatedText xml:lang="en" Type="text/plain">Subject endorses thoughts about a wish to be dead
                         or not alive anymore, or wish to fall asleep and not wake
                         up.</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you wished you were dead or wished you could
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you wished you were dead or wished you could
                         go to sleep and not wake up?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1016,20 +1016,20 @@
             <ItemDef OID="IT.1.Wish_to_be_Dead_Description" Name="1. Wish to be Dead - Description"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Non-Specific Active Suicidal Thoughts" -->
             <ItemDef OID="IT.2.Non-Specific_Active_Suicidal_Thoughts"
                 Name="2. Non-Specific Active Suicidal Thoughts" DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">General non-specific thoughts of wanting to end
+                    <TranslatedText xml:lang="en" Type="text/plain">General non-specific thoughts of wanting to end
                         one’s life/commit suicide (e.g., “I’ve thought about killing myself”)
                         without thoughts of ways to kill oneself/associated methods, intent, or plan
                         during the assessment period.</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you actually had any thoughts of killing
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you actually had any thoughts of killing
                         yourself?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1037,7 +1037,7 @@
             <ItemDef OID="IT.2.Non-Specific_Active_Suicidal_Thoughts_Description"
                 Name="2. Non-Specific Active Suicidal Thoughts - Description" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Active Suicidal Ideation with Any Methods (Not Plan) without Intent to Act" questions -->
@@ -1045,7 +1045,7 @@
                 Name="3. Active Suicidal Ideation with Any Methods (Not Plan) without Intent to Act"
                 DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Subject endorses thoughts of suicide and has
+                    <TranslatedText xml:lang="en" Type="text/plain">Subject endorses thoughts of suicide and has
                         thought of at least one method during the assessment period. This is
                         different than a specific plan with time, place or method details worked out
                         (e.g., thought of method to kill self but not a specific plan). Includes
@@ -1054,7 +1054,7 @@
                         never go through with it.”</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you been thinking about how you might do
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you been thinking about how you might do
                         this?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1063,7 +1063,7 @@
                 Name="3. Active Suicidal Ideation with Any Methods (Not Plan) without Intent to Act - Description"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Active Suicidal Ideation with Some Intent to Act, without Specific Plan" questions -->
@@ -1071,13 +1071,13 @@
                 Name="4. Active Suicidal Ideation with Some Intent to Act, without Specific Plan"
                 DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Active suicidal thoughts of killing oneself and
+                    <TranslatedText xml:lang="en" Type="text/plain">Active suicidal thoughts of killing oneself and
                         subject reports having some intent to act on such thoughts, as opposed to 'I
                         have the thoughts but I definitely will not do anything about
                         them.'</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you had these thoughts and had some intention
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you had these thoughts and had some intention
                         of acting on them?</TranslatedText>
                 </Question>
             </ItemDef>
@@ -1085,19 +1085,19 @@
                 Name="4. Active Suicidal Ideation with Some Intent to Act, without Specific Plan - Description"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Active Suicidal Ideation with Specific Plan and Intent" questions -->
             <ItemDef OID="IT.5.Active_Suicidal_Ideation_with_Specific_Plan_and_Intent"
                 Name="5. Active Suicidal Ideation with Specific Plan and Intent" DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Thoughts of killing oneself with details of plan
+                    <TranslatedText xml:lang="en" Type="text/plain">Thoughts of killing oneself with details of plan
                         fully or partially worked out and subject has some intent to carry it
                         out.</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you started to work out or worked out the
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you started to work out or worked out the
                         details of how to kill yourself? Do you intend to carry out this
                         plan?</TranslatedText>
                 </Question>
@@ -1106,7 +1106,7 @@
                 Name="5. Active Suicidal Ideation with Specific Plan and Intent - Description"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
 
@@ -1115,7 +1115,7 @@
             <ItemDef OID="IT.Most_Severe_Ideation_Lifetime" Name="Most Severe Ideation - Lifetime"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Most Severe Ideation:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Most Severe Ideation:</TranslatedText>
                 </Question>
                 <!-- Integer value must be between 1 and 5 -->
                 <RangeCheck Comparator="GE" SoftHard="Hard">
@@ -1128,13 +1128,13 @@
             <ItemDef OID="IT.Most_Severe_Ideation_Lifetime_Description"
                 Name="Most Severe Ideation - Description" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Description of Ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Description of Ideation</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Most_Severe_Ideation_Recent" Name="Most Severe Ideation - Recent"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Recent - Most Severe Ideation:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Recent - Most Severe Ideation:</TranslatedText>
                 </Question>
                 <!-- Integer value must be between 1 and 5 -->
                 <RangeCheck Comparator="GE" SoftHard="Hard">
@@ -1147,16 +1147,16 @@
             <ItemDef OID="IT.Most_Severe_Ideation_Recent_Description"
                 Name="Most Severe Ideation - Recent - Description" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Description of Ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Description of Ideation</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "INTENSITY OF IDEATION frequency" questions -->
             <ItemDef OID="IT.Intensity_of_Ideation_Frequency" Name="Intensity of Ideation Frequency" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Frequency</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Frequency</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">How many times have you had these
+                    <TranslatedText xml:lang="en" Type="text/plain">How many times have you had these
                         thoughts?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.Thoughts_Frequency"/>
@@ -1165,10 +1165,10 @@
             <ItemDef OID="IT.Intensity_Ideation_Duration" Name="Ideation duration"
                 DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Duration</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Duration</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">When you have the thoughts how long do they
+                    <TranslatedText xml:lang="en" Type="text/plain">When you have the thoughts how long do they
                         last?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.Thoughts_Duration"/>
@@ -1176,10 +1176,10 @@
             <!-- "INTENSITY OF IDEATION - Controllability" question -->
             <ItemDef OID="IT.Controllability" Name="Controllability" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Controllability</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Controllability</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Could/can you stop thinking about killing
+                    <TranslatedText xml:lang="en" Type="text/plain">Could/can you stop thinking about killing
                         yourself or wanting to die if you want to?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.Controllability"/>
@@ -1187,10 +1187,10 @@
             <!-- "INTENSITY OF IDEATION - Deterrents" question -->
             <ItemDef OID="IT.Deterrents" Name="Deterrents" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Deterrents</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Deterrents</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Are there things - anyone or anything (e.g.,
+                    <TranslatedText xml:lang="en" Type="text/plain">Are there things - anyone or anything (e.g.,
                         family, religion, pain of death) - that stopped you from wanting to die or
                         acting on thoughts of committing suicide?</TranslatedText>
                 </Question>
@@ -1199,10 +1199,10 @@
             <!-- "Reasons for Ideation" questions -->
             <ItemDef OID="IT.Reasons_for_Ideation" Name="Reasons for Ideation" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Reasons for Ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Reasons for Ideation</TranslatedText>
                 </Description>
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">What sort of reasons did you have for thinking
+                    <TranslatedText xml:lang="en" Type="text/plain">What sort of reasons did you have for thinking
                         about wanting to die or killing yourself? Was it to end the pain or stop the
                         way you were feeling (in other words you couldn’t go on living with this
                         pain or how you were feeling) or was it to get attention, revenge or a
@@ -1217,14 +1217,14 @@
             <ItemDef OID="IT.Made_a_suicide_attempt" Name="Have you made a suicide attempt"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you made a suicide attempt?</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you made a suicide attempt?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
             </ItemDef>
             <ItemDef OID="IT.Done_anything_to_harm_yourself"
                 Name="Have you done anything to harm yourself" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you done anything to harm
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you done anything to harm
                         yourself?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1232,7 +1232,7 @@
             <ItemDef OID="IT.Done_anything_dangerous"
                 Name="Have you done anything dangerous where you could have died" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you done anything dangerous where you could
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you done anything dangerous where you could
                         have died?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1240,26 +1240,26 @@
             <ItemDef OID="IT.Number_of_attempts" Name="Number of attempts"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Total # of Attempts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Total # of Attempts</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.What_did_you_do" Name="What did you do" DataType="text">
                 <!-- free text -->
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">What did you do?</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">What did you do?</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Way_to_end_your_life_1" Name="Did you xxx as a way to end your life" DataType="text">
                 <Question>
                     <!-- The following is an interesting one: the user (researcher) would need to fill in a part (here given by xxx) of the question -->
-                    <TranslatedText xml:lang="en" type="text/plain">Did you xxx as a way to end your life?</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Did you xxx as a way to end your life?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
             </ItemDef>
             <ItemDef OID="IT.Way_to_end_your_life_2" Name="Did you want to die (even a little) when you xxx"  DataType="text">
                 <Question>
                     <!-- The following is an interesting one: the user (researcher) would need to fill in a part (here given by xxx) of the question -->
-                    <TranslatedText xml:lang="en" type="text/plain">Did you want to die (even a little) when you
+                    <TranslatedText xml:lang="en" Type="text/plain">Did you want to die (even a little) when you
                         xxx?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1269,7 +1269,7 @@
                 DataType="text">
                 <Question>
                     <!-- The following is an interesting one: the user (researcher) would need to fill in a part (here given by xxx) of the question -->
-                    <TranslatedText xml:lang="en" type="text/plain">Were you trying to end your life when you
+                    <TranslatedText xml:lang="en" Type="text/plain">Were you trying to end your life when you
                         xxx?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1278,7 +1278,7 @@
                 Name="Or Did you think it was possible you could have died from xxx" DataType="text">
                 <Question>
                     <!-- The following is an interesting one: the user (researcher) would need to fill in a part (here given by xxx) of the question -->
-                    <TranslatedText xml:lang="en" type="text/plain">Or Did you think it was possible you could have
+                    <TranslatedText xml:lang="en" Type="text/plain">Or Did you think it was possible you could have
                         died from xxx?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1287,7 +1287,7 @@
                 Name="Or did you do it purely for other reasons" DataType="text">
                 <Question>
                     <!-- The following is an interesting one: the user (researcher) would need to fill in a part (here given by xxx) of the question -->
-                    <TranslatedText xml:lang="en" type="text/plain">Or did you do it purely for other reasons /
+                    <TranslatedText xml:lang="en" Type="text/plain">Or did you do it purely for other reasons /
                         without ANY intention of killing yourself (like to relieve stress, feel
                         better, get sympathy, or get something else to happen)??</TranslatedText>
                 </Question>
@@ -1296,13 +1296,13 @@
             <ItemDef OID="IT.Way_to_end_your_life_5_Description"
                 Name="Way to end your life description" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Subject_engaged_in_Non-Suicidal_Self-Injurious_Behavior"
                 Name="subject engaged in Non-Suicidal Self-Injurious Behavior" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Has subject engaged in Non-Suicidal Self-Injurious
+                    <TranslatedText xml:lang="en" Type="text/plain">Has subject engaged in Non-Suicidal Self-Injurious
                         Behavior?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.YesNo"/>
@@ -1311,7 +1311,7 @@
             <ItemDef OID="IT.Time_starting_something_to_end_life"
                 Name="Time when you started to do something to end your life" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Has there been a time when you started to do
+                    <TranslatedText xml:lang="en" Type="text/plain">Has there been a time when you started to do
                         something to end your life but someone or something stopped you before you
                         actually did anything?</TranslatedText>
                 </Question>
@@ -1321,13 +1321,13 @@
                 Name="Description of Time when you started to do something to end your life"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Interrupted_attemps_number" Name="Total # of interrupted"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Total # of interrupted</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Total # of interrupted</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Aborted or Self-Interrupted Attempt" questions -->
@@ -1336,7 +1336,7 @@
             <ItemDef OID="IT.Aborted_or_self-interrupted_attempt" Name="Aborted or Self-Interrupted Attempt"
                 DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Has there been a time when you started to do
+                    <TranslatedText xml:lang="en" Type="text/plain">Has there been a time when you started to do
                         something to try to end your life but you stopped yourself before you
                         actually did anything?</TranslatedText>
                 </Question>
@@ -1345,13 +1345,13 @@
             <ItemDef OID="IT.Aborted_attempt_description"
                 Name="Description Aborted or Self-Interrupted Attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Self_interrupted_attemps_number"
                 Name="Total # of aborted or selfinterrupted" DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Total # of aborted or
+                    <TranslatedText xml:lang="en" Type="text/plain">Total # of aborted or
                         selfinterrupted</TranslatedText>
                 </Question>
             </ItemDef>
@@ -1359,7 +1359,7 @@
             <ItemDef OID="IT.Steps_towards_making_suicide_attempt"
                 Name="Steps towards making a suicide attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Have you taken any steps towards making a suicide
+                    <TranslatedText xml:lang="en" Type="text/plain">Have you taken any steps towards making a suicide
                         attempt or preparing to kill yourself (such as collecting pills, getting a
                         gun, giving valuables away or writing a suicide note)?</TranslatedText>
                 </Question>
@@ -1368,46 +1368,46 @@
             <ItemDef OID="IT.Steps_towards_making_suicide_attempt_description"
                 Name="Description of Steps towards making a suicide attempt" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">If yes, describe:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If yes, describe:</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Steps_towards_making_suicide_attempt_total_number"
                 Name="Total number of Steps towards making a suicide attempt"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Total # of preparatory acts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Total # of preparatory acts</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Actual Lethality/Medical Damage" questions -->
             <!-- TODO: implement as "matrix" for "most recent attempt", "most lethal attempt", and "Initial/first attempt" -->
             <ItemDef OID="IT.Attempt_date" Name="Attempt date" DataType="date">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Date:</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Date:</TranslatedText>
                 </Question>
             </ItemDef>
             <ItemDef OID="IT.Actual_Lethality" Name="Actual Lethality/Medical Damage"
                 DataType="integer">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Enter Code</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Enter Code</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.Actual_Damage"/>
             </ItemDef>
             <ItemDef OID="IT.Actual_Lethality_Date" Name="Date" DataType="date">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Date</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Date</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- "Potential Lethality" questions -->
             <!-- TODO: CollectionExceptionCondition: should only be used when "Actual Lethality" = 0 -->
             <ItemDef OID="IT.Potential_Lethality" Name="Potential Lethality" DataType="text">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Enter Code</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Enter Code</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.Potential_Lethality"/>
             </ItemDef>
             <ItemDef OID="IT.Potential_Lethality_Date" Name="Date" DataType="date">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">Date</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Date</TranslatedText>
                 </Question>
             </ItemDef>
             <!-- Used for repeat over "Most Recent Attempt", "Most Lethal Attempt", "Initial/First Attempt" -->
@@ -1420,16 +1420,16 @@
             <CodeList OID="CL.YesNo" Name="Yes-No CodeList" DataType="text">
                 <CodeListItem CodedValue="Y">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
-                        <TranslatedText xml:lang="de" type="text/plain">Ja</TranslatedText>
-                        <TranslatedText xml:lang="fr" type="text/plain">Oui</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
+                        <TranslatedText xml:lang="de" Type="text/plain">Ja</TranslatedText>
+                        <TranslatedText xml:lang="fr" Type="text/plain">Oui</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="N">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
-                        <TranslatedText xml:lang="de" type="text/plain">Nein</TranslatedText>
-                        <TranslatedText xml:lang="fr" type="text/plain">Non</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
+                        <TranslatedText xml:lang="de" Type="text/plain">Nein</TranslatedText>
+                        <TranslatedText xml:lang="fr" Type="text/plain">Non</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -1438,9 +1438,9 @@
             <CodeList OID="CL.YesOnly" Name="Yes only" DataType="text">
                 <CodeListItem CodedValue="Y">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
-                        <TranslatedText xml:lang="de" type="text/plain">Ja</TranslatedText>
-                        <TranslatedText xml:lang="fr" type="text/plain">Oui</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
+                        <TranslatedText xml:lang="de" Type="text/plain">Ja</TranslatedText>
+                        <TranslatedText xml:lang="fr" Type="text/plain">Oui</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -1449,12 +1449,12 @@
             <CodeList OID="CL.Past_week_Lifetime" Name="Codelist for 'Lifetime' and 'Past 1 Week'" DataType="text">
                 <CodeListItem CodedValue="PAST_WEEK">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Past week</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Past week</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="LIFETIME">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Lifetime</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Lifetime</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -1464,13 +1464,13 @@
                 Name="Codelist for 'Lifetime' and 'Past 1 Month'" DataType="text">
                 <CodeListItem CodedValue="LIFETIME">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Lifetime: Time He/She Felt Most
+                        <TranslatedText xml:lang="en" Type="text/plain">Lifetime: Time He/She Felt Most
                             Suicidal</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="PAST_1_MONTH">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Past 1 month</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Past 1 month</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -1480,12 +1480,12 @@
                 Name="Codelist for 'Lifetime' and 'Past 1 Month'" DataType="text">
                 <CodeListItem CodedValue="LIFETIME">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Lifetime</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Lifetime</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="PAST_3_MONTHS">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Past 3 months</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Past 3 months</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -1493,64 +1493,64 @@
             <!-- CodeList for frequence of thougths -->
             <CodeList OID="CL.Thoughts_Frequency" Name="Frequency of thoughts" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Frequency of thoughts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Frequency of thoughts</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Less than once a week</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Less than once a week</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Once a week</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Once a week</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">2-5 times in week</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">2-5 times in week</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Daily or almost daily</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Daily or almost daily</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Many times each day</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Many times each day</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
             <!-- CodeList for duration of thoughts -->
             <CodeList OID="CL.Thoughts_Duration" Name="Duration of thoughts" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Duration of thoughts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Duration of thoughts</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Fleeting - few seconds or
+                        <TranslatedText xml:lang="en" Type="text/plain">Fleeting - few seconds or
                             minutes</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Less than 1 hour/some of the
+                        <TranslatedText xml:lang="en" Type="text/plain">Less than 1 hour/some of the
                             time</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">1-4 hours/a lot of time</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">1-4 hours/a lot of time</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">4-8 hours/most of day</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">4-8 hours/most of day</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">More than 8 hours/persistent or
+                        <TranslatedText xml:lang="en" Type="text/plain">More than 8 hours/persistent or
                             continuous</TranslatedText>
                     </Decode>
                 </CodeListItem>
@@ -1558,36 +1558,36 @@
             <!-- Codelist for controllability of suicidal thoughts -->
             <CodeList OID="CL.Controllability" DataType="integer" Name="Controllability of thoughts">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Controllability of thoughts</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Controllability of thoughts</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Easily able to control thoughts</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Easily able to control thoughts</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Can control thoughts with little difficulty</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Can control thoughts with little difficulty</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Can control thoughts with some difficulty</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Can control thoughts with some difficulty</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Can control thoughts with a lot of difficulty</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Can control thoughts with a lot of difficulty</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Unable to control thoughts</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Unable to control thoughts</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Does not attempt to control
+                        <TranslatedText xml:lang="en" Type="text/plain">Does not attempt to control
                             thoughts</TranslatedText>
                     </Decode>
                 </CodeListItem>
@@ -1595,113 +1595,113 @@
             <!-- Codelist for Deterrents -->
             <CodeList OID="CL.Deterrents" Name="Deterrents" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Deterrents</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Deterrents</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Deterrents definitely stopped you from
+                        <TranslatedText xml:lang="en" Type="text/plain">Deterrents definitely stopped you from
                             attempting suicide</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Deterrents probably stopped
+                        <TranslatedText xml:lang="en" Type="text/plain">Deterrents probably stopped
                             you</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Uncertain that deterrents stopped
+                        <TranslatedText xml:lang="en" Type="text/plain">Uncertain that deterrents stopped
                             you</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Deterrents most likely did not stop
+                        <TranslatedText xml:lang="en" Type="text/plain">Deterrents most likely did not stop
                             you</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Deterrents definitely did not stop
+                        <TranslatedText xml:lang="en" Type="text/plain">Deterrents definitely did not stop
                             you</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Does not apply</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Does not apply</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
             <!-- Codelist for Reasons for Ideation -->
             <CodeList OID="CL.Reasons_for_Ideation" Name="Reasons for Ideation" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Reasons for Ideation</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Reasons for Ideation</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Completely to get attention, revenge or a
+                        <TranslatedText xml:lang="en" Type="text/plain">Completely to get attention, revenge or a
                             reaction from others</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Mostly to get attention, revenge or a reaction
+                        <TranslatedText xml:lang="en" Type="text/plain">Mostly to get attention, revenge or a reaction
                             from others</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Equally to get attention, revenge or a
+                        <TranslatedText xml:lang="en" Type="text/plain">Equally to get attention, revenge or a
                             reaction from others</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Mostly to end or stop the pain (you couldn’t
+                        <TranslatedText xml:lang="en" Type="text/plain">Mostly to end or stop the pain (you couldn’t
                             go on with the pain or how you were feeling)</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Completely to end or stop the pain (you
+                        <TranslatedText xml:lang="en" Type="text/plain">Completely to end or stop the pain (you
                             couldn’t go on living with the pain or how you were
                             feeling)</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Does not apply</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Does not apply</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
             <!-- Actual Lethality/Medical Damage -->
             <CodeList OID="CL.Actual_Damage" Name="Actual Lethality/Medical Damage" DataType="integer">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Actual Lethality/Medical Damage</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Actual Lethality/Medical Damage</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">No physical damage or very minor physical
+                        <TranslatedText xml:lang="en" Type="text/plain">No physical damage or very minor physical
                             damage (e.g., surface scratches)</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Minor physical damage (e.g., lethargic speech;
+                        <TranslatedText xml:lang="en" Type="text/plain">Minor physical damage (e.g., lethargic speech;
                             first-degree burns; mild bleeding; sprains)</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Moderate physical damage; medical attention
+                        <TranslatedText xml:lang="en" Type="text/plain">Moderate physical damage; medical attention
                             needed (e.g., conscious but sleepy, somewhat responsive; second-degree
                             burns; bleeding of major vessel)</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Moderately severe physical damage; medical
+                        <TranslatedText xml:lang="en" Type="text/plain">Moderately severe physical damage; medical
                             hospitalization and likely intensive care required (e.g., comatose with
                             reflexes intact; third-degree burns less than 20% of body; extensive
                             blood loss but can recover; major fractures)</TranslatedText>
@@ -1709,7 +1709,7 @@
                 </CodeListItem>
                 <CodeListItem CodedValue="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Severe physical damage; medical
+                        <TranslatedText xml:lang="en" Type="text/plain">Severe physical damage; medical
                             hospitalization with intensive care required (e.g., comatose without
                             reflexes; third-degree burns over 20% of body; extensive blood loss with
                             unstable vital signs; major damage to a vital area)</TranslatedText>
@@ -1717,39 +1717,36 @@
                 </CodeListItem>
                 <CodeListItem CodedValue="5">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Death</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Death</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
             <!-- Actual/Potential Lethality Type - used for repeat -->
             <CodeList OID="CL.Lethality_Type" Name="Lethality Type" DataType="text">
-                <!-- We use "EnumeratedItem" here, just as an example.
-                Of course one could also use CodeListItem with Decode, 
-                which in case of EDC may be more appropriate -->
-                <EnumeratedItem CodedValue="Most Recent Attempt"/>
-                <EnumeratedItem CodedValue="Most Lethal Attempt"/>
-                <EnumeratedItem CodedValue="Initial/First Attempt"/>
+                <CodeListItem CodedValue="Most Recent Attempt"/>
+                <CodeListItem CodedValue="Most Lethal Attempt"/>
+                <CodeListItem CodedValue="Initial/First Attempt"/>
             </CodeList>
             <!-- Potential Lethality CodeList -->
             <CodeList OID="CL.Potential_Lethality" Name="Potential Lethality" DataType="text">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Potential Lethality</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">Potential Lethality</TranslatedText>
                 </Description>
                 <CodeListItem CodedValue="0">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Behavior not likely to result in
+                        <TranslatedText xml:lang="en" Type="text/plain">Behavior not likely to result in
                             injury</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Behavior likely to result in injury but not
+                        <TranslatedText xml:lang="en" Type="text/plain">Behavior likely to result in injury but not
                             likely to cause death</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Behavior likely to result in death despite
+                        <TranslatedText xml:lang="en" Type="text/plain">Behavior likely to result in death despite
                             available medical care</TranslatedText>
                     </Decode>
                 </CodeListItem>
@@ -1758,7 +1755,7 @@
             <!-- Conditions -->
             <ConditionDef OID="COND.Wish_to_be_dead_yes" Name="Condition for moving to question 'Description of whishing to be dead'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">If question 'Wish to be dead' is answered with 'Yes', go to question 'Description of wishing to be dead'</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If question 'Wish to be dead' is answered with 'Yes', go to question 'Description of wishing to be dead'</TranslatedText>
                 </Description>
                 <!-- MethodSignature content: TODO -->
                 <MethodSignature></MethodSignature>
@@ -1767,7 +1764,7 @@
             </ConditionDef>
             <ConditionDef OID="COND.Questions_1_and_2_negative" Name="Condition for moving to page/section 'Suicidal Behavior' after questions 1 and 2 of 'Suicidal Iedation'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">If both questions 1 and 2 of section 'Suicidal Ideation' are negative, proceed to section/page 'Suicidal behavior'</TranslatedText>
+                    <TranslatedText xml:lang="en" Type="text/plain">If both questions 1 and 2 of section 'Suicidal Ideation' are negative, proceed to section/page 'Suicidal behavior'</TranslatedText>
                 </Description>
                 <!-- MethodSignature content: TODO -->
                 <MethodSignature></MethodSignature>
@@ -1776,7 +1773,7 @@
             <ConditionDef OID="COND.Way_to_end_your_life_5_Description"
                 Name="Condition for skipping the question 'If yes, describe', after question 'Or did you do it purely for other reasons / without ANY intention of killing yourself ...'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Do not collect when the question 'Or did you do it
+                    <TranslatedText xml:lang="en" Type="text/plain">Do not collect when the question 'Or did you do it
                         purely for other reasons / without ANY intention of killing yourself ...'
                         was answered with "No"</TranslatedText>
                 </Description>
@@ -1789,7 +1786,7 @@
             <ConditionDef OID="COND.Time_starting_something_to_end_life_description"
                 Name="Condition for skipping the question 'If yes, describe', after question 'Has there been a time when you started to do something to end your life but someone stopped you ...'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Do not collect when the question 'Has there been a
+                    <TranslatedText xml:lang="en" Type="text/plain">Do not collect when the question 'Has there been a
                         time when you started to do something to end your life but someone or
                         something stopped you ...' was answered with "No"</TranslatedText>
                 </Description>
@@ -1800,7 +1797,7 @@
             <ConditionDef OID="COND.Aborted_attempt_description"
                 Name="Condition for skipping the question 'If yes, describe', after question 'Has there been a time when you started to do something to try to end your life but you stopped yourself ...'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Do not collect when the question 'Has there been a
+                    <TranslatedText xml:lang="en" Type="text/plain">Do not collect when the question 'Has there been a
                         time when you started to do something to try to end your life but you
                         stopped yourself ...' was answered with "No"</TranslatedText>
                 </Description>
@@ -1812,7 +1809,7 @@
             <ConditionDef OID="COND.Steps_towards_making_suicide_attempt_description"
                 Name="Condition for skipping the question 'If yes, describe', after question 'Have you taken any steps towards making a suicide attempt or preparing to kill yourself ...'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Do not collect when the question 'Have you taken
+                    <TranslatedText xml:lang="en" Type="text/plain">Do not collect when the question 'Have you taken
                         any steps towards making a suicide attempt or preparing to kill yourself
                         ...' was answered with "No"</TranslatedText>
                 </Description>
@@ -1825,7 +1822,7 @@
             <ConditionDef OID="COND.Potential_Lethality"
                 Name="Condition for skipping question group 'Potential Lethality: Only Answer if Actual Lethality=0'">
                 <Description>
-                    <TranslatedText xml:lang="en" type="text/plain">Do not collect when the collected value for the
+                    <TranslatedText xml:lang="en" Type="text/plain">Do not collect when the collected value for the
                         question 'Actual Lethality/Medical Damage' is 0</TranslatedText>
                 </Description>
                 <!-- MethodSignature content: TODO -->

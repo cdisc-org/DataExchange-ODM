@@ -24,16 +24,17 @@
     <xs:attributeGroup name="StudyObjectiveAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyObjectiveType"/>
+        <xs:attribute name="Type" type="StudyObjectiveLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
         <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyEndPointType"/>
+        <xs:attribute name="Type" type="StudyEndPointType" use="optional"/>
+        <xs:attribute name="Level" type="StudyEndPointLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -47,7 +48,7 @@
         <xs:attribute name="StudyTargetPopulationOID" type="oidref" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyInterventionRefAttributeDefinition">
-        <xs:attribute name="StudyInterventionOID" use="required"/>
+        <xs:attribute name="StudyInterventionOID" type="oidref" use="required"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ArmAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -78,7 +79,7 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="TransitionOID" type="oidref" use="required"/>
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
-        <xs:attribute name="Type" type="RelativeTimingConstraintType"/>
+        <xs:attribute name="Type" type="RelativeTimingConstraintType" use="optional"/>
         <xs:attribute name="TimepointTarget" type="durationDatetime" use="required"/>
         <xs:attribute name="TimepointPreWindow" type="durationDatetime" use="optional"/>
         <xs:attribute name="TimepointPostWindow" type="durationDatetime" use="optional"/>
@@ -165,7 +166,7 @@
     <xs:group name="WorkflowTransitionGroupDefinition">
         <xs:sequence>
             <xs:element ref="Transition" minOccurs="0"/>
-            <xs:element ref="Branching " minOccurs="0"/>
+            <xs:element ref="Branching" minOccurs="0"/>
         </xs:sequence>
     </xs:group>
     <xs:group name="ExceptionEventGroupDefinition">
@@ -268,7 +269,7 @@
     
     <xs:complexType name="ODMcomplexTypeDefinition-StudyObjective">
         <xs:sequence>
-            <xs:element ref="Description" minOccurs="1"/>
+            <xs:element ref="Description" minOccurs="0"/>
             <xs:element ref="StudyEndPointRef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyObjectiveElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
@@ -352,6 +353,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-Criterion">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
+            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="CriterionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="CriterionAttributeDefinition"/>
@@ -410,7 +412,7 @@
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StudyParameter">
         <xs:sequence>
-            <xs:element ref="ParameterValue" maxOccurs="unbounded"/>
+            <xs:element ref="ParameterValue" minOccurs="1" maxOccurs="1"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="StudyParameterElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>

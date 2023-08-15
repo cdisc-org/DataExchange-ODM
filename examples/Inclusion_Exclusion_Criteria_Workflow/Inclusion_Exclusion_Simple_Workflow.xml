@@ -81,25 +81,25 @@
     and an uncrossed checkbox can either mean "no" as "forgotten to ask" -->
     <ItemDef OID="IT.INCLUSION_1" Name="Inclusion Criterion 1" DataType="text" Length="1">
         <Question>
-            <TranslatedText xml:lang="en" type="text/plain">is there a diagnosis of the study disease indication (disease XYZ)?</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">is there a diagnosis of the study disease indication (disease XYZ)?</TranslatedText>
         </Question>
         <CodeListRef CodeListOID="CL.YESNO"/>
     </ItemDef>
     <ItemDef OID="IT.INCLUSION_2" Name="Inclusion Criterion 2" DataType="text" Length="1">
         <Question>
-            <TranslatedText xml:lang="en" type="text/plain">Is the subject between 18 and 65 years old?</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Is the subject between 18 and 65 years old?</TranslatedText>
         </Question>
         <CodeListRef CodeListOID="CL.YESNO"/>
     </ItemDef>
     <ItemDef OID="IT.EXCLUSION_1" Name="Exclusion Criterion 1" DataType="text" Length="1">
         <Question>
-            <TranslatedText xml:lang="en" type="text/plain">Does the subject has a diagnosis of  diabetes type 1 or 2?</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Does the subject has a diagnosis of  diabetes type 1 or 2?</TranslatedText>
         </Question>
         <CodeListRef CodeListOID="CL.YESNO"/>
     </ItemDef>
     <ItemDef OID="IT.EXCLUSION_2" Name="Exclusion Criterion 2" DataType="text" Length="1">
         <Question>
-            <TranslatedText xml:lang="en" type="text/plain">Did the subject undergo a surgical procedure in the last 12 months?</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Did the subject undergo a surgical procedure in the last 12 months?</TranslatedText>
         </Question>
         <CodeListRef CodeListOID="CL.YESNO"/>
     </ItemDef>
@@ -107,21 +107,21 @@
     <CodeList OID="CL.YESNO" Name="Yes-No codelist" DataType="text">
         <CodeListItem CodedValue="Y">
             <Decode>
-                <TranslatedText xml:lang="en" type="text/plain">Yes</TranslatedText>
-                <TranslatedText xml:lang="fr" type="text/plain">Oui</TranslatedText>
+                <TranslatedText xml:lang="en" Type="text/plain">Yes</TranslatedText>
+                <TranslatedText xml:lang="fr" Type="text/plain">Oui</TranslatedText>
             </Decode>
         </CodeListItem>
         <CodeListItem CodedValue="N">
             <Decode>
-                <TranslatedText xml:lang="en" type="text/plain">No</TranslatedText>
-                <TranslatedText xml:lang="fr" type="text/plain">Non</TranslatedText>
+                <TranslatedText xml:lang="en" Type="text/plain">No</TranslatedText>
+                <TranslatedText xml:lang="fr" Type="text/plain">Non</TranslatedText>
             </Decode>
         </CodeListItem>
     </CodeList>
     <!-- Conditions - must evaluate to "true" or "false" -->
     <ConditionDef OID="COND.INCL1.NOTMET" Name="Inclusion criterion 1 not met">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Inclusion criterion 1 not met: there a no diagnosis of the study disease indication (disease XYZ)</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Inclusion criterion 1 not met: there a no diagnosis of the study disease indication (disease XYZ)</TranslatedText>
         </Description>
         <!-- machine-readable expression - just an example assuming the data point has been stored, 
             and is available as ODM -->
@@ -132,7 +132,7 @@
     </ConditionDef>
     <ConditionDef OID="COND.INCL2.NOTMET" Name="Inclusion criterion 1 not met">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Inclusion criterion 2 not met: the subject is not between 18 and 15 years old</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Inclusion criterion 2 not met: the subject is not between 18 and 15 years old</TranslatedText>
         </Description>
         <!-- machine-readable expression - just an example assuming the data point has been stored, 
             and is available as ODM -->
@@ -142,7 +142,7 @@
     </ConditionDef>
     <ConditionDef OID="COND.EXCL1.MET" Name="Exclusion criterion 1 is met">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Exclusion criterion 1 has been met: the subject has a diagnosis of  diabetes type 1 or 2</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Exclusion criterion 1 has been met: the subject has a diagnosis of  diabetes type 1 or 2</TranslatedText>
         </Description>
         <MethodSignature/>
         <FormalExpression Context="ODM">
@@ -150,7 +150,7 @@
     </ConditionDef>
     <ConditionDef OID="COND.EXCL2.MET" Name="Exclusion criterion 2 is met">
         <Description>
-            <TranslatedText xml:lang="en" type="text/plain">Exclusion criterion 2 has been met: the subject did undergo a surgical procedure in the last 12 months</TranslatedText>
+            <TranslatedText xml:lang="en" Type="text/plain">Exclusion criterion 2 has been met: the subject did undergo a surgical procedure in the last 12 months</TranslatedText>
         </Description>
         <MethodSignature/>
         <FormalExpression Context="ODM">

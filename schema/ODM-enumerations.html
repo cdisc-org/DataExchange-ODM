@@ -243,9 +243,10 @@
                <li><a href="#attribute-def:Context">Context</a></li>
                <li><a href="#attribute-def:EventType">EventType</a></li>
                <li><a href="#attribute-def:BranchingType">BranchingType</a></li>
-               <li><a href="#attribute-def:StudyObjectiveType">StudyObjectiveType</a></li>
+               <li><a href="#attribute-def:StudyObjectiveLevel">StudyObjectiveLevel</a></li>
                <li><a href="#attribute-def:TrialPhaseType">TrialPhaseType</a></li>
                <li><a href="#attribute-def:StudyEndPointType">StudyEndPointType</a></li>
+               <li><a href="#attribute-def:StudyEndPointLevel">StudyEndPointLevel</a></li>
                <li><a href="#attribute-def:RelativeTimingConstraintType">RelativeTimingConstraintType</a></li>
                <li><a href="#attribute-def:Comparator">Comparator</a></li>
                <li><a href="#attribute-def:SoftOrHard">SoftOrHard</a></li>
@@ -264,6 +265,9 @@
                <li><a href="#attribute-def:QuerySourceType">QuerySourceType</a></li>
                <li><a href="#attribute-def:QueryType">QueryType</a></li>
                <li><a href="#attribute-def:QueryStateType">QueryStateType</a></li>
+               <li><a href="#attribute-def:DefCoreType">DefCoreType</a></li>
+               <li><a href="#attribute-def:ODMCoreType">ODMCoreType</a></li>
+               <li><a href="#attribute-def:CoreType">CoreType</a></li>
                <li><a href="#attribute-def:OriginSource">OriginSource</a></li>
                <li><a href="#attribute-def:OriginType">OriginType</a></li>
                <li><a href="#attribute-def:PDFPageType">PDFPageType</a></li>
@@ -348,15 +352,16 @@
                   <td class="values"><span class="code">'Exclusive'</span><br><span class="code">'Parallel'</span></td>
                </tr>
                <tr class="tablerowodd">
-                  <td class="name"><a id="attribute-def:StudyObjectiveType"></a><a id="type-def:StudyObjectiveType">StudyObjectiveType</a></td>
+                  <td class="name"><a id="attribute-def:StudyObjectiveLevel"></a><a id="type-def:StudyObjectiveLevel">StudyObjectiveLevel</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
-                  <td class="values"><span class="code">'Primary'</span><br><span class="code">'Secondary'</span></td>
+                  <td class="values"><span class="code">'Primary'</span><br><span class="code">'Secondary'</span><br><span class="code">'Exploratory'</span></td>
                </tr>
                <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:TrialPhaseType"></a><a id="type-def:TrialPhaseType">TrialPhaseType</a></td>
-                  <td class="description">A terminology codelist relevant to the phase, or stage, of the clinical trial. [<span class="nci">C66737</span>]</td>
+                  <td class="description">A terminology codelist relevant to the phase, or stage, of the
+                     clinical trial. [<span class="nci">C66737</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'NOT APPLICABLE' [<span class="nci">C48660</span>]</span><br><span class="code">'PHASE 0 TRIAL' [<span class="nci">C54721</span>]</span><br><span class="code">'PHASE I TRIAL' [<span class="nci">C15600</span>]</span><br><span class="code">'PHASE I/II TRIAL' [<span class="nci">C15693</span>]</span><br><span class="code">'PHASE II TRIAL' [<span class="nci">C15601</span>]</span><br><span class="code">'PHASE II/III TRIAL' [<span class="nci">C15694</span>]</span><br><span class="code">'PHASE IIA TRIAL' [<span class="nci">C49686</span>]</span><br><span class="code">'PHASE IIB TRIAL' [<span class="nci">C49688</span>]</span><br><span class="code">'PHASE III TRIAL' [<span class="nci">C15602</span>]</span><br><span class="code">'PHASE IIIA TRIAL' [<span class="nci">C49687</span>]</span><br><span class="code">'PHASE IIIB TRIAL' [<span class="nci">C49689</span>]</span><br><span class="code">'PHASE IV TRIAL' [<span class="nci">C15603</span>]</span><br><span class="code">'PHASE V TRIAL' [<span class="nci">C47865</span>]</span></td>
@@ -369,130 +374,158 @@
                   <td class="values"><span class="code">'Simple'</span><br><span class="code">'Humane'</span><br><span class="code">'Surrogate'</span><br><span class="code">'Composite'</span></td>
                </tr>
                <tr class="tableroweven">
+                  <td class="name"><a id="attribute-def:StudyEndPointLevel"></a><a id="type-def:StudyEndPointLevel">StudyEndPointLevel</a></td>
+                  <td class="description"></td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">'Primary'</span><br><span class="code">'Secondary'</span><br><span class="code">'Exploratory'</span></td>
+               </tr>
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:RelativeTimingConstraintType"></a><a id="type-def:RelativeTimingConstraintType">RelativeTimingConstraintType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'StartToStart'</span><br><span class="code">'StartToFinish'</span><br><span class="code">'FinishToStart'</span><br><span class="code">'FinishToFinish'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:Comparator"></a><a id="type-def:Comparator">Comparator</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'LT'</span><br><span class="code">'LE'</span><br><span class="code">'GT'</span><br><span class="code">'GE'</span><br><span class="code">'EQ'</span><br><span class="code">'NE'</span><br><span class="code">'IN'</span><br><span class="code">'NOTIN'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:SoftOrHard"></a><a id="type-def:SoftOrHard">SoftOrHard</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Soft'</span><br><span class="code">'Hard'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:TransactionType"></a><a id="type-def:TransactionType">TransactionType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Insert'</span><br><span class="code">'Update'</span><br><span class="code">'Remove'</span><br><span class="code">'Upsert'</span><br><span class="code">'Context'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:UserType"></a><a id="type-def:UserType">UserType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Sponsor'</span><br><span class="code">'Investigator'</span><br><span class="code">'Lab'</span><br><span class="code">'Other'</span><br><span class="code">'Subject'</span><br><span class="code">'Monitor'</span><br><span class="code">'Data analyst'</span><br><span class="code">'Care provider'</span><br><span class="code">'Assessor'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:OrganizationType"></a><a id="type-def:OrganizationType">OrganizationType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Sponsor'</span><br><span class="code">'Site'</span><br><span class="code">'CRO'</span><br><span class="code">'Lab'</span><br><span class="code">'Other'</span><br><span class="code">'TechnologyProvider'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:TelecomTypeType"></a><a id="type-def:TelecomTypeType">TelecomTypeType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Email'</span><br><span class="code">'Pager'</span><br><span class="code">'Phone'</span><br><span class="code">'Fax'</span><br><span class="code">'SMS'</span><br><span class="code">'URL'</span><br><span class="code">'Other'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:CommentType"></a><a id="type-def:CommentType">CommentType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Sponsor'</span><br><span class="code">'Site'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:SignMethod"></a><a id="type-def:SignMethod">SignMethod</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Digital'</span><br><span class="code">'Electronic'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:EditPointType"></a><a id="type-def:EditPointType">EditPointType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Monitoring'</span><br><span class="code">'DataManagement'</span><br><span class="code">'DBAudit'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:YesOrNo"></a><a id="type-def:YesOrNo">YesOrNo</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Yes'</span><br><span class="code">'No'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:YesOnly"></a><a id="type-def:YesOnly">YesOnly</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Yes'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:MethodType"></a><a id="type-def:MethodType">MethodType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Computation'</span><br><span class="code">'Imputation'</span><br><span class="code">'Preload'</span><br><span class="code">'Transpose'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:ItemGroupRepeatingType"></a><a id="type-def:ItemGroupRepeatingType">ItemGroupRepeatingType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'No'</span><br><span class="code">'Simple'</span><br><span class="code">'Dynamic'</span><br><span class="code">'Static'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:ItemGroupTypeType"></a><a id="type-def:ItemGroupTypeType">ItemGroupTypeType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'Concept'</span><br><span class="code">'Dataset'</span><br><span class="code">'Form'</span><br><span class="code">'Section'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:QuerySourceType"></a><a id="type-def:QuerySourceType">QuerySourceType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'System'</span><br><span class="code">'Data Management'</span><br><span class="code">'Site Monitor'</span><br><span class="code">'Coding System'</span><br><span class="code">'Safety Reviewer'</span></td>
                </tr>
-               <tr class="tableroweven">
+               <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:QueryType"></a><a id="type-def:QueryType">QueryType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Manual'</span><br><span class="code">'System'</span></td>
                </tr>
-               <tr class="tablerowodd">
+               <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:QueryStateType"></a><a id="type-def:QueryStateType">QueryStateType</a></td>
                   <td class="description"></td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'Candidate'</span><br><span class="code">'Open'</span><br><span class="code">'Answered'</span><br><span class="code">'Closed'</span><br><span class="code">'Cancelled'</span><br><span class="code">'Resolved'</span></td>
+               </tr>
+               <tr class="tablerowodd">
+                  <td class="name"><a id="attribute-def:DefCoreType"></a><a id="type-def:DefCoreType">DefCoreType</a></td>
+                  <td class="description"></td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">'Cond'</span><br><span class="code">'Exp'</span><br><span class="code">'Perm'</span><br><span class="code">'Req'</span></td>
+               </tr>
+               <tr class="tableroweven">
+                  <td class="name"><a id="attribute-def:ODMCoreType"></a><a id="type-def:ODMCoreType">ODMCoreType</a></td>
+                  <td class="description"></td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">'HR'</span><br><span class="code">'O'</span><br><span class="code">'R/C'</span></td>
+               </tr>
+               <tr class="tablerowodd">
+                  <td class="name"><a id="attribute-def:CoreType"></a><a id="type-def:CoreType">CoreType</a></td>
+                  <td class="description">Core.</td>
+                  <td class="type">Enumeration</td>
+                  <td class="extensible">No</td>
+                  <td class="values"><span class="code">DefCoreType</span><br><span class="code">ODMCoreType</span></td>
                </tr>
                <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:OriginSource"></a><a id="type-def:OriginSource">OriginSource</a></td>
@@ -518,8 +551,8 @@
                </tr>
                <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:StandardName"></a><a id="type-def:StandardName">StandardName</a></td>
-                  <td class="description">Terminology relevant to the name of the standard described in the Define-XML
-                     document. [<span class="nci">C170452</span>]</td>
+                  <td class="description">Terminology relevant to the name of the standard described in the
+                     Define-XML document. [<span class="nci">C170452</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'ADaMIG' [<span class="nci">C170552</span>]</span><br><span class="code">'CDISC/NCI' [<span class="nci">C163415</span>]</span><br><span class="code">'SDTMIG' [<span class="nci">C170455</span>]</span><br><span class="code">'SDTMIG-AP' [<span class="nci">C170553</span>]</span><br><span class="code">'SDTMIG-MD' [<span class="nci">C170554</span>]</span><br><span class="code">'SENDIG' [<span class="nci">C170456</span>]</span><br><span class="code">'SENDIG-AR' [<span class="nci">C181230</span>]</span><br><span class="code">'SENDIG-DART' [<span class="nci">C170556</span>]</span></td>
@@ -542,18 +575,18 @@
                </tr>
                <tr class="tableroweven">
                   <td class="name"><a id="attribute-def:StandardType"></a><a id="type-def:StandardType">StandardType</a></td>
-                  <td class="description">Terminology relevant to the classification of the standard described in the
-                     Define-XML document. [<span class="nci">C170451</span>]</td>
+                  <td class="description">Terminology relevant to the classification of the standard described
+                     in the Define-XML document. [<span class="nci">C170451</span>]</td>
                   <td class="type">Enumeration</td>
                   <td class="extensible">No</td>
                   <td class="values"><span class="code">'CT' [<span class="nci">C163415</span>]</span><br><span class="code">'IG' [<span class="nci">C170454</span>]</span></td>
                </tr>
                <tr class="tablerowodd">
                   <td class="name"><a id="attribute-def:DictionaryNameType"></a><a id="type-def:DictionaryNameType">DictionaryNameType</a></td>
-                  <td class="description">A name given to a reference source that lists words and gives their meaning.
-                     (NCI) [<span class="nci">C66788</span>]</td>
+                  <td class="description">A name given to a reference source that lists words and gives their
+                     meaning. (NCI) [<span class="nci">C66788</span>]</td>
                   <td class="type">Enumeration</td>
-                  <td class="extensible">Yes (odm:text)</td>
+                  <td class="extensible">Yes (xs:string)</td>
                   <td class="values"><span class="code">'CDISC CT' [<span class="nci">C163415</span>]</span><br><span class="code">'COSTART' [<span class="nci">C49471</span>]</span><br><span class="code">'CTCAE' [<span class="nci">C49704</span>]</span><br><span class="code">'D-U-N-S NUMBER' [<span class="nci">C134003</span>]</span><br><span class="code">'ICD' [<span class="nci">C49474</span>]</span><br><span class="code">'LOINC' [<span class="nci">C49476</span>]</span><br><span class="code">'MED-RT' [<span class="nci">C163416</span>]</span><br><span class="code">'MedDRA' [<span class="nci">C43820</span>]</span><br><span class="code">'SNOMED' [<span class="nci">C53489</span>]</span><br><span class="code">'UNII' [<span class="nci">C163417</span>]</span><br><span class="code">'WHO ATC CLASSIFICATION SYSTEM' [<span class="nci">C154331</span>]</span><br><span class="code">'WHOART' [<span class="nci">C49468</span>]</span><br><span class="code">'WHODD' [<span class="nci">C49475</span>]</span></td>
                </tr>
                <tr class="tableroweven">

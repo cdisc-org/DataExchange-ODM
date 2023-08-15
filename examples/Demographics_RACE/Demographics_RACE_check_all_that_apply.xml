@@ -12,9 +12,9 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
      SourceSystem="XML4Pharma CDISC ODM Study Designer"
      SourceSystemVersion="2015-R1">
    <Study OID="ST.DEMOGRAPHICS_EXAMPLE" StudyName="Study with Demographics example" ProtocolName="MyStudy">
-      <Description><TranslatedText xml:lang="en" type="text/plain">Demographics example with Race, with "check all that apply"</TranslatedText></Description>
+      <Description><TranslatedText xml:lang="en" Type="text/plain">Demographics example with Race, with "check all that apply"</TranslatedText></Description>
       <MetaDataVersion Name="Version 1" OID="MV.1.0">
-         <Description><TranslatedText xml:lang="en" type="text/plain">Version 1</TranslatedText></Description>
+         <Description><TranslatedText xml:lang="en" Type="text/plain">Version 1</TranslatedText></Description>
          <StudyEventDef Name="Screening visit with demographics" OID="SE.SCREENING" Repeating="No"
                         Type="Scheduled">
             <ItemGroupRef ItemGroupOID="FO.DEMOGRAPHICS" Mandatory="Yes"/>
@@ -42,18 +42,18 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
          </ItemGroupDef>
          <ItemDef DataType="date" Name="Date of birth" OID="IT.DOB">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Date of Birth</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Date of Birth</TranslatedText>
             </Question>
          </ItemDef>
          <ItemDef DataType="integer" Length="1" Name="Sex" OID="IT.SEX">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Sex</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Sex</TranslatedText>
             </Question>
             <CodeListRef CodeListOID="CL.SEX"/>
          </ItemDef>
          <ItemDef DataType="integer" Length="1" Name="Ethnicity" OID="IT.ETHNIC">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Ethnicity</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Ethnicity</TranslatedText>
             </Question>
             <CodeListRef CodeListOID="CL.ETHNIC"/>
          </ItemDef>
@@ -65,13 +65,13 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
          This is separately done in IT.RACE_CODE -->
          <ItemDef DataType="boolean" Length="1" Name="Race" OID="IT.RACE_BOOLEAN">
             <Description>
-               <TranslatedText xml:lang="en" type="text/plain">Race</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Race</TranslatedText>
             </Description>
          </ItemDef>
          <!-- Item for keeping the value of "Race Other" -->
          <ItemDef DataType="text" Length="20" Name="Other Race" OID="IT.RACEOTH">
             <Question>
-               <TranslatedText xml:lang="en" type="text/plain">Other race - specify</TranslatedText>
+               <TranslatedText xml:lang="en" Type="text/plain">Other race - specify</TranslatedText>
             </Question>
          </ItemDef>
          <!-- "Race" lines are treated as integer coded values -->
@@ -115,56 +115,56 @@ Implemented as: Use Case D - CodeList repeat with "other" field - see https://wi
          <CodeList DataType="integer" Name="Sex" OID="CL.SEX">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Male</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Male</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Female</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Female</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
          <CodeList DataType="integer" Name="Ethnicity" OID="CL.ETHNIC">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Hispanic</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Hispanic</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Non-hispanic</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Non-hispanic</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>
          <CodeList DataType="integer" Name="Race" OID="CL.RACE">
             <CodeListItem CodedValue="1">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">White</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">White</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="2">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Black/African American</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Black/African American</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="3">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Asian</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Asian</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="4">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Native Hawaiian/Other Pacific Islander</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Native Hawaiian/Other Pacific Islander</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="5">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">American Indian/Alaska Native</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">American Indian/Alaska Native</TranslatedText>
                </Decode>
             </CodeListItem>
             <CodeListItem CodedValue="99">
                <Decode>
-                  <TranslatedText xml:lang="en" type="text/plain">Other - specify</TranslatedText>
+                  <TranslatedText xml:lang="en" Type="text/plain">Other - specify</TranslatedText>
                </Decode>
             </CodeListItem>
          </CodeList>

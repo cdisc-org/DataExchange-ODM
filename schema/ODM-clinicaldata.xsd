@@ -34,7 +34,7 @@
 		<xs:attribute name="ItemGroupOID" type="oidref" use="required"/>
 		<xs:attribute name="ItemGroupRepeatKey" type="repeatKey"/>
 		<xs:attribute name="TransactionType" type="TransactionType"/>
-		<xs:attribute name="ItemGroupDataSeq" type="integer"/>
+		<xs:attribute name="ItemGroupDataSeq" type="positiveInteger"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ItemDataAttributeSharedDefinition">
 		<xs:attribute name="ItemOID" type="oidref" use="required"/>
@@ -64,10 +64,7 @@
     -->
 	<xs:attributeGroup name="AuditRecordAttributeDefinition">
 		<xs:attribute name="EditPoint" type="EditPointType"/>
-		<!-- <xs:attribute name="UsedImputationMethod" type="YesOrNo"/> -->
 		<xs:attribute name="UsedMethod" type="YesOrNo"/>
-		<!-- Deprecated -->
-		<!-- <xs:attribute name="ID" type="xs:ID"/> -->
 	</xs:attributeGroup>
 	<xs:attributeGroup name="SignatureAttributeDefinition">
 		<xs:attribute name="ID" type="xs:ID"/>

@@ -39,21 +39,21 @@
 	<!--Important: Note that BPMN2 does not have a mechanism to describe the condition in a machine-readable way-->
 	<odm:ConditionDef OID="COND.SequenceFlow_1sm9dlo" Name="Condition for Physio+underwater therapy arm">
 		<odm:Description>
-			<odm:TranslatedText type="text/plain">Condition for Physio+underwater therapy arm</odm:TranslatedText>
+			<odm:TranslatedText Type="text/plain">Condition for Physio+underwater therapy arm</odm:TranslatedText>
 		</odm:Description>
 		<odm:MethodSignature/>
 	</odm:ConditionDef>
 	<!--Important: Note that BPMN2 does not have a mechanism to describe the condition in a machine-readable way-->
 	<odm:ConditionDef OID="COND.SequenceFlow_1hk2z8h" Name="Condition for Physiotherapy Arm">
 		<odm:Description>
-			<odm:TranslatedText type="text/plain">Condition for Physiotherapy Arm</odm:TranslatedText>
+			<odm:TranslatedText Type="text/plain">Condition for Physiotherapy Arm</odm:TranslatedText>
 		</odm:Description>
 		<odm:MethodSignature/>
 	</odm:ConditionDef>
 	<!--Important: Note that BPMN2 does not have a mechanism to describe the condition in a machine-readable way-->
 	<odm:ConditionDef OID="COND.SequenceFlow_0z0iuws" Name="Condition for Underwater therapy arm">
 		<odm:Description>
-			<odm:TranslatedText type="text/plain">Condition for Underwater therapy arm</odm:TranslatedText>
+			<odm:TranslatedText Type="text/plain">Condition for Underwater therapy arm</odm:TranslatedText>
 		</odm:Description>
 		<odm:MethodSignature/>
 	</odm:ConditionDef>

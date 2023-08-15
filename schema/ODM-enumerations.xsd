@@ -105,17 +105,19 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="StudyObjectiveType">
+    <xs:simpleType name="StudyObjectiveLevel">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Primary"/>
             <xs:enumeration value="Secondary"/>
+            <xs:enumeration value="Exploratory"/>
         </xs:restriction>
     </xs:simpleType>
 
     <!-- TrialPhaseType is extensible -->
     <xs:simpleType name="TrialPhaseType">
         <xs:annotation>
-            <xs:documentation>A terminology codelist relevant to the phase, or stage, of the clinical trial.</xs:documentation>
+            <xs:documentation>A terminology codelist relevant to the phase, or stage, of the
+                clinical trial.</xs:documentation>
             <xs:appinfo>
                 <Alias Name="C66737" Context="nci:ExtCodeID"/>
             </xs:appinfo>
@@ -228,6 +230,14 @@
             <xs:enumeration value="Humane"/>
             <xs:enumeration value="Surrogate"/>
             <xs:enumeration value="Composite"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StudyEndPointLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Primary"/>
+            <xs:enumeration value="Secondary"/>
+            <xs:enumeration value="Exploratory"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -389,6 +399,37 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="DefCoreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Cond"/>
+            <xs:enumeration value="Exp"/>
+            <xs:enumeration value="Perm"/>
+            <xs:enumeration value="Req"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ODMCoreType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="HR"/>
+            <xs:enumeration value="O"/>
+            <xs:enumeration value="R/C"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CoreType">
+        <xs:annotation>
+            <xs:documentation>Core.</xs:documentation>
+        </xs:annotation>
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="DefCoreType"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="ODMCoreType"/>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
     <xs:simpleType name="OriginSource">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Investigator">
@@ -421,7 +462,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="OriginType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Assigned">
@@ -445,7 +486,7 @@
                     </xs:appinfo>
                 </xs:annotation>
             </xs:enumeration>
-            <xs:enumeration value="EHR"></xs:enumeration>
+            <xs:enumeration value="EHR"/>
             <xs:enumeration value="Not Available">
                 <xs:annotation>
                     <xs:appinfo>
@@ -487,11 +528,11 @@
             <xs:enumeration value="PhysicalRef"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="StandardName">
         <xs:annotation>
-            <xs:documentation>Terminology relevant to the name of the standard described in the Define-XML
-                document.</xs:documentation>
+            <xs:documentation>Terminology relevant to the name of the standard described in the
+                Define-XML document.</xs:documentation>
             <xs:appinfo>
                 <Alias Name="C170452" Context="nci:ExtCodeID"/>
             </xs:appinfo>
@@ -555,7 +596,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="StandardPublishingSet">
         <xs:annotation>
             <xs:documentation>Terminology relevant to the classification of the CDISC controlled
@@ -602,7 +643,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="StandardStatus">
         <xs:annotation>
             <xs:documentation>Terminology relevant to the development or publication status of the
@@ -612,41 +653,41 @@
             </xs:appinfo>
         </xs:annotation>
         <xs:union>
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:enumeration value="Draft">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <Alias Name="C172453" Context="nci:ExtCodeID"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:enumeration>
-                <xs:enumeration value="Final">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <Alias Name="C172455" Context="nci:ExtCodeID"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:enumeration>
-                <xs:enumeration value="Provisional">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <Alias Name="C172454" Context="nci:ExtCodeID"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:enumeration>
-            </xs:restriction>
-          </xs:simpleType>
-          <xs:simpleType>
-            <xs:restriction base="xs:string"/>
-          </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Draft">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C172453" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="Final">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C172455" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                    <xs:enumeration value="Provisional">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <Alias Name="C172454" Context="nci:ExtCodeID"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:enumeration>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string"/>
+            </xs:simpleType>
         </xs:union>
     </xs:simpleType>
-    
+
     <xs:simpleType name="StandardType">
         <xs:annotation>
-            <xs:documentation>Terminology relevant to the classification of the standard described in the
-                Define-XML document.</xs:documentation>
+            <xs:documentation>Terminology relevant to the classification of the standard described
+                in the Define-XML document.</xs:documentation>
             <xs:appinfo>
                 <Alias Name="C170451" Context="nci:ExtCodeID"/>
             </xs:appinfo>
@@ -671,15 +712,15 @@
 
     <xs:simpleType name="DictionaryNameType">
         <xs:annotation>
-            <xs:documentation>A name given to a reference source that lists words and gives their meaning.
-                (NCI)</xs:documentation>
+            <xs:documentation>A name given to a reference source that lists words and gives their
+                meaning. (NCI)</xs:documentation>
             <xs:appinfo>
                 <Alias Name="C66788" Context="nci:ExtCodeID"/>
             </xs:appinfo>
         </xs:annotation>
         <xs:union>
             <xs:simpleType>
-                <xs:restriction base="odm:text">
+                <xs:restriction base="xs:string">
                     <xs:enumeration value="CDISC CT">
                         <xs:annotation>
                             <xs:appinfo>
@@ -778,7 +819,7 @@
             </xs:simpleType>
         </xs:union>
     </xs:simpleType>
-    
+
     <xs:simpleType name="ItemGroupClass">
         <xs:annotation>
             <xs:documentation>Terminology related to the classification of a CDISC
@@ -895,7 +936,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="ItemGroupSubClass">
         <xs:annotation>
             <xs:documentation>Sub class of a general observation class.</xs:documentation>
@@ -931,7 +972,7 @@
             </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <xs:simpleType name="ItemGroupClassSubClass">
         <xs:annotation>
             <xs:documentation>Sub class of a general observation class. Union of ItemGroupClass and

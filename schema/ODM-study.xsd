@@ -21,7 +21,7 @@
             Type is a Media Type as described in https://www.iana.org/assignments/media-types/media-types.xhtml
             A TranslatedText element with Type="text/plain" must be present. 
         -->
-        <xs:attribute name="type" type="text" use="required" />
+        <xs:attribute name="Type" type="text" use="required" />
     </xs:attributeGroup>
     <xs:attributeGroup name="AliasAttributeDefinition">
         <xs:attribute name="Context" type="text" use="required"/>
@@ -31,6 +31,9 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="StudyName" type="name" use="required"/>
         <xs:attribute name="ProtocolName" type="name" use="required"/>
+        <xs:attribute name="VersionID" type="name" use="optional"/>
+        <xs:attribute name="VersionName" type="name" use="optional"/>
+        <xs:attribute name="Status" type="name" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MetaDataVersionAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -81,18 +84,18 @@
     </xs:attributeGroup>    
     
     <xs:attributeGroup name="DocumentRefAttributeDefinition">
-        <xs:attribute name="leafID" type="xs:IDREF" use="required">
-            <xs:annotation><xs:documentation>Unique identifier for the leaf element with the document location.</xs:documentation></xs:annotation>
+        <xs:attribute name="LeafID" type="xs:IDREF" use="required">
+            <xs:annotation><xs:documentation>Unique identifier for the Leaf element with the document location.</xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
     <xs:attributeGroup name="PDFPageRefAttributeDefinition">
         <xs:attribute name="PageRefs" type="text" use="optional">
             <xs:annotation><xs:documentation>List of PDF pages separated by a space.</xs:documentation></xs:annotation>
         </xs:attribute>
-        <xs:attribute name="FirstPage" type="integer" use="optional">
+        <xs:attribute name="FirstPage" type="positiveInteger" use="optional">
             <xs:annotation><xs:documentation>First page in a range of pages.</xs:documentation></xs:annotation>
         </xs:attribute>
-        <xs:attribute name="LastPage" type="integer" use="optional">
+        <xs:attribute name="LastPage" type="positiveInteger" use="optional">
             <xs:annotation><xs:documentation>Last page in a range of pages.</xs:documentation></xs:annotation>
         </xs:attribute>
         <xs:attribute name="Type" type="PDFPageType"  use="required">
@@ -102,7 +105,7 @@
             <xs:annotation><xs:documentation>Text with the label for the document reference.</xs:documentation></xs:annotation>
         </xs:attribute>
     </xs:attributeGroup>
-    <xs:attributeGroup name="leafAttributeDefinition">
+    <xs:attributeGroup name="LeafAttributeDefinition">
         <xs:attribute name="ID" type="xs:ID" use="required">
             <xs:annotation><xs:documentation>Unique identifier for the leaf that is referenced.</xs:documentation></xs:annotation>
         </xs:attribute>
@@ -113,7 +116,7 @@
     
     <xs:attributeGroup name="StudyEventGroupRefAttributeDefinition">
         <xs:attribute name="StudyEventGroupOID" type="oidref" use="required"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -172,7 +175,7 @@
     
     <xs:attributeGroup name="ItemRefAttributeDefinition">
         <xs:attribute name="ItemOID" type="oidref" use="required"/>
-        <xs:attribute name="KeySequence" type="integer" use="optional"/>
+        <xs:attribute name="KeySequence" type="positiveInteger" use="optional"/>
         <xs:attribute name="IsNonStandard" type="YesOnly" use="optional"/>        
         <xs:attribute name="HasNoData" type="YesOnly" use="optional"/>        
         <xs:attribute name="MethodOID" type="oidref" use="optional"/>
@@ -182,8 +185,10 @@
         <!-- Other attribute signfies that the Item represents "Other" content added to an ItemGroup -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
         <xs:attribute name="Role" type="text" use="optional"/>
-        <xs:attribute name="RoleCodeListOID" type="oidref"/>
-      </xs:attributeGroup>
+        <xs:attribute name="RoleCodeListOID" type="oidref" use="optional"/>
+        <xs:attribute name="Core" type="CoreType" use="optional"/>
+        <xs:attribute name="PreSpecifiedValue" type="text" use="optional"/>
+    </xs:attributeGroup>
       <xs:attributeGroup name="OriginAttributeDefinition">
           <xs:attribute name="Type" type="OriginType" use="required" />        
           <xs:attribute name="Source" type="OriginSource" use="optional" />
@@ -227,7 +232,8 @@
                     datatypes.</xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="DisplayFormat" type="text" use="optional"></xs:attribute>
+        <xs:attribute name="DisplayFormat" type="text" use="optional"/>
+        <xs:attribute name="VariableSet" type="text" use="optional"/>
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RangeCheckAttributeDefinition">
@@ -254,7 +260,7 @@
         <xs:attribute name="Rank" type="decimal" use="optional"/>
         <!-- Other attribute signfies that the term represents "other" content -->
         <xs:attribute name="Other" type="YesOnly" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="ExtendedValue" type="YesOnly" use="optional"/>        
         <xs:attribute name="CommentOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
@@ -267,17 +273,13 @@
         <xs:attribute name="href" type="xs:anyURI" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="RefAttributeSharedDefinition">
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
         <xs:attribute name="Mandatory" type="YesOrNo" use="required"/>
         <xs:attribute name="CollectionExceptionConditionOID" type="oidref" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ExternalSharedAttributeDefinition">
         <xs:attribute name="Dictionary" type="DictionaryNameType" use="optional"/>
         <xs:attribute name="Version" type="text" use="optional"/>
-    </xs:attributeGroup>
-    <xs:attributeGroup name="ExternalCodeListAttributeDefinition">
-        <xs:attribute name="href" type="xs:anyURI" use="optional"/>
-        <xs:attribute name="ref" type="text" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="MethodDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -289,13 +291,13 @@
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="DataType" use="required"/>
         <xs:attribute name="Definition" type="text" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ReturnValueAttributeDefinition">
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="DataType" type="DataType" use="required"/>
         <xs:attribute name="Definition" type="text" use="optional"/>
-        <xs:attribute name="OrderNumber" type="integer" use="optional"/>
+        <xs:attribute name="OrderNumber" type="positiveInteger" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="ConditionDefAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -392,7 +394,7 @@
             <xs:element ref="ConditionDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="MethodDef" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CommentDef" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="leaf" minOccurs="0" maxOccurs="unbounded"/>            
+            <xs:element ref="Leaf" minOccurs="0" maxOccurs="unbounded"/>            
             <xs:group ref="MetaDataVersionElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attributeGroup ref="MetaDataVersionAttributeDefinition"/>
@@ -419,16 +421,16 @@
             </xs:restriction>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-leaf">
+    <xs:complexType name="ODMcomplexTypeDefinition-Leaf">
         <xs:annotation><xs:documentation>Contains the XLink information referenced by DocumentRef or ArchiveLocationID</xs:documentation></xs:annotation>
         <xs:sequence>
-            <xs:element name="title" minOccurs="1" maxOccurs="1">
+            <xs:element name="Title" minOccurs="1" maxOccurs="1">
                 <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
             </xs:element>
-            <xs:group ref="leafElementExtension" minOccurs="0" maxOccurs="1"/>
+            <xs:group ref="LeafElementExtension" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
-        <xs:attributeGroup ref="leafAttributeDefinition"/>
-        <xs:attributeGroup ref="leafAttributeExtension"/>
+        <xs:attributeGroup ref="LeafAttributeDefinition"/>
+        <xs:attributeGroup ref="LeafAttributeExtension"/>
     </xs:complexType>
     
     <xs:complexType name="ODMcomplexTypeDefinition-Include">
@@ -562,7 +564,7 @@
             <xs:element ref="WorkflowRef" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="leaf" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Leaf" minOccurs="0" maxOccurs="1"/>
             <xs:group ref="ItemGroupDefElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="ItemGroupDefAttributeDefinition"/>
@@ -642,11 +644,14 @@
     <xs:complexType name="ODMcomplexTypeDefinition-ItemDef">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
+            <xs:element ref="Definition" minOccurs="0"/>
             <xs:element ref="Question" minOccurs="0"/>
+            <xs:element ref="Prompt" minOccurs="0"/>
+            <xs:element ref="CRFCompletionInstructions" minOccurs="0"/>
+            <xs:element ref="ImplementationNotes" minOccurs="0"/>
+            <xs:element ref="CDISCNotes" minOccurs="0"/>
             <xs:element ref="RangeCheck" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="CodeListRef" minOccurs="0" maxOccurs="1"/>
-            <!-- Moved to ItemRef -->
-            <!-- <xs:element ref="Origin" minOccurs="0"  maxOccurs="unbounded"/> -->
             <xs:element ref="ValueListRef" minOccurs="0" maxOccurs="1"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
@@ -661,6 +666,41 @@
             <xs:group ref="QuestionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="QuestionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Definition">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="DefinitionElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="DefinitionAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-Prompt">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="PromptElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="PromptAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-CRFCompletionInstructions">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="CRFCompletionInstructionsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="CRFCompletionInstructionsAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-ImplementationNotes">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="ImplementationNotesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="ImplementationNotesAttributeExtension"/>
+    </xs:complexType>
+    <xs:complexType name="ODMcomplexTypeDefinition-CDISCNotes">
+        <xs:sequence>
+            <xs:element ref="TranslatedText" maxOccurs="unbounded"/>
+            <xs:group ref="CDISCNotesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attributeGroup ref="CDISCNotesAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListRef">
         <xs:sequence>
@@ -708,11 +748,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-CodeList">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:choice>
-                <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="EnumeratedItem" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:choice>                
-            <xs:element ref="ExternalCodeList" minOccurs="0"/>
+            <xs:element ref="CodeListItem" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -720,19 +756,11 @@
         <xs:attributeGroup ref="CodeListAttributeDefinition"/>
         <xs:attributeGroup ref="CodeListAttributeExtension"/>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExternalCodeList">
-        <xs:sequence>
-            <xs:group ref="ExternalCodeListElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExternalSharedAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalCodeListAttributeDefinition"/>
-        <xs:attributeGroup ref="ExternalCodeListAttributeExtension"/>
-    </xs:complexType>
 
     <xs:complexType name="ODMcomplexTypeDefinition-CodeListItem">
         <xs:sequence>
             <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Decode"/>
+            <xs:element ref="Decode" minOccurs="0"/>
             <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
             <xs:group ref="CodeListItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -748,17 +776,6 @@
         <xs:attributeGroup ref="DecodeAttributeExtension"/>
     </xs:complexType>
 
-    <xs:complexType name="ODMcomplexTypeDefinition-EnumeratedItem">
-        <xs:sequence>
-            <xs:element ref="Description" minOccurs="0"/>
-            <xs:element ref="Coding" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element ref="Alias" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="EnumeratedItemElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="CodeListItemAttributeDefinition"/>
-        <xs:attributeGroup ref="EnumeratedItemAttributeExtension"/>
-        <!-- this is not a typo, EnumeratedItem uses CodeListItem attributes -->
-    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-MethodDef">
         <xs:sequence>
             <xs:element ref="Description"/>
@@ -857,7 +874,7 @@
     <xs:element name="Description" type="ODMcomplexTypeDefinition-Description">
         <xs:unique name="UC-DES-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -902,7 +919,7 @@
     </xs:element>
     <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
     <xs:element name="PDFPageRef" type="ODMcomplexTypeDefinition-PDFPageRef" />
-    <xs:element name="leaf" type="ODMcomplexTypeDefinition-leaf"/>    
+    <xs:element name="Leaf" type="ODMcomplexTypeDefinition-Leaf"/>    
     <xs:element name="Include" type="ODMcomplexTypeDefinition-Include"/>
     <xs:element name="Standards" type="ODMcomplexTypeDefinition-Standards">
         <xs:unique name="UC-STD-1">
@@ -914,13 +931,13 @@
     <xs:element name="AnnotatedCRF" type="ODMcomplexTypeDefinition-AnnotatedCRF">
         <xs:unique name="UC-ACRFG-1">
             <xs:selector xpath="odm:DocumentRef"/>
-            <xs:field xpath="@leafID"/>
+            <xs:field xpath="@LeafID"/>
         </xs:unique>
     </xs:element>
     <xs:element name="SupplementalDoc" type="ODMcomplexTypeDefinition-SupplementalDoc">
         <xs:unique name="UC-SUPPD-1">
             <xs:selector xpath="odm:DocumentRef"/>
-            <xs:field xpath="@leafID"/>
+            <xs:field xpath="@LeafID"/>
         </xs:unique>
     </xs:element>
     <xs:element name="ValueListDef" type="ODMcomplexTypeDefinition-ValueListDef">
@@ -988,7 +1005,42 @@
     <xs:element name="Question" type="ODMcomplexTypeDefinition-Question">
         <xs:unique name="UC-QU-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="Definition" type="ODMcomplexTypeDefinition-Definition">
+        <xs:unique name="UC-DEF-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@Type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="Prompt" type="ODMcomplexTypeDefinition-Prompt">
+        <xs:unique name="UC-PR-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@Type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="CRFCompletionInstructions" type="ODMcomplexTypeDefinition-CRFCompletionInstructions">
+        <xs:unique name="UC-CRFCI-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@Type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="ImplementationNotes" type="ODMcomplexTypeDefinition-ImplementationNotes">
+        <xs:unique name="UC-IMPLN-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@Type"/>
+            <xs:field xpath="@xml:lang"/>
+        </xs:unique>
+    </xs:element>
+    <xs:element name="CDISCNotes" type="ODMcomplexTypeDefinition-CDISCNotes">
+        <xs:unique name="UC-CDISCN-1">
+            <xs:selector xpath="odm:TranslatedText"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -997,7 +1049,7 @@
     <xs:element name="ErrorMessage" type="ODMcomplexTypeDefinition-ErrorMessage">
         <xs:unique name="UC-ERM-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
@@ -1010,14 +1062,6 @@
         </xs:unique>
         <xs:unique name="UC-CL-2">
             <xs:selector xpath="odm:CodeListItem"/>
-            <xs:field xpath="@OrderNumber"/>
-        </xs:unique>
-        <xs:unique name="UC-CL-3">
-            <xs:selector xpath="odm:EnumeratedItem"/>
-            <xs:field xpath="@CodedValue"/>
-        </xs:unique>
-        <xs:unique name="UC-CL-4">
-            <xs:selector xpath="odm:EnumeratedItem"/>
             <xs:field xpath="@OrderNumber"/>
         </xs:unique>
         <xs:unique name="UC-CL-5">
@@ -1034,17 +1078,10 @@
     <xs:element name="Decode" type="ODMcomplexTypeDefinition-Decode">
         <xs:unique name="UC-DEC-1">
             <xs:selector xpath="odm:TranslatedText"/>
-            <xs:field xpath="@type"/>
+            <xs:field xpath="@Type"/>
             <xs:field xpath="@xml:lang"/>
         </xs:unique>
     </xs:element>
-    <xs:element name="EnumeratedItem" type="ODMcomplexTypeDefinition-EnumeratedItem">
-        <xs:unique name="UC-ENU-1">
-            <xs:selector xpath="odm:Alias"/>
-            <xs:field xpath="@Context"/>
-        </xs:unique>
-    </xs:element>
-    <xs:element name="ExternalCodeList" type="ODMcomplexTypeDefinition-ExternalCodeList"/>
     <xs:element name="MethodDef" type="ODMcomplexTypeDefinition-MethodDef">
         <xs:unique name="UC-ME-1">
             <xs:selector xpath="odm:Alias"/>

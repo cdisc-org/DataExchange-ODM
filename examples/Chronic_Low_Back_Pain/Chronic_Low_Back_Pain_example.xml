@@ -14,7 +14,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" CreationDateTime="2022-10-10T18:05:00"
     FileOID="NIH_CLBP" FileType="Snapshot" Granularity="Metadata" ODMVersion="2.0"
     SourceSystem="XML4Pharma CDISC ODM Study Designer" SourceSystemVersion="2015-R1">
-    <Study OID="xxx" StudyName="NIH Chronic Low Back Pain example">
+    <Study OID="xxx" StudyName="NIH Chronic Low Back Pain example" ProtocolName="NIH Chronic Low Back Pain example">
 
         <MetaDataVersion OID="yyy" Name="Metadata version 1"
             xmlns="http://www.cdisc.org/ns/odm/v2.0">
@@ -58,7 +58,7 @@
                 with (sub)quesions governed by a CodeList -->
             <ItemDef OID="IT.QUESTION_REPEAT" Name="Repeat question" DataType="integer" Length="1">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">In the past 7
+                    <TranslatedText xml:lang="en" Type="text/plain">In the past 7
                         days</TranslatedText>
                 </Question>
                 <!-- The "question" for each "detail item" (row in the matrix) itself is governed by a CodeList -->
@@ -77,7 +77,7 @@
                 Name="Day to day interference of chronic low back pain" DataType="integer"
                 Length="1">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere with
+                    <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere with
                         your day-to-day activities?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.LOW_BACK_INTERFERENCE_SCALE"/>
@@ -85,7 +85,7 @@
             <ItemDef OID="IT.INTERFERE_WORK_AROUND_HOME"
                 Name="Day to day interference with work around home" DataType="integer" Length="1">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere with
+                    <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere with
                         work around the home?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.LOW_BACK_INTERFERENCE_SCALE"/>
@@ -94,7 +94,7 @@
                 Name="Day to day interference with participation in social activities"
                 DataType="integer" Length="1">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere with
+                    <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere with
                         your ability to participate in social activities?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.LOW_BACK_INTERFERENCE_SCALE"/>
@@ -102,7 +102,7 @@
             <ItemDef OID="IT.INTERFERE_HOUSEHOLD_CHORES"
                 Name="Day to day interference with household chores" DataType="integer" Length="1">
                 <Question>
-                    <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere with
+                    <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere with
                         your ability to participate in social activities?</TranslatedText>
                 </Question>
                 <CodeListRef CodeListOID="CL.LOW_BACK_INTERFERENCE_SCALE"/>
@@ -114,32 +114,32 @@
                 <CodeListItem CodedValue="1" Rank="1">
                     <!--  would we need "OrderNumber" here? -->
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Not at all</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Not at all</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2" Rank="2">
                     <!--  would we need "OrderNumber" here? -->
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">A little
+                        <TranslatedText xml:lang="en" Type="text/plain">A little
                             bit</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3" Rank="3">
                     <!--  would we need "OrderNumber" here? -->
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Somewhat</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Somewhat</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4" Rank="4">
                     <!--  would we need "OrderNumber" here? -->
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Quite a bit</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Quite a bit</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="5" Rank="5">
                     <!--  would we need "OrderNumber" here? -->
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">Very much</TranslatedText>
+                        <TranslatedText xml:lang="en" Type="text/plain">Very much</TranslatedText>
                     </Decode>
                 </CodeListItem>
             </CodeList>
@@ -147,25 +147,25 @@
             <CodeList OID="CL.REPEAT" Name="Question repeat items" DataType="text">
                 <CodeListItem CodedValue="1" OrderNumber="1">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere
+                        <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere
                             with your day-to-day activities?</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="2" OrderNumber="2">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere
+                        <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere
                             with work around the home?</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="3" OrderNumber="3">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere
+                        <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere
                             with your ability to participate in social activities?</TranslatedText>
                     </Decode>
                 </CodeListItem>
                 <CodeListItem CodedValue="4" OrderNumber="4">
                     <Decode>
-                        <TranslatedText xml:lang="en" type="text/plain">How much did pain interfere
+                        <TranslatedText xml:lang="en" Type="text/plain">How much did pain interfere
                             with your household chores?</TranslatedText>
                     </Decode>
                 </CodeListItem>

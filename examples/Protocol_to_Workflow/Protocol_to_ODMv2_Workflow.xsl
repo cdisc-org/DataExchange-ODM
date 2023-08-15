@@ -29,7 +29,7 @@
 			<xsl:if test="@Description">
 				<xsl:element name="Description" namespace="{$ODMv2NS}">
 					<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
-						<xsl:attribute name="type">text/plain</xsl:attribute>
+						<xsl:attribute name="Type">text/plain</xsl:attribute>
 						<xsl:value-of select="@Description"/>
 					</xsl:element>
 				</xsl:element>
@@ -209,9 +209,9 @@
 				<xsl:element name="{local-name()}" namespace="{$ODMv2NS}">
 					<!-- copy the attributes -->
 					<xsl:for-each select="@*"><xsl:copy-of select="."/></xsl:for-each>
-					<!-- NEW for TranslatedText: we need an additional attribute "type" with value "text/plain" -->
+					<!-- NEW for TranslatedText: we need an additional attribute "Type" with value "text/plain" -->
 					<xsl:if test="name()='TranslatedText'">
-						<xsl:attribute name="type">text/plain</xsl:attribute>
+						<xsl:attribute name="Type">text/plain</xsl:attribute>
 					</xsl:if>
 					<!-- make a deep copy of the child elements in the new namespace
 						(uses recursion) -->
@@ -235,7 +235,7 @@
 			<xsl:if test="@Description">
 				<xsl:element name="Description" namespace="{$ODMv2NS}">
 					<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
-						<xsl:attribute name="type">text/plain</xsl:attribute>
+						<xsl:attribute name="Type">text/plain</xsl:attribute>
 						<xsl:value-of select="@Description"/>
 					</xsl:element>
 				</xsl:element>
@@ -266,7 +266,7 @@
 					<!-- give it a description -->
 					<xsl:element name="Description" namespace="{$ODMv2NS}">
 						<xsl:element name="TranslatedText" namespace="{$ODMv2NS}">
-							<xsl:attribute name="type">text/plain</xsl:attribute>
+							<xsl:attribute name="Type">text/plain</xsl:attribute>
 							<xsl:attribute name="xml:lang">en</xsl:attribute>
 							<xsl:text>Linear workflow generated from ODM 1.3 'Protocol' element for 'Scheduled' StudyEvents</xsl:text>
 						</xsl:element>

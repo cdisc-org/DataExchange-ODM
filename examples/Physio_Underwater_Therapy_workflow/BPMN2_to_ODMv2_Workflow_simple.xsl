@@ -269,7 +269,7 @@
 					<xsl:attribute name="Name">Condition for <xsl:value-of select="//bpmn:sequenceFlow[@id=$flowid]/@name"/></xsl:attribute>
 					<xsl:element name="odm:Description">
 						<xsl:element name="odm:TranslatedText">
-							<xsl:attribute name="type">text/plain</xsl:attribute>
+							<xsl:attribute name="Type">text/plain</xsl:attribute>
 							<xsl:text>Condition for </xsl:text><xsl:value-of select="//bpmn:sequenceFlow[@id=$flowid]/@name"/>
 						</xsl:element>
 					</xsl:element>
