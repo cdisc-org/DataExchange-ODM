@@ -24,7 +24,7 @@
     <xs:attributeGroup name="StudyObjectiveAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyObjectiveLevel" use="optional"/>
+        <xs:attribute name="Level" type="StudyObjectiveLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
         <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
@@ -34,7 +34,7 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="Type" type="StudyEndPointType" use="optional"/>
-        <xs:attribute name="Level" type="StudyEndPointLevel" use="optional"/>
+        <xs:attribute name="Level" type="StudyEstimandLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -43,6 +43,7 @@
     <xs:attributeGroup name="StudyEstimandAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Level" type="StudyEstimandLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationRefAttributeDefinition">
         <xs:attribute name="StudyTargetPopulationOID" type="oidref" use="required"/>

@@ -53,6 +53,10 @@
         <xs:attribute name="MetaDataVersionOID" type="oidref" use="required"/>
         <xs:attribute name="EffectiveDate" type="date" use="required"/>
     </xs:attributeGroup>
+    <xs:attributeGroup name="TelecomAttributeDefinition">
+        <xs:attribute name="TelecomType" type="TelecomTypeType" use="required"/>
+        <xs:attribute name="Value" type="text" use="required"/>
+    </xs:attributeGroup>
 
     <!--
         +===========================================================================+
@@ -175,8 +179,7 @@
         <xs:sequence>
             <xs:group ref="TelecomElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attribute name="TelecomType" type="TelecomTypeType" use="required"/>
-        <xs:attribute name="Value" type="text" use="required"/>
+        <xs:attributeGroup ref="TelecomAttributeDefinition"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StreetName">
         <xs:simpleContent>
