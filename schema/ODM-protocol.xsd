@@ -24,7 +24,7 @@
     <xs:attributeGroup name="StudyObjectiveAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
-        <xs:attribute name="Type" type="StudyObjectiveLevel" use="optional"/>
+        <xs:attribute name="Level" type="StudyObjectiveLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyEndPointRefAttributeDefinition">
         <xs:attribute name="StudyEndPointOID" type="oidref" use="required"/>
@@ -34,7 +34,7 @@
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
         <xs:attribute name="Type" type="StudyEndPointType" use="optional"/>
-        <xs:attribute name="Level" type="StudyEndPointLevel" use="optional"/>
+        <xs:attribute name="Level" type="StudyEstimandLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
@@ -43,6 +43,7 @@
     <xs:attributeGroup name="StudyEstimandAttributeDefinition">
         <xs:attribute name="OID" type="oid" use="required"/>
         <xs:attribute name="Name" type="name" use="required"/>
+        <xs:attribute name="Level" type="StudyEstimandLevel" use="optional"/>
     </xs:attributeGroup>
     <xs:attributeGroup name="StudyTargetPopulationRefAttributeDefinition">
         <xs:attribute name="StudyTargetPopulationOID" type="oidref" use="required"/>
@@ -230,7 +231,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyIndications">
         <xs:sequence>
             <xs:element ref="StudyIndication" minOccurs="1" maxOccurs="unbounded"/>
-            <xs:group ref="StudyIndicationsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyIndicationsAttributeExtension"/>
     </xs:complexType>
@@ -246,7 +246,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyInterventions">
         <xs:sequence>
             <xs:element ref="StudyIntervention" minOccurs="1" maxOccurs="unbounded"/>
-            <xs:group ref="StudyInterventionsElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyInterventionsAttributeExtension"/>
     </xs:complexType>
@@ -262,7 +261,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyObjectives">
         <xs:sequence>
             <xs:element ref="StudyObjective" minOccurs="1" maxOccurs="unbounded"/>
-            <xs:group ref="StudyObjectivesElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyObjectivesAttributeExtension"/>
     </xs:complexType>
@@ -286,7 +284,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyEndPoints">
         <xs:sequence>
             <xs:element ref="StudyEndPoint" minOccurs="1" maxOccurs="unbounded"/>
-            <xs:group ref="StudyEndPointsElementExtension" minOccurs="0" maxOccurs="unbounded"/>   
         </xs:sequence>
         <xs:attributeGroup ref="StudyEndPointsAttributeExtension"/>
     </xs:complexType>
@@ -312,7 +309,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyEstimands">
         <xs:sequence>
             <xs:element ref="StudyEstimand" minOccurs="1" maxOccurs="unbounded"/>
-            <xs:group ref="StudyEstimandsElementExtension" minOccurs="0" maxOccurs="unbounded"/>    
         </xs:sequence>
         <xs:attributeGroup ref="StudyEstimandsAttributeExtension"/>
     </xs:complexType>
@@ -431,7 +427,6 @@
     <xs:complexType name="ODMcomplexTypeDefinition-StudyTimings">
         <xs:sequence>
             <xs:element ref="StudyTiming" maxOccurs="unbounded"/>
-            <xs:group ref="StudyTimingsElementExtension"/>
         </xs:sequence>
         <xs:attributeGroup ref="StudyTimingsAttributeExtension"/>
     </xs:complexType>
@@ -537,29 +532,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-EntryCriteria">
-        <xs:sequence>
-            <xs:element ref="Criterion" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="EntryCriteriaElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="EntryCriteriaAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExitCriteria">
-        <xs:sequence>
-            <xs:element ref="Criterion" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="ExitCriteriaElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExitCriteriaAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExceptionEvent">
-        <xs:sequence>
-            <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="ExceptionEventGroupDefinition" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="ExceptionEventElementExtension" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExceptionEventAttributeDefinition"/>
-        <xs:attributeGroup ref="ExceptionEventAttributeExtension"/>
-    </xs:complexType>
 
     <!--
         +===========================================================================+
@@ -613,8 +585,5 @@
     <xs:element name="DefaultTransition" type="ODMcomplexTypeDefinition-DefaultTransition"/>
     <xs:element name="WorkflowEnd" type="ODMcomplexTypeDefinition-WorkflowEnd"/>
     <xs:element name="Criterion" type="ODMcomplexTypeDefinition-Criterion"/>
-    <xs:element name="EntryCriteria" type="ODMcomplexTypeDefinition-EntryCriteria"/>
-    <xs:element name="ExitCriteria" type="ODMcomplexTypeDefinition-ExitCriteria"/>
-    <xs:element name="ExceptionEvent" type="ODMcomplexTypeDefinition-ExceptionEvent"/>
 
 </xs:schema>

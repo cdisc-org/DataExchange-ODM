@@ -233,7 +233,7 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:simpleType name="StudyEndPointLevel">
+    <xs:simpleType name="StudyEstimandLevel">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Primary"/>
             <xs:enumeration value="Secondary"/>
