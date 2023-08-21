@@ -538,29 +538,6 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-EntryCriteria">
-        <xs:sequence>
-            <xs:element ref="Criterion" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="EntryCriteriaElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="EntryCriteriaAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExitCriteria">
-        <xs:sequence>
-            <xs:element ref="Criterion" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:group ref="ExitCriteriaElementExtension" minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExitCriteriaAttributeExtension"/>
-    </xs:complexType>
-    <xs:complexType name="ODMcomplexTypeDefinition-ExceptionEvent">
-        <xs:sequence>
-            <xs:element ref="Description" minOccurs="0" maxOccurs="1"/>
-            <xs:group ref="ExceptionEventGroupDefinition" minOccurs="1" maxOccurs="1"/>
-            <xs:group ref="ExceptionEventElementExtension" minOccurs="0" maxOccurs="1"/>
-        </xs:sequence>
-        <xs:attributeGroup ref="ExceptionEventAttributeDefinition"/>
-        <xs:attributeGroup ref="ExceptionEventAttributeExtension"/>
-    </xs:complexType>
 
     <!--
         +===========================================================================+
@@ -614,8 +591,5 @@
     <xs:element name="DefaultTransition" type="ODMcomplexTypeDefinition-DefaultTransition"/>
     <xs:element name="WorkflowEnd" type="ODMcomplexTypeDefinition-WorkflowEnd"/>
     <xs:element name="Criterion" type="ODMcomplexTypeDefinition-Criterion"/>
-    <xs:element name="EntryCriteria" type="ODMcomplexTypeDefinition-EntryCriteria"/>
-    <xs:element name="ExitCriteria" type="ODMcomplexTypeDefinition-ExitCriteria"/>
-    <xs:element name="ExceptionEvent" type="ODMcomplexTypeDefinition-ExceptionEvent"/>
 
 </xs:schema>

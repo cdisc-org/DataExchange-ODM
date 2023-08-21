@@ -144,11 +144,7 @@
 	<xs:attributeGroup name="DefaultTransitionAttributeExtension"/>
 	<xs:attributeGroup name="BranchingAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowEndAttributeExtension"/>
-	<xs:attributeGroup name="EntryExitCriteriaAttributeExtension"/>
-	<xs:attributeGroup name="EntryCriteriaAttributeExtension"/>
 	<xs:attributeGroup name="CriterionAttributeExtension"/>
-	<xs:attributeGroup name="ExitCriteriaAttributeExtension"/>
-	<xs:attributeGroup name="ExceptionEventAttributeExtension"/>
 	<xs:attributeGroup name="WorkflowRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventGroupRefAttributeExtension"/>
 	<xs:attributeGroup name="StudyEventGroupDefAttributeExtension"/>
@@ -346,18 +342,12 @@
 	<xs:group name="DefaultTransitionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="EntryCriteriaElementExtension">
-		<xs:sequence/>
-	</xs:group>
+	
 	<xs:group name="CriterionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="ExitCriteriaElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="ExceptionEventElementExtension">
-		<xs:sequence/>
-	</xs:group>
+	
+	
 	<xs:group name="WorkflowRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
