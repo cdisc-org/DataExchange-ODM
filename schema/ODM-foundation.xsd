@@ -99,6 +99,7 @@
 	<xs:attributeGroup name="GivenNameAttributeExtension"/>
 	<xs:attributeGroup name="FamilyNameAttributeExtension"/>
 	<xs:attributeGroup name="ImageAttributeExtension"/>
+	<xs:attributeGroup name="TelecomAttributeExtension"/>
 	<xs:attributeGroup name="OrganizationAttributeExtension"/>
 	<xs:attributeGroup name="StreetNameAttributeExtension"/>
 	<xs:attributeGroup name="HouseNumberAttributeExtension"/>
@@ -128,6 +129,7 @@
 	<xs:attributeGroup name="MetaDataVersionAttributeExtension"/>
 	<xs:attributeGroup name="DocumentRefAttributeExtension"/>
 	<xs:attributeGroup name="LeafAttributeExtension"/>
+	<xs:attributeGroup name="TitleAttributeExtension"/>
 	<xs:attributeGroup name="PDFPageRefAttributeExtension"/>
 	<xs:attributeGroup name="StandardAttributeExtension"/>
 	<xs:attributeGroup name="AnnotatedCRFAttributeExtension"/>

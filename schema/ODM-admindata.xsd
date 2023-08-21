@@ -180,6 +180,7 @@
             <xs:group ref="TelecomElementExtension" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attributeGroup ref="TelecomAttributeDefinition"/>
+        <xs:attributeGroup ref="TelecomAttributeExtension"/>
     </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-StreetName">
         <xs:simpleContent>

@@ -424,7 +424,7 @@
     <xs:complexType name="ODMcomplexTypeDefinition-Leaf">
         <xs:annotation><xs:documentation>Contains the XLink information referenced by DocumentRef or ArchiveLocationID</xs:documentation></xs:annotation>
         <xs:sequence>
-            <xs:element name="Title" minOccurs="1" maxOccurs="1">
+            <xs:element ref="Title" minOccurs="1" maxOccurs="1">
                 <xs:annotation><xs:documentation>Text with the label for the document or dataset.</xs:documentation></xs:annotation>
             </xs:element>
             <xs:group ref="LeafElementExtension" minOccurs="0" maxOccurs="1"/>
@@ -432,7 +432,13 @@
         <xs:attributeGroup ref="LeafAttributeDefinition"/>
         <xs:attributeGroup ref="LeafAttributeExtension"/>
     </xs:complexType>
-    
+    <xs:complexType name="ODMcomplexTypeDefinition-Title">
+        <xs:simpleContent>
+            <xs:extension base="text">
+                <xs:attributeGroup ref="TitleAttributeExtension"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
     <xs:complexType name="ODMcomplexTypeDefinition-Include">
         <xs:sequence>
             <xs:group ref="IncludeElementExtension" minOccurs="0" maxOccurs="unbounded"/>
@@ -920,6 +926,7 @@
     <xs:element name="DocumentRef" type="ODMcomplexTypeDefinition-DocumentRef" />
     <xs:element name="PDFPageRef" type="ODMcomplexTypeDefinition-PDFPageRef" />
     <xs:element name="Leaf" type="ODMcomplexTypeDefinition-Leaf"/>    
+    <xs:element name="Title" type="ODMcomplexTypeDefinition-Title"/>    
     <xs:element name="Include" type="ODMcomplexTypeDefinition-Include"/>
     <xs:element name="Standards" type="ODMcomplexTypeDefinition-Standards">
         <xs:unique name="UC-STD-1">
