@@ -246,9 +246,6 @@
 	<xs:group name="OriginElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="SourceItemsElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="SourceItemElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -346,8 +343,6 @@
 	<xs:group name="CriterionElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	
-	
 	<xs:group name="WorkflowRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
@@ -363,19 +358,10 @@
 	<xs:group name="TrialPhaseElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="StudyIndicationsElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="StudyIndicationElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="StudyInterventionsElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="StudyInterventionElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="StudyObjectivesElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyObjectiveElementExtension">
@@ -384,16 +370,10 @@
 	<xs:group name="StudyEndPointRefElementExtension">
 		<xs:sequence/>
 	</xs:group>
-	<xs:group name="StudyEndPointsElementExtension">
-		<xs:sequence/>
-	</xs:group>
 	<xs:group name="StudyEndPointElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyTargetPopulationElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="StudyEstimandsElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyEstimandElementExtension">
@@ -427,9 +407,6 @@
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="ParameterValueElementExtension">
-		<xs:sequence/>
-	</xs:group>
-	<xs:group name="StudyTimingsElementExtension">
 		<xs:sequence/>
 	</xs:group>
 	<xs:group name="StudyTimingElementExtension">
